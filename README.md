@@ -299,3 +299,14 @@ Authentication schemes defined for the API:
 - **API key parameter name**: HC-Session-ID
 - **Location**: HTTP header
 
+## Development
+
+You can regenerate the client using this command:
+
+```bash
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+    -i https://airlines-api.hopper.com/airline/v1.1/docs/docs.yaml \
+    -g csharp \
+    -o /local \
+    --package-name Com.Hopper.Hts.Airlines
+```
