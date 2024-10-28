@@ -6,8 +6,8 @@
     <AssemblyName>Com.Hopper.Hts.Airlines</AssemblyName>
     <PackageId>Com.Hopper.Hts.Airlines</PackageId>
     <OutputType>Library</OutputType>
-    <Authors>OpenAPI</Authors>
-    <Company>OpenAPI</Company>
+    <Authors>Leonard Law</Authors>
+    <Company>Hopper</Company>
     <AssemblyTitle>OpenAPI Library</AssemblyTitle>
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
