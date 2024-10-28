@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Error
+# Com.Hopper.Hts.Airlines.Model.Error
 
 ## Properties
 

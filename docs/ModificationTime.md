@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.ModificationTime
+# Com.Hopper.Hts.Airlines.Model.ModificationTime
 The time at which the modification is requested
 
 ## Properties

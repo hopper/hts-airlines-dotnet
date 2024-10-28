@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateCfarOfferRequest
+# Com.Hopper.Hts.Airlines.Model.CreateCfarOfferRequest
 
 ## Properties
 

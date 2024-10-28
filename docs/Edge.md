@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Edge
+# Com.Hopper.Hts.Airlines.Model.Edge
 
 ## Properties
 

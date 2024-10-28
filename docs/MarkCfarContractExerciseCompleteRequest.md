@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.MarkCfarContractExerciseCompleteRequest
+# Com.Hopper.Hts.Airlines.Model.MarkCfarContractExerciseCompleteRequest
 An update CFAR contract exercise request
 
 ## Properties

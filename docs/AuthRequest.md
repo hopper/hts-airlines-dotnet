@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.AuthRequest
+# Com.Hopper.Hts.Airlines.Model.AuthRequest
 
 ## Properties
 

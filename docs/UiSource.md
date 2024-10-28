@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.UiSource
+# Com.Hopper.Hts.Airlines.Model.UiSource
 
 ## Properties
 

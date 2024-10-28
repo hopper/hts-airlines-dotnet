@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Linux
+# Com.Hopper.Hts.Airlines.Model.Linux
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.FormOfPayment
+# Com.Hopper.Hts.Airlines.Model.FormOfPayment
 
 ## Properties
 

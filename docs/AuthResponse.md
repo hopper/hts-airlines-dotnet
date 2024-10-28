@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.AuthResponse
+# Com.Hopper.Hts.Airlines.Model.AuthResponse
 
 ## Properties
 

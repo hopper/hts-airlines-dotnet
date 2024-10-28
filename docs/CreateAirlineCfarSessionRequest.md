@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateAirlineCfarSessionRequest
+# Com.Hopper.Hts.Airlines.Model.CreateAirlineCfarSessionRequest
 An object containing information related to the user's session
 
 ## Properties

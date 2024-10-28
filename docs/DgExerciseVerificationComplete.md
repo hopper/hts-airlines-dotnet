@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgExerciseVerificationComplete
+# Com.Hopper.Hts.Airlines.Model.DgExerciseVerificationComplete
 
 ## Properties
 

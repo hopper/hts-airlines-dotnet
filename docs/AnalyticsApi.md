@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Api.AnalyticsApi
+# Com.Hopper.Hts.Airlines.Api.AnalyticsApi
 
 All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
@@ -19,9 +19,9 @@ Events can also be sent directly from a frontend running on end customer's devic
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
@@ -116,9 +116,9 @@ Events can be send directly from partner backend using the same authentication a
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {

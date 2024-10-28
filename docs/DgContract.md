@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgContract
+# Com.Hopper.Hts.Airlines.Model.DgContract
 A DG contract
 
 ## Properties

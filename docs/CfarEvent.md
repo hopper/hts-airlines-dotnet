@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarEvent
+# Com.Hopper.Hts.Airlines.Model.CfarEvent
 
 ## Properties
 

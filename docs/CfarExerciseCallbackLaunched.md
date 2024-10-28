@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarExerciseCallbackLaunched
+# Com.Hopper.Hts.Airlines.Model.CfarExerciseCallbackLaunched
 
 ## Properties
 

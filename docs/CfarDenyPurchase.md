@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarDenyPurchase
+# Com.Hopper.Hts.Airlines.Model.CfarDenyPurchase
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.PassengerPricing
+# Com.Hopper.Hts.Airlines.Model.PassengerPricing
 
 ## Properties
 

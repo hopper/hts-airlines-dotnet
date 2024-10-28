@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.OffersDisplayed
+# Com.Hopper.Hts.Airlines.Model.OffersDisplayed
 
 ## Properties
 

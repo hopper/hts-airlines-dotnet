@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgPassenger
+# Com.Hopper.Hts.Airlines.Model.DgPassenger
 An object detailing the Passenger Information
 
 ## Properties

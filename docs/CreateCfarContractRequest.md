@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateCfarContractRequest
+# Com.Hopper.Hts.Airlines.Model.CreateCfarContractRequest
 Create a CFAR contract from selected CFAR offer(s).
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Android
+# Com.Hopper.Hts.Airlines.Model.Android
 
 ## Properties
 

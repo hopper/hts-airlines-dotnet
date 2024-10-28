@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Api.CancelForAnyReasonCFARApi
+# Com.Hopper.Hts.Airlines.Api.CancelForAnyReasonCFARApi
 
 All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
@@ -25,9 +25,9 @@ Get a CFAR contract
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
@@ -129,9 +129,9 @@ Record that a request to exercise a CFAR contract has occurred.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
@@ -231,9 +231,9 @@ Create a CFAR contract from selected CFAR offer(s).
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
@@ -332,9 +332,9 @@ When HTS is the Merchant of Record (MoR), the customer's credit card is charged 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
@@ -436,9 +436,9 @@ Create CFAR offers for a user's trip
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
@@ -538,9 +538,9 @@ Record that a request to exercise a CFAR contract has been completed
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
@@ -642,9 +642,9 @@ Update forms of payment linked with a CFAR contract
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
@@ -747,9 +747,9 @@ Update the CFAR contract
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {

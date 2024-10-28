@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Api.SessionsApi
+# Com.Hopper.Hts.Airlines.Api.SessionsApi
 
 All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
@@ -18,9 +18,9 @@ Create a new session for which events will be collected.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {

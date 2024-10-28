@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.FlightStatus
+# Com.Hopper.Hts.Airlines.Model.FlightStatus
 The current flight status
 
 ## Properties

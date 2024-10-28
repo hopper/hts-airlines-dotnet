@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarExerciseVerificationComplete
+# Com.Hopper.Hts.Airlines.Model.CfarExerciseVerificationComplete
 
 ## Properties
 

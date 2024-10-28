@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.FareClass
+# Com.Hopper.Hts.Airlines.Model.FareClass
 Fare class of the segment
 
 ## Properties

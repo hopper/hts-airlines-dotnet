@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.MacOs
+# Com.Hopper.Hts.Airlines.Model.MacOs
 
 ## Properties
 

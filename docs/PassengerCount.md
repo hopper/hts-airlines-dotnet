@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.PassengerCount
+# Com.Hopper.Hts.Airlines.Model.PassengerCount
 Type and number of passengers
 
 ## Properties

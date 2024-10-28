@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Cabin
+# Com.Hopper.Hts.Airlines.Model.Cabin
 Service class of the segment
 
 ## Properties

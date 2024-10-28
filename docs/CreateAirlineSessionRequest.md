@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateAirlineSessionRequest
+# Com.Hopper.Hts.Airlines.Model.CreateAirlineSessionRequest
 
 ## Properties
 

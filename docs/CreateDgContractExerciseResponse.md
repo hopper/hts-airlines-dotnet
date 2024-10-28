@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateDgContractExerciseResponse
+# Com.Hopper.Hts.Airlines.Model.CreateDgContractExerciseResponse
 An object containing exercise information for a contract
 
 ## Properties

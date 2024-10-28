@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgRequestType
+# Com.Hopper.Hts.Airlines.Model.DgRequestType
 
 ## Properties
 

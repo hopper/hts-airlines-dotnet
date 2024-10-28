@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.FlowType
+# Com.Hopper.Hts.Airlines.Model.FlowType
 The flow type for which the session is opened.
 
 ## Properties

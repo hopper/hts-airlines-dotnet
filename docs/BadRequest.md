@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.BadRequest
+# Com.Hopper.Hts.Airlines.Model.BadRequest
 
 ## Properties
 

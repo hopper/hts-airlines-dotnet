@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Points
+# Com.Hopper.Hts.Airlines.Model.Points
 
 ## Properties
 

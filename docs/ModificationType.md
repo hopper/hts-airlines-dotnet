@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.ModificationType
+# Com.Hopper.Hts.Airlines.Model.ModificationType
 The type of modifications in question in this fare rule
 
 ## Properties

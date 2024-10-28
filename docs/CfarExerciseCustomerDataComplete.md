@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarExerciseCustomerDataComplete
+# Com.Hopper.Hts.Airlines.Model.CfarExerciseCustomerDataComplete
 
 ## Properties
 

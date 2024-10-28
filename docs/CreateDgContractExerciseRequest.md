@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateDgContractExerciseRequest
+# Com.Hopper.Hts.Airlines.Model.CreateDgContractExerciseRequest
 A create DG contract exercise request
 
 ## Properties

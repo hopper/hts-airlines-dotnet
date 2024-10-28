@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateCfarContractExerciseRequest
+# Com.Hopper.Hts.Airlines.Model.CreateCfarContractExerciseRequest
 A create CFAR contract exercise request
 
 ## Properties

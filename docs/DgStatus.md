@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgStatus
+# Com.Hopper.Hts.Airlines.Model.DgStatus
 
 ## Properties
 

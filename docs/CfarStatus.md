@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarStatus
+# Com.Hopper.Hts.Airlines.Model.CfarStatus
 
 ## Properties
 

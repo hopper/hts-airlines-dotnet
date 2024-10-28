@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgPassengerType
+# Com.Hopper.Hts.Airlines.Model.DgPassengerType
 
 ## Properties
 

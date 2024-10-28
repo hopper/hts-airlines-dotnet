@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarOffersTakeoverDisplay
+# Com.Hopper.Hts.Airlines.Model.CfarOffersTakeoverDisplay
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgExerciseItinerary
+# Com.Hopper.Hts.Airlines.Model.DgExerciseItinerary
 Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
 
 ## Properties

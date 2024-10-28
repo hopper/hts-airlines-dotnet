@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Platform
+# Com.Hopper.Hts.Airlines.Model.Platform
 
 ## Properties
 

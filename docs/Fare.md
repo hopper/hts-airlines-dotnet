@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Fare
+# Com.Hopper.Hts.Airlines.Model.Fare
 
 ## Properties
 

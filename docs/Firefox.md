@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Firefox
+# Com.Hopper.Hts.Airlines.Model.Firefox
 
 ## Properties
 

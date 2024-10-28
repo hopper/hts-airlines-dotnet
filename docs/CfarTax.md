@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarTax
+# Com.Hopper.Hts.Airlines.Model.CfarTax
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Device
+# Com.Hopper.Hts.Airlines.Model.Device
 The end-user's device
 
 ## Properties

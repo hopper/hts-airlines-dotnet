@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgOffer
+# Com.Hopper.Hts.Airlines.Model.DgOffer
 A Dg offer
 
 ## Properties

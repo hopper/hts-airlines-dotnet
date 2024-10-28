@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.AirlineSession
+# Com.Hopper.Hts.Airlines.Model.AirlineSession
 A airline session resource
 
 ## Properties

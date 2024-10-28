@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarContractExercise
+# Com.Hopper.Hts.Airlines.Model.CfarContractExercise
 An object containing exercise information for a contract
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarItinerarySlice
+# Com.Hopper.Hts.Airlines.Model.CfarItinerarySlice
 An object containing the list of flight segments for a fare slice
 
 ## Properties

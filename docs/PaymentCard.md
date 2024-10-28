@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.PaymentCard
+# Com.Hopper.Hts.Airlines.Model.PaymentCard
 
 ## Properties
 

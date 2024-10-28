@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarOfferPassenger
+# Com.Hopper.Hts.Airlines.Model.CfarOfferPassenger
 An object detailing the Passenger Information as part of offers creation
 
 ## Properties

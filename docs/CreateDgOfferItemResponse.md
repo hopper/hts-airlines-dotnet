@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateDgOfferItemResponse
+# Com.Hopper.Hts.Airlines.Model.CreateDgOfferItemResponse
 A created Dg offer
 
 ## Properties

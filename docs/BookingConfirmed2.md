@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.BookingConfirmed2
+# Com.Hopper.Hts.Airlines.Model.BookingConfirmed2
 
 ## Properties
 

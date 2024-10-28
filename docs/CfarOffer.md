@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarOffer
+# Com.Hopper.Hts.Airlines.Model.CfarOffer
 A successful CFAR offer response
 
 ## Properties

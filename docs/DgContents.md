@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgContents
+# Com.Hopper.Hts.Airlines.Model.DgContents
 
 ## Properties
 

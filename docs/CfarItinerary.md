@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarItinerary
+# Com.Hopper.Hts.Airlines.Model.CfarItinerary
 
 ## Properties
 

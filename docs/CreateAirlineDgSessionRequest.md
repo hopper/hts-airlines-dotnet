@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CreateAirlineDgSessionRequest
+# Com.Hopper.Hts.Airlines.Model.CreateAirlineDgSessionRequest
 An object containing information related to the user's session
 
 ## Properties

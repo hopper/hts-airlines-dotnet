@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgAncillaryType
+# Com.Hopper.Hts.Airlines.Model.DgAncillaryType
 The type of ancillary
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarPassenger
+# Com.Hopper.Hts.Airlines.Model.CfarPassenger
 An object detailing the Passenger Information
 
 ## Properties

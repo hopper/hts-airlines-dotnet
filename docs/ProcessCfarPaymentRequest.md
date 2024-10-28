@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.ProcessCfarPaymentRequest
+# Com.Hopper.Hts.Airlines.Model.ProcessCfarPaymentRequest
 A process CFAR payment request
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.ModelOperatingSystem
+# Com.Hopper.Hts.Airlines.Model.ModelOperatingSystem
 
 ## Properties
 

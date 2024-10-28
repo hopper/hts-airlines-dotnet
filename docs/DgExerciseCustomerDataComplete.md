@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgExerciseCustomerDataComplete
+# Com.Hopper.Hts.Airlines.Model.DgExerciseCustomerDataComplete
 
 ## Properties
 

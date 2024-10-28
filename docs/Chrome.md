@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Chrome
+# Com.Hopper.Hts.Airlines.Model.Chrome
 
 ## Properties
 

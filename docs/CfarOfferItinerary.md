@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarOfferItinerary
+# Com.Hopper.Hts.Airlines.Model.CfarOfferItinerary
 An object detailing an itinerary used to create a CFAR offer
 
 ## Properties

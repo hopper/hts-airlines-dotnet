@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Desktop
+# Com.Hopper.Hts.Airlines.Model.Desktop
 
 ## Properties
 

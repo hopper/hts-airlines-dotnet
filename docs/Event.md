@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Event
+# Com.Hopper.Hts.Airlines.Model.Event
 
 ## Properties
 

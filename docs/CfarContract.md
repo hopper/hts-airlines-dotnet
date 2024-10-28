@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarContract
+# Com.Hopper.Hts.Airlines.Model.CfarContract
 A CFAR contract
 
 ## Properties

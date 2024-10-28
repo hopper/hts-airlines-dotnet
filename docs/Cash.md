@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Cash
+# Com.Hopper.Hts.Airlines.Model.Cash
 
 ## Properties
 

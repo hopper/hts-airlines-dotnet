@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgExerciseItinerarySlice
+# Com.Hopper.Hts.Airlines.Model.DgExerciseItinerarySlice
 An object containing the list of flight segments for a fare slice
 
 ## Properties

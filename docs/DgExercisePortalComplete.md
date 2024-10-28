@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgExercisePortalComplete
+# Com.Hopper.Hts.Airlines.Model.DgExercisePortalComplete
 
 ## Properties
 

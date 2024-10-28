@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.ProcessDgPaymentRequest
+# Com.Hopper.Hts.Airlines.Model.ProcessDgPaymentRequest
 A process DG payment request
 
 ## Properties

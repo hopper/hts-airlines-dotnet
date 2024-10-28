@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.ExerciseStepResult
+# Com.Hopper.Hts.Airlines.Model.ExerciseStepResult
 
 ## Properties
 

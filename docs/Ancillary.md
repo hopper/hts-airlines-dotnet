@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Ancillary
+# Com.Hopper.Hts.Airlines.Model.Ancillary
 
 ## Properties
 

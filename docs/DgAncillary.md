@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgAncillary
+# Com.Hopper.Hts.Airlines.Model.DgAncillary
 An object detailing the fare used to create a DG offer
 
 ## Properties

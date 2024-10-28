@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarOffersBannerDisplay
+# Com.Hopper.Hts.Airlines.Model.CfarOffersBannerDisplay
 
 ## Properties
 

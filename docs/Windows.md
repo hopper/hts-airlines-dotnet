@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Windows
+# Com.Hopper.Hts.Airlines.Model.Windows
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgExerciseCallbackLaunched
+# Com.Hopper.Hts.Airlines.Model.DgExerciseCallbackLaunched
 
 ## Properties
 

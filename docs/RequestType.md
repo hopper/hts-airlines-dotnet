@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.RequestType
+# Com.Hopper.Hts.Airlines.Model.RequestType
 
 ## Properties
 

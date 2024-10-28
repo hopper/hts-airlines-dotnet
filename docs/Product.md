@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Product
+# Com.Hopper.Hts.Airlines.Model.Product
 The product for which the session is opened.<br/>Required for sessions having flow_type \"exercise\".
 
 ## Properties

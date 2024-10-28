@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgPayment
+# Com.Hopper.Hts.Airlines.Model.DgPayment
 
 ## Properties
 

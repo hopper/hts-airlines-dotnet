@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.UpdateCfarFormOfPaymentRequest
+# Com.Hopper.Hts.Airlines.Model.UpdateCfarFormOfPaymentRequest
 Request object related to the update of forms of payment for CFAR contract
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgItinerary
+# Com.Hopper.Hts.Airlines.Model.DgItinerary
 
 ## Properties
 

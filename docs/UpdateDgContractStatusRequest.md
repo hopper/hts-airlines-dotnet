@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.UpdateDgContractStatusRequest
+# Com.Hopper.Hts.Airlines.Model.UpdateDgContractStatusRequest
 A update DG contract status request
 
 ## Properties

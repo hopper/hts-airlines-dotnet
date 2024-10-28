@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarExercisePortalComplete
+# Com.Hopper.Hts.Airlines.Model.CfarExercisePortalComplete
 
 ## Properties
 

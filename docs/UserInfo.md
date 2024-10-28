@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.UserInfo
+# Com.Hopper.Hts.Airlines.Model.UserInfo
 An object containing information related to the airline's user. Should be included if known, but not if the user is anonymous.
 
 ## Properties

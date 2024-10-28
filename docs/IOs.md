@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.IOs
+# Com.Hopper.Hts.Airlines.Model.IOs
 
 ## Properties
 

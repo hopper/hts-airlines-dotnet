@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgPassengerTax
+# Com.Hopper.Hts.Airlines.Model.DgPassengerTax
 
 ## Properties
 

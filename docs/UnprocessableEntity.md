@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.UnprocessableEntity
+# Com.Hopper.Hts.Airlines.Model.UnprocessableEntity
 
 ## Properties
 

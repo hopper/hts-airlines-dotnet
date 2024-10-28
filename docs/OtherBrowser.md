@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.OtherBrowser
+# Com.Hopper.Hts.Airlines.Model.OtherBrowser
 
 ## Properties
 

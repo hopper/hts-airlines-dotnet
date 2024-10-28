@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Gender
+# Com.Hopper.Hts.Airlines.Model.Gender
 The gender of the passenger
 
 ## Properties

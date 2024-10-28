@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.AirlineRefundMethod
+# Com.Hopper.Hts.Airlines.Model.AirlineRefundMethod
 
 ## Properties
 

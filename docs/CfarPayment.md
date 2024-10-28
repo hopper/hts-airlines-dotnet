@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarPayment
+# Com.Hopper.Hts.Airlines.Model.CfarPayment
 
 ## Properties
 

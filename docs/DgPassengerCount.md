@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.DgPassengerCount
+# Com.Hopper.Hts.Airlines.Model.DgPassengerCount
 
 ## Properties
 

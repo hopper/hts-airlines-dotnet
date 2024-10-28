@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.Safari
+# Com.Hopper.Hts.Airlines.Model.Safari
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Model.CfarForcedChoiceWarning
+# Com.Hopper.Hts.Airlines.Model.CfarForcedChoiceWarning
 
 ## Properties
 

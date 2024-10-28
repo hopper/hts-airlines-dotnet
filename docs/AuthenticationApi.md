@@ -1,4 +1,4 @@
-# Org.OpenAPITools.Api.AuthenticationApi
+# Com.Hopper.Hts.Airlines.Api.AuthenticationApi
 
 All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
@@ -18,9 +18,9 @@ Get an authentication token
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
 
 namespace Example
 {
