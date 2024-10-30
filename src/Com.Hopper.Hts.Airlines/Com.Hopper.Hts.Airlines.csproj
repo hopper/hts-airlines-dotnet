@@ -12,7 +12,7 @@
     <Description>Hopper HTS Airlines SDK</Description>
     <Copyright>Hopper 2024</Copyright>
     <RootNamespace>Com.Hopper.Hts.Airlines</RootNamespace>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Com.Hopper.Hts.Airlines.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
