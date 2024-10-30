@@ -34,7 +34,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets RefundMethod
         /// </summary>
-        [DataMember(Name = "refund_method", EmitDefaultValue = true)]
+        [DataMember(Name = "refund_method", EmitDefaultValue = false)]
         public AirlineRefundMethod? RefundMethod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkCfarContractExerciseCompleteRequest" /> class.
@@ -54,7 +54,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>424.33</example>
         */
-        [DataMember(Name = "refund_amount", EmitDefaultValue = true)]
+        [DataMember(Name = "refund_amount", EmitDefaultValue = false)]
         public string RefundAmount { get; set; }
 
         /// <summary>

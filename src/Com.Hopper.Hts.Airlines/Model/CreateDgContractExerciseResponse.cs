@@ -68,7 +68,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>https://hts.hopper.com/</example>
         */
-        [DataMember(Name = "redirection_url", EmitDefaultValue = true)]
+        [DataMember(Name = "redirection_url", EmitDefaultValue = false)]
         public string RedirectionUrl { get; set; }
 
         /// <summary>

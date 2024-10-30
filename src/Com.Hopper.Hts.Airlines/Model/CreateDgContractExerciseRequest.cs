@@ -104,7 +104,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>john@doe.com</example>
         */
-        [DataMember(Name = "email_address", EmitDefaultValue = true)]
+        [DataMember(Name = "email_address", EmitDefaultValue = false)]
         public string EmailAddress { get; set; }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>https://hts.hopper.com/</example>
         */
-        [DataMember(Name = "callback_url", EmitDefaultValue = true)]
+        [DataMember(Name = "callback_url", EmitDefaultValue = false)]
         public string CallbackUrl { get; set; }
 
         /// <summary>
@@ -124,13 +124,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>https://hts.hopper.com/</example>
         */
-        [DataMember(Name = "redirectback_url", EmitDefaultValue = true)]
+        [DataMember(Name = "redirectback_url", EmitDefaultValue = false)]
         public string RedirectbackUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets Session
         /// </summary>
-        [DataMember(Name = "session", EmitDefaultValue = true)]
+        [DataMember(Name = "session", EmitDefaultValue = false)]
         public CreateAirlineDgSessionRequest Session { get; set; }
 
         /// <summary>

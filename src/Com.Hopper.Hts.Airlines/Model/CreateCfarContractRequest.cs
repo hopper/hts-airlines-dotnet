@@ -94,7 +94,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>ABC123</example>
         */
-        [DataMember(Name = "pnr_reference", EmitDefaultValue = true)]
+        [DataMember(Name = "pnr_reference", EmitDefaultValue = false)]
         public string PnrReference { get; set; }
 
         /// <summary>

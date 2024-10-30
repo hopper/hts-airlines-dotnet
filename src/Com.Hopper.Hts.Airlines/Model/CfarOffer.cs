@@ -170,7 +170,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>40.00</example>
         */
-        [DataMember(Name = "coverage_extension", EmitDefaultValue = true)]
+        [DataMember(Name = "coverage_extension", EmitDefaultValue = false)]
         public string CoverageExtension { get; set; }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// List of applicable taxes
         /// </summary>
         /// <value>List of applicable taxes</value>
-        [DataMember(Name = "taxes", EmitDefaultValue = true)]
+        [DataMember(Name = "taxes", EmitDefaultValue = false)]
         public List<CfarTax> Taxes { get; set; }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// The terms and conditions for this offer
         /// </summary>
         /// <value>The terms and conditions for this offer</value>
-        [DataMember(Name = "terms_conditions_url", EmitDefaultValue = true)]
+        [DataMember(Name = "terms_conditions_url", EmitDefaultValue = false)]
         public string TermsConditionsUrl { get; set; }
 
         /// <summary>

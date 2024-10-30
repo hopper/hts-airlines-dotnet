@@ -63,13 +63,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets UserInfo
         /// </summary>
-        [DataMember(Name = "user_info", EmitDefaultValue = true)]
+        [DataMember(Name = "user_info", EmitDefaultValue = false)]
         public UserInfo UserInfo { get; set; }
 
         /// <summary>
         /// Gets or Sets Device
         /// </summary>
-        [DataMember(Name = "device", EmitDefaultValue = true)]
+        [DataMember(Name = "device", EmitDefaultValue = false)]
         public Device Device { get; set; }
 
         /// <summary>

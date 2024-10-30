@@ -76,7 +76,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Details of the passengers
         /// </summary>
         /// <value>Details of the passengers</value>
-        [DataMember(Name = "passengers", EmitDefaultValue = true)]
+        [DataMember(Name = "passengers", EmitDefaultValue = false)]
         public List<DgPassenger> Passengers { get; set; }
 
         /// <summary>

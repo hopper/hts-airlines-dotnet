@@ -97,7 +97,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Ancillaries attached to the itinerary and their prices
         /// </summary>
         /// <value>Ancillaries attached to the itinerary and their prices</value>
-        [DataMember(Name = "ancillaries", EmitDefaultValue = true)]
+        [DataMember(Name = "ancillaries", EmitDefaultValue = false)]
         public List<DgAncillary> Ancillaries { get; set; }
 
         /// <summary>
@@ -107,14 +107,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>401.10</example>
         */
-        [DataMember(Name = "total_price", EmitDefaultValue = true)]
+        [DataMember(Name = "total_price", EmitDefaultValue = false)]
         public string TotalPrice { get; set; }
 
         /// <summary>
         /// Details of the passengers
         /// </summary>
         /// <value>Details of the passengers</value>
-        [DataMember(Name = "passengers", EmitDefaultValue = true)]
+        [DataMember(Name = "passengers", EmitDefaultValue = false)]
         public List<DgPassenger> Passengers { get; set; }
 
         /// <summary>

@@ -79,7 +79,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets PreviousSlice
         /// </summary>
-        [DataMember(Name = "previous_slice", EmitDefaultValue = true)]
+        [DataMember(Name = "previous_slice", EmitDefaultValue = false)]
         public DgExerciseItinerarySlice PreviousSlice { get; set; }
 
         /// <summary>

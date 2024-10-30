@@ -85,7 +85,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>ABC123</example>
         */
-        [DataMember(Name = "pnr_reference", EmitDefaultValue = true)]
+        [DataMember(Name = "pnr_reference", EmitDefaultValue = false)]
         public string PnrReference { get; set; }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>john@doe.com</example>
         */
-        [DataMember(Name = "email_address", EmitDefaultValue = true)]
+        [DataMember(Name = "email_address", EmitDefaultValue = false)]
         public string EmailAddress { get; set; }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>12345678900</example>
         */
-        [DataMember(Name = "phone_number", EmitDefaultValue = true)]
+        [DataMember(Name = "phone_number", EmitDefaultValue = false)]
         public string PhoneNumber { get; set; }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>John</example>
         */
-        [DataMember(Name = "first_name", EmitDefaultValue = true)]
+        [DataMember(Name = "first_name", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Smith</example>
         */
-        [DataMember(Name = "last_name", EmitDefaultValue = true)]
+        [DataMember(Name = "last_name", EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>123 12th St</example>
         */
-        [DataMember(Name = "address_line1", EmitDefaultValue = true)]
+        [DataMember(Name = "address_line1", EmitDefaultValue = false)]
         public string AddressLine1 { get; set; }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Building B</example>
         */
-        [DataMember(Name = "address_line2", EmitDefaultValue = true)]
+        [DataMember(Name = "address_line2", EmitDefaultValue = false)]
         public string AddressLine2 { get; set; }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Quebec City</example>
         */
-        [DataMember(Name = "city", EmitDefaultValue = true)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>QC</example>
         */
-        [DataMember(Name = "state_or_province", EmitDefaultValue = true)]
+        [DataMember(Name = "state_or_province", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>G1R 4S9</example>
         */
-        [DataMember(Name = "postal_code", EmitDefaultValue = true)]
+        [DataMember(Name = "postal_code", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>CA</example>
         */
-        [DataMember(Name = "country", EmitDefaultValue = true)]
+        [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
@@ -195,21 +195,21 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>20.00</example>
         */
-        [DataMember(Name = "taxes_total", EmitDefaultValue = true)]
+        [DataMember(Name = "taxes_total", EmitDefaultValue = false)]
         public string TaxesTotal { get; set; }
 
         /// <summary>
         /// List of taxes that is associated with a contract
         /// </summary>
         /// <value>List of taxes that is associated with a contract</value>
-        [DataMember(Name = "taxes", EmitDefaultValue = true)]
+        [DataMember(Name = "taxes", EmitDefaultValue = false)]
         public List<DgTax> Taxes { get; set; }
 
         /// <summary>
         /// List of the forms of payment used to purchase the booking
         /// </summary>
         /// <value>List of the forms of payment used to purchase the booking</value>
-        [DataMember(Name = "forms_of_payment", EmitDefaultValue = true)]
+        [DataMember(Name = "forms_of_payment", EmitDefaultValue = false)]
         public List<FormOfPayment> FormsOfPayment { get; set; }
 
         /// <summary>

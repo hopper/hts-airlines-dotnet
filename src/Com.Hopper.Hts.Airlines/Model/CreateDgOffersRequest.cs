@@ -82,13 +82,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>2022-01-01T18:30Z</example>
         */
-        [DataMember(Name = "booking_date_time", EmitDefaultValue = true)]
+        [DataMember(Name = "booking_date_time", EmitDefaultValue = false)]
         public DateTime BookingDateTime { get; set; }
 
         /// <summary>
         /// Gets or Sets Session
         /// </summary>
-        [DataMember(Name = "session", EmitDefaultValue = true)]
+        [DataMember(Name = "session", EmitDefaultValue = false)]
         public CreateAirlineDgSessionRequest Session { get; set; }
 
         /// <summary>

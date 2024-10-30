@@ -78,7 +78,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Taxes applicable to this itinerary
         /// </summary>
         /// <value>Taxes applicable to this itinerary</value>
-        [DataMember(Name = "taxes", EmitDefaultValue = true)]
+        [DataMember(Name = "taxes", EmitDefaultValue = false)]
         public List<DgPassengerTax> Taxes { get; set; }
 
         /// <summary>

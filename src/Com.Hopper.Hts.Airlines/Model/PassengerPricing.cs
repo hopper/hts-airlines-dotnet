@@ -78,7 +78,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Taxes applicable per passenger
         /// </summary>
         /// <value>Taxes applicable per passenger</value>
-        [DataMember(Name = "taxes", EmitDefaultValue = true)]
+        [DataMember(Name = "taxes", EmitDefaultValue = false)]
         public List<CfarPassengerTax> Taxes { get; set; }
 
         /// <summary>

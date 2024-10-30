@@ -78,7 +78,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>John</example>
         */
-        [DataMember(Name = "first_name", EmitDefaultValue = true)]
+        [DataMember(Name = "first_name", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Smith</example>
         */
-        [DataMember(Name = "last_name", EmitDefaultValue = true)]
+        [DataMember(Name = "last_name", EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>

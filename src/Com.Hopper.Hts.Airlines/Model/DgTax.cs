@@ -102,7 +102,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>0123456ABCDEF</example>
         */
-        [DataMember(Name = "registration_number", EmitDefaultValue = true)]
+        [DataMember(Name = "registration_number", EmitDefaultValue = false)]
         public string RegistrationNumber { get; set; }
 
         /// <summary>

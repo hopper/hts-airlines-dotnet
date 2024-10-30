@@ -70,7 +70,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>2020-11-02T18:34:30Z</example>
         */
-        [DataMember(Name = "created_date_time", EmitDefaultValue = true)]
+        [DataMember(Name = "created_date_time", EmitDefaultValue = false)]
         public DateTime CreatedDateTime { get; set; }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>3</example>
         */
-        [DataMember(Name = "previous_bookings", EmitDefaultValue = true)]
+        [DataMember(Name = "previous_bookings", EmitDefaultValue = false)]
         public int PreviousBookings { get; set; }
 
         /// <summary>

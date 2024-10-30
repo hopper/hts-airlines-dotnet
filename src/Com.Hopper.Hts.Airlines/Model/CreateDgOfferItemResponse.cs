@@ -203,7 +203,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// List of applicable taxes
         /// </summary>
         /// <value>List of applicable taxes</value>
-        [DataMember(Name = "taxes", EmitDefaultValue = true)]
+        [DataMember(Name = "taxes", EmitDefaultValue = false)]
         public List<DgTax> Taxes { get; set; }
 
         /// <summary>

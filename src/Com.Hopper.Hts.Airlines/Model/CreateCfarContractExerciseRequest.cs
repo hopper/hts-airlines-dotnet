@@ -34,7 +34,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets AirlineRefundMethod
         /// </summary>
-        [DataMember(Name = "airline_refund_method", EmitDefaultValue = true)]
+        [DataMember(Name = "airline_refund_method", EmitDefaultValue = false)]
         public AirlineRefundMethod? AirlineRefundMethod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCfarContractExerciseRequest" /> class.
@@ -96,7 +96,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>1ec9ef29-be31-6ed3-beec-9f5ae0d164ee</example>
         */
-        [DataMember(Name = "contract_id", EmitDefaultValue = true)]
+        [DataMember(Name = "contract_id", EmitDefaultValue = false)]
         public string ContractId { get; set; }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>john@doe.com</example>
         */
-        [DataMember(Name = "email_address", EmitDefaultValue = true)]
+        [DataMember(Name = "email_address", EmitDefaultValue = false)]
         public string EmailAddress { get; set; }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>99.0</example>
         */
-        [DataMember(Name = "airline_refund_penalty", EmitDefaultValue = true)]
+        [DataMember(Name = "airline_refund_penalty", EmitDefaultValue = false)]
         public string AirlineRefundPenalty { get; set; }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>CAD</example>
         */
-        [DataMember(Name = "currency", EmitDefaultValue = true)]
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets Session
         /// </summary>
-        [DataMember(Name = "session", EmitDefaultValue = true)]
+        [DataMember(Name = "session", EmitDefaultValue = false)]
         public CreateAirlineCfarSessionRequest Session { get; set; }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>https://hts.hopper.com/</example>
         */
-        [DataMember(Name = "callback_url", EmitDefaultValue = true)]
+        [DataMember(Name = "callback_url", EmitDefaultValue = false)]
         public string CallbackUrl { get; set; }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>https://hts.hopper.com/</example>
         */
-        [DataMember(Name = "redirectback_url", EmitDefaultValue = true)]
+        [DataMember(Name = "redirectback_url", EmitDefaultValue = false)]
         public string RedirectbackUrl { get; set; }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>John</example>
         */
-        [DataMember(Name = "first_name", EmitDefaultValue = true)]
+        [DataMember(Name = "first_name", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Smith</example>
         */
-        [DataMember(Name = "last_name", EmitDefaultValue = true)]
+        [DataMember(Name = "last_name", EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>

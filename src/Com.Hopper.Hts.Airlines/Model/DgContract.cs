@@ -225,7 +225,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// List of applicable taxes
         /// </summary>
         /// <value>List of applicable taxes</value>
-        [DataMember(Name = "taxes", EmitDefaultValue = true)]
+        [DataMember(Name = "taxes", EmitDefaultValue = false)]
         public List<DgTax> Taxes { get; set; }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>EN</example>
         */
-        [DataMember(Name = "language", EmitDefaultValue = true)]
+        [DataMember(Name = "language", EmitDefaultValue = false)]
         public string Language { get; set; }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>ABC123</example>
         */
-        [DataMember(Name = "pnr_reference", EmitDefaultValue = true)]
+        [DataMember(Name = "pnr_reference", EmitDefaultValue = false)]
         public string PnrReference { get; set; }
 
         /// <summary>

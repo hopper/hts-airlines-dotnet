@@ -101,7 +101,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Ancillaries attached to the itinerary and their prices. Only ancillaries covered by CFAR must be filled
         /// </summary>
         /// <value>Ancillaries attached to the itinerary and their prices. Only ancillaries covered by CFAR must be filled</value>
-        [DataMember(Name = "ancillaries", EmitDefaultValue = true)]
+        [DataMember(Name = "ancillaries", EmitDefaultValue = false)]
         public List<Ancillary> Ancillaries { get; set; }
 
         /// <summary>
@@ -111,28 +111,28 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>401.10</example>
         */
-        [DataMember(Name = "total_price", EmitDefaultValue = true)]
+        [DataMember(Name = "total_price", EmitDefaultValue = false)]
         public string TotalPrice { get; set; }
 
         /// <summary>
         /// Details of the passengers
         /// </summary>
         /// <value>Details of the passengers</value>
-        [DataMember(Name = "passengers", EmitDefaultValue = true)]
+        [DataMember(Name = "passengers", EmitDefaultValue = false)]
         public List<CfarPassenger> Passengers { get; set; }
 
         /// <summary>
         /// The fare rules associated to the itinerary. If different fare rules apply to different slices in the itinerary, indicate the most restrictive.
         /// </summary>
         /// <value>The fare rules associated to the itinerary. If different fare rules apply to different slices in the itinerary, indicate the most restrictive.</value>
-        [DataMember(Name = "fare_rules", EmitDefaultValue = true)]
+        [DataMember(Name = "fare_rules", EmitDefaultValue = false)]
         public List<FareRule> FareRules { get; set; }
 
         /// <summary>
         /// Taxes applicable to this itinerary
         /// </summary>
         /// <value>Taxes applicable to this itinerary</value>
-        [DataMember(Name = "taxes", EmitDefaultValue = true)]
+        [DataMember(Name = "taxes", EmitDefaultValue = false)]
         public List<CfarPassengerTax> Taxes { get; set; }
 
         /// <summary>

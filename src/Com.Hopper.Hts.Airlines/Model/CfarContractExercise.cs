@@ -133,7 +133,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>123.20</example>
         */
-        [DataMember(Name = "ftc_refund_allowance", EmitDefaultValue = true)]
+        [DataMember(Name = "ftc_refund_allowance", EmitDefaultValue = false)]
         public string FtcRefundAllowance { get; set; }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>CAD</example>
         */
-        [DataMember(Name = "currency", EmitDefaultValue = true)]
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>https://hts.hopper.com/</example>
         */
-        [DataMember(Name = "redirection_url", EmitDefaultValue = true)]
+        [DataMember(Name = "redirection_url", EmitDefaultValue = false)]
         public string RedirectionUrl { get; set; }
 
         /// <summary>

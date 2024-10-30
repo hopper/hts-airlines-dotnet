@@ -126,7 +126,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>123 12th St</example>
         */
-        [DataMember(Name = "address_line1", EmitDefaultValue = true)]
+        [DataMember(Name = "address_line1", EmitDefaultValue = false)]
         public string AddressLine1 { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Building B</example>
         */
-        [DataMember(Name = "address_line2", EmitDefaultValue = true)]
+        [DataMember(Name = "address_line2", EmitDefaultValue = false)]
         public string AddressLine2 { get; set; }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Quebec City</example>
         */
-        [DataMember(Name = "city", EmitDefaultValue = true)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>QC</example>
         */
-        [DataMember(Name = "state_or_province", EmitDefaultValue = true)]
+        [DataMember(Name = "state_or_province", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>G1R 4S9</example>
         */
-        [DataMember(Name = "postal_code", EmitDefaultValue = true)]
+        [DataMember(Name = "postal_code", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>CA</example>
         */
-        [DataMember(Name = "country", EmitDefaultValue = true)]
+        [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>

@@ -54,7 +54,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets VarVersion
         /// </summary>
-        [DataMember(Name = "version", EmitDefaultValue = true)]
+        [DataMember(Name = "version", EmitDefaultValue = false)]
         public string VarVersion { get; set; }
 
         /// <summary>
