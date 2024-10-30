@@ -15,7 +15,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using Com.Hopper.Hts.Airlines.Client;
-using Com.Hopper.Hts.Airlines.Client.Auth;
 using Com.Hopper.Hts.Airlines.Model;
 
 namespace Com.Hopper.Hts.Airlines.Api

@@ -29,7 +29,6 @@ using RestSharp.Serializers;
 using RestSharpMethod = RestSharp.Method;
 using FileIO = System.IO.File;
 using Polly;
-using Com.Hopper.Hts.Airlines.Client.Auth;
 using Com.Hopper.Hts.Airlines.Model;
 
 namespace Com.Hopper.Hts.Airlines.Client
@@ -463,21 +462,6 @@ namespace Com.Hopper.Hts.Airlines.Client
             };
             setOptions(clientOptions);
             
-            if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
-                !string.IsNullOrEmpty(configuration.OAuthClientId) &&
-                !string.IsNullOrEmpty(configuration.OAuthClientSecret) &&
-                configuration.OAuthFlow != null)
-            {
-                clientOptions.Authenticator = new OAuthAuthenticator(
-                    configuration.OAuthTokenUrl,
-                    configuration.OAuthClientId,
-                    configuration.OAuthClientSecret,
-                    configuration.OAuthScope,
-                    configuration.OAuthFlow,
-                    SerializerSettings,
-                    configuration);
-            }
-
             using (RestClient client = new RestClient(clientOptions,
                 configureSerialization: serializerConfig => serializerConfig.UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration))))
             {

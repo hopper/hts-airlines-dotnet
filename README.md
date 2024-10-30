@@ -265,6 +265,7 @@ Class | Method | HTTP request | Description
  - [Model.RequestType](docs/RequestType.md)
  - [Model.Safari](docs/Safari.md)
  - [Model.Tablet](docs/Tablet.md)
+ - [Model.TokenType](docs/TokenType.md)
  - [Model.UiSource](docs/UiSource.md)
  - [Model.UiVariant](docs/UiVariant.md)
  - [Model.UnprocessableEntity](docs/UnprocessableEntity.md)
@@ -284,13 +285,7 @@ Authentication schemes defined for the API:
 <a id="PartnerAuth"></a>
 ### PartnerAuth
 
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: 
-  - all:general: Access all Session and Analytics APIs
-  - all:cfar: Access all CFAR APIs
-  - all:dg: Access all DG APIs
+- **Type**: Bearer Authentication
 
 <a id="SessionAuth"></a>
 ### SessionAuth

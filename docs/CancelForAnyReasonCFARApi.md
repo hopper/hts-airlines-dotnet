@@ -41,8 +41,8 @@ namespace Example
             config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
             var id = "id_example";  // string | A unique identifier for a contract
@@ -141,8 +141,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
             var createCfarContractExerciseRequest = new CreateCfarContractExerciseRequest(); // CreateCfarContractExerciseRequest | 
@@ -243,8 +243,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
             var createCfarContractRequest = new CreateCfarContractRequest(); // CreateCfarContractRequest | 
@@ -344,8 +344,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
             var id = "id_example";  // string | A unique identifier for a contract
@@ -448,8 +448,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
             var createCfarOfferRequest = new CreateCfarOfferRequest(); // CreateCfarOfferRequest | 
@@ -550,8 +550,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
             var id = "id_example";  // string | A unique identifier for a exercise
@@ -654,8 +654,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
             var id = "id_example";  // string | A unique identifier for a contract
@@ -759,8 +759,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
             var id = "id_example";  // string | A unique identifier for a contract

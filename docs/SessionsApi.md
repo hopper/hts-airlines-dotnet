@@ -30,8 +30,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new SessionsApi(config);
             var createAirlineSessionRequest = new CreateAirlineSessionRequest(); // CreateAirlineSessionRequest | 

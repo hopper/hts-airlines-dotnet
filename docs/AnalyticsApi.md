@@ -132,8 +132,8 @@ namespace Example
             config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AnalyticsApi(config);
             var varEvent = new Event(); // Event | 

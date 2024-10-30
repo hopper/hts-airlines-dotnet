@@ -41,8 +41,8 @@ namespace Example
             config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DisruptionGuaranteeDGApi(config);
             var id = "id_example";  // string | A unique identifier for a contract
@@ -238,8 +238,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DisruptionGuaranteeDGApi(config);
             var createDgContractExerciseRequest = new CreateDgContractExerciseRequest(); // CreateDgContractExerciseRequest | 
@@ -344,8 +344,8 @@ namespace Example
             config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DisruptionGuaranteeDGApi(config);
             var createDgContractRequest = new CreateDgContractRequest(); // CreateDgContractRequest | 
@@ -449,8 +449,8 @@ namespace Example
             config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DisruptionGuaranteeDGApi(config);
             var id = "id_example";  // string | A unique identifier for a contract
@@ -551,8 +551,8 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DisruptionGuaranteeDGApi(config);
             var createDgOffersRequest = new CreateDgOffersRequest(); // CreateDgOffersRequest | 
@@ -657,8 +657,8 @@ namespace Example
             config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DisruptionGuaranteeDGApi(config);
             var id = "id_example";  // string | A unique identifier for a contract
@@ -763,8 +763,8 @@ namespace Example
             config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
-            // Configure OAuth2 access token for authorization: PartnerAuth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DisruptionGuaranteeDGApi(config);
             var id = "id_example";  // string | A unique identifier for a contract

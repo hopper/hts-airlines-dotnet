@@ -31,6 +31,12 @@ namespace Com.Hopper.Hts.Airlines.Model
     [DataContract(Name = "auth_response")]
     public partial class AuthResponse : IValidatableObject
     {
+
+        /// <summary>
+        /// Gets or Sets TokenType
+        /// </summary>
+        [DataMember(Name = "token_type", IsRequired = true, EmitDefaultValue = true)]
+        public TokenType TokenType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthResponse" /> class.
         /// </summary>
@@ -43,7 +49,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="scope">Token&#39;s scope (required).</param>
         /// <param name="expiresIn">Token&#39;s expiration (in seconds) (required).</param>
         /// <param name="tokenType">tokenType (required).</param>
-        public AuthResponse(string accessToken = default(string), string scope = default(string), int expiresIn = default(int), string tokenType = default(string))
+        public AuthResponse(string accessToken = default(string), string scope = default(string), int expiresIn = default(int), TokenType tokenType = default(TokenType))
         {
             // to ensure "accessToken" is required (not null)
             if (accessToken == null)
@@ -58,11 +64,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             }
             this.Scope = scope;
             this.ExpiresIn = expiresIn;
-            // to ensure "tokenType" is required (not null)
-            if (tokenType == null)
-            {
-                throw new ArgumentNullException("tokenType is a required property for AuthResponse and cannot be null");
-            }
             this.TokenType = tokenType;
         }
 
@@ -95,12 +96,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         */
         [DataMember(Name = "expires_in", IsRequired = true, EmitDefaultValue = true)]
         public int ExpiresIn { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TokenType
-        /// </summary>
-        [DataMember(Name = "token_type", IsRequired = true, EmitDefaultValue = true)]
-        public string TokenType { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
