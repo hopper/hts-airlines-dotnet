@@ -21,7 +21,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using JsonSubTypes;
-using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
 using System.Reflection;
 
@@ -32,7 +31,7 @@ namespace Com.Hopper.Hts.Airlines.Model
     /// </summary>
     [JsonConverter(typeof(BrowserJsonConverter))]
     [DataContract(Name = "browser")]
-    public partial class Browser : AbstractOpenAPISchema, IValidatableObject
+    public partial class Browser : AbstractOpenAPISchema
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Browser" /> class
@@ -428,16 +427,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             return newBrowser;
         }
 
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>

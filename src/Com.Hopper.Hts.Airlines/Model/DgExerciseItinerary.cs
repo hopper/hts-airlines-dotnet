@@ -20,7 +20,6 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
 
 namespace Com.Hopper.Hts.Airlines.Model
@@ -29,7 +28,7 @@ namespace Com.Hopper.Hts.Airlines.Model
     /// Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
     /// </summary>
     [DataContract(Name = "dg_exercise_itinerary")]
-    public partial class DgExerciseItinerary : IValidatableObject
+    public partial class DgExerciseItinerary
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DgExerciseItinerary" /> class.
@@ -104,15 +103,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
 }

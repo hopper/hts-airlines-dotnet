@@ -20,7 +20,6 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
 
 namespace Com.Hopper.Hts.Airlines.Model
@@ -29,7 +28,7 @@ namespace Com.Hopper.Hts.Airlines.Model
     /// An object containing information related to the airline&#39;s user. Should be included if known, but not if the user is anonymous.
     /// </summary>
     [DataContract(Name = "user_info")]
-    public partial class UserInfo : IValidatableObject
+    public partial class UserInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UserInfo" /> class.
@@ -108,21 +107,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // PreviousBookings (int) minimum
-            if (this.PreviousBookings < (int)0)
-            {
-                yield return new ValidationResult("Invalid value for PreviousBookings, must be a value greater than or equal to 0.", new [] { "PreviousBookings" });
-            }
-
-            yield break;
-        }
     }
 
 }

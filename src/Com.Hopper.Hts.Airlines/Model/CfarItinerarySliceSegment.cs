@@ -20,7 +20,6 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
 
 namespace Com.Hopper.Hts.Airlines.Model
@@ -29,7 +28,7 @@ namespace Com.Hopper.Hts.Airlines.Model
     /// An object detailing a segment of a fare slice
     /// </summary>
     [DataContract(Name = "cfar_itinerary_slice_segment")]
-    public partial class CfarItinerarySliceSegment : IValidatableObject
+    public partial class CfarItinerarySliceSegment
     {
 
         /// <summary>
@@ -191,51 +190,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            if (this.OriginAirport != null) {
-                // OriginAirport (string) pattern
-                Regex regexOriginAirport = new Regex(@"[A-Z]{3}", RegexOptions.CultureInvariant);
-                if (!regexOriginAirport.Match(this.OriginAirport).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OriginAirport, must match a pattern of " + regexOriginAirport, new [] { "OriginAirport" });
-                }
-            }
-
-            if (this.DestinationAirport != null) {
-                // DestinationAirport (string) pattern
-                Regex regexDestinationAirport = new Regex(@"[A-Z]{3}", RegexOptions.CultureInvariant);
-                if (!regexDestinationAirport.Match(this.DestinationAirport).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationAirport, must match a pattern of " + regexDestinationAirport, new [] { "DestinationAirport" });
-                }
-            }
-
-            if (this.FlightNumber != null) {
-                // FlightNumber (string) pattern
-                Regex regexFlightNumber = new Regex(@"([A-Z][0-9]{2,5}|[0-9]{1,4}|[0-9][A-Z][0-9]{1,4}|[A-Z]{2}[0-9]{1,4})", RegexOptions.CultureInvariant);
-                if (!regexFlightNumber.Match(this.FlightNumber).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FlightNumber, must match a pattern of " + regexFlightNumber, new [] { "FlightNumber" });
-                }
-            }
-
-            if (this.ValidatingCarrierCode != null) {
-                // ValidatingCarrierCode (string) pattern
-                Regex regexValidatingCarrierCode = new Regex(@"[A-Z0-9]{2}", RegexOptions.CultureInvariant);
-                if (!regexValidatingCarrierCode.Match(this.ValidatingCarrierCode).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ValidatingCarrierCode, must match a pattern of " + regexValidatingCarrierCode, new [] { "ValidatingCarrierCode" });
-                }
-            }
-
-            yield break;
-        }
     }
 
 }

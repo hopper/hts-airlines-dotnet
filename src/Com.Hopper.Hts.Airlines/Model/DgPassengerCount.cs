@@ -20,7 +20,6 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
 
 namespace Com.Hopper.Hts.Airlines.Model
@@ -29,7 +28,7 @@ namespace Com.Hopper.Hts.Airlines.Model
     /// DgPassengerCount
     /// </summary>
     [DataContract(Name = "dg_passenger_count")]
-    public partial class DgPassengerCount : IValidatableObject
+    public partial class DgPassengerCount
     {
 
         /// <summary>
@@ -86,21 +85,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Count (long) minimum
-            if (this.Count < (long)0)
-            {
-                yield return new ValidationResult("Invalid value for Count, must be a value greater than 0.", new [] { "Count" });
-            }
-
-            yield break;
-        }
     }
 
 }
