@@ -302,7 +302,7 @@ VERSION=0.1.2 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-
     -g csharp \
     -o /local \
     --package-name Com.Hopper.Hts.Airlines \
-    --additional-properties=optionalEmitDefaultValues=true,nullableReferenceTypes=true,validatable=false,packageVersion=$VERSION
+    --additional-properties=optionalEmitDefaultValues=true,nullableReferenceTypes=true,validatable=false,licenseId=MIT,packageVersion=$VERSION
 ```
 
 ## Publishing
