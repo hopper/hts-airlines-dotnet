@@ -142,7 +142,6 @@ docs/Web.md
 docs/Windows.md
 git_push.sh
 src/Com.Hopper.Hts.Airlines.Test/Com.Hopper.Hts.Airlines.Test.csproj
-src/Com.Hopper.Hts.Airlines.Test/Model/TokenTypeTests.cs
 src/Com.Hopper.Hts.Airlines/Api/AnalyticsApi.cs
 src/Com.Hopper.Hts.Airlines/Api/AuthenticationApi.cs
 src/Com.Hopper.Hts.Airlines/Api/CancelForAnyReasonCFARApi.cs

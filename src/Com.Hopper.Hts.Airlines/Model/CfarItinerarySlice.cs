@@ -73,7 +73,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// List of passengers type, count and pricing for the slice
         /// </summary>
         /// <value>List of passengers type, count and pricing for the slice</value>
-        [DataMember(Name = "passenger_pricing", EmitDefaultValue = false)]
+        [DataMember(Name = "passenger_pricing", EmitDefaultValue = true)]
         public List<PassengerPricing> PassengerPricing { get; set; }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>401.10</example>
         */
-        [DataMember(Name = "total_price", EmitDefaultValue = false)]
+        [DataMember(Name = "total_price", EmitDefaultValue = true)]
         public string TotalPrice { get; set; }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>flex</example>
         */
-        [DataMember(Name = "fare_brand", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_brand", EmitDefaultValue = true)]
         public string FareBrand { get; set; }
 
         /// <summary>
@@ -103,21 +103,21 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>YBA123US</example>
         */
-        [DataMember(Name = "fare_basis", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_basis", EmitDefaultValue = true)]
         public string FareBasis { get; set; }
 
         /// <summary>
         /// The fare rules associated to the slice
         /// </summary>
         /// <value>The fare rules associated to the slice</value>
-        [DataMember(Name = "fare_rules", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_rules", EmitDefaultValue = true)]
         public List<FareRule> FareRules { get; set; }
 
         /// <summary>
         /// Other available fares in the same cabin
         /// </summary>
         /// <value>Other available fares in the same cabin</value>
-        [DataMember(Name = "other_fares", EmitDefaultValue = false)]
+        [DataMember(Name = "other_fares", EmitDefaultValue = true)]
         public List<Fare> OtherFares { get; set; }
 
         /// <summary>

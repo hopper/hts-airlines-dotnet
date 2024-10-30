@@ -41,7 +41,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets Product
         /// </summary>
-        [DataMember(Name = "product", EmitDefaultValue = false)]
+        [DataMember(Name = "product", EmitDefaultValue = true)]
         public Product? Product { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAirlineSessionRequest" /> class.
@@ -80,13 +80,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets UserInfo
         /// </summary>
-        [DataMember(Name = "user_info", EmitDefaultValue = false)]
+        [DataMember(Name = "user_info", EmitDefaultValue = true)]
         public UserInfo UserInfo { get; set; }
 
         /// <summary>
         /// Gets or Sets Device
         /// </summary>
-        [DataMember(Name = "device", EmitDefaultValue = false)]
+        [DataMember(Name = "device", EmitDefaultValue = true)]
         public Device Device { get; set; }
 
         /// <summary>

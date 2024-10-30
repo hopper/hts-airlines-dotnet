@@ -47,7 +47,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets RefundMethod
         /// </summary>
-        [DataMember(Name = "refund_method", EmitDefaultValue = false)]
+        [DataMember(Name = "refund_method", EmitDefaultValue = true)]
         public AirlineRefundMethod? RefundMethod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="FareRule" /> class.
@@ -84,14 +84,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Amount to be paid as penalty fee to perform the modification
         /// </summary>
         /// <value>Amount to be paid as penalty fee to perform the modification</value>
-        [DataMember(Name = "fee", EmitDefaultValue = false)]
+        [DataMember(Name = "fee", EmitDefaultValue = true)]
         public string Fee { get; set; }
 
         /// <summary>
         /// Percentage of the fare to be paid as penalty to perform the modification
         /// </summary>
         /// <value>Percentage of the fare to be paid as penalty to perform the modification</value>
-        [DataMember(Name = "percentage", EmitDefaultValue = false)]
+        [DataMember(Name = "percentage", EmitDefaultValue = true)]
         public string Percentage { get; set; }
 
         /// <summary>

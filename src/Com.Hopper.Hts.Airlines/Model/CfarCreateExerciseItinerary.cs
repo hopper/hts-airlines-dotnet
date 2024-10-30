@@ -71,7 +71,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// List of passengers type, count and pricing for the itinerary
         /// </summary>
         /// <value>List of passengers type, count and pricing for the itinerary</value>
-        [DataMember(Name = "passenger_pricing", EmitDefaultValue = false)]
+        [DataMember(Name = "passenger_pricing", EmitDefaultValue = true)]
         public List<PassengerPricing> PassengerPricing { get; set; }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Ancillaries attached to the itinerary and their prices. Only ancillaries covered by CFAR must be filled
         /// </summary>
         /// <value>Ancillaries attached to the itinerary and their prices. Only ancillaries covered by CFAR must be filled</value>
-        [DataMember(Name = "ancillaries", EmitDefaultValue = false)]
+        [DataMember(Name = "ancillaries", EmitDefaultValue = true)]
         public List<Ancillary> Ancillaries { get; set; }
 
         /// <summary>
@@ -105,21 +105,21 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>401.10</example>
         */
-        [DataMember(Name = "total_price", EmitDefaultValue = false)]
+        [DataMember(Name = "total_price", EmitDefaultValue = true)]
         public string TotalPrice { get; set; }
 
         /// <summary>
         /// Details of the passengers
         /// </summary>
         /// <value>Details of the passengers</value>
-        [DataMember(Name = "passengers", EmitDefaultValue = false)]
+        [DataMember(Name = "passengers", EmitDefaultValue = true)]
         public List<CfarPassenger> Passengers { get; set; }
 
         /// <summary>
         /// The fare rules associated to the itinerary. If different fare rules apply to different slices in the itinerary, indicate the most restrictive.
         /// </summary>
         /// <value>The fare rules associated to the itinerary. If different fare rules apply to different slices in the itinerary, indicate the most restrictive.</value>
-        [DataMember(Name = "fare_rules", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_rules", EmitDefaultValue = true)]
         public List<FareRule> FareRules { get; set; }
 
         /// <summary>

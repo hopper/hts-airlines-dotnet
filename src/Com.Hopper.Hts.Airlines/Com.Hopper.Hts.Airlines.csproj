@@ -6,24 +6,19 @@
     <AssemblyName>Com.Hopper.Hts.Airlines</AssemblyName>
     <PackageId>Com.Hopper.Hts.Airlines</PackageId>
     <OutputType>Library</OutputType>
-    <Authors>Leonard Law</Authors>
-    <Company>Hopper</Company>
+    <Authors>OpenAPI</Authors>
+    <Company>OpenAPI</Company>
     <AssemblyTitle>OpenAPI Library</AssemblyTitle>
-    <Description>Hopper HTS Airlines SDK</Description>
-    <Copyright>Hopper 2024</Copyright>
+    <Description>A library generated from a OpenAPI doc</Description>
+    <Copyright>No Copyright</Copyright>
     <RootNamespace>Com.Hopper.Hts.Airlines</RootNamespace>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Com.Hopper.Hts.Airlines.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Test release</PackageReleaseNotes>
+    <PackageReleaseNotes>Minor update</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Repository>
-      <Url>https://github.com/hopper/hts-airlines-dotnet</Url>
-    </Repository>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,7 +26,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RestSharp" Version="112.0.0" />
     <PackageReference Include="Polly" Version="8.1.0" />
-    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>

@@ -53,7 +53,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>401.10</example>
         */
-        [DataMember(Name = "price", EmitDefaultValue = false)]
+        [DataMember(Name = "price", EmitDefaultValue = true)]
         public string Price { get; set; }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>flex</example>
         */
-        [DataMember(Name = "fare_brand", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_brand", EmitDefaultValue = true)]
         public string FareBrand { get; set; }
 
         /// <summary>
@@ -73,14 +73,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>YBA123US</example>
         */
-        [DataMember(Name = "fare_basis", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_basis", EmitDefaultValue = true)]
         public string FareBasis { get; set; }
 
         /// <summary>
         /// The fare rules associated to the fare
         /// </summary>
         /// <value>The fare rules associated to the fare</value>
-        [DataMember(Name = "fare_rules", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_rules", EmitDefaultValue = true)]
         public List<FareRule> FareRules { get; set; }
 
         /// <summary>

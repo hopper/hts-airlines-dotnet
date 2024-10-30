@@ -79,7 +79,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>1</example>
         */
-        [DataMember(Name = "passenger_reference", EmitDefaultValue = false)]
+        [DataMember(Name = "passenger_reference", EmitDefaultValue = true)]
         public string PassengerReference { get; set; }
 
         /// <summary>

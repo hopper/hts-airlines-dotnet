@@ -159,7 +159,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Name of the fare brand applied to the segment (if applicable)
         /// </summary>
         /// <value>Name of the fare brand applied to the segment (if applicable)</value>
-        [DataMember(Name = "fare_brand", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_brand", EmitDefaultValue = true)]
         public string FareBrand { get; set; }
 
         /// <summary>

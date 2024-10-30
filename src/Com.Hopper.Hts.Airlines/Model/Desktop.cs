@@ -72,7 +72,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets Platform
         /// </summary>
-        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        [DataMember(Name = "platform", EmitDefaultValue = true)]
         public Platform Platform { get; set; }
 
         /// <summary>

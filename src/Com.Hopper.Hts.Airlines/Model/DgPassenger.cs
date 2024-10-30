@@ -41,7 +41,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets Gender
         /// </summary>
-        [DataMember(Name = "gender", EmitDefaultValue = false)]
+        [DataMember(Name = "gender", EmitDefaultValue = true)]
         public Gender? Gender { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DgPassenger" /> class.
@@ -99,7 +99,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>John</example>
         */
-        [DataMember(Name = "first_name", EmitDefaultValue = false)]
+        [DataMember(Name = "first_name", EmitDefaultValue = true)]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Smith</example>
         */
-        [DataMember(Name = "last_name", EmitDefaultValue = false)]
+        [DataMember(Name = "last_name", EmitDefaultValue = true)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Sun Apr 02 00:00:00 UTC 2000</example>
         */
-        [DataMember(Name = "date_of_birth", EmitDefaultValue = false)]
+        [DataMember(Name = "date_of_birth", EmitDefaultValue = true)]
         public DateOnly DateOfBirth { get; set; }
 
         /// <summary>
@@ -129,14 +129,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>J12393496</example>
         */
-        [DataMember(Name = "passport_number", EmitDefaultValue = false)]
+        [DataMember(Name = "passport_number", EmitDefaultValue = true)]
         public string PassportNumber { get; set; }
 
         /// <summary>
         /// The country of issuance of the passenger&#39;s passport
         /// </summary>
         /// <value>The country of issuance of the passenger&#39;s passport</value>
-        [DataMember(Name = "passport_country_issuance", EmitDefaultValue = false)]
+        [DataMember(Name = "passport_country_issuance", EmitDefaultValue = true)]
         public string PassportCountryIssuance { get; set; }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Mon Apr 02 00:00:00 UTC 2018</example>
         */
-        [DataMember(Name = "passport_issuance_date", EmitDefaultValue = false)]
+        [DataMember(Name = "passport_issuance_date", EmitDefaultValue = true)]
         public DateOnly PassportIssuanceDate { get; set; }
 
         /// <summary>
@@ -156,14 +156,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Tue Apr 02 00:00:00 UTC 2030</example>
         */
-        [DataMember(Name = "passport_expiration_date", EmitDefaultValue = false)]
+        [DataMember(Name = "passport_expiration_date", EmitDefaultValue = true)]
         public DateOnly PassportExpirationDate { get; set; }
 
         /// <summary>
         /// The nationality of the passenger (country code)
         /// </summary>
         /// <value>The nationality of the passenger (country code)</value>
-        [DataMember(Name = "nationality", EmitDefaultValue = false)]
+        [DataMember(Name = "nationality", EmitDefaultValue = true)]
         public string Nationality { get; set; }
 
         /// <summary>

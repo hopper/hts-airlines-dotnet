@@ -216,7 +216,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// List of applicable taxes
         /// </summary>
         /// <value>List of applicable taxes</value>
-        [DataMember(Name = "taxes", EmitDefaultValue = false)]
+        [DataMember(Name = "taxes", EmitDefaultValue = true)]
         public List<CfarTax> Taxes { get; set; }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>ABC123</example>
         */
-        [DataMember(Name = "pnr_reference", EmitDefaultValue = false)]
+        [DataMember(Name = "pnr_reference", EmitDefaultValue = true)]
         public string PnrReference { get; set; }
 
         /// <summary>

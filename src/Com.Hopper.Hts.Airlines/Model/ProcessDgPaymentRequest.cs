@@ -104,7 +104,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>John</example>
         */
-        [DataMember(Name = "first_name", EmitDefaultValue = false)]
+        [DataMember(Name = "first_name", EmitDefaultValue = true)]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Smith</example>
         */
-        [DataMember(Name = "last_name", EmitDefaultValue = false)]
+        [DataMember(Name = "last_name", EmitDefaultValue = true)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>123 12th St</example>
         */
-        [DataMember(Name = "address_line1", EmitDefaultValue = false)]
+        [DataMember(Name = "address_line1", EmitDefaultValue = true)]
         public string AddressLine1 { get; set; }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Building B</example>
         */
-        [DataMember(Name = "address_line2", EmitDefaultValue = false)]
+        [DataMember(Name = "address_line2", EmitDefaultValue = true)]
         public string AddressLine2 { get; set; }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>Quebec City</example>
         */
-        [DataMember(Name = "city", EmitDefaultValue = false)]
+        [DataMember(Name = "city", EmitDefaultValue = true)]
         public string City { get; set; }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>QC</example>
         */
-        [DataMember(Name = "state_or_province", EmitDefaultValue = false)]
+        [DataMember(Name = "state_or_province", EmitDefaultValue = true)]
         public string StateOrProvince { get; set; }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>G1R 4S9</example>
         */
-        [DataMember(Name = "postal_code", EmitDefaultValue = false)]
+        [DataMember(Name = "postal_code", EmitDefaultValue = true)]
         public string PostalCode { get; set; }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>CA</example>
         */
-        [DataMember(Name = "country", EmitDefaultValue = false)]
+        [DataMember(Name = "country", EmitDefaultValue = true)]
         public string Country { get; set; }
 
         /// <summary>

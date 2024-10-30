@@ -57,13 +57,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets VarOperatingSystem
         /// </summary>
-        [DataMember(Name = "operating_system", EmitDefaultValue = false)]
+        [DataMember(Name = "operating_system", EmitDefaultValue = true)]
         public ModelOperatingSystem VarOperatingSystem { get; set; }
 
         /// <summary>
         /// Gets or Sets Browser
         /// </summary>
-        [DataMember(Name = "browser", EmitDefaultValue = false)]
+        [DataMember(Name = "browser", EmitDefaultValue = true)]
         public Browser Browser { get; set; }
 
         /// <summary>

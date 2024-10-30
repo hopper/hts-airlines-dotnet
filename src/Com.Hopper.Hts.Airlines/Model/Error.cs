@@ -63,13 +63,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Gets or Sets Code
         /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
+        [DataMember(Name = "code", EmitDefaultValue = true)]
         public string Code { get; set; }
 
         /// <summary>
         /// Gets or Sets Messages
         /// </summary>
-        [DataMember(Name = "messages", EmitDefaultValue = false)]
+        [DataMember(Name = "messages", EmitDefaultValue = true)]
         public Dictionary<string, string> Messages { get; set; }
 
         /// <summary>

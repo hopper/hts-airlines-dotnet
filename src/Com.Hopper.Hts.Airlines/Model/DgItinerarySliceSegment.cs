@@ -104,7 +104,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>60a128e4-a12d-42bf-b977-b6329392282d</example>
         */
-        [DataMember(Name = "segment_id", EmitDefaultValue = false)]
+        [DataMember(Name = "segment_id", EmitDefaultValue = true)]
         public string SegmentId { get; set; }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Name of the fare brand applied to the segment (if applicable)
         /// </summary>
         /// <value>Name of the fare brand applied to the segment (if applicable)</value>
-        [DataMember(Name = "fare_brand", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_brand", EmitDefaultValue = true)]
         public string FareBrand { get; set; }
 
         /// <summary>

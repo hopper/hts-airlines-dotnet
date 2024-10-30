@@ -68,14 +68,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>flex</example>
         */
-        [DataMember(Name = "fare_brand", EmitDefaultValue = false)]
+        [DataMember(Name = "fare_brand", EmitDefaultValue = true)]
         public string FareBrand { get; set; }
 
         /// <summary>
         /// List of passengers type, count and pricing for the current slice
         /// </summary>
         /// <value>List of passengers type, count and pricing for the current slice</value>
-        [DataMember(Name = "passenger_pricing", EmitDefaultValue = false)]
+        [DataMember(Name = "passenger_pricing", EmitDefaultValue = true)]
         public List<DgPassengerPricing> PassengerPricing { get; set; }
 
         /// <summary>
