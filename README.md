@@ -297,9 +297,10 @@ Authentication schemes defined for the API:
 You can regenerate the client using this command:
 
 ```bash
-docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+VERSION=0.1.2 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i https://airlines-api.hopper.com/airline/v1.1/docs/docs.yaml \
     -g csharp \
     -o /local \
-    --package-name Com.Hopper.Hts.Airlines
+    --package-name Com.Hopper.Hts.Airlines \
+    --additional-properties=optionalEmitDefaultValues=true,nullableReferenceTypes=true,validatable=false,packageVersion=$VERSION
 ```
