@@ -305,6 +305,9 @@ VERSION=0.1.2 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-
     --additional-properties=optionalEmitDefaultValues=true,nullableReferenceTypes=true,validatable=false,licenseId=MIT,packageVersion=$VERSION
 ```
 
+Please be mindful of the README.md getting overwritten.
+Please manually restore these instructions before committing.
+
 ## Publishing
 
 Create the package
