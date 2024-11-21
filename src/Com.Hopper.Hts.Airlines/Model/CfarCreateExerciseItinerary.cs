@@ -39,20 +39,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Initializes a new instance of the <see cref="CfarCreateExerciseItinerary" /> class.
         /// </summary>
         /// <param name="passengerPricing">List of passengers type, count and pricing for the itinerary.</param>
-        /// <param name="currency">Currency of pricing fields (required).</param>
+        /// <param name="currency">Currency of pricing fields.</param>
         /// <param name="slices">List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed (required).</param>
         /// <param name="ancillaries">Ancillaries attached to the itinerary and their prices. Only ancillaries covered by CFAR must be filled.</param>
         /// <param name="totalPrice">Total price to be covered by CFAR (including ancillaries if applicable).</param>
         /// <param name="passengers">Details of the passengers.</param>
         /// <param name="fareRules">The fare rules associated to the itinerary. If different fare rules apply to different slices in the itinerary, indicate the most restrictive..</param>
-        public CfarCreateExerciseItinerary(List<PassengerPricing> passengerPricing = default(List<PassengerPricing>), string currency = default(string), List<CfarItinerarySlice> slices = default(List<CfarItinerarySlice>), List<Ancillary> ancillaries = default(List<Ancillary>), string totalPrice = default(string), List<CfarPassenger> passengers = default(List<CfarPassenger>), List<FareRule> fareRules = default(List<FareRule>))
+        public CfarCreateExerciseItinerary(List<CfarCreateExercisePassengerPricing> passengerPricing = default(List<CfarCreateExercisePassengerPricing>), string currency = default(string), List<CfarCreateExerciseItinerarySlice> slices = default(List<CfarCreateExerciseItinerarySlice>), List<Ancillary> ancillaries = default(List<Ancillary>), string totalPrice = default(string), List<CfarPassenger> passengers = default(List<CfarPassenger>), List<FareRule> fareRules = default(List<FareRule>))
         {
-            // to ensure "currency" is required (not null)
-            if (currency == null)
-            {
-                throw new ArgumentNullException("currency is a required property for CfarCreateExerciseItinerary and cannot be null");
-            }
-            this.Currency = currency;
             // to ensure "slices" is required (not null)
             if (slices == null)
             {
@@ -60,6 +54,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             }
             this.Slices = slices;
             this.PassengerPricing = passengerPricing;
+            this.Currency = currency;
             this.Ancillaries = ancillaries;
             this.TotalPrice = totalPrice;
             this.Passengers = passengers;
@@ -71,7 +66,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// </summary>
         /// <value>List of passengers type, count and pricing for the itinerary</value>
         [DataMember(Name = "passenger_pricing", EmitDefaultValue = false)]
-        public List<PassengerPricing> PassengerPricing { get; set; }
+        public List<CfarCreateExercisePassengerPricing> PassengerPricing { get; set; }
 
         /// <summary>
         /// Currency of pricing fields
@@ -80,7 +75,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /*
         <example>CAD</example>
         */
-        [DataMember(Name = "currency", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
@@ -88,7 +83,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// </summary>
         /// <value>List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed</value>
         [DataMember(Name = "slices", IsRequired = true, EmitDefaultValue = true)]
-        public List<CfarItinerarySlice> Slices { get; set; }
+        public List<CfarCreateExerciseItinerarySlice> Slices { get; set; }
 
         /// <summary>
         /// Ancillaries attached to the itinerary and their prices. Only ancillaries covered by CFAR must be filled

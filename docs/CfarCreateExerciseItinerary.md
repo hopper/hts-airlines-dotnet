@@ -5,9 +5,9 @@ Itinerary of the user when the contract exercise was initiated (only active segm
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PassengerPricing** | [**List&lt;PassengerPricing&gt;**](PassengerPricing.md) | List of passengers type, count and pricing for the itinerary | [optional] 
-**Currency** | **string** | Currency of pricing fields | 
-**Slices** | [**List&lt;CfarItinerarySlice&gt;**](CfarItinerarySlice.md) | List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed | 
+**PassengerPricing** | [**List&lt;CfarCreateExercisePassengerPricing&gt;**](CfarCreateExercisePassengerPricing.md) | List of passengers type, count and pricing for the itinerary | [optional] 
+**Currency** | **string** | Currency of pricing fields | [optional] 
+**Slices** | [**List&lt;CfarCreateExerciseItinerarySlice&gt;**](CfarCreateExerciseItinerarySlice.md) | List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed | 
 **Ancillaries** | [**List&lt;Ancillary&gt;**](Ancillary.md) | Ancillaries attached to the itinerary and their prices. Only ancillaries covered by CFAR must be filled | [optional] 
 **TotalPrice** | **string** | Total price to be covered by CFAR (including ancillaries if applicable) | [optional] 
 **Passengers** | [**List&lt;CfarPassenger&gt;**](CfarPassenger.md) | Details of the passengers | [optional] 

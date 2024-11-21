@@ -106,7 +106,7 @@ void (empty response body)
 
 <a id="postevents"></a>
 # **PostEvents**
-> void PostEvents (Event varEvent)
+> void PostEvents (string hCSessionID, Event varEvent)
 
 Send a Backend Event
 
@@ -128,20 +128,17 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure API key authorization: SessionAuth
-            config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
             // Configure Bearer token for authorization: PartnerAuth
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AnalyticsApi(config);
+            var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions)
             var varEvent = new Event(); // Event | 
 
             try
             {
                 // Send a Backend Event
-                apiInstance.PostEvents(varEvent);
+                apiInstance.PostEvents(hCSessionID, varEvent);
             }
             catch (ApiException  e)
             {
@@ -161,7 +158,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Send a Backend Event
-    apiInstance.PostEventsWithHttpInfo(varEvent);
+    apiInstance.PostEventsWithHttpInfo(hCSessionID, varEvent);
 }
 catch (ApiException e)
 {
@@ -175,6 +172,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) |  |
 | **varEvent** | [**Event**](Event.md) |  |  |
 
 ### Return type
@@ -183,7 +181,7 @@ void (empty response body)
 
 ### Authorization
 
-[SessionAuth](../README.md#SessionAuth), [PartnerAuth](../README.md#PartnerAuth)
+[PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 

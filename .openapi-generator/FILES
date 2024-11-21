@@ -25,6 +25,9 @@ docs/CfarContents.md
 docs/CfarContract.md
 docs/CfarContractExercise.md
 docs/CfarCreateExerciseItinerary.md
+docs/CfarCreateExerciseItinerarySlice.md
+docs/CfarCreateExercisePassengerPricing.md
+docs/CfarCreateExerciseSliceSegment.md
 docs/CfarDenyPurchase.md
 docs/CfarEvent.md
 docs/CfarEventWithContract.md
@@ -142,6 +145,9 @@ docs/Web.md
 docs/Windows.md
 git_push.sh
 src/Com.Hopper.Hts.Airlines.Test/Com.Hopper.Hts.Airlines.Test.csproj
+src/Com.Hopper.Hts.Airlines.Test/Model/CfarCreateExerciseItinerarySliceTests.cs
+src/Com.Hopper.Hts.Airlines.Test/Model/CfarCreateExercisePassengerPricingTests.cs
+src/Com.Hopper.Hts.Airlines.Test/Model/CfarCreateExerciseSliceSegmentTests.cs
 src/Com.Hopper.Hts.Airlines/Api/AnalyticsApi.cs
 src/Com.Hopper.Hts.Airlines/Api/AuthenticationApi.cs
 src/Com.Hopper.Hts.Airlines/Api/CancelForAnyReasonCFARApi.cs
@@ -184,6 +190,9 @@ src/Com.Hopper.Hts.Airlines/Model/CfarContents.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarContract.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarContractExercise.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarCreateExerciseItinerary.cs
+src/Com.Hopper.Hts.Airlines/Model/CfarCreateExerciseItinerarySlice.cs
+src/Com.Hopper.Hts.Airlines/Model/CfarCreateExercisePassengerPricing.cs
+src/Com.Hopper.Hts.Airlines/Model/CfarCreateExerciseSliceSegment.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarDenyPurchase.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarEvent.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarEventWithContract.cs

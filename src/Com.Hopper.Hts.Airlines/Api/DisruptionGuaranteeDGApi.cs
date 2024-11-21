@@ -1105,11 +1105,6 @@ namespace Com.Hopper.Hts.Airlines.Api
             localVarRequestOptions.Operation = "DisruptionGuaranteeDGApi.PostDgContracts";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (SessionAuth) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("HC-Session-ID")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", this.Configuration.GetApiKeyWithPrefix("HC-Session-ID"));
-            }
             // authentication (PartnerAuth) required
             // bearer authentication required
             if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1190,11 +1185,6 @@ namespace Com.Hopper.Hts.Airlines.Api
             localVarRequestOptions.Operation = "DisruptionGuaranteeDGApi.PostDgContracts";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (SessionAuth) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("HC-Session-ID")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", this.Configuration.GetApiKeyWithPrefix("HC-Session-ID"));
-            }
             // authentication (PartnerAuth) required
             // bearer authentication required
             if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1824,11 +1814,6 @@ namespace Com.Hopper.Hts.Airlines.Api
             localVarRequestOptions.Operation = "DisruptionGuaranteeDGApi.PutDgContractsIdUpdateStatus";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (SessionAuth) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("HC-Session-ID")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", this.Configuration.GetApiKeyWithPrefix("HC-Session-ID"));
-            }
             // authentication (PartnerAuth) required
             // bearer authentication required
             if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1918,11 +1903,6 @@ namespace Com.Hopper.Hts.Airlines.Api
             localVarRequestOptions.Operation = "DisruptionGuaranteeDGApi.PutDgContractsIdUpdateStatus";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (SessionAuth) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("HC-Session-ID")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", this.Configuration.GetApiKeyWithPrefix("HC-Session-ID"));
-            }
             // authentication (PartnerAuth) required
             // bearer authentication required
             if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
