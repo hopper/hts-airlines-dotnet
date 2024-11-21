@@ -11,9 +11,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using Com.Hopper.Hts.Airlines.Client;
-using Com.Hopper.Hts.Airlines.Model;
+using Com.Hopper.Hts.Airlines.Spreedly.Model;
 
-namespace Com.Hopper.Hts.Airlines.Api
+namespace Com.Hopper.Hts.Airlines.Spreedly.Api
 {
 
     /// <summary>
