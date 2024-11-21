@@ -25,42 +25,25 @@ using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter
 namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 {
     /// <summary>
-    /// CreateCreditCardRequest
+    /// A created Dg offer
     /// </summary>
-    public partial class CreateCreditCardRequest
+    [DataContract(Name = "create_credit_card_response")]
+    public partial class CreateCreditCardResponse
     {
+
         /// <summary>
-        /// Gets or Sets Product
+        /// Gets or Sets RequestType
         /// </summary>
-        [DataMember(Name = "payment_method", EmitDefaultValue = false)]
-        public PaymentMethod? PaymentMethod { get; set; }
-
-        [DataMember(Name = "encrypted_fields", EmitDefaultValue = false)]
-        public string EncryptedFields { get; set; }
-
-        [DataMember(Name = "encryption_certificate_token", EmitDefaultValue = false)]
-        public string EncryptionCertificateToken { get; set; }
-
+        [DataMember(Name = "transaction", IsRequired = true, EmitDefaultValue = true)]
+        public Transaction? Transaction { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCreditCardRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreateCreditCardResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreateCreditCardRequest() { }
+        protected CreateCreditCardResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCreditCardRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreateCreditCardResponse" /> class.
         /// </summary>
-        /// <param name="paymentMethod">paymentMethod (required).</param>
-        public CreateCreditCardRequest(PaymentMethod paymentMethod = default(PaymentMethod))
-        {
-            
-            // to ensure "paymentMethod" is required (not null)
-            if (paymentMethod == null)
-            {
-                throw new ArgumentNullException("paymentMethod is a required property for CreateCreditCardRequest and cannot be null");
-            }
-            this.PaymentMethod = paymentMethod;
-        }
-
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,8 +52,8 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateCreditCardRequest {\n");
-            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
+            sb.Append("class CreateCreditCardResponse {\n");
+            sb.Append("  Transaction: ").Append(Transaction).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

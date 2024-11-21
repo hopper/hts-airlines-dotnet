@@ -31,8 +31,8 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreditCardRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>AirlineSession</returns>
-        AirlineSession PostCreditCard(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0);
+        /// <returns>CreateCreditCardResponse</returns>
+        CreateCreditCardResponse PostCreditCard(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0);
 
         /// <summary>
         /// Create a Credit Card
@@ -43,8 +43,8 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreditCardRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of AirlineSession</returns>
-        ApiResponse<AirlineSession> PostCreditCardWithHttpInfo(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0);
+        /// <returns>ApiResponse of CreateCreditCardResponse</returns>
+        ApiResponse<CreateCreditCardResponse> PostCreditCardWithHttpInfo(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -64,8 +64,8 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
         /// <param name="createCreditCardRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AirlineSession</returns>
-        System.Threading.Tasks.Task<AirlineSession> PostCreditCardAsync(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of CreateCreditCardResponse</returns>
+        System.Threading.Tasks.Task<CreateCreditCardResponse> PostCreditCardAsync(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Create a Credit Card
@@ -77,8 +77,8 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
         /// <param name="createCreditCardRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AirlineSession)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AirlineSession>> PostCreditCardWithHttpInfoAsync(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (CreateCreditCardResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateCreditCardResponse>> PostCreditCardWithHttpInfoAsync(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -205,10 +205,10 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreditCardRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>AirlineSession</returns>
-        public AirlineSession PostCreditCard(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0)
+        /// <returns>CreateCreditCardResponse</returns>
+        public CreateCreditCardResponse PostCreditCard(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0)
         {
-            Com.Hopper.Hts.Airlines.Client.ApiResponse<AirlineSession> localVarResponse = PostCreditCardWithHttpInfo(createCreditCardRequest);
+            Com.Hopper.Hts.Airlines.Client.ApiResponse<CreateCreditCardResponse> localVarResponse = PostCreditCardWithHttpInfo(createCreditCardRequest);
             return localVarResponse.Data;
         }
 
@@ -218,8 +218,8 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCreditCardRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of AirlineSession</returns>
-        public Com.Hopper.Hts.Airlines.Client.ApiResponse<AirlineSession> PostCreditCardWithHttpInfo(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0)
+        /// <returns>ApiResponse of CreateCreditCardResponse</returns>
+        public Com.Hopper.Hts.Airlines.Client.ApiResponse<CreateCreditCardResponse> PostCreditCardWithHttpInfo(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0)
         {
             // verify the required parameter 'createCreditCardRequest' is set
             if (createCreditCardRequest == null)
@@ -263,7 +263,7 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<AirlineSession>("/Payment", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreateCreditCardResponse>("/Payment", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("PostCreditCard", localVarResponse);
@@ -283,10 +283,10 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
         /// <param name="createCreditCardRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of AirlineSession</returns>
-        public async System.Threading.Tasks.Task<AirlineSession> PostCreditCardAsync(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of CreateCreditCardResponse</returns>
+        public async System.Threading.Tasks.Task<CreateCreditCardResponse> PostCreditCardAsync(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            Com.Hopper.Hts.Airlines.Client.ApiResponse<AirlineSession> localVarResponse = await PostCreditCardWithHttpInfoAsync(createCreditCardRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            Com.Hopper.Hts.Airlines.Client.ApiResponse<CreateCreditCardResponse> localVarResponse = await PostCreditCardWithHttpInfoAsync(createCreditCardRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -297,8 +297,8 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
         /// <param name="createCreditCardRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (AirlineSession)</returns>
-        public async System.Threading.Tasks.Task<Com.Hopper.Hts.Airlines.Client.ApiResponse<AirlineSession>> PostCreditCardWithHttpInfoAsync(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (CreateCreditCardResponse)</returns>
+        public async System.Threading.Tasks.Task<Com.Hopper.Hts.Airlines.Client.ApiResponse<CreateCreditCardResponse>> PostCreditCardWithHttpInfoAsync(CreateCreditCardRequest createCreditCardRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'createCreditCardRequest' is set
             if (createCreditCardRequest == null)
@@ -343,7 +343,7 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<AirlineSession>("/Payment", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateCreditCardResponse>("/Payment", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
