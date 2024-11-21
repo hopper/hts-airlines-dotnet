@@ -56,10 +56,11 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Events can be send directly from partner backend using the same authentication as the other endpoints
         /// </remarks>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void PostEvents(Event varEvent, int operationIndex = 0);
+        void PostEvents(string hCSessionID, Event varEvent, int operationIndex = 0);
 
         /// <summary>
         /// Send a Backend Event
@@ -68,10 +69,11 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Events can be send directly from partner backend using the same authentication as the other endpoints
         /// </remarks>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> PostEventsWithHttpInfo(Event varEvent, int operationIndex = 0);
+        ApiResponse<Object> PostEventsWithHttpInfo(string hCSessionID, Event varEvent, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -113,11 +115,12 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Events can be send directly from partner backend using the same authentication as the other endpoints
         /// </remarks>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PostEventsAsync(Event varEvent, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task PostEventsAsync(string hCSessionID, Event varEvent, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Send a Backend Event
@@ -126,11 +129,12 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Events can be send directly from partner backend using the same authentication as the other endpoints
         /// </remarks>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PostEventsWithHttpInfoAsync(Event varEvent, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> PostEventsWithHttpInfoAsync(string hCSessionID, Event varEvent, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -409,23 +413,31 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Send a Backend Event Events can be send directly from partner backend using the same authentication as the other endpoints
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void PostEvents(Event varEvent, int operationIndex = 0)
+        public void PostEvents(string hCSessionID, Event varEvent, int operationIndex = 0)
         {
-            PostEventsWithHttpInfo(varEvent);
+            PostEventsWithHttpInfo(hCSessionID, varEvent);
         }
 
         /// <summary>
         /// Send a Backend Event Events can be send directly from partner backend using the same authentication as the other endpoints
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Com.Hopper.Hts.Airlines.Client.ApiResponse<Object> PostEventsWithHttpInfo(Event varEvent, int operationIndex = 0)
+        public Com.Hopper.Hts.Airlines.Client.ApiResponse<Object> PostEventsWithHttpInfo(string hCSessionID, Event varEvent, int operationIndex = 0)
         {
+            // verify the required parameter 'hCSessionID' is set
+            if (hCSessionID == null)
+            {
+                throw new Com.Hopper.Hts.Airlines.Client.ApiException(400, "Missing required parameter 'hCSessionID' when calling AnalyticsApi->PostEvents");
+            }
+
             // verify the required parameter 'varEvent' is set
             if (varEvent == null)
             {
@@ -455,16 +467,12 @@ namespace Com.Hopper.Hts.Airlines.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", Com.Hopper.Hts.Airlines.Client.ClientUtils.ParameterToString(hCSessionID)); // header parameter
             localVarRequestOptions.Data = varEvent;
 
             localVarRequestOptions.Operation = "AnalyticsApi.PostEvents";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (SessionAuth) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("HC-Session-ID")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", this.Configuration.GetApiKeyWithPrefix("HC-Session-ID"));
-            }
             // authentication (PartnerAuth) required
             // bearer authentication required
             if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -490,25 +498,33 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Send a Backend Event Events can be send directly from partner backend using the same authentication as the other endpoints
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PostEventsAsync(Event varEvent, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task PostEventsAsync(string hCSessionID, Event varEvent, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            await PostEventsWithHttpInfoAsync(varEvent, operationIndex, cancellationToken).ConfigureAwait(false);
+            await PostEventsWithHttpInfoAsync(hCSessionID, varEvent, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Send a Backend Event Events can be send directly from partner backend using the same authentication as the other endpoints
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Com.Hopper.Hts.Airlines.Client.ApiResponse<Object>> PostEventsWithHttpInfoAsync(Event varEvent, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Com.Hopper.Hts.Airlines.Client.ApiResponse<Object>> PostEventsWithHttpInfoAsync(string hCSessionID, Event varEvent, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
+            // verify the required parameter 'hCSessionID' is set
+            if (hCSessionID == null)
+            {
+                throw new Com.Hopper.Hts.Airlines.Client.ApiException(400, "Missing required parameter 'hCSessionID' when calling AnalyticsApi->PostEvents");
+            }
+
             // verify the required parameter 'varEvent' is set
             if (varEvent == null)
             {
@@ -539,16 +555,12 @@ namespace Com.Hopper.Hts.Airlines.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", Com.Hopper.Hts.Airlines.Client.ClientUtils.ParameterToString(hCSessionID)); // header parameter
             localVarRequestOptions.Data = varEvent;
 
             localVarRequestOptions.Operation = "AnalyticsApi.PostEvents";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (SessionAuth) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("HC-Session-ID")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", this.Configuration.GetApiKeyWithPrefix("HC-Session-ID"));
-            }
             // authentication (PartnerAuth) required
             // bearer authentication required
             if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))

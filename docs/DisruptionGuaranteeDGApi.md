@@ -340,10 +340,6 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure API key authorization: SessionAuth
-            config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
             // Configure Bearer token for authorization: PartnerAuth
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -399,7 +395,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[SessionAuth](../README.md#SessionAuth), [PartnerAuth](../README.md#PartnerAuth)
+[PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
@@ -759,10 +755,6 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure API key authorization: SessionAuth
-            config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
             // Configure Bearer token for authorization: PartnerAuth
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -820,7 +812,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[SessionAuth](../README.md#SessionAuth), [PartnerAuth](../README.md#PartnerAuth)
+[PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
