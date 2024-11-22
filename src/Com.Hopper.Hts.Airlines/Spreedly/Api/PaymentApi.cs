@@ -255,15 +255,18 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
             localVarRequestOptions.Operation = "PaymentApi.PostCreditCard";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (PartnerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            if (!string.IsNullOrEmpty(this.Configuration.Username) && !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey(""))
             {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+                var credentials = this.Configuration.Username + ":" + this.Configuration.Password;
+
+                var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(credentials);
+                var encoded =  System.Convert.ToBase64String(plainTextBytes);
+
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + encoded);
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CreateCreditCardResponse>("/Payment", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreateCreditCardResponse>("/v1/payment_methods.json", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("PostCreditCard", localVarResponse);
@@ -335,15 +338,18 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
             localVarRequestOptions.Operation = "PaymentApi.PostCreditCard";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (PartnerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            if (!string.IsNullOrEmpty(this.Configuration.Username) && !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey(""))
             {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+                var credentials = this.Configuration.Username + ":" + this.Configuration.Password;
+
+                var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(credentials);
+                var encoded =  System.Convert.ToBase64String(plainTextBytes);
+
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + encoded);
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateCreditCardResponse>("/Payment", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateCreditCardResponse>("/v1/payment_methods.json", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
