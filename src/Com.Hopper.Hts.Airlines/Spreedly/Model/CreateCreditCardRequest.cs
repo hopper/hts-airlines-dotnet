@@ -21,6 +21,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
+using System.Security.Cryptography;
+using System.Buffers.Text;
+using System.Diagnostics;
 
 namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 {
@@ -36,11 +39,6 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
         [DataMember(Name = "payment_method", EmitDefaultValue = false)]
         public PaymentMethod? PaymentMethod { get; set; }
 
-        [DataMember(Name = "encrypted_fields", EmitDefaultValue = false)]
-        public string EncryptedFields { get; set; }
-
-        [DataMember(Name = "encryption_certificate_token", EmitDefaultValue = false)]
-        public string EncryptionCertificateToken { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCreditCardRequest" /> class.

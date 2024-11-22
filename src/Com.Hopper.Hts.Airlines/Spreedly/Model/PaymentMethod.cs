@@ -12,6 +12,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
+using System.Security.Cryptography;
+using System.Buffers.Text;
+using System.Diagnostics;
 
 
 namespace Com.Hopper.Hts.Airlines.Spreedly.Model
@@ -35,7 +38,35 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
         [DataMember(Name = "credit_card", EmitDefaultValue = false)]
         public CreditCard? CreditCard { get; set; }
 
-                /// <summary>
+
+        [DataMember(Name = "encrypted_fields", EmitDefaultValue = false)]
+        public string EncryptedFields { get; set; }
+
+        [DataMember(Name = "encryption_certificate_token", EmitDefaultValue = false)]
+        public string EncryptionCertificateToken { get; set; }
+
+        public void Encrypt(Encryption encryption) {
+            var rsa = RSA.Create();
+            rsa.ImportFromPem(encryption.PublicKey);
+
+            CreditCard.FirstName = _Encrypt(CreditCard.FirstName, rsa);
+            CreditCard.LastName = _Encrypt(CreditCard.LastName, rsa);
+            CreditCard.Number = _Encrypt(CreditCard.Number, rsa);
+            CreditCard.Month = _Encrypt(CreditCard.Month, rsa);
+            CreditCard.Year = _Encrypt(CreditCard.Year, rsa);
+
+            this.EncryptedFields = "first_name,last_name,number,month,year";
+            this.EncryptionCertificateToken = encryption.CertificateToken;
+        }
+
+        private string _Encrypt(string input, RSA rsa) {
+            var dataToEncrypt = Encoding.UTF8.GetBytes(input);
+            var encrypted = rsa.Encrypt(dataToEncrypt, RSAEncryptionPadding.Pkcs1);
+
+            return Convert.ToBase64String(encrypted);
+        }
+
+        /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>

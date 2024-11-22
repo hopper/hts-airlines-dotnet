@@ -96,6 +96,7 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
     public partial class PaymentApi : IPaymentApi
     {
         private Com.Hopper.Hts.Airlines.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private string PaymentsPath = "/v1/payment_methods.json";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentApi"/> class.
@@ -266,7 +267,7 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CreateCreditCardResponse>("/v1/payment_methods.json", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreateCreditCardResponse>(PaymentsPath, localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("PostCreditCard", localVarResponse);
@@ -349,7 +350,7 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateCreditCardResponse>("/v1/payment_methods.json", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateCreditCardResponse>(PaymentsPath, localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

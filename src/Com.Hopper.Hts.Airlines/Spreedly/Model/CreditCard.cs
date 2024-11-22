@@ -100,5 +100,22 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
+        /// <summary>
+        /// Returns the string presentation of the object
+        /// </summary>
+        /// <returns>String presentation of the object</returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("class CreditCard {\n");
+            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
+            sb.Append("  LastName: ").Append(LastName).Append("\n");
+            sb.Append("  Number: ").Append(Number).Append("\n");
+            sb.Append("  VerificationValue: ").Append(VerificationValue).Append("\n");
+            sb.Append("  Month: ").Append(Month).Append("\n");
+            sb.Append("  Year: ").Append(Year).Append("\n");
+            sb.Append("}\n");
+            return sb.ToString();
+        }
     }
 }
