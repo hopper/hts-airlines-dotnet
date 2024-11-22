@@ -27,6 +27,7 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
     /// <summary>
     /// CreateCreditCardRequest
     /// </summary>
+    [DataContract(Name = "create_credit_card_request")]
     public partial class CreateCreditCardRequest
     {
         /// <summary>

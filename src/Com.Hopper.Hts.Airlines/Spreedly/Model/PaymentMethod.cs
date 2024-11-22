@@ -17,6 +17,7 @@ using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter
 namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 {
 
+    [DataContract(Name = "payment_method")]
     public partial class PaymentMethod
     {
         public PaymentMethod(CreditCard creditCard = default(CreditCard))
