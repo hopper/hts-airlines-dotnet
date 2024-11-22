@@ -1,28 +1,22 @@
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
 using System.Security.Cryptography;
-using System.Buffers.Text;
-using System.Diagnostics;
-
 
 namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 {
 
     [DataContract(Name = "payment_method")]
+    /// <summary>
+    /// Represents a payment method with credit card details and encryption capabilities.
+    /// </summary>
     public partial class PaymentMethod
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentMethod"/> class with the specified credit card.
+        /// </summary>
+        /// <param name="creditCard">The credit card details.</param>
         public PaymentMethod(CreditCard creditCard = default(CreditCard))
         {
             
@@ -45,6 +39,10 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
         [DataMember(Name = "encryption_certificate_token", EmitDefaultValue = false)]
         public string EncryptionCertificateToken { get; set; }
 
+        /// <summary>
+        /// Encrypts the credit card details using the provided encryption parameters.
+        /// </summary>
+        /// <param name="encryption">The encryption details.</param>
         public void Encrypt(Encryption encryption) {
             var rsa = RSA.Create();
             rsa.ImportFromPem(encryption.PublicKey);

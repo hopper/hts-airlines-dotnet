@@ -1,10 +1,6 @@
-using Com.Hopper.Hts.Airlines.Api;
 using Com.Hopper.Hts.Airlines.Client;
-using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Spreedly.Api;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
-using Microsoft.VisualBasic;
-using RestSharp;
 using System.Diagnostics;
 using System;
 
