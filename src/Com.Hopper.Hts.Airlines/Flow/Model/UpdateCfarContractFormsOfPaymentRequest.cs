@@ -48,12 +48,12 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         //     this.FormsOfPayment = formsOfPayment;
         // }
 
-        // /// <summary>
-        // /// List of the forms of payment used to purchase the booking
-        // /// </summary>
-        // /// <value>List of the forms of payment used to purchase the booking</value>
-        // [DataMember(Name = "forms_of_payment", IsRequired = true, EmitDefaultValue = true)]
-        // public List<FormOfPayment> FormsOfPayment { get; set; }
+        /// <summary>
+        /// List of the forms of payment used to purchase the booking
+        /// </summary>
+        /// <value>List of the forms of payment used to purchase the booking</value>
+        [DataMember(Name = "forms_of_payment", IsRequired = true, EmitDefaultValue = true)]
+        public List<FormOfPayment> FormsOfPayment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
