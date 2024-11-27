@@ -53,10 +53,10 @@ public partial class FormOfPayment
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FormOfPayment" /> class
-        /// with the <see cref="PaymentCard" /> class
+        /// with the <see cref="TokenizedPaymentCard" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PaymentCard.</param>
-        public FormOfPayment(PaymentCard actualInstance)
+        public FormOfPayment(TokenizedPaymentCard actualInstance)
         {
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
@@ -93,7 +93,7 @@ public partial class FormOfPayment
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(PaymentCard) || value is PaymentCard)
+                else if (value.GetType() == typeof(TokenizedPaymentCard) || value is TokenizedPaymentCard)
                 {
                     this._actualInstance = value;
                 }
@@ -136,6 +136,16 @@ public partial class FormOfPayment
         public PaymentCard GetPaymentCard()
         {
             return (PaymentCard)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `PaymentCard`. If the actual instance is not `PaymentCard`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of PaymentCard</returns>
+        public TokenizedPaymentCard GetTokenizedPaymentCard()
+        {
+            return (TokenizedPaymentCard)this.ActualInstance;
         }
 
         /// <summary>

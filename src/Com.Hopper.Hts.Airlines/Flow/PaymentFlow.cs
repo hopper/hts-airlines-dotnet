@@ -4,6 +4,7 @@ using Com.Hopper.Hts.Airlines.Api;
 using ApiModel = Com.Hopper.Hts.Airlines.Model;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Com.Hopper.Hts.Airlines.Spreedly.Model;
 
 namespace Com.Hopper.Hts.Airlines.Flow
 {
@@ -46,13 +47,28 @@ namespace Com.Hopper.Hts.Airlines.Flow
                         Type = nonCash.Type
                     }));
                 }
-                else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
+                else if (instance.GetType() == typeof(TokenizedPaymentCard) || instance is TokenizedPaymentCard)
                 {
-                    var card = p.GetPaymentCard();
+                    var card = p.GetTokenizedPaymentCard();
                     fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard {
                         Amount = card.Amount,
                         Currency = card.Currency,
                         Token = card.Token,
+                        Type = card.Type
+                    }));
+                }
+                else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
+                {
+                    var card = p.GetPaymentCard();
+                    var tokenized = PaymentApi.PostCreditCard(new CreateCreditCardRequest(
+                        new PaymentMethod(
+                            new CreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year)
+                        )
+                    ));
+                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard {
+                        Amount = card.Amount,
+                        Currency = card.Currency,
+                        Token = tokenized.Transaction.PaymentMethod.Token,
                         Type = card.Type
                     }));
                 }
