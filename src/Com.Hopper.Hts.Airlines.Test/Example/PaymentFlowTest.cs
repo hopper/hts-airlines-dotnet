@@ -35,7 +35,7 @@ namespace Example
 
             var cfarApi = new CancelForAnyReasonCFARApi(config);
 
-            var paymentFlow = new PaymentFlow(paymentApi, cfarApi);
+            var paymentFlow = new PaymentFlow(paymentApi, encryption, cfarApi);
 
             var contractId = "contract-id";
             var sessionId = "session-id";

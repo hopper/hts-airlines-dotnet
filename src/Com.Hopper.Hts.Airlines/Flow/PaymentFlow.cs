@@ -14,13 +14,15 @@ namespace Com.Hopper.Hts.Airlines.Flow
 
     public partial class PaymentFlow : IPaymentFlow
     {
-        public PaymentFlow(PaymentApi payment, CancelForAnyReasonCFARApi cfar)
+        public PaymentFlow(PaymentApi payment, Encryption encryption, CancelForAnyReasonCFARApi cfar)
         {
             this.PaymentApi = payment;
+            this.Encryption = encryption;
             this.CfarApi = cfar;
         }
 
         public PaymentApi PaymentApi { get; set; }
+        public Encryption Encryption { get; set; }
         public CancelForAnyReasonCFARApi CfarApi { get; set; }
 
         public ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, string? sessionId)
@@ -60,11 +62,9 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
                 {
                     var card = p.GetPaymentCard();
-                    var tokenized = PaymentApi.PostCreditCard(new CreateCreditCardRequest(
-                        new PaymentMethod(
-                            new CreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year)
-                        )
-                    ));
+                    var method = new PaymentMethod(new CreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year));
+                    method.Encrypt(this.Encryption);
+                    var tokenized = PaymentApi.PostCreditCard(new CreateCreditCardRequest(method));
                     fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                         card.Amount,
                         card.Currency,
