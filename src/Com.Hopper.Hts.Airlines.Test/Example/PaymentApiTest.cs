@@ -9,14 +9,14 @@ namespace Example
 {
 
     [TestClass]
-    public class TokenizeCreditCardTest
+    public class PaymentApiTest
     {
         [TestMethod]
         public void Test()
         {
             Configuration config = new Configuration
             {
-                BasePath = "???",
+                BasePath = "https://core.spreedly.com",
                 Username = "???",
                 Password = "???"
             };

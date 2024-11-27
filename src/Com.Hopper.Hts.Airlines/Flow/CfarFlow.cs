@@ -7,14 +7,14 @@ using Com.Hopper.Hts.Airlines.Spreedly.Model;
 
 namespace Com.Hopper.Hts.Airlines.Flow
 {
-    public interface IPaymentFlow
+    public interface ICfarFlow
     {
         ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, string? sessionId);
     }
 
-    public partial class PaymentFlow : IPaymentFlow
+    public partial class CfarFlow : ICfarFlow
     {
-        public PaymentFlow(PaymentApi payment, Encryption encryption, CancelForAnyReasonCFARApi cfar)
+        public CfarFlow(PaymentApi payment, Encryption encryption, CancelForAnyReasonCFARApi cfar)
         {
             this.PaymentApi = payment;
             this.Encryption = encryption;

@@ -1,8 +1,6 @@
 using Com.Hopper.Hts.Airlines.Client;
 using Com.Hopper.Hts.Airlines.Spreedly.Api;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
-using System.Diagnostics;
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Com.Hopper.Hts.Airlines.Api;
 using Com.Hopper.Hts.Airlines.Flow;
@@ -18,27 +16,32 @@ namespace Example
         [TestMethod]
         public void Test()
         {
-            Configuration config = new Configuration
+            Configuration paymentConfig = new Configuration
             {
-                BasePath = "???",
+                BasePath = "https://core.spreedly.com",
                 Username = "???",
                 Password = "???"
             };
 
-            var paymentApi = new PaymentApi(config);
+            var paymentApi = new PaymentApi(paymentConfig);
 
+            var cfarConfig = new Configuration
+            {
+                BasePath = "https://airlines-api.staging.hopper.com/airline/v1.1",
+                AccessToken = "???"
+            };
             var encryption = new Encryption
             {
                 CertificateToken = "???",
                 PublicKey = "???"
             };
 
-            var cfarApi = new CancelForAnyReasonCFARApi(config);
+            var cfarApi = new CancelForAnyReasonCFARApi(cfarConfig);
 
-            var paymentFlow = new PaymentFlow(paymentApi, encryption, cfarApi);
+            var paymentFlow = new CfarFlow(paymentApi, encryption, cfarApi);
 
-            var contractId = "contract-id";
-            var sessionId = "session-id";
+            var contractId = "???";
+            var sessionId = "???";
 
             var formsOfPayments = new List<FormOfPayment> {
                 new FormOfPayment(new Cash("10.00", "USD")),
