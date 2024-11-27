@@ -9,20 +9,7 @@
 
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.IO;
-using System.Runtime.Serialization;
 using System.Text;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using JsonSubTypes;
-using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
-using System.Reflection;
 
 namespace Com.Hopper.Hts.Airlines.Flow.Model
 {
@@ -97,13 +84,17 @@ public partial class FormOfPayment
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(PaymentCard) || value is PaymentCard)
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(Points) || value is Points)
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: Cash, NonCash, PaymentCard, Points");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: Cash, NonCash, PaymentCard, TokenizedPaymentCard, Points");
                 }
             }
         }

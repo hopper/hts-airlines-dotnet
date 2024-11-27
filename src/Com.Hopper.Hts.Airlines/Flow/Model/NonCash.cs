@@ -9,31 +9,17 @@
 
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.IO;
-using System.Runtime.Serialization;
 using System.Text;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using OpenAPIDateConverter = Com.Hopper.Hts.Airlines.Client.OpenAPIDateConverter;
-
 namespace Com.Hopper.Hts.Airlines.Flow.Model
 {
     /// <summary>
     /// NonCash
     /// </summary>
-    [DataContract(Name = "non_cash")]
     public partial class NonCash
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NonCash" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
         protected NonCash() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="NonCash" /> class.
@@ -67,7 +53,6 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         /// Amount charged on the form of payment
         /// </summary>
         /// <value>Amount charged on the form of payment</value>
-        [DataMember(Name = "amount", IsRequired = true, EmitDefaultValue = true)]
         public string Amount { get; set; }
 
         /// <summary>
@@ -77,13 +62,11 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         /*
         <example>CAD</example>
         */
-        [DataMember(Name = "currency", IsRequired = true, EmitDefaultValue = true)]
         public string Currency { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 
         /// <summary>
@@ -100,16 +83,6 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
     }
 
 }
