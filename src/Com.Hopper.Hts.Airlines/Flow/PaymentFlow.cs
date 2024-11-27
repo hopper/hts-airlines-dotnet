@@ -3,7 +3,6 @@ using Com.Hopper.Hts.Airlines.Spreedly.Api;
 using Com.Hopper.Hts.Airlines.Api;
 using ApiModel = Com.Hopper.Hts.Airlines.Model;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
 
 namespace Com.Hopper.Hts.Airlines.Flow
@@ -36,7 +35,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                     fops.Add(new ApiModel.FormOfPayment(new ApiModel.Cash(
                         cash.Amount,
                         cash.Currency,
-                        cash.Type
+                        "cash"
                     )));
                 }
                 else if (instance.GetType() == typeof(NonCash) || instance is NonCash)
@@ -45,18 +44,18 @@ namespace Com.Hopper.Hts.Airlines.Flow
                     fops.Add(new ApiModel.FormOfPayment(new ApiModel.NonCash(
                         nonCash.Amount,
                         nonCash.Currency,
-                        nonCash.Type
+                        "non_cash"
                     )));
                 }
                 else if (instance.GetType() == typeof(TokenizedPaymentCard) || instance is TokenizedPaymentCard)
                 {
                     var card = p.GetTokenizedPaymentCard();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard (
+                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                         card.Amount,
                         card.Currency,
                         card.Token,
-                        card.Type
-)                   ));
+                        "payment_card"
+                    )));
                 }
                 else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
                 {
@@ -70,7 +69,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                         card.Amount,
                         card.Currency,
                         tokenized.Transaction.PaymentMethod.Token,
-                        card.Type
+                        "payment_card"
                     )));
                 }
                 else if (instance.GetType() == typeof(Points) || instance is Points)
@@ -78,7 +77,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                     var points = p.GetPoints();
                     fops.Add(new ApiModel.FormOfPayment(new ApiModel.Points(
                         points.Amount,
-                        points.Type
+                        "points"
                     )));
                 }
             }

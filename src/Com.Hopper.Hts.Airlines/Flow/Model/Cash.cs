@@ -27,8 +27,7 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         /// </summary>
         /// <param name="amount">Amount charged on the form of payment (required).</param>
         /// <param name="currency">Currency of the form of payment (required).</param>
-        /// <param name="type">type (required).</param>
-        public Cash(string amount = default(string), string currency = default(string), string type = default(string))
+        public Cash(string amount = default(string), string currency = default(string))
         {
             // to ensure "amount" is required (not null)
             if (amount == null)
@@ -42,12 +41,6 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
                 throw new ArgumentNullException("currency is a required property for Cash and cannot be null");
             }
             this.Currency = currency;
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for Cash and cannot be null");
-            }
-            this.Type = type;
         }
 
         /// <summary>
@@ -66,11 +59,6 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         public string Currency { get; set; }
 
         /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        public string Type { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -80,7 +68,6 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
             sb.Append("class Cash {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

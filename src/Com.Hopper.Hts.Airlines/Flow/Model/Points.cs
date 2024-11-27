@@ -25,8 +25,7 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         /// Initializes a new instance of the <see cref="Points" /> class.
         /// </summary>
         /// <param name="amount">Amount charged on the form of payment (required).</param>
-        /// <param name="type">type (required).</param>
-        public Points(string amount = default(string), string type = default(string))
+        public Points(string amount = default(string))
         {
             // to ensure "amount" is required (not null)
             if (amount == null)
@@ -34,12 +33,6 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
                 throw new ArgumentNullException("amount is a required property for Points and cannot be null");
             }
             this.Amount = amount;
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for Points and cannot be null");
-            }
-            this.Type = type;
         }
 
         /// <summary>
@@ -47,11 +40,6 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         /// </summary>
         /// <value>Amount charged on the form of payment</value>
         public string Amount { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        public string Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,7 +50,6 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class Points {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
