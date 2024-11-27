@@ -42,11 +42,10 @@ namespace Example
 
             var formsOfPayments = new List<FormOfPayment> {
                 new FormOfPayment(new Cash("10.00", "USD", "cash")),
-                new FormOfPayment(new NonCash("10.00", "USD", "cash")),
-                new FormOfPayment(new NonCash("10.00", "USD", "cash")),
-                new FormOfPayment(new NonCash("10.00", "USD", "cash")),
-                new FormOfPayment(new NonCash("10.00", "USD", "cash"))
-
+                new FormOfPayment(new NonCash("10.00", "USD", "non_cash")),
+                new FormOfPayment(new PaymentCard("10.00", "USD", "cash", "John", "Smith", "4111111111111111", "123", "01", "2028")),
+                new FormOfPayment(new Points("10.00", "points")),
+                new FormOfPayment(new TokenizedPaymentCard("10.00", "USD", "token", "tokenized_payment_card"))
             };
             var request = new UpdateCfarContractFormsOfPaymentRequest(formsOfPayments);
 

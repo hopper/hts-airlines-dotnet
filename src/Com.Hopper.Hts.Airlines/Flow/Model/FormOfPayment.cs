@@ -58,6 +58,16 @@ public partial class FormOfPayment
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormOfPayment" /> class
+        /// with the <see cref="PaymentCard" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of PaymentCard.</param>
+        public FormOfPayment(PaymentCard actualInstance)
+        {
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 

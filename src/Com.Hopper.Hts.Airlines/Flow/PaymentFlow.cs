@@ -27,35 +27,36 @@ namespace Com.Hopper.Hts.Airlines.Flow
         public ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, string? sessionId)
         {
             var fops = new List<ApiModel.FormOfPayment>();
-            foreach (var p in request.FormsOfPayment) {
+            foreach (var p in request.FormsOfPayment)
+            {
                 var instance = p.ActualInstance;
                 if (instance.GetType() == typeof(Cash) || instance is Cash)
                 {
                     var cash = p.GetCash();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.Cash {
-                        Amount = cash.Amount,
-                        Currency = cash.Currency,
-                        Type = cash.Type
-                    }));
+                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.Cash(
+                        cash.Amount,
+                        cash.Currency,
+                        cash.Type
+                    )));
                 }
                 else if (instance.GetType() == typeof(NonCash) || instance is NonCash)
                 {
                     var nonCash = p.GetNonCash();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.NonCash {
-                        Amount = nonCash.Amount,
-                        Currency = nonCash.Currency,
-                        Type = nonCash.Type
-                    }));
+                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.NonCash(
+                        nonCash.Amount,
+                        nonCash.Currency,
+                        nonCash.Type
+                    )));
                 }
                 else if (instance.GetType() == typeof(TokenizedPaymentCard) || instance is TokenizedPaymentCard)
                 {
                     var card = p.GetTokenizedPaymentCard();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard {
-                        Amount = card.Amount,
-                        Currency = card.Currency,
-                        Token = card.Token,
-                        Type = card.Type
-                    }));
+                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard (
+                        card.Amount,
+                        card.Currency,
+                        card.Token,
+                        card.Type
+)                   ));
                 }
                 else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
                 {
@@ -65,25 +66,23 @@ namespace Com.Hopper.Hts.Airlines.Flow
                             new CreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year)
                         )
                     ));
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard {
-                        Amount = card.Amount,
-                        Currency = card.Currency,
-                        Token = tokenized.Transaction.PaymentMethod.Token,
-                        Type = card.Type
-                    }));
+                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
+                        card.Amount,
+                        card.Currency,
+                        tokenized.Transaction.PaymentMethod.Token,
+                        card.Type
+                    )));
                 }
                 else if (instance.GetType() == typeof(Points) || instance is Points)
                 {
                     var points = p.GetPoints();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.Points {
-                        Amount = points.Amount,
-                        Type = points.Type
-                    }));
+                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.Points(
+                        points.Amount,
+                        points.Type
+                    )));
                 }
             }
-            var paymentRequest = new ApiModel.UpdateCfarFormOfPaymentRequest {
-                FormsOfPayment = fops
-            };
+            var paymentRequest = new ApiModel.UpdateCfarFormOfPaymentRequest(fops);
             return CfarApi.PutCfarContractsIdFormsOfPayment(contractId, paymentRequest, sessionId);
         }
     }
