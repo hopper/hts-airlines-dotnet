@@ -5,6 +5,7 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetDgContractsId**](DisruptionGuaranteeDGApi.md#getdgcontractsid) | **GET** /dg_contracts/{id} | Get a DG contract |
+| [**PostCustomerDgContractExercises**](DisruptionGuaranteeDGApi.md#postcustomerdgcontractexercises) | **POST** /customer/dg_contract_exercises | Create DG Exercise |
 | [**PostCustomerDgEvents**](DisruptionGuaranteeDGApi.md#postcustomerdgevents) | **POST** /customer/dg/events | Create an Event |
 | [**PostDgContractExercises**](DisruptionGuaranteeDGApi.md#postdgcontractexercises) | **POST** /dg_contract_exercises | Create DG Exercise |
 | [**PostDgContracts**](DisruptionGuaranteeDGApi.md#postdgcontracts) | **POST** /dg_contracts | Create a DG Contract |
@@ -114,6 +115,102 @@ catch (ApiException e)
 | **404** | The requested resource could not be found |  -  |
 | **422** | Semantic errors were encountered while handling the request |  -  |
 | **500** | The server encountered an internal error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="postcustomerdgcontractexercises"></a>
+# **PostCustomerDgContractExercises**
+> DgCustomerCreateContractExerciseResponse PostCustomerDgContractExercises (DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest)
+
+Create DG Exercise
+
+Record that a request to exercise a DG contract has occurred.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
+
+namespace Example
+{
+    public class PostCustomerDgContractExercisesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
+            var apiInstance = new DisruptionGuaranteeDGApi(config);
+            var dgCustomerCreateContractExerciseRequest = new DgCustomerCreateContractExerciseRequest(); // DgCustomerCreateContractExerciseRequest | 
+
+            try
+            {
+                // Create DG Exercise
+                DgCustomerCreateContractExerciseResponse result = apiInstance.PostCustomerDgContractExercises(dgCustomerCreateContractExerciseRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DisruptionGuaranteeDGApi.PostCustomerDgContractExercises: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PostCustomerDgContractExercisesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create DG Exercise
+    ApiResponse<DgCustomerCreateContractExerciseResponse> response = apiInstance.PostCustomerDgContractExercisesWithHttpInfo(dgCustomerCreateContractExerciseRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DisruptionGuaranteeDGApi.PostCustomerDgContractExercisesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **dgCustomerCreateContractExerciseRequest** | [**DgCustomerCreateContractExerciseRequest**](DgCustomerCreateContractExerciseRequest.md) |  |  |
+
+### Return type
+
+[**DgCustomerCreateContractExerciseResponse**](DgCustomerCreateContractExerciseResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The created DG contract exercise |  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **403** | The authenticated client does not have permission to call this endpoint |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
