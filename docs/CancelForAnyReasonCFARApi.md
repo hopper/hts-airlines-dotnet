@@ -5,6 +5,7 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetCfarContractsId**](CancelForAnyReasonCFARApi.md#getcfarcontractsid) | **GET** /cfar_contracts/{id} | Get a CFAR Contract |
+| [**GetCustomerCfarOffers**](CancelForAnyReasonCFARApi.md#getcustomercfaroffers) | **GET** /customer/cfar_offers | Get CFAR Offers |
 | [**PostCfarContractExercises**](CancelForAnyReasonCFARApi.md#postcfarcontractexercises) | **POST** /cfar_contract_exercises | Create CFAR Exercise |
 | [**PostCfarContracts**](CancelForAnyReasonCFARApi.md#postcfarcontracts) | **POST** /cfar_contracts | Create a CFAR Contract |
 | [**PostCfarContractsIdPayment**](CancelForAnyReasonCFARApi.md#postcfarcontractsidpayment) | **POST** /cfar_contracts/{id}/payment | Process CFAR Payment |
@@ -113,6 +114,103 @@ catch (ApiException e)
 | **403** | The authenticated client does not have permission to call this endpoint |  -  |
 | **404** | The requested resource could not be found |  -  |
 | **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getcustomercfaroffers"></a>
+# **GetCustomerCfarOffers**
+> GetCfarOfferResponse GetCustomerCfarOffers (string hCSessionID, List<string>? offerId = null)
+
+Get CFAR Offers
+
+Get CFAR offers
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
+
+namespace Example
+{
+    public class GetCustomerCfarOffersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
+            var apiInstance = new CancelForAnyReasonCFARApi(config);
+            var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions)
+            var offerId = new List<string>?(); // List<string>? | List of unique identifier for an offer (optional) 
+
+            try
+            {
+                // Get CFAR Offers
+                GetCfarOfferResponse result = apiInstance.GetCustomerCfarOffers(hCSessionID, offerId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CancelForAnyReasonCFARApi.GetCustomerCfarOffers: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCustomerCfarOffersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get CFAR Offers
+    ApiResponse<GetCfarOfferResponse> response = apiInstance.GetCustomerCfarOffersWithHttpInfo(hCSessionID, offerId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CancelForAnyReasonCFARApi.GetCustomerCfarOffersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) |  |
+| **offerId** | [**List&lt;string&gt;?**](string.md) | List of unique identifier for an offer | [optional]  |
+
+### Return type
+
+[**GetCfarOfferResponse**](GetCfarOfferResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The requested CFAR offers |  * Expires -  <br>  * Cache-Control -  <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **404** | The requested resource could not be found |  -  |
 | **500** | The server encountered an internal error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

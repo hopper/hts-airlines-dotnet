@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Contents** | [**Dictionary&lt;string, CfarContents&gt;**](CfarContents.md) | One or more contents describing the offer and its conditions in the available languages | 
 **ExtAttributes** | **Dictionary&lt;string, string&gt;** |  | 
 **TermsConditionsUrl** | **string** | The terms and conditions for this offer | [optional] 
+**MerchandisingUrl** | **string** | The url for rendering offer merchandising | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

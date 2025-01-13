@@ -59,7 +59,8 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="contents">One or more contents describing the offer and its conditions in the available languages (required).</param>
         /// <param name="extAttributes">extAttributes (required).</param>
         /// <param name="termsConditionsUrl">The terms and conditions for this offer.</param>
-        public CfarOffer(string id = default(string), string premium = default(string), string coverage = default(string), string coveragePercentage = default(string), string coverageExtension = default(string), string currency = default(string), string taxesTotal = default(string), List<CfarTax> taxes = default(List<CfarTax>), RequestType requestType = default(RequestType), DateTime contractExpiryDateTime = default(DateTime), DateTime createdDateTime = default(DateTime), CfarItinerary itinerary = default(CfarItinerary), Dictionary<string, CfarContents> contents = default(Dictionary<string, CfarContents>), Dictionary<string, string> extAttributes = default(Dictionary<string, string>), string termsConditionsUrl = default(string))
+        /// <param name="merchandisingUrl">The url for rendering offer merchandising.</param>
+        public CfarOffer(string id = default(string), string premium = default(string), string coverage = default(string), string coveragePercentage = default(string), string coverageExtension = default(string), string currency = default(string), string taxesTotal = default(string), List<CfarTax> taxes = default(List<CfarTax>), RequestType requestType = default(RequestType), DateTime contractExpiryDateTime = default(DateTime), DateTime createdDateTime = default(DateTime), CfarItinerary itinerary = default(CfarItinerary), Dictionary<string, CfarContents> contents = default(Dictionary<string, CfarContents>), Dictionary<string, string> extAttributes = default(Dictionary<string, string>), string termsConditionsUrl = default(string), string merchandisingUrl = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -121,6 +122,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             this.CoverageExtension = coverageExtension;
             this.Taxes = taxes;
             this.TermsConditionsUrl = termsConditionsUrl;
+            this.MerchandisingUrl = merchandisingUrl;
         }
 
         /// <summary>
@@ -247,6 +249,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string TermsConditionsUrl { get; set; }
 
         /// <summary>
+        /// The url for rendering offer merchandising
+        /// </summary>
+        /// <value>The url for rendering offer merchandising</value>
+        [DataMember(Name = "merchandising_url", EmitDefaultValue = false)]
+        public string MerchandisingUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -269,6 +278,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  Contents: ").Append(Contents).Append("\n");
             sb.Append("  ExtAttributes: ").Append(ExtAttributes).Append("\n");
             sb.Append("  TermsConditionsUrl: ").Append(TermsConditionsUrl).Append("\n");
+            sb.Append("  MerchandisingUrl: ").Append(MerchandisingUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

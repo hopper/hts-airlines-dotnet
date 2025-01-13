@@ -59,7 +59,8 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="status">status (required).</param>
         /// <param name="pnrReference">Reference of the PNR in the airline system.</param>
         /// <param name="extAttributes">extAttributes (required).</param>
-        public CfarContract(string id = default(string), string reference = default(string), List<CfarOffer> offers = default(List<CfarOffer>), CfarItinerary itinerary = default(CfarItinerary), string coveragePercentage = default(string), string coverage = default(string), string premium = default(string), string currency = default(string), string taxesTotal = default(string), List<CfarTax> taxes = default(List<CfarTax>), DateTime createdDateTime = default(DateTime), DateTime expiryDateTime = default(DateTime), CfarStatus status = default(CfarStatus), string pnrReference = default(string), Dictionary<string, string> extAttributes = default(Dictionary<string, string>))
+        /// <param name="exerciseUrl">URL to exercise the contract (if applicable).</param>
+        public CfarContract(string id = default(string), string reference = default(string), List<CfarOffer> offers = default(List<CfarOffer>), CfarItinerary itinerary = default(CfarItinerary), string coveragePercentage = default(string), string coverage = default(string), string premium = default(string), string currency = default(string), string taxesTotal = default(string), List<CfarTax> taxes = default(List<CfarTax>), DateTime createdDateTime = default(DateTime), DateTime expiryDateTime = default(DateTime), CfarStatus status = default(CfarStatus), string pnrReference = default(string), Dictionary<string, string> extAttributes = default(Dictionary<string, string>), string exerciseUrl = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -126,6 +127,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             this.ExtAttributes = extAttributes;
             this.Taxes = taxes;
             this.PnrReference = pnrReference;
+            this.ExerciseUrl = exerciseUrl;
         }
 
         /// <summary>
@@ -255,6 +257,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         public Dictionary<string, string> ExtAttributes { get; set; }
 
         /// <summary>
+        /// URL to exercise the contract (if applicable)
+        /// </summary>
+        /// <value>URL to exercise the contract (if applicable)</value>
+        [DataMember(Name = "exercise_url", EmitDefaultValue = false)]
+        public string ExerciseUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -277,6 +286,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  PnrReference: ").Append(PnrReference).Append("\n");
             sb.Append("  ExtAttributes: ").Append(ExtAttributes).Append("\n");
+            sb.Append("  ExerciseUrl: ").Append(ExerciseUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

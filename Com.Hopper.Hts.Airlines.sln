@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hopper.Hts.Airlines", "src\Com.Hopper.Hts.Airlines\Com.Hopper.Hts.Airlines.csproj", "{F588D1F5-A6DE-4D6F-A943-5E348A0419DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hopper.Hts.Airlines", "src\Com.Hopper.Hts.Airlines\Com.Hopper.Hts.Airlines.csproj", "{3052404B-675E-454E-AFF3-3EE894880821}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hopper.Hts.Airlines.Test", "src\Com.Hopper.Hts.Airlines.Test\Com.Hopper.Hts.Airlines.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F588D1F5-A6DE-4D6F-A943-5E348A0419DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F588D1F5-A6DE-4D6F-A943-5E348A0419DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F588D1F5-A6DE-4D6F-A943-5E348A0419DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F588D1F5-A6DE-4D6F-A943-5E348A0419DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3052404B-675E-454E-AFF3-3EE894880821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3052404B-675E-454E-AFF3-3EE894880821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3052404B-675E-454E-AFF3-3EE894880821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3052404B-675E-454E-AFF3-3EE894880821}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -31,22 +31,22 @@ namespace Com.Hopper.Hts.Airlines.Model
     public enum UiVariant
     {
         /// <summary>
-        /// Enum A for value: variant_a
+        /// Enum VariantA for value: variant_a
         /// </summary>
         [EnumMember(Value = "variant_a")]
-        A = 1,
+        VariantA = 1,
 
         /// <summary>
-        /// Enum B for value: variant_b
+        /// Enum VariantB for value: variant_b
         /// </summary>
         [EnumMember(Value = "variant_b")]
-        B = 2,
+        VariantB = 2,
 
         /// <summary>
-        /// Enum C for value: variant_c
+        /// Enum VariantC for value: variant_c
         /// </summary>
         [EnumMember(Value = "variant_c")]
-        C = 3
+        VariantC = 3
     }
 
 }

@@ -33,7 +33,7 @@ namespace Com.Hopper.Hts.Airlines.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "0.1.5";
+        public const string Version = "0.1.7";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -117,7 +117,7 @@ namespace Com.Hopper.Hts.Airlines.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/0.1.5/csharp");
+            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/0.1.7/csharp");
             BasePath = "https://airlines-api.hopper.com/airline/v1.1";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
@@ -136,7 +136,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             };
 
             // Setting Timeout has side effects (forces ApiClient creation).
-            Timeout = 100000;
+            Timeout = TimeSpan.FromSeconds(100);
         }
 
         /// <summary>
@@ -220,9 +220,9 @@ namespace Com.Hopper.Hts.Airlines.Client
         public virtual IDictionary<string, string> DefaultHeaders { get; set; }
 
         /// <summary>
-        /// Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
+        /// Gets or sets the HTTP timeout of ApiClient. Defaults to 100 seconds.
         /// </summary>
-        public virtual int Timeout { get; set; }
+        public virtual TimeSpan Timeout { get; set; }
 
         /// <summary>
         /// Gets or sets the proxy
@@ -540,7 +540,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
             report += "    Version of the API: v1.1\n";
-            report += "    SDK Package Version: 0.1.5\n";
+            report += "    SDK Package Version: 0.1.7\n";
 
             return report;
         }
