@@ -4969,6 +4969,7 @@ components:
         service_cap: "1000.00"
         max_hours_before_departure: 24
         min_minutes_delay: 1
+        merchandising_url: merchandising_url
       properties:
         id:
           description: Unique identifier for an offer
@@ -5050,6 +5051,9 @@ components:
             $ref: '#/components/schemas/dg_contents'
           title: map_dg_contents
           type: object
+        merchandising_url:
+          description: The url for rendering offer merchandising
+          type: string
       required:
       - contents
       - contract_expiry_date_time

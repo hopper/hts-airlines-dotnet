@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Itinerary** | [**DgItinerary**](DgItinerary.md) |  | 
 **ExtAttributes** | **Dictionary&lt;string, string&gt;** |  | 
 **Contents** | [**Dictionary&lt;string, DgContents&gt;**](DgContents.md) |  | 
+**MerchandisingUrl** | **string** | The url for rendering offer merchandising | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
