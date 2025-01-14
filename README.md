@@ -311,7 +311,8 @@ VERSION=0.1.2 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-
     -g csharp \
     -o /local \
     --package-name Com.Hopper.Hts.Airlines \
-    --additional-properties=optionalEmitDefaultValues=true,nullableReferenceTypes=true,validatable=false,licenseId=MIT,packageVersion=$VERSION
+    --additional-properties=nullableReferenceTypes=true,validatable=false,licenseId=MIT,packageVersion=$VERSION \
+    --skip-validate-spec
 ```
 
 Please be mindful of the README.md getting overwritten.
