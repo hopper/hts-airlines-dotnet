@@ -60,7 +60,8 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="itinerary">itinerary (required).</param>
         /// <param name="extAttributes">extAttributes (required).</param>
         /// <param name="contents">contents (required).</param>
-        public CreateDgOfferItemResponse(string id = default(string), string premium = default(string), string coverage = default(string), string coveragePercentage = default(string), string serviceCap = default(string), string currency = default(string), string taxesTotal = default(string), List<DgTax> taxes = default(List<DgTax>), DgRequestType requestType = default(DgRequestType), int maxHoursBeforeDeparture = default(int), int minMinutesDelay = default(int), DateTime createdDateTime = default(DateTime), DateTime contractExpiryDateTime = default(DateTime), DgItinerary itinerary = default(DgItinerary), Dictionary<string, string> extAttributes = default(Dictionary<string, string>), Dictionary<string, DgContents> contents = default(Dictionary<string, DgContents>))
+        /// <param name="merchandisingUrl">The url for rendering offer merchandising.</param>
+        public CreateDgOfferItemResponse(string id = default(string), string premium = default(string), string coverage = default(string), string coveragePercentage = default(string), string serviceCap = default(string), string currency = default(string), string taxesTotal = default(string), List<DgTax> taxes = default(List<DgTax>), DgRequestType requestType = default(DgRequestType), int maxHoursBeforeDeparture = default(int), int minMinutesDelay = default(int), DateTime createdDateTime = default(DateTime), DateTime contractExpiryDateTime = default(DateTime), DgItinerary itinerary = default(DgItinerary), Dictionary<string, string> extAttributes = default(Dictionary<string, string>), Dictionary<string, DgContents> contents = default(Dictionary<string, DgContents>), string merchandisingUrl = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -128,6 +129,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             }
             this.Contents = contents;
             this.Taxes = taxes;
+            this.MerchandisingUrl = merchandisingUrl;
         }
 
         /// <summary>
@@ -265,6 +267,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         public Dictionary<string, DgContents> Contents { get; set; }
 
         /// <summary>
+        /// The url for rendering offer merchandising
+        /// </summary>
+        /// <value>The url for rendering offer merchandising</value>
+        [DataMember(Name = "merchandising_url", EmitDefaultValue = false)]
+        public string MerchandisingUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -288,6 +297,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  Itinerary: ").Append(Itinerary).Append("\n");
             sb.Append("  ExtAttributes: ").Append(ExtAttributes).Append("\n");
             sb.Append("  Contents: ").Append(Contents).Append("\n");
+            sb.Append("  MerchandisingUrl: ").Append(MerchandisingUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
