@@ -316,7 +316,7 @@ namespace Com.Hopper.Hts.Airlines.Client
                 {
                     foreach (var value in headerParam.Value)
                     {
-                        request.AddOrUpdateHeader(headerParam.Key, value);
+                        request.AddHeader(headerParam.Key, value);
                     }
                 }
             }
@@ -380,14 +380,6 @@ namespace Com.Hopper.Hts.Airlines.Client
                         else
                             request.AddFile(fileParam.Key, bytes, "no_file_name_provided");
                     }
-                }
-            }
-
-            if (options.HeaderParameters != null)
-            {
-                if (options.HeaderParameters.TryGetValue("Content-Type", out var contentTypes) && contentTypes.Any(header => header.Contains("multipart/form-data")))
-                {
-                    request.AlwaysMultipartFormData = true;
                 }
             }
 

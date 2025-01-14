@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>Com.Hopper.Hts.Airlines.Test</AssemblyName>
     <RootNamespace>Com.Hopper.Hts.Airlines.Test</RootNamespace>
-    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
