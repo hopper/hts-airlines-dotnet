@@ -50,6 +50,31 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <returns>ApiResponse of CfarContract</returns>
         ApiResponse<CfarContract> GetCfarContractsIdWithHttpInfo(string id, int operationIndex = 0);
         /// <summary>
+        /// Get CFAR Offers
+        /// </summary>
+        /// <remarks>
+        /// Get CFAR offers
+        /// </remarks>
+        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
+        /// <param name="offerId">List of unique identifier for an offer (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>GetCfarOfferResponse</returns>
+        GetCfarOfferResponse GetCustomerCfarOffers(string hCSessionID, List<string>? offerId = default(List<string>?), int operationIndex = 0);
+
+        /// <summary>
+        /// Get CFAR Offers
+        /// </summary>
+        /// <remarks>
+        /// Get CFAR offers
+        /// </remarks>
+        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
+        /// <param name="offerId">List of unique identifier for an offer (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of GetCfarOfferResponse</returns>
+        ApiResponse<GetCfarOfferResponse> GetCustomerCfarOffersWithHttpInfo(string hCSessionID, List<string>? offerId = default(List<string>?), int operationIndex = 0);
+        /// <summary>
         /// Create CFAR Exercise
         /// </summary>
         /// <remarks>
@@ -264,6 +289,33 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CfarContract)</returns>
         System.Threading.Tasks.Task<ApiResponse<CfarContract>> GetCfarContractsIdWithHttpInfoAsync(string id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <summary>
+        /// Get CFAR Offers
+        /// </summary>
+        /// <remarks>
+        /// Get CFAR offers
+        /// </remarks>
+        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
+        /// <param name="offerId">List of unique identifier for an offer (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetCfarOfferResponse</returns>
+        System.Threading.Tasks.Task<GetCfarOfferResponse> GetCustomerCfarOffersAsync(string hCSessionID, List<string>? offerId = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get CFAR Offers
+        /// </summary>
+        /// <remarks>
+        /// Get CFAR offers
+        /// </remarks>
+        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
+        /// <param name="offerId">List of unique identifier for an offer (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetCfarOfferResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetCfarOfferResponse>> GetCustomerCfarOffersWithHttpInfoAsync(string hCSessionID, List<string>? offerId = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Create CFAR Exercise
         /// </summary>
@@ -618,6 +670,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             };
 
             var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -746,6 +799,163 @@ namespace Com.Hopper.Hts.Airlines.Api
         }
 
         /// <summary>
+        /// Get CFAR Offers Get CFAR offers
+        /// </summary>
+        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
+        /// <param name="offerId">List of unique identifier for an offer (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>GetCfarOfferResponse</returns>
+        public GetCfarOfferResponse GetCustomerCfarOffers(string hCSessionID, List<string>? offerId = default(List<string>?), int operationIndex = 0)
+        {
+            Com.Hopper.Hts.Airlines.Client.ApiResponse<GetCfarOfferResponse> localVarResponse = GetCustomerCfarOffersWithHttpInfo(hCSessionID, offerId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get CFAR Offers Get CFAR offers
+        /// </summary>
+        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
+        /// <param name="offerId">List of unique identifier for an offer (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of GetCfarOfferResponse</returns>
+        public Com.Hopper.Hts.Airlines.Client.ApiResponse<GetCfarOfferResponse> GetCustomerCfarOffersWithHttpInfo(string hCSessionID, List<string>? offerId = default(List<string>?), int operationIndex = 0)
+        {
+            // verify the required parameter 'hCSessionID' is set
+            if (hCSessionID == null)
+            {
+                throw new Com.Hopper.Hts.Airlines.Client.ApiException(400, "Missing required parameter 'hCSessionID' when calling CancelForAnyReasonCFARApi->GetCustomerCfarOffers");
+            }
+
+            Com.Hopper.Hts.Airlines.Client.RequestOptions localVarRequestOptions = new Com.Hopper.Hts.Airlines.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            if (offerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Com.Hopper.Hts.Airlines.Client.ClientUtils.ParameterToMultiMap("multi", "offerId", offerId));
+            }
+            localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", Com.Hopper.Hts.Airlines.Client.ClientUtils.ParameterToString(hCSessionID)); // header parameter
+
+            localVarRequestOptions.Operation = "CancelForAnyReasonCFARApi.GetCustomerCfarOffers";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetCfarOfferResponse>("/customer/cfar_offers", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetCustomerCfarOffers", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get CFAR Offers Get CFAR offers
+        /// </summary>
+        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
+        /// <param name="offerId">List of unique identifier for an offer (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetCfarOfferResponse</returns>
+        public async System.Threading.Tasks.Task<GetCfarOfferResponse> GetCustomerCfarOffersAsync(string hCSessionID, List<string>? offerId = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            Com.Hopper.Hts.Airlines.Client.ApiResponse<GetCfarOfferResponse> localVarResponse = await GetCustomerCfarOffersWithHttpInfoAsync(hCSessionID, offerId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get CFAR Offers Get CFAR offers
+        /// </summary>
+        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
+        /// <param name="offerId">List of unique identifier for an offer (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetCfarOfferResponse)</returns>
+        public async System.Threading.Tasks.Task<Com.Hopper.Hts.Airlines.Client.ApiResponse<GetCfarOfferResponse>> GetCustomerCfarOffersWithHttpInfoAsync(string hCSessionID, List<string>? offerId = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'hCSessionID' is set
+            if (hCSessionID == null)
+            {
+                throw new Com.Hopper.Hts.Airlines.Client.ApiException(400, "Missing required parameter 'hCSessionID' when calling CancelForAnyReasonCFARApi->GetCustomerCfarOffers");
+            }
+
+
+            Com.Hopper.Hts.Airlines.Client.RequestOptions localVarRequestOptions = new Com.Hopper.Hts.Airlines.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            if (offerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Com.Hopper.Hts.Airlines.Client.ClientUtils.ParameterToMultiMap("multi", "offerId", offerId));
+            }
+            localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", Com.Hopper.Hts.Airlines.Client.ClientUtils.ParameterToString(hCSessionID)); // header parameter
+
+            localVarRequestOptions.Operation = "CancelForAnyReasonCFARApi.GetCustomerCfarOffers";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetCfarOfferResponse>("/customer/cfar_offers", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetCustomerCfarOffers", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Create CFAR Exercise Record that a request to exercise a CFAR contract has occurred.
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
@@ -787,6 +997,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             };
 
             var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -955,6 +1166,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             };
 
             var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -1123,6 +1335,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             };
 
             var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -1303,6 +1516,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             };
 
             var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -1481,6 +1695,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             };
 
             var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -1669,6 +1884,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             };
 
             var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -1857,6 +2073,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             };
 
             var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);

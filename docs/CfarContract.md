@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Status** | **CfarStatus** |  | 
 **PnrReference** | **string** | Reference of the PNR in the airline system | [optional] 
 **ExtAttributes** | **Dictionary&lt;string, string&gt;** |  | 
+**ExerciseUrl** | **string** | URL to exercise the contract (if applicable) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

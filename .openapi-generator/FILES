@@ -43,6 +43,7 @@ docs/CfarItinerarySlice.md
 docs/CfarItinerarySliceSegment.md
 docs/CfarOffer.md
 docs/CfarOfferItinerary.md
+docs/CfarOfferLight.md
 docs/CfarOfferPassenger.md
 docs/CfarOffersBannerDisplay.md
 docs/CfarOffersTakeoverDisplay.md
@@ -107,6 +108,7 @@ docs/FlightStatus.md
 docs/FlowType.md
 docs/FormOfPayment.md
 docs/Gender.md
+docs/GetCfarOfferResponse.md
 docs/IOs.md
 docs/InternetExplorer.md
 docs/Linux.md
@@ -147,8 +149,6 @@ docs/Web.md
 docs/Windows.md
 git_push.sh
 src/Com.Hopper.Hts.Airlines.Test/Com.Hopper.Hts.Airlines.Test.csproj
-src/Com.Hopper.Hts.Airlines.Test/Model/DgCustomerCreateContractExerciseRequestTests.cs
-src/Com.Hopper.Hts.Airlines.Test/Model/DgCustomerCreateContractExerciseResponseTests.cs
 src/Com.Hopper.Hts.Airlines/Api/AnalyticsApi.cs
 src/Com.Hopper.Hts.Airlines/Api/AuthenticationApi.cs
 src/Com.Hopper.Hts.Airlines/Api/CancelForAnyReasonCFARApi.cs
@@ -209,6 +209,7 @@ src/Com.Hopper.Hts.Airlines/Model/CfarItinerarySlice.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarItinerarySliceSegment.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarOffer.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarOfferItinerary.cs
+src/Com.Hopper.Hts.Airlines/Model/CfarOfferLight.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarOfferPassenger.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarOffersBannerDisplay.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarOffersTakeoverDisplay.cs
@@ -272,6 +273,7 @@ src/Com.Hopper.Hts.Airlines/Model/FlightStatus.cs
 src/Com.Hopper.Hts.Airlines/Model/FlowType.cs
 src/Com.Hopper.Hts.Airlines/Model/FormOfPayment.cs
 src/Com.Hopper.Hts.Airlines/Model/Gender.cs
+src/Com.Hopper.Hts.Airlines/Model/GetCfarOfferResponse.cs
 src/Com.Hopper.Hts.Airlines/Model/IOs.cs
 src/Com.Hopper.Hts.Airlines/Model/InternetExplorer.cs
 src/Com.Hopper.Hts.Airlines/Model/Linux.cs

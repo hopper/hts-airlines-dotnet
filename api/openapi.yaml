@@ -970,6 +970,68 @@ paths:
       summary: Complete CFAR Exercise
       tags:
       - Cancel For Any Reason (CFAR)
+  /customer/cfar_offers:
+    get:
+      description: Get CFAR offers
+      operationId: getCustomerCfar_offers
+      parameters:
+      - description: "The ID of the current airline session, see [Sessions](#tag/Sessions)"
+        example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+        explode: false
+        in: header
+        name: HC-Session-ID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: List of unique identifier for an offer
+        example:
+        - 2e1006b3-aba6-4899-8682-b95bce693c27
+        - 2e1006b3-aba6-4899-8682-b95bce693c26
+        explode: true
+        in: query
+        name: offerId
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_cfar_offer_response'
+          description: The requested CFAR offers
+          headers:
+            Expires:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bad_request'
+          description: Syntactic errors were encountered while handling the request
+        "401":
+          description: The client could not be authenticated
+        "404":
+          description: The requested resource could not be found
+        "500":
+          description: The server encountered an internal error
+      summary: Get CFAR Offers
+      tags:
+      - Cancel For Any Reason (CFAR)
   /dg_offers:
     post:
       description: Create DG offers for a user's trip
@@ -2202,6 +2264,7 @@ components:
           contract_expiry_date_time: 2020-12-20T12:15:48Z
           currency: CAD
           id: 1ec9eed3-4486-6460-9d6c-2fb8469d35db
+          merchandising_url: merchandising_url
         - coverage: "400.00"
           taxes_total: "3.90"
           ext_attributes:
@@ -2476,6 +2539,7 @@ components:
           contract_expiry_date_time: 2020-12-20T12:15:48Z
           currency: CAD
           id: 1ec9eed3-4486-6460-9d6c-2fb8469d35db
+          merchandising_url: merchandising_url
         coverage: "98.64"
         taxes_total: "3.90"
         ext_attributes:
@@ -2737,6 +2801,7 @@ components:
               currency: CAD
         reference: 1FE5772642C77BAB
         created_date_time: 2022-01-08T14:36:56Z
+        exercise_url: exercise_url
         premium: "80.00"
         currency: USD
         id: 1ec9ef29-be31-6ed3-beec-9f5ae0d164ee
@@ -2813,6 +2878,9 @@ components:
             type: string
           title: map_string
           type: object
+        exercise_url:
+          description: URL to exercise the contract (if applicable)
+          type: string
       required:
       - coverage
       - coverage_percentage
@@ -4047,6 +4115,7 @@ components:
         contract_expiry_date_time: 2020-12-20T12:15:48Z
         currency: CAD
         id: 1ec9eed3-4486-6460-9d6c-2fb8469d35db
+        merchandising_url: merchandising_url
       properties:
         id:
           description: Unique identifier for an offer
@@ -4119,6 +4188,9 @@ components:
         terms_conditions_url:
           description: The terms and conditions for this offer
           type: string
+        merchandising_url:
+          description: The url for rendering offer merchandising
+          type: string
       required:
       - contents
       - contract_expiry_date_time
@@ -4184,6 +4256,48 @@ components:
       - passenger_pricing
       - slices
       title: cfar_offer_itinerary
+      type: object
+    cfar_offer_light:
+      description: A successful CFAR offer customer response
+      example:
+        terms_conditions_url:
+          key: terms_conditions_url
+        premium: "20.80"
+        coverage_percentage: "80.00"
+        currency: CAD
+        id: 2e1006b3-aba6-4899-8682-b95bce693c27
+      properties:
+        id:
+          description: Unique identifier for an offer
+          example: 2e1006b3-aba6-4899-8682-b95bce693c27
+          type: string
+        premium:
+          description: Amount per passenger to be paid by user for CFAR
+          example: "20.80"
+          minimum: 0
+          type: string
+        coverage_percentage:
+          description: Percentage of the amount to be refunded to customer compared
+            to flight tickets price
+          example: "80.00"
+          minimum: 0
+          type: string
+        currency:
+          description: Currency of offer
+          example: CAD
+          type: string
+        terms_conditions_url:
+          additionalProperties:
+            type: string
+          title: map_string
+          type: object
+      required:
+      - coverage_percentage
+      - currency
+      - id
+      - premium
+      - terms_conditions_url
+      title: cfar_offer_light
       type: object
     cfar_offer_passenger:
       description: An object detailing the Passenger Information as part of offers
@@ -6818,6 +6932,30 @@ components:
       - unspecified
       title: gender
       type: string
+    get_cfar_offer_response:
+      example:
+        offers:
+        - terms_conditions_url:
+            key: terms_conditions_url
+          premium: "20.80"
+          coverage_percentage: "80.00"
+          currency: CAD
+          id: 2e1006b3-aba6-4899-8682-b95bce693c27
+        - terms_conditions_url:
+            key: terms_conditions_url
+          premium: "20.80"
+          coverage_percentage: "80.00"
+          currency: CAD
+          id: 2e1006b3-aba6-4899-8682-b95bce693c27
+      properties:
+        offers:
+          items:
+            $ref: '#/components/schemas/cfar_offer_light'
+          type: array
+      required:
+      - offers
+      title: get_cfar_offer_response
+      type: object
     i_os:
       properties:
         version:
