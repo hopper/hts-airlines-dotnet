@@ -306,12 +306,12 @@ Authentication schemes defined for the API:
 You can regenerate the client using this command:
 
 ```bash
-VERSION=0.1.2 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+VERSION=0.1.2 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v7.10.0 generate \
     -i https://airlines-api.hopper.com/airline/v1.1/docs/docs.yaml \
     -g csharp \
     -o /local \
     --package-name Com.Hopper.Hts.Airlines \
-    --additional-properties=nullableReferenceTypes=true,validatable=false,licenseId=MIT,packageVersion=$VERSION \
+    --additional-properties=nullableReferenceTypes=true,validatable=false,licenseId=MIT,packageVersion=$VERSION,targetFramework=net6.0\;net8.0 \
     --skip-validate-spec
 ```
 
