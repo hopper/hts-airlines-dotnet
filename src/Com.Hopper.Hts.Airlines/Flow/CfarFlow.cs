@@ -4,12 +4,13 @@ using Com.Hopper.Hts.Airlines.Api;
 using ApiModel = Com.Hopper.Hts.Airlines.Model;
 using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
+using System;
 
 namespace Com.Hopper.Hts.Airlines.Flow
 {
     public interface ICfarFlow
     {
-        ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, string? sessionId);
+        ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId);
     }
 
     public partial class CfarFlow : ICfarFlow
@@ -25,7 +26,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
         public Encryption Encryption { get; set; }
         public CancelForAnyReasonCFARApi CfarApi { get; set; }
 
-        public ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, string? sessionId)
+        public ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId)
         {
             var fops = new List<ApiModel.FormOfPayment>();
             foreach (var p in request.FormsOfPayment)
@@ -62,15 +63,26 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
                 {
                     var card = p.GetPaymentCard();
-                    var method = new PaymentMethod(new CreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year));
-                    method.Encrypt(this.Encryption);
-                    var tokenized = PaymentApi.PostCreditCard(new CreateCreditCardRequest(method));
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
-                        card.Amount,
-                        card.Currency,
-                        tokenized.Transaction.PaymentMethod.Token,
-                        "payment_card"
-                    )));
+                    if (paymentCardTokenized) {
+                        var method = new PaymentMethod(new CreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year));
+                        method.Encrypt(this.Encryption);
+                        var tokenized = PaymentApi.PostCreditCard(new CreateCreditCardRequest(method));
+                        fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
+                            card.Amount,
+                            card.Currency,
+                            tokenized.Transaction.PaymentMethod.Token,
+                            null,
+                            "payment_card"
+                        )));
+                    } else {
+                        fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
+                            card.Amount,
+                            card.Currency,
+                            null,
+                            "1234",
+                            "payment_card"
+                        )));
+                    }
                 }
                 else if (instance.GetType() == typeof(Points) || instance is Points)
                 {

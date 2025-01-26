@@ -55,6 +55,7 @@ namespace Example
             var updated = paymentFlow.UpdateCfarContractWithFormsOfPayment(
                 contractId,
                 request,
+                true,
                 sessionId
             );
             Assert.IsNotNull(updated);
