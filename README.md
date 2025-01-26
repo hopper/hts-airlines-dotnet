@@ -120,7 +120,6 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**PostEvents**](docs/AnalyticsApi.md#postevents) | **POST** /events | Send a Backend Event
 *AuthenticationApi* | [**PostAuth**](docs/AuthenticationApi.md#postauth) | **POST** /auth | Create an authentication token
 *CancelForAnyReasonCFARApi* | [**GetCfarContractsId**](docs/CancelForAnyReasonCFARApi.md#getcfarcontractsid) | **GET** /cfar_contracts/{id} | Get a CFAR Contract
-*CancelForAnyReasonCFARApi* | [**GetCustomerCfarOffers**](docs/CancelForAnyReasonCFARApi.md#getcustomercfaroffers) | **GET** /customer/cfar_offers | Get CFAR Offers
 *CancelForAnyReasonCFARApi* | [**PostCfarContractExercises**](docs/CancelForAnyReasonCFARApi.md#postcfarcontractexercises) | **POST** /cfar_contract_exercises | Create CFAR Exercise
 *CancelForAnyReasonCFARApi* | [**PostCfarContracts**](docs/CancelForAnyReasonCFARApi.md#postcfarcontracts) | **POST** /cfar_contracts | Create a CFAR Contract
 *CancelForAnyReasonCFARApi* | [**PostCfarContractsIdPayment**](docs/CancelForAnyReasonCFARApi.md#postcfarcontractsidpayment) | **POST** /cfar_contracts/{id}/payment | Process CFAR Payment
@@ -180,7 +179,6 @@ Class | Method | HTTP request | Description
  - [Model.CfarItinerarySliceSegment](docs/CfarItinerarySliceSegment.md)
  - [Model.CfarOffer](docs/CfarOffer.md)
  - [Model.CfarOfferItinerary](docs/CfarOfferItinerary.md)
- - [Model.CfarOfferLight](docs/CfarOfferLight.md)
  - [Model.CfarOfferPassenger](docs/CfarOfferPassenger.md)
  - [Model.CfarOffersBannerDisplay](docs/CfarOffersBannerDisplay.md)
  - [Model.CfarOffersTakeoverDisplay](docs/CfarOffersTakeoverDisplay.md)
@@ -244,7 +242,6 @@ Class | Method | HTTP request | Description
  - [Model.FlowType](docs/FlowType.md)
  - [Model.FormOfPayment](docs/FormOfPayment.md)
  - [Model.Gender](docs/Gender.md)
- - [Model.GetCfarOfferResponse](docs/GetCfarOfferResponse.md)
  - [Model.IOs](docs/IOs.md)
  - [Model.InternetExplorer](docs/InternetExplorer.md)
  - [Model.Linux](docs/Linux.md)
