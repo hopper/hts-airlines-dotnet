@@ -57,6 +57,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                         card.Amount,
                         card.Currency,
                         card.Token,
+                        null,
                         "payment_card"
                     )));
                 }
