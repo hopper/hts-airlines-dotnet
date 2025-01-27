@@ -28,6 +28,8 @@ namespace Example
             var cfarConfig = new Configuration
             {
                 BasePath = "https://airlines-api.staging.hopper.com/airline/v1.1",
+                // Testing locally : BasePath = "http://localhost:7071/airline/v1.1",
+                // AccessToken : copy the token associated with the beared
                 AccessToken = "???"
             };
             var encryption = new Encryption
@@ -40,7 +42,7 @@ namespace Example
 
             var paymentFlow = new CfarFlow(paymentApi, encryption, cfarApi);
 
-            var contractId = "???";
+            var contractReference = "???";
             var sessionId = "???";
 
             var formsOfPayments = new List<FormOfPayment> {
@@ -53,9 +55,9 @@ namespace Example
             var request = new UpdateCfarContractFormsOfPaymentRequest(formsOfPayments);
 
             var updated = paymentFlow.UpdateCfarContractWithFormsOfPayment(
-                contractId,
+                contractReference,
                 request,
-                true,
+                false,
                 sessionId
             );
             Assert.IsNotNull(updated);

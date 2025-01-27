@@ -10,7 +10,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
 {
     public interface ICfarFlow
     {
-        ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId);
+        ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId);
     }
 
     public partial class CfarFlow : ICfarFlow
@@ -26,7 +26,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
         public Encryption Encryption { get; set; }
         public CancelForAnyReasonCFARApi CfarApi { get; set; }
 
-        public ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractId, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId)
+        public ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId)
         {
             var fops = new List<ApiModel.FormOfPayment>();
             foreach (var p in request.FormsOfPayment)
@@ -95,7 +95,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 }
             }
             var paymentRequest = new ApiModel.UpdateCfarFormOfPaymentRequest(fops);
-            return CfarApi.PutCfarContractsIdFormsOfPayment(contractId, paymentRequest, sessionId);
+            return CfarApi.PutCfarContractsIdFormsOfPayment(contractReference, paymentRequest, sessionId);
         }
     }
 }
