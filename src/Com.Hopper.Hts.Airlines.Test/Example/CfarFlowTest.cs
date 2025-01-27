@@ -29,7 +29,7 @@ namespace Example
             {
                 BasePath = "https://airlines-api.staging.hopper.com/airline/v1.1",
                 // Testing locally : BasePath = "http://localhost:7071/airline/v1.1",
-                // AccessToken : copy the token associated with the beared
+                // AccessToken : copy the token associated with the bearer
                 AccessToken = "???"
             };
             var encryption = new Encryption
