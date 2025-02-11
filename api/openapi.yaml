@@ -1377,7 +1377,7 @@ paths:
       - Disruption Guarantee (DG)
   /dg_contracts/{id}/itinerary_slices:
     put:
-      description: Update a DG Contract's itinerary slices.
+      description: Update itinerary slices of a DG contract.
       operationId: putDg_contractsIdItinerary_slices
       parameters:
       - description: A unique identifier for a contract
@@ -1403,7 +1403,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/dg_contract'
-          description: The updated DG contract
+          description: The Updated DG contract
+          headers:
+            Expires:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+        "204":
+          description: The DG Contract Itinerary Slices update request was successfully
+            validated but not performed
           headers:
             Expires:
               explode: false
@@ -1440,7 +1456,6 @@ paths:
           description: The server encountered an internal error
       security:
       - PartnerAuth: []
-        SessionAuth: []
         apiKeyAuth: []
       summary: Update DG Contract Itinerary Slices
       tags:
@@ -1569,54 +1584,6 @@ paths:
       - {}
       - SessionAuth: []
       summary: Create an Event
-      tags:
-      - Disruption Guarantee (DG)
-  /customer/dg_contract_exercises:
-    post:
-      description: Record that a request to exercise a DG contract has occurred.
-      operationId: postCustomerDg_contract_exercises
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/dg_customer_create_contract_exercise_request'
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/dg_customer_create_contract_exercise_response'
-          description: The created DG contract exercise
-          headers:
-            HTS-Session-ID:
-              description: "The ID of the current session, see [Sessions](#tag/Sessions)"
-              example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
-              explode: false
-              required: true
-              schema:
-                type: string
-              style: simple
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/bad_request'
-          description: Syntactic errors were encountered while handling the request
-        "401":
-          description: The client could not be authenticated
-        "403":
-          description: The authenticated client does not have permission to call this
-            endpoint
-        "404":
-          description: The requested resource could not be found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/unprocessable_entity'
-          description: Semantic errors were encountered while handling the request
-      summary: Create DG Exercise
       tags:
       - Disruption Guarantee (DG)
   /auth:
@@ -5588,35 +5555,6 @@ components:
       - taxes_total
       title: dg_contract
       type: object
-    dg_customer_create_contract_exercise_request:
-      description: A create DG contract exercise request
-      properties:
-        contract_id:
-          description: A unique identifier for a DG contract
-          example: 1ec9ef29-be31-6ed3-beec-9f5ae0d164ee
-          type: string
-        disrupted_segment_id:
-          description: A unique identifier for current disrupted segment
-          example: 1ec9ef29-be31-6ed3-beec-9f5ae0d164ef
-          type: string
-      required:
-      - contract_id
-      - disrupted_segment_id
-      title: dg_customer_create_contract_exercise_request
-      type: object
-    dg_customer_create_contract_exercise_response:
-      description: An object containing exercise information for a contract
-      example:
-        exercise_id: 8ef454c6-74a5-48cf-972e-fac72d05e59c
-      properties:
-        exercise_id:
-          description: Unique identifier for a DG exercise
-          example: 8ef454c6-74a5-48cf-972e-fac72d05e59c
-          type: string
-      required:
-      - exercise_id
-      title: dg_customer_create_contract_exercise_response
-      type: object
     dg_event:
       discriminator:
         mapping:
@@ -7121,6 +7059,14 @@ components:
           type: string
         last_four_digits:
           description: Last four digits of the payment card
+          type: string
+        expiration_month:
+          description: the expiry month of the payment card
+          example: "09"
+          type: string
+        expiration_year:
+          description: the expiry year of the payment card
+          example: "26"
           type: string
         type:
           type: string

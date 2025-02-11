@@ -50,29 +50,6 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <returns>ApiResponse of DgContract</returns>
         ApiResponse<DgContract> GetDgContractsIdWithHttpInfo(string id, int operationIndex = 0);
         /// <summary>
-        /// Create DG Exercise
-        /// </summary>
-        /// <remarks>
-        /// Record that a request to exercise a DG contract has occurred.
-        /// </remarks>
-        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dgCustomerCreateContractExerciseRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>DgCustomerCreateContractExerciseResponse</returns>
-        DgCustomerCreateContractExerciseResponse PostCustomerDgContractExercises(DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest, int operationIndex = 0);
-
-        /// <summary>
-        /// Create DG Exercise
-        /// </summary>
-        /// <remarks>
-        /// Record that a request to exercise a DG contract has occurred.
-        /// </remarks>
-        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dgCustomerCreateContractExerciseRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of DgCustomerCreateContractExerciseResponse</returns>
-        ApiResponse<DgCustomerCreateContractExerciseResponse> PostCustomerDgContractExercisesWithHttpInfo(DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest, int operationIndex = 0);
-        /// <summary>
         /// Create an Event
         /// </summary>
         /// <remarks>
@@ -197,7 +174,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Update DG Contract Itinerary Slices
         /// </summary>
         /// <remarks>
-        /// Update a DG Contract&#39;s itinerary slices.
+        /// Update itinerary slices of a DG contract.
         /// </remarks>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for a contract</param>
@@ -210,7 +187,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Update DG Contract Itinerary Slices
         /// </summary>
         /// <remarks>
-        /// Update a DG Contract&#39;s itinerary slices.
+        /// Update itinerary slices of a DG contract.
         /// </remarks>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for a contract</param>
@@ -277,31 +254,6 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DgContract)</returns>
         System.Threading.Tasks.Task<ApiResponse<DgContract>> GetDgContractsIdWithHttpInfoAsync(string id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
-        /// <summary>
-        /// Create DG Exercise
-        /// </summary>
-        /// <remarks>
-        /// Record that a request to exercise a DG contract has occurred.
-        /// </remarks>
-        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dgCustomerCreateContractExerciseRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DgCustomerCreateContractExerciseResponse</returns>
-        System.Threading.Tasks.Task<DgCustomerCreateContractExerciseResponse> PostCustomerDgContractExercisesAsync(DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
-
-        /// <summary>
-        /// Create DG Exercise
-        /// </summary>
-        /// <remarks>
-        /// Record that a request to exercise a DG contract has occurred.
-        /// </remarks>
-        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dgCustomerCreateContractExerciseRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DgCustomerCreateContractExerciseResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DgCustomerCreateContractExerciseResponse>> PostCustomerDgContractExercisesWithHttpInfoAsync(DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Create an Event
         /// </summary>
@@ -437,7 +389,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Update DG Contract Itinerary Slices
         /// </summary>
         /// <remarks>
-        /// Update a DG Contract&#39;s itinerary slices.
+        /// Update itinerary slices of a DG contract.
         /// </remarks>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for a contract</param>
@@ -451,7 +403,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Update DG Contract Itinerary Slices
         /// </summary>
         /// <remarks>
-        /// Update a DG Contract&#39;s itinerary slices.
+        /// Update itinerary slices of a DG contract.
         /// </remarks>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for a contract</param>
@@ -764,152 +716,6 @@ namespace Com.Hopper.Hts.Airlines.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetDgContractsId", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Create DG Exercise Record that a request to exercise a DG contract has occurred.
-        /// </summary>
-        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dgCustomerCreateContractExerciseRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>DgCustomerCreateContractExerciseResponse</returns>
-        public DgCustomerCreateContractExerciseResponse PostCustomerDgContractExercises(DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest, int operationIndex = 0)
-        {
-            Com.Hopper.Hts.Airlines.Client.ApiResponse<DgCustomerCreateContractExerciseResponse> localVarResponse = PostCustomerDgContractExercisesWithHttpInfo(dgCustomerCreateContractExerciseRequest);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Create DG Exercise Record that a request to exercise a DG contract has occurred.
-        /// </summary>
-        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dgCustomerCreateContractExerciseRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of DgCustomerCreateContractExerciseResponse</returns>
-        public Com.Hopper.Hts.Airlines.Client.ApiResponse<DgCustomerCreateContractExerciseResponse> PostCustomerDgContractExercisesWithHttpInfo(DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest, int operationIndex = 0)
-        {
-            // verify the required parameter 'dgCustomerCreateContractExerciseRequest' is set
-            if (dgCustomerCreateContractExerciseRequest == null)
-            {
-                throw new Com.Hopper.Hts.Airlines.Client.ApiException(400, "Missing required parameter 'dgCustomerCreateContractExerciseRequest' when calling DisruptionGuaranteeDGApi->PostCustomerDgContractExercises");
-            }
-
-            Com.Hopper.Hts.Airlines.Client.RequestOptions localVarRequestOptions = new Com.Hopper.Hts.Airlines.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.Data = dgCustomerCreateContractExerciseRequest;
-
-            localVarRequestOptions.Operation = "DisruptionGuaranteeDGApi.PostCustomerDgContractExercises";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<DgCustomerCreateContractExerciseResponse>("/customer/dg_contract_exercises", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("PostCustomerDgContractExercises", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Create DG Exercise Record that a request to exercise a DG contract has occurred.
-        /// </summary>
-        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dgCustomerCreateContractExerciseRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DgCustomerCreateContractExerciseResponse</returns>
-        public async System.Threading.Tasks.Task<DgCustomerCreateContractExerciseResponse> PostCustomerDgContractExercisesAsync(DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-        {
-            Com.Hopper.Hts.Airlines.Client.ApiResponse<DgCustomerCreateContractExerciseResponse> localVarResponse = await PostCustomerDgContractExercisesWithHttpInfoAsync(dgCustomerCreateContractExerciseRequest, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Create DG Exercise Record that a request to exercise a DG contract has occurred.
-        /// </summary>
-        /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="dgCustomerCreateContractExerciseRequest"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DgCustomerCreateContractExerciseResponse)</returns>
-        public async System.Threading.Tasks.Task<Com.Hopper.Hts.Airlines.Client.ApiResponse<DgCustomerCreateContractExerciseResponse>> PostCustomerDgContractExercisesWithHttpInfoAsync(DgCustomerCreateContractExerciseRequest dgCustomerCreateContractExerciseRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'dgCustomerCreateContractExerciseRequest' is set
-            if (dgCustomerCreateContractExerciseRequest == null)
-            {
-                throw new Com.Hopper.Hts.Airlines.Client.ApiException(400, "Missing required parameter 'dgCustomerCreateContractExerciseRequest' when calling DisruptionGuaranteeDGApi->PostCustomerDgContractExercises");
-            }
-
-
-            Com.Hopper.Hts.Airlines.Client.RequestOptions localVarRequestOptions = new Com.Hopper.Hts.Airlines.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = Com.Hopper.Hts.Airlines.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.Data = dgCustomerCreateContractExerciseRequest;
-
-            localVarRequestOptions.Operation = "DisruptionGuaranteeDGApi.PostCustomerDgContractExercises";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<DgCustomerCreateContractExerciseResponse>("/customer/dg_contract_exercises", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("PostCustomerDgContractExercises", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1758,7 +1564,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         }
 
         /// <summary>
-        /// Update DG Contract Itinerary Slices Update a DG Contract&#39;s itinerary slices.
+        /// Update DG Contract Itinerary Slices Update itinerary slices of a DG contract.
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for a contract</param>
@@ -1772,7 +1578,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         }
 
         /// <summary>
-        /// Update DG Contract Itinerary Slices Update a DG Contract&#39;s itinerary slices.
+        /// Update DG Contract Itinerary Slices Update itinerary slices of a DG contract.
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for a contract</param>
@@ -1822,11 +1628,6 @@ namespace Com.Hopper.Hts.Airlines.Api
             localVarRequestOptions.Operation = "DisruptionGuaranteeDGApi.PutDgContractsIdItinerarySlices";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (SessionAuth) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("HC-Session-ID")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", this.Configuration.GetApiKeyWithPrefix("HC-Session-ID"));
-            }
             // authentication (PartnerAuth) required
             // bearer authentication required
             if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1849,7 +1650,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         }
 
         /// <summary>
-        /// Update DG Contract Itinerary Slices Update a DG Contract&#39;s itinerary slices.
+        /// Update DG Contract Itinerary Slices Update itinerary slices of a DG contract.
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for a contract</param>
@@ -1864,7 +1665,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         }
 
         /// <summary>
-        /// Update DG Contract Itinerary Slices Update a DG Contract&#39;s itinerary slices.
+        /// Update DG Contract Itinerary Slices Update itinerary slices of a DG contract.
         /// </summary>
         /// <exception cref="Com.Hopper.Hts.Airlines.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">A unique identifier for a contract</param>
@@ -1916,11 +1717,6 @@ namespace Com.Hopper.Hts.Airlines.Api
             localVarRequestOptions.Operation = "DisruptionGuaranteeDGApi.PutDgContractsIdItinerarySlices";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (SessionAuth) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("HC-Session-ID")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("HC-Session-ID", this.Configuration.GetApiKeyWithPrefix("HC-Session-ID"));
-            }
             // authentication (PartnerAuth) required
             // bearer authentication required
             if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))

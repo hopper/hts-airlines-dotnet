@@ -71,8 +71,6 @@ docs/DgAncillary.md
 docs/DgAncillaryType.md
 docs/DgContents.md
 docs/DgContract.md
-docs/DgCustomerCreateContractExerciseRequest.md
-docs/DgCustomerCreateContractExerciseResponse.md
 docs/DgEvent.md
 docs/DgExerciseCallbackLaunched.md
 docs/DgExerciseCustomerDataComplete.md
@@ -235,8 +233,6 @@ src/Com.Hopper.Hts.Airlines/Model/DgAncillary.cs
 src/Com.Hopper.Hts.Airlines/Model/DgAncillaryType.cs
 src/Com.Hopper.Hts.Airlines/Model/DgContents.cs
 src/Com.Hopper.Hts.Airlines/Model/DgContract.cs
-src/Com.Hopper.Hts.Airlines/Model/DgCustomerCreateContractExerciseRequest.cs
-src/Com.Hopper.Hts.Airlines/Model/DgCustomerCreateContractExerciseResponse.cs
 src/Com.Hopper.Hts.Airlines/Model/DgEvent.cs
 src/Com.Hopper.Hts.Airlines/Model/DgExerciseCallbackLaunched.cs
 src/Com.Hopper.Hts.Airlines/Model/DgExerciseCustomerDataComplete.cs
