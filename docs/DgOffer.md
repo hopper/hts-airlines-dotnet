@@ -6,8 +6,8 @@ A Dg offer
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Unique identifier for a DG offer | 
-**Premium** | **string** | Amount per passenger to be paid by user for DG | 
-**Coverage** | **string** | Amount per passenger to be refunded to user upon DG exercise | 
+**Premium** | **string** | Total amount to be paid for DG | 
+**Coverage** | **string** | Total amount to be refunded upon DG exercise | 
 **CoveragePercentage** | **string** | Percentage of the amount to be refunded to customer compared to flight tickets price | 
 **ServiceCap** | **string** | Allowed amount per passenger to book a new flight in case of disruption | 
 **Currency** | **string** | Currency of offer | 

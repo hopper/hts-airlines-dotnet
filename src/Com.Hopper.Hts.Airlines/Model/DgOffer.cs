@@ -45,8 +45,8 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Initializes a new instance of the <see cref="DgOffer" /> class.
         /// </summary>
         /// <param name="id">Unique identifier for a DG offer (required).</param>
-        /// <param name="premium">Amount per passenger to be paid by user for DG (required).</param>
-        /// <param name="coverage">Amount per passenger to be refunded to user upon DG exercise (required).</param>
+        /// <param name="premium">Total amount to be paid for DG (required).</param>
+        /// <param name="coverage">Total amount to be refunded upon DG exercise (required).</param>
         /// <param name="coveragePercentage">Percentage of the amount to be refunded to customer compared to flight tickets price (required).</param>
         /// <param name="serviceCap">Allowed amount per passenger to book a new flight in case of disruption (required).</param>
         /// <param name="currency">Currency of offer (required).</param>
@@ -141,9 +141,9 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Amount per passenger to be paid by user for DG
+        /// Total amount to be paid for DG
         /// </summary>
-        /// <value>Amount per passenger to be paid by user for DG</value>
+        /// <value>Total amount to be paid for DG</value>
         /*
         <example>20.80</example>
         */
@@ -151,9 +151,9 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string Premium { get; set; }
 
         /// <summary>
-        /// Amount per passenger to be refunded to user upon DG exercise
+        /// Total amount to be refunded upon DG exercise
         /// </summary>
-        /// <value>Amount per passenger to be refunded to user upon DG exercise</value>
+        /// <value>Total amount to be refunded upon DG exercise</value>
         /*
         <example>180.60</example>
         */
