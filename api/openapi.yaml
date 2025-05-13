@@ -478,6 +478,15 @@ paths:
         schema:
           type: string
         style: simple
+      - description: "The ID of the current airline session, see [Sessions](#tag/Sessions)"
+        example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+        explode: false
+        in: header
+        name: HC-Session-ID
+        required: false
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -521,7 +530,6 @@ paths:
           description: The server encountered an internal error
       security:
       - PartnerAuth: []
-        SessionAuth: []
         apiKeyAuth: []
       summary: Get a CFAR Contract
       tags:
@@ -1288,7 +1296,6 @@ paths:
           description: The server encountered an internal error
       security:
       - PartnerAuth: []
-        SessionAuth: []
         apiKeyAuth: []
       summary: Process DG payment
       tags:
@@ -1897,6 +1904,7 @@ components:
         offers:
         - coverage: "400.00"
           taxes_total: "3.90"
+          faq_url: faq_url
           ext_attributes:
             key: ext_attributes
           request_type: post_booking
@@ -2172,6 +2180,7 @@ components:
           merchandising_url: merchandising_url
         - coverage: "400.00"
           taxes_total: "3.90"
+          faq_url: faq_url
           ext_attributes:
             key: ext_attributes
           request_type: post_booking
@@ -3063,7 +3072,10 @@ components:
           cfar_exercise_verification_complete: '#/components/schemas/cfar_exercise_verification_complete'
           cfar_exercise_verification_sent: '#/components/schemas/cfar_exercise_verification_sent'
           cfar_forced_choice_warning: '#/components/schemas/cfar_forced_choice_warning'
+          cfar_offer_selected: '#/components/schemas/cfar_offer_selected'
           cfar_offers_banner_display: '#/components/schemas/cfar_offers_banner_display'
+          cfar_offers_banner_loaded: '#/components/schemas/cfar_offers_banner_loaded'
+          cfar_offers_more_info_clicked: '#/components/schemas/cfar_offers_more_info_clicked'
           cfar_offers_takeover_display: '#/components/schemas/cfar_offers_takeover_display'
           cfar_view_info: '#/components/schemas/cfar_view_info'
           offers_displayed: '#/components/schemas/offers_displayed1'
@@ -3079,7 +3091,10 @@ components:
       - $ref: '#/components/schemas/cfar_exercise_verification_complete'
       - $ref: '#/components/schemas/cfar_exercise_verification_sent'
       - $ref: '#/components/schemas/cfar_forced_choice_warning'
+      - $ref: '#/components/schemas/cfar_offer_selected'
       - $ref: '#/components/schemas/cfar_offers_banner_display'
+      - $ref: '#/components/schemas/cfar_offers_banner_loaded'
+      - $ref: '#/components/schemas/cfar_offers_more_info_clicked'
       - $ref: '#/components/schemas/cfar_offers_takeover_display'
       - $ref: '#/components/schemas/cfar_view_info'
       - $ref: '#/components/schemas/offers_displayed1'
@@ -3748,6 +3763,7 @@ components:
       example:
         coverage: "400.00"
         taxes_total: "3.90"
+        faq_url: faq_url
         ext_attributes:
           key: ext_attributes
         request_type: post_booking
@@ -4093,6 +4109,9 @@ components:
         terms_conditions_url:
           description: The terms and conditions for this offer
           type: string
+        faq_url:
+          description: The faq url for this offer
+          type: string
         merchandising_url:
           description: The url for rendering offer merchandising
           type: string
@@ -4177,6 +4196,30 @@ components:
       - passenger_type
       title: cfar_offer_passenger
       type: object
+    cfar_offer_selected:
+      description: The user has selected the offer(s)
+      properties:
+        occurred_date_time:
+          description: |-
+            A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;
+             the date and time at which an event occurred on a client device
+          example: 2022-01-24T15:34:30Z
+          format: date-time
+          type: string
+        cfar_offers_ids:
+          items:
+            description: Unique identifier for an offer
+            example: 2e1006b3-aba6-4899-8682-b95bce693c27
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - cfar_offers_ids
+      - occurred_date_time
+      - type
+      title: cfar_offer_selected
+      type: object
     cfar_offers_banner_display:
       properties:
         occurred_date_time:
@@ -4202,6 +4245,52 @@ components:
       - type
       - ui_variant
       title: cfar_offers_banner_display
+      type: object
+    cfar_offers_banner_loaded:
+      properties:
+        occurred_date_time:
+          description: |-
+            A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;
+             the date and time at which an event occurred on a client device
+          example: 2022-01-24T15:34:30Z
+          format: date-time
+          type: string
+        cfar_offers_ids:
+          items:
+            description: Unique identifier for an offer
+            example: 2e1006b3-aba6-4899-8682-b95bce693c27
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - cfar_offers_ids
+      - occurred_date_time
+      - type
+      title: cfar_offers_banner_loaded
+      type: object
+    cfar_offers_more_info_clicked:
+      properties:
+        occurred_date_time:
+          description: |-
+            A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;
+             the date and time at which an event occurred on a client device
+          example: 2022-01-24T15:34:30Z
+          format: date-time
+          type: string
+        cfar_offers_ids:
+          items:
+            description: Unique identifier for an offer
+            example: 2e1006b3-aba6-4899-8682-b95bce693c27
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - cfar_offers_ids
+      - occurred_date_time
+      - type
+      title: cfar_offers_more_info_clicked
       type: object
     cfar_offers_takeover_display:
       properties:
@@ -5243,6 +5332,7 @@ components:
           service_cap: "1000.00"
           max_hours_before_departure: 24
           min_minutes_delay: 1
+          merchandising_url: merchandising_url
         - coverage: "180.60"
           taxes_total: "20.00"
           ext_attributes:
@@ -5418,6 +5508,7 @@ components:
           service_cap: "1000.00"
           max_hours_before_departure: 24
           min_minutes_delay: 1
+          merchandising_url: merchandising_url
         coverage: "400.00"
         taxes_total: "3.90"
         ext_attributes:
@@ -5555,21 +5646,54 @@ components:
       - taxes_total
       title: dg_contract
       type: object
+    dg_deny_purchase:
+      properties:
+        occurred_date_time:
+          description: |-
+            A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;
+             the date and time at which an event occurred on a client device
+          example: 2022-01-24T15:34:30Z
+          format: date-time
+          type: string
+        dg_offer_ids:
+          items:
+            description: Unique identifier for a DG offer
+            example: 2e1006b3-aba6-4899-8682-b95bce693c27
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - dg_offer_ids
+      - occurred_date_time
+      - type
+      title: dg_deny_purchase
+      type: object
     dg_event:
       discriminator:
         mapping:
           booking_confirmed: '#/components/schemas/booking_confirmed2'
+          dg_deny_purchase: '#/components/schemas/dg_deny_purchase'
           dg_exercise_callback_launched: '#/components/schemas/dg_exercise_callback_launched'
           dg_exercise_customer_data_complete: '#/components/schemas/dg_exercise_customer_data_complete'
           dg_exercise_portal_complete: '#/components/schemas/dg_exercise_portal_complete'
           dg_exercise_verification_complete: '#/components/schemas/dg_exercise_verification_complete'
+          dg_offer_selected: '#/components/schemas/dg_offer_selected'
+          dg_offers_banner_display: '#/components/schemas/dg_offers_banner_display'
+          dg_offers_banner_loaded: '#/components/schemas/dg_offers_banner_loaded'
+          dg_offers_more_info_clicked: '#/components/schemas/dg_offers_more_info_clicked'
         propertyName: type
       oneOf:
       - $ref: '#/components/schemas/booking_confirmed2'
+      - $ref: '#/components/schemas/dg_deny_purchase'
       - $ref: '#/components/schemas/dg_exercise_callback_launched'
       - $ref: '#/components/schemas/dg_exercise_customer_data_complete'
       - $ref: '#/components/schemas/dg_exercise_portal_complete'
       - $ref: '#/components/schemas/dg_exercise_verification_complete'
+      - $ref: '#/components/schemas/dg_offer_selected'
+      - $ref: '#/components/schemas/dg_offers_banner_display'
+      - $ref: '#/components/schemas/dg_offers_banner_loaded'
+      - $ref: '#/components/schemas/dg_offers_more_info_clicked'
       title: dg_event
     dg_exercise_callback_launched:
       properties:
@@ -6287,6 +6411,7 @@ components:
         service_cap: "1000.00"
         max_hours_before_departure: 24
         min_minutes_delay: 1
+        merchandising_url: merchandising_url
       properties:
         id:
           description: Unique identifier for a DG offer
@@ -6371,6 +6496,9 @@ components:
             $ref: '#/components/schemas/dg_contents'
           title: map_dg_contents
           type: object
+        merchandising_url:
+          description: The url for rendering offer merchandising
+          type: string
       required:
       - contents
       - contract_expiry_date_time
@@ -6388,6 +6516,98 @@ components:
       - service_cap
       - taxes_total
       title: dg_offer
+      type: object
+    dg_offer_selected:
+      properties:
+        occurred_date_time:
+          description: |-
+            A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;
+             the date and time at which an event occurred on a client device
+          example: 2022-01-24T15:34:30Z
+          format: date-time
+          type: string
+        dg_offer_ids:
+          items:
+            description: Unique identifier for a DG offer
+            example: 2e1006b3-aba6-4899-8682-b95bce693c27
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - dg_offer_ids
+      - occurred_date_time
+      - type
+      title: dg_offer_selected
+      type: object
+    dg_offers_banner_display:
+      properties:
+        occurred_date_time:
+          description: |-
+            A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;
+             the date and time at which an event occurred on a client device
+          example: 2022-01-24T15:34:30Z
+          format: date-time
+          type: string
+        dg_offer_ids:
+          items:
+            description: Unique identifier for a DG offer
+            example: 2e1006b3-aba6-4899-8682-b95bce693c27
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - dg_offer_ids
+      - occurred_date_time
+      - type
+      title: dg_offers_banner_display
+      type: object
+    dg_offers_banner_loaded:
+      properties:
+        occurred_date_time:
+          description: |-
+            A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;
+             the date and time at which an event occurred on a client device
+          example: 2022-01-24T15:34:30Z
+          format: date-time
+          type: string
+        dg_offer_ids:
+          items:
+            description: Unique identifier for a DG offer
+            example: 2e1006b3-aba6-4899-8682-b95bce693c27
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - dg_offer_ids
+      - occurred_date_time
+      - type
+      title: dg_offers_banner_loaded
+      type: object
+    dg_offers_more_info_clicked:
+      properties:
+        occurred_date_time:
+          description: |-
+            A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;
+             the date and time at which an event occurred on a client device
+          example: 2022-01-24T15:34:30Z
+          format: date-time
+          type: string
+        dg_offer_ids:
+          items:
+            description: Unique identifier for a DG offer
+            example: 2e1006b3-aba6-4899-8682-b95bce693c27
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - dg_offer_ids
+      - occurred_date_time
+      - type
+      title: dg_offers_more_info_clicked
       type: object
     dg_passenger:
       description: An object detailing the Passenger Information
