@@ -25,30 +25,28 @@ using Com.Hopper.Hts.Airlines.Spreedly.Client;
 namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 {
     /// <summary>
-    /// CreatedPaymentMethod
+    /// A request to create a payment method
     /// </summary>
-    public partial class CreatedPaymentMethod
+    public partial class CreatePaymentMethodRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatedPaymentMethod" /> class.
+        /// Initializes a new instance of the <see cref="CreatePaymentMethodRequest" /> class.
         /// </summary>
-        /// <param name="token">The token for the payment method</param>
+        /// <param name="paymentMethod">paymentMethod</param>
         [JsonConstructor]
-        public CreatedPaymentMethod(string token)
+        public CreatePaymentMethodRequest(CreatePaymentMethod paymentMethod)
         {
-            Token = token;
+            PaymentMethod = paymentMethod;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The token for the payment method
+        /// Gets or Sets PaymentMethod
         /// </summary>
-        /// <value>The token for the payment method</value>
-        /* <example>af585dfd-dddf-4726-9ef7-f1bb8909a79a</example> */
-        [JsonPropertyName("token")]
-        public string Token { get; set; }
+        [JsonPropertyName("payment_method")]
+        public CreatePaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,27 +55,27 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreatedPaymentMethod {\n");
-            sb.Append("  Token: ").Append(Token).Append("\n");
+            sb.Append("class CreatePaymentMethodRequest {\n");
+            sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="CreatedPaymentMethod" />
+    /// A Json converter for type <see cref="CreatePaymentMethodRequest" />
     /// </summary>
-    public class CreatedPaymentMethodJsonConverter : JsonConverter<CreatedPaymentMethod>
+    public class CreatePaymentMethodRequestJsonConverter : JsonConverter<CreatePaymentMethodRequest>
     {
         /// <summary>
-        /// Deserializes json to <see cref="CreatedPaymentMethod" />
+        /// Deserializes json to <see cref="CreatePaymentMethodRequest" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override CreatedPaymentMethod Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override CreatePaymentMethodRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -86,7 +84,7 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> token = default;
+            Option<CreatePaymentMethod?> paymentMethod = default;
 
             while (utf8JsonReader.Read())
             {
@@ -103,8 +101,9 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "token":
-                            token = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "payment_method":
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                paymentMethod = new Option<CreatePaymentMethod?>(JsonSerializer.Deserialize<CreatePaymentMethod>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -112,43 +111,44 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
                 }
             }
 
-            if (!token.IsSet)
-                throw new ArgumentException("Property is required for class CreatedPaymentMethod.", nameof(token));
+            if (!paymentMethod.IsSet)
+                throw new ArgumentException("Property is required for class CreatePaymentMethodRequest.", nameof(paymentMethod));
 
-            if (token.IsSet && token.Value == null)
-                throw new ArgumentNullException(nameof(token), "Property is not nullable for class CreatedPaymentMethod.");
+            if (paymentMethod.IsSet && paymentMethod.Value == null)
+                throw new ArgumentNullException(nameof(paymentMethod), "Property is not nullable for class CreatePaymentMethodRequest.");
 
-            return new CreatedPaymentMethod(token.Value!);
+            return new CreatePaymentMethodRequest(paymentMethod.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="CreatedPaymentMethod" />
+        /// Serializes a <see cref="CreatePaymentMethodRequest" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="createdPaymentMethod"></param>
+        /// <param name="createPaymentMethodRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, CreatedPaymentMethod createdPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, CreatePaymentMethodRequest createPaymentMethodRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, createdPaymentMethod, jsonSerializerOptions);
+            WriteProperties(writer, createPaymentMethodRequest, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="CreatedPaymentMethod" />
+        /// Serializes the properties of <see cref="CreatePaymentMethodRequest" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="createdPaymentMethod"></param>
+        /// <param name="createPaymentMethodRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, CreatedPaymentMethod createdPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, CreatePaymentMethodRequest createPaymentMethodRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createdPaymentMethod.Token == null)
-                throw new ArgumentNullException(nameof(createdPaymentMethod.Token), "Property is required for class CreatedPaymentMethod.");
+            if (createPaymentMethodRequest.PaymentMethod == null)
+                throw new ArgumentNullException(nameof(createPaymentMethodRequest.PaymentMethod), "Property is required for class CreatePaymentMethodRequest.");
 
-            writer.WriteString("token", createdPaymentMethod.Token);
+            writer.WritePropertyName("payment_method");
+            JsonSerializer.Serialize(writer, createPaymentMethodRequest.PaymentMethod, jsonSerializerOptions);
         }
     }
 }

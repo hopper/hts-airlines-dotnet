@@ -25,30 +25,35 @@ using Com.Hopper.Hts.Airlines.Spreedly.Client;
 namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 {
     /// <summary>
-    /// CreatedPaymentMethod
+    /// UnprocessableEntity
     /// </summary>
-    public partial class CreatedPaymentMethod
+    public partial class UnprocessableEntity
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatedPaymentMethod" /> class.
+        /// Initializes a new instance of the <see cref="UnprocessableEntity" /> class.
         /// </summary>
-        /// <param name="token">The token for the payment method</param>
+        /// <param name="error">error</param>
         [JsonConstructor]
-        public CreatedPaymentMethod(string token)
+        public UnprocessableEntity(Option<Error?> error = default)
         {
-            Token = token;
+            ErrorOption = error;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The token for the payment method
+        /// Used to track the state of Error
         /// </summary>
-        /// <value>The token for the payment method</value>
-        /* <example>af585dfd-dddf-4726-9ef7-f1bb8909a79a</example> */
-        [JsonPropertyName("token")]
-        public string Token { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Error?> ErrorOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Error
+        /// </summary>
+        [JsonPropertyName("error")]
+        public Error? Error { get { return this.ErrorOption; } set { this.ErrorOption = new Option<Error?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,27 +62,27 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreatedPaymentMethod {\n");
-            sb.Append("  Token: ").Append(Token).Append("\n");
+            sb.Append("class UnprocessableEntity {\n");
+            sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="CreatedPaymentMethod" />
+    /// A Json converter for type <see cref="UnprocessableEntity" />
     /// </summary>
-    public class CreatedPaymentMethodJsonConverter : JsonConverter<CreatedPaymentMethod>
+    public class UnprocessableEntityJsonConverter : JsonConverter<UnprocessableEntity>
     {
         /// <summary>
-        /// Deserializes json to <see cref="CreatedPaymentMethod" />
+        /// Deserializes json to <see cref="UnprocessableEntity" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override CreatedPaymentMethod Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override UnprocessableEntity Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -86,7 +91,7 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> token = default;
+            Option<Error?> error = default;
 
             while (utf8JsonReader.Read())
             {
@@ -103,8 +108,9 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "token":
-                            token = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "error":
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                error = new Option<Error?>(JsonSerializer.Deserialize<Error>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -112,43 +118,44 @@ namespace Com.Hopper.Hts.Airlines.Spreedly.Model
                 }
             }
 
-            if (!token.IsSet)
-                throw new ArgumentException("Property is required for class CreatedPaymentMethod.", nameof(token));
+            if (error.IsSet && error.Value == null)
+                throw new ArgumentNullException(nameof(error), "Property is not nullable for class UnprocessableEntity.");
 
-            if (token.IsSet && token.Value == null)
-                throw new ArgumentNullException(nameof(token), "Property is not nullable for class CreatedPaymentMethod.");
-
-            return new CreatedPaymentMethod(token.Value!);
+            return new UnprocessableEntity(error);
         }
 
         /// <summary>
-        /// Serializes a <see cref="CreatedPaymentMethod" />
+        /// Serializes a <see cref="UnprocessableEntity" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="createdPaymentMethod"></param>
+        /// <param name="unprocessableEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, CreatedPaymentMethod createdPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, UnprocessableEntity unprocessableEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, createdPaymentMethod, jsonSerializerOptions);
+            WriteProperties(writer, unprocessableEntity, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="CreatedPaymentMethod" />
+        /// Serializes the properties of <see cref="UnprocessableEntity" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="createdPaymentMethod"></param>
+        /// <param name="unprocessableEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, CreatedPaymentMethod createdPaymentMethod, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, UnprocessableEntity unprocessableEntity, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createdPaymentMethod.Token == null)
-                throw new ArgumentNullException(nameof(createdPaymentMethod.Token), "Property is required for class CreatedPaymentMethod.");
+            if (unprocessableEntity.ErrorOption.IsSet && unprocessableEntity.Error == null)
+                throw new ArgumentNullException(nameof(unprocessableEntity.Error), "Property is required for class UnprocessableEntity.");
 
-            writer.WriteString("token", createdPaymentMethod.Token);
+            if (unprocessableEntity.ErrorOption.IsSet)
+            {
+                writer.WritePropertyName("error");
+                JsonSerializer.Serialize(writer, unprocessableEntity.Error, jsonSerializerOptions);
+            }
         }
     }
 }
