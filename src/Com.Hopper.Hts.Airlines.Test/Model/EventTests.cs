@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -52,15 +51,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         {
             // TODO uncomment below to test "IsType" Event
             //Assert.IsType<Event>(instance);
-        }
-
-        /// <summary>
-        /// Test the property 'OccurredDateTime'
-        /// </summary>
-        [Fact]
-        public void OccurredDateTimeTest()
-        {
-            // TODO unit test for the property 'OccurredDateTime'
         }
 
         /// <summary>

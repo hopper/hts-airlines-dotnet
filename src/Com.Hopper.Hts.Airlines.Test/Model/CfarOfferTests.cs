@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -91,15 +90,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'CoverageExtension'
-        /// </summary>
-        [Fact]
-        public void CoverageExtensionTest()
-        {
-            // TODO unit test for the property 'CoverageExtension'
-        }
-
-        /// <summary>
         /// Test the property 'Currency'
         /// </summary>
         [Fact]
@@ -115,15 +105,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         public void TaxesTotalTest()
         {
             // TODO unit test for the property 'TaxesTotal'
-        }
-
-        /// <summary>
-        /// Test the property 'Taxes'
-        /// </summary>
-        [Fact]
-        public void TaxesTest()
-        {
-            // TODO unit test for the property 'Taxes'
         }
 
         /// <summary>
@@ -181,12 +162,48 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CoverageExtension'
+        /// </summary>
+        [Fact]
+        public void CoverageExtensionTest()
+        {
+            // TODO unit test for the property 'CoverageExtension'
+        }
+
+        /// <summary>
+        /// Test the property 'Taxes'
+        /// </summary>
+        [Fact]
+        public void TaxesTest()
+        {
+            // TODO unit test for the property 'Taxes'
+        }
+
+        /// <summary>
         /// Test the property 'TermsConditionsUrl'
         /// </summary>
         [Fact]
         public void TermsConditionsUrlTest()
         {
             // TODO unit test for the property 'TermsConditionsUrl'
+        }
+
+        /// <summary>
+        /// Test the property 'FaqUrl'
+        /// </summary>
+        [Fact]
+        public void FaqUrlTest()
+        {
+            // TODO unit test for the property 'FaqUrl'
+        }
+
+        /// <summary>
+        /// Test the property 'MerchandisingUrl'
+        /// </summary>
+        [Fact]
+        public void MerchandisingUrlTest()
+        {
+            // TODO unit test for the property 'MerchandisingUrl'
         }
     }
 }

@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -55,15 +54,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ContractId'
-        /// </summary>
-        [Fact]
-        public void ContractIdTest()
-        {
-            // TODO unit test for the property 'ContractId'
-        }
-
-        /// <summary>
         /// Test the property 'Itinerary'
         /// </summary>
         [Fact]
@@ -73,21 +63,39 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'EmailAddress'
-        /// </summary>
-        [Fact]
-        public void EmailAddressTest()
-        {
-            // TODO unit test for the property 'EmailAddress'
-        }
-
-        /// <summary>
         /// Test the property 'PnrReference'
         /// </summary>
         [Fact]
         public void PnrReferenceTest()
         {
             // TODO unit test for the property 'PnrReference'
+        }
+
+        /// <summary>
+        /// Test the property 'ExtAttributes'
+        /// </summary>
+        [Fact]
+        public void ExtAttributesTest()
+        {
+            // TODO unit test for the property 'ExtAttributes'
+        }
+
+        /// <summary>
+        /// Test the property 'ContractId'
+        /// </summary>
+        [Fact]
+        public void ContractIdTest()
+        {
+            // TODO unit test for the property 'ContractId'
+        }
+
+        /// <summary>
+        /// Test the property 'EmailAddress'
+        /// </summary>
+        [Fact]
+        public void EmailAddressTest()
+        {
+            // TODO unit test for the property 'EmailAddress'
         }
 
         /// <summary>
@@ -115,15 +123,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         public void CurrencyTest()
         {
             // TODO unit test for the property 'Currency'
-        }
-
-        /// <summary>
-        /// Test the property 'ExtAttributes'
-        /// </summary>
-        [Fact]
-        public void ExtAttributesTest()
-        {
-            // TODO unit test for the property 'ExtAttributes'
         }
 
         /// <summary>

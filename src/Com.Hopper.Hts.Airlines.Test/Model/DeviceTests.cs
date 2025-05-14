@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -52,24 +51,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         {
             // TODO uncomment below to test "IsType" Device
             //Assert.IsType<Device>(instance);
-        }
-
-        /// <summary>
-        /// Test the property 'Id'
-        /// </summary>
-        [Fact]
-        public void IdTest()
-        {
-            // TODO unit test for the property 'Id'
-        }
-
-        /// <summary>
-        /// Test the property 'Platform'
-        /// </summary>
-        [Fact]
-        public void PlatformTest()
-        {
-            // TODO unit test for the property 'Platform'
         }
 
         /// <summary>

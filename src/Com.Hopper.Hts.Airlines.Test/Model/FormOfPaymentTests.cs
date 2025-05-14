@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -55,39 +54,12 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Amount'
-        /// </summary>
-        [Fact]
-        public void AmountTest()
-        {
-            // TODO unit test for the property 'Amount'
-        }
-
-        /// <summary>
-        /// Test the property 'Currency'
-        /// </summary>
-        [Fact]
-        public void CurrencyTest()
-        {
-            // TODO unit test for the property 'Currency'
-        }
-
-        /// <summary>
         /// Test the property 'Type'
         /// </summary>
         [Fact]
         public void TypeTest()
         {
             // TODO unit test for the property 'Type'
-        }
-
-        /// <summary>
-        /// Test the property 'Token'
-        /// </summary>
-        [Fact]
-        public void TokenTest()
-        {
-            // TODO unit test for the property 'Token'
         }
     }
 }

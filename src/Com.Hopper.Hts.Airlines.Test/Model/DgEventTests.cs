@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -55,39 +54,12 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'OccurredDateTime'
-        /// </summary>
-        [Fact]
-        public void OccurredDateTimeTest()
-        {
-            // TODO unit test for the property 'OccurredDateTime'
-        }
-
-        /// <summary>
         /// Test the property 'Type'
         /// </summary>
         [Fact]
         public void TypeTest()
         {
             // TODO unit test for the property 'Type'
-        }
-
-        /// <summary>
-        /// Test the property 'DgExerciseId'
-        /// </summary>
-        [Fact]
-        public void DgExerciseIdTest()
-        {
-            // TODO unit test for the property 'DgExerciseId'
-        }
-
-        /// <summary>
-        /// Test the property 'Result'
-        /// </summary>
-        [Fact]
-        public void ResultTest()
-        {
-            // TODO unit test for the property 'Result'
         }
     }
 }
