@@ -1,9 +1,10 @@
-using Com.Hopper.Hts.Airlines.Client;
 using Com.Hopper.Hts.Airlines.Spreedly.Api;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
 using System.Diagnostics;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Extensions.DependencyInjection;
+using Xunit.Sdk;
 
 namespace Example
 {
@@ -12,48 +13,70 @@ namespace Example
     public class PaymentApiTest
     {
         [TestMethod]
-        public void Test()
+        public void TokenizeTest()
         {
-            Configuration config = new Configuration
-            {
-                BasePath = "https://core.spreedly.com",
-                Username = "???",
-                Password = "???"
-            };
-
-            var paymentApi = new PaymentApi(config);
-
-            var encryption = new Encryption
-            {
-                CertificateToken = "???",
-                PublicKey = "???"
-            };
+            var host = HostBuilderUtils.CreateSpreedlyHostBuilder().Build();
+            var paymentApi = host.Services.GetRequiredService<IPaymentApi>();
 
             try
             {
-                var paymentMethod = new PaymentMethod(
-                    new CreditCard(
-                        "John",
-                        "Smith",
-                        "4111111111111111",
-                        "123",
-                        "01",
-                        "2028"
+                var request = new CreatePaymentMethodRequest(
+                    new CreatePaymentMethod(
+                        new CreateCreditCard(
+                            "John",
+                            "Smith",
+                            "4111111111111111",
+                            "123",
+                            "01",
+                            "2028"
+                        )
                     )
                 );
-                paymentMethod.Encrypt(encryption);
+                var response = paymentApi.PostPaymentMethodAsync(request).Result.Created() ?? throw new Exception("Payment method tokenization failed");
+                var transaction = response.Transaction ?? throw new Exception("Creation failed");
+                Debug.Print("Transaction: " + transaction);
 
-                var request = new CreateCreditCardRequest(paymentMethod);
-                var response = paymentApi.PostCreditCard(request);
-                Debug.Print("Transaction: " + response.Transaction);
-
-                Assert.IsNotNull(response.Transaction.PaymentMethod.Token);
+                Assert.IsNotNull(transaction?.PaymentMethod.Token);
             }
-            catch (ApiException e)
+            catch (Com.Hopper.Hts.Airlines.Spreedly.Client.ApiException e)
             {
                 Console.WriteLine("Uh oh: " + e);
             }
+            // task.Dispose();
+        }
 
+        [TestMethod]
+        public void TokenizeWithEncryptionTest()
+        {
+            var host = HostBuilderUtils.CreateSpreedlyHostBuilder().Build();
+            var paymentApi = host.Services.GetRequiredService<IPaymentApi>();
+
+            try
+            {
+                var request = new CreatePaymentMethodRequest(
+                    new CreatePaymentMethod(
+                        new CreateCreditCard(
+                            "John",
+                            "Smith",
+                            "4111111111111111",
+                            "123",
+                            "01",
+                            "2028"
+                        )
+                    )
+                );
+                var encrypted = TestSecrets.Encryption.Encrypt(request);
+                var task = paymentApi.PostPaymentMethodAsync(encrypted);
+                var response = task.Result.Created() ?? throw new Exception("Payment method tokenization failed");
+                var transaction = response.Transaction ?? throw new Exception("Creation failed");
+                Debug.Print("Transaction: " + transaction);
+
+                Assert.IsNotNull(transaction?.PaymentMethod.Token);
+            }
+            catch (Com.Hopper.Hts.Airlines.Spreedly.Client.ApiException e)
+            {
+                Console.WriteLine("Uh oh: " + e);
+            }
         }
     }
 }

@@ -1,58 +1,49 @@
-using Com.Hopper.Hts.Airlines.Client;
 using Com.Hopper.Hts.Airlines.Spreedly.Api;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Com.Hopper.Hts.Airlines.Api;
 using Com.Hopper.Hts.Airlines.Flow;
-using Com.Hopper.Hts.Airlines.Flow.Model;
+using HtsfaModel = Com.Hopper.Hts.Airlines.Model;
+using FlowModel = Com.Hopper.Hts.Airlines.Flow.Model;
 using System.Collections.Generic;
+using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Example
 {
-
     [TestClass]
     public class PaymentFlowTest
     {
         [TestMethod]
         public void Test()
         {
-            Configuration paymentConfig = new Configuration
-            {
-                BasePath = "https://core.spreedly.com",
-                Username = "???",
-                Password = "???"
+            var spreedlyHost = HostBuilderUtils.CreateSpreedlyHostBuilder().Build();
+            var htsfaHost = HostBuilderUtils.CreateHtsfaHostBuilder().Build();
+
+            var paymentApi = spreedlyHost.Services.GetRequiredService<IPaymentApi>() ?? throw new Exception("Payment service not found");
+            var cfarApi = htsfaHost.Services.GetRequiredService<ICancelForAnyReasonCFARApi>() ?? throw new Exception("CFAR service not found");
+            var sessionApi = htsfaHost.Services.GetRequiredService<ISessionsApi>() ?? throw new Exception("Session service not found");
+
+            var paymentFlow = new CfarFlow(paymentApi, TestSecrets.Encryption, cfarApi);
+            var sessionId = sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
+                HtsfaModel.FlowType.Purchase,
+                pointOfSale: "us",
+                language: "en"
+            )).Result.Created()?.Id ?? throw new Exception("Session creation failed");
+            var offerId = cfarApi.PostCfarOffersAsync(
+                CfarFixtures.BuildCreateCfarOfferRequest(),
+                hCSessionID: sessionId
+            ).Result.Created()?[0].Id ?? throw new Exception("Offer creation failed");
+            var contractReference = cfarApi.PostCfarContractsOrDefaultAsync(CfarFixtures.BuildCreateCfarContractRequest(offerId)).Result?.Created()?.Reference ?? throw new Exception("Contract creation failed");
+
+            var formsOfPayments = new List<FlowModel.FormOfPayment> {
+                new FlowModel.FormOfPayment(new FlowModel.Cash("10.00", "USD")),
+                new FlowModel.FormOfPayment(new FlowModel.NonCash("10.00", "USD")),
+                new FlowModel.FormOfPayment(new FlowModel.PaymentCard("10.00", "USD", "John", "Smith", "4111111111111111", "123", "01", "2028")),
+                new FlowModel.FormOfPayment(new FlowModel.Points("10.00")),
+                new FlowModel.FormOfPayment(new FlowModel.TokenizedPaymentCard("10.00", "USD", "token"))
             };
-
-            var paymentApi = new PaymentApi(paymentConfig);
-
-            var cfarConfig = new Configuration
-            {
-                BasePath = "https://airlines-api.staging.hopper.com/airline/v1.1",
-                // Testing locally : BasePath = "http://localhost:7071/airline/v1.1",
-                // AccessToken : copy the token associated with the bearer
-                AccessToken = "???"
-            };
-            var encryption = new Encryption
-            {
-                CertificateToken = "???",
-                PublicKey = "???"
-            };
-
-            var cfarApi = new CancelForAnyReasonCFARApi(cfarConfig);
-
-            var paymentFlow = new CfarFlow(paymentApi, encryption, cfarApi);
-
-            var contractReference = "???";
-            var sessionId = "???";
-
-            var formsOfPayments = new List<FormOfPayment> {
-                new FormOfPayment(new Cash("10.00", "USD")),
-                new FormOfPayment(new NonCash("10.00", "USD")),
-                new FormOfPayment(new PaymentCard("10.00", "USD", "John", "Smith", "4111111111111111", "123", "01", "2028")),
-                new FormOfPayment(new Points("10.00")),
-                new FormOfPayment(new TokenizedPaymentCard("10.00", "USD", "token"))
-            };
-            var request = new UpdateCfarContractFormsOfPaymentRequest(formsOfPayments);
+            var request = new FlowModel.UpdateCfarContractFormsOfPaymentRequest(formsOfPayments);
 
             var updated = paymentFlow.UpdateCfarContractWithFormsOfPayment(
                 contractReference,
