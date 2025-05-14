@@ -5,6 +5,7 @@ using ApiModel = Com.Hopper.Hts.Airlines.Model;
 using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
 using System;
+using Com.Hopper.Hts.Airlines.Client;
 
 namespace Com.Hopper.Hts.Airlines.Flow
 {
@@ -15,16 +16,16 @@ namespace Com.Hopper.Hts.Airlines.Flow
 
     public partial class CfarFlow : ICfarFlow
     {
-        public CfarFlow(PaymentApi payment, Encryption encryption, CancelForAnyReasonCFARApi cfar)
+        public CfarFlow(IPaymentApi payment, Encryption encryption, ICancelForAnyReasonCFARApi cfar)
         {
             this.PaymentApi = payment;
             this.Encryption = encryption;
             this.CfarApi = cfar;
         }
 
-        public PaymentApi PaymentApi { get; set; }
+        public IPaymentApi PaymentApi { get; set; }
         public Encryption Encryption { get; set; }
-        public CancelForAnyReasonCFARApi CfarApi { get; set; }
+        public ICancelForAnyReasonCFARApi CfarApi { get; set; }
 
         public ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId)
         {
@@ -56,32 +57,32 @@ namespace Com.Hopper.Hts.Airlines.Flow
                     fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                         card.Amount,
                         card.Currency,
-                        card.Token,
-                        null,
-                        "payment_card"
+                        token: card.Token,
+                        lastFourDigits: new Option<string?>(),
+                        type: "payment_card"
                     )));
                 }
                 else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
                 {
                     var card = p.GetPaymentCard();
                     if (paymentCardTokenized) {
-                        var method = new PaymentMethod(new CreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year));
-                        method.Encrypt(this.Encryption);
-                        var tokenized = PaymentApi.PostCreditCard(new CreateCreditCardRequest(method));
+                        var method = new CreatePaymentMethodRequest(new CreatePaymentMethod(new CreateCreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year)));
+                        var encrypted = Encryption.Encrypt(method);
+                        var tokenized = PaymentApi.PostPaymentMethodAsync(encrypted).Result.Created();
                         fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                             card.Amount,
                             card.Currency,
-                            tokenized.Transaction.PaymentMethod.Token,
-                            null,
-                            "payment_card"
+                            token: tokenized?.Transaction.PaymentMethod.Token ?? throw new InvalidOperationException("Tokenized payment method creation failed."),
+                            lastFourDigits: new Option<string?>(),
+                            type: "payment_card"
                         )));
                     } else {
                         fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                             card.Amount,
                             card.Currency,
-                            null,
-                            "1234",
-                            "payment_card"
+                            token: new Option<string?>(),
+                            lastFourDigits: "1234",
+                            type: "payment_card"
                         )));
                     }
                 }
@@ -95,7 +96,10 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 }
             }
             var paymentRequest = new ApiModel.UpdateCfarFormOfPaymentRequest(fops);
-            return CfarApi.PutCfarContractsIdFormsOfPayment(contractReference, paymentRequest, sessionId);
+
+            var task = CfarApi.PutCfarContractsIdFormsOfPaymentAsync(contractReference, paymentRequest, sessionId ?? new Option<string>());
+            var result = task.Result;
+            return result ?.Ok() ?? throw new InvalidOperationException("CFAR API response is null or invalid.");
         }
     }
 }

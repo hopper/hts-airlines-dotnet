@@ -41,6 +41,11 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
                 throw new ArgumentNullException("currency is a required property for PaymentCard and cannot be null");
             }
             this.Currency = currency;
+
+            if (token == null) {
+                throw new ArgumentNullException("token is a required property for PaymentCard and cannot be null");
+            }
+            this.Token = token;
         }
 
         /// <summary>
