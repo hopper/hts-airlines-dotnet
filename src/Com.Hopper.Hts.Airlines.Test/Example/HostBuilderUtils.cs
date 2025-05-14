@@ -6,6 +6,7 @@ using SpreedlyExtensions = Com.Hopper.Hts.Airlines.Spreedly.Extensions;
 using HtsfaClient = Com.Hopper.Hts.Airlines.Client;
 using HtsfaExtensions = Com.Hopper.Hts.Airlines.Extensions;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace Example
 {
@@ -24,6 +25,9 @@ namespace Example
             options.AddTokens(new HtsfaClient.BearerToken(TestSecrets.HtsfaAccessToken));
             // This is not used, but simply needs to be populated so that the dependency injection step is able to resolve a ApiKey provider
             options.AddTokens(new HtsfaClient.ApiKeyToken("???", HtsfaClient.ClientUtils.ApiKeyHeader.HC_Session_ID));
+
+            // TODO: better oauth integration?
+
             options.AddApiHttpClients(builder: builder => builder.ConfigureHttpClient(configureClient: client => 
               client.BaseAddress = new Uri("https://airlines-api.staging.hopper.com/airline/v1.1/")
             ));

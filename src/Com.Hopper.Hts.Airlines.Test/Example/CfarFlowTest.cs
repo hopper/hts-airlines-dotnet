@@ -37,11 +37,11 @@ namespace Example
             var contractReference = cfarApi.PostCfarContractsOrDefaultAsync(CfarFixtures.BuildCreateCfarContractRequest(offerId)).Result?.Created()?.Reference ?? throw new Exception("Contract creation failed");
 
             var formsOfPayments = new List<FlowModel.FormOfPayment> {
-                new FlowModel.FormOfPayment(new FlowModel.Cash("10.00", "USD")),
-                new FlowModel.FormOfPayment(new FlowModel.NonCash("10.00", "USD")),
-                new FlowModel.FormOfPayment(new FlowModel.PaymentCard("10.00", "USD", "John", "Smith", "4111111111111111", "123", "01", "2028")),
-                new FlowModel.FormOfPayment(new FlowModel.Points("10.00")),
-                new FlowModel.FormOfPayment(new FlowModel.TokenizedPaymentCard("10.00", "USD", "token"))
+                new(new FlowModel.Cash("10.00", "USD")),
+                new(new FlowModel.NonCash("10.00", "USD")),
+                new(new FlowModel.PaymentCard("10.00", "USD", "John", "Smith", "4111111111111111", "123", "01", "2028")),
+                new(new FlowModel.Points("10.00")),
+                new(new FlowModel.TokenizedPaymentCard("10.00", "USD", "token"))
             };
             var request = new FlowModel.UpdateCfarContractFormsOfPaymentRequest(formsOfPayments);
 
