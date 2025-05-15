@@ -9,6 +9,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Threading.Tasks;
+
 namespace Example
 {
     [TestClass]
@@ -34,14 +35,14 @@ namespace Example
                 language: "en"
             ))).Created()?.Id ?? throw new Exception("Session creation failed");
 
-            var offerId = (await cfarApi.PostCfarOffersAsync(
+            var offerId = cfarApi.PostCfarOffersAsync(
                 CfarFixtures.BuildCreateCfarOfferRequest(),
                 hCSessionID: sessionId
-            )).Created()?[0].Id ?? throw new Exception("Offer creation failed");
+            ).Result.Created()?[0].Id ?? throw new Exception("Offer creation failed");
 
             await oAuthProvider.RefreshToken();
 
-            var contractReference = (await cfarApi.PostCfarContractsAsync(CfarFixtures.BuildCreateCfarContractRequest(offerId)))?.Created()?.Reference ?? throw new Exception("Contract creation failed");
+            var contractReference = (await cfarApi.PostCfarContractsAsync(CfarFixtures.BuildCreateCfarContractRequest(offerId))).Created()?.Reference ?? throw new Exception("Contract creation failed");
 
             var formsOfPayments = new List<FlowModel.FormOfPayment> {
                 new(new FlowModel.Cash("10.00", "USD")),
@@ -52,7 +53,7 @@ namespace Example
             };
             var request = new FlowModel.UpdateCfarContractFormsOfPaymentRequest(formsOfPayments);
 
-            var updated = paymentFlow.UpdateCfarContractWithFormsOfPayment(
+            var updated = await paymentFlow.UpdateCfarContractWithFormsOfPayment(
                 contractReference,
                 request,
                 false,

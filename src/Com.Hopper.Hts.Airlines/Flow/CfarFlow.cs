@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
 using System;
 using Com.Hopper.Hts.Airlines.Client;
+using System.Threading.Tasks;
 
 namespace Com.Hopper.Hts.Airlines.Flow
 {
     public interface ICfarFlow
     {
-        ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId);
+        Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId);
     }
 
     public partial class CfarFlow : ICfarFlow
@@ -27,7 +28,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
         public Encryption Encryption { get; set; }
         public ICancelForAnyReasonCFARApi CfarApi { get; set; }
 
-        public ApiModel.CfarContract UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId)
+        public async Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId)
         {
             var fops = new List<ApiModel.FormOfPayment>();
             foreach (var p in request.FormsOfPayment)
@@ -97,9 +98,8 @@ namespace Com.Hopper.Hts.Airlines.Flow
             }
             var paymentRequest = new ApiModel.UpdateCfarFormOfPaymentRequest(fops);
 
-            var task = CfarApi.PutCfarContractsIdFormsOfPaymentAsync(contractReference, paymentRequest, sessionId ?? new Option<string>());
-            var result = task.Result;
-            return result ?.Ok() ?? throw new InvalidOperationException("CFAR API response is null or invalid.");
+            var task = await CfarApi.PutCfarContractsIdFormsOfPaymentAsync(contractReference, paymentRequest, sessionId ?? new Option<string>());
+            return task.Ok() ?? throw new InvalidOperationException("CFAR API response is null or invalid.");
         }
     }
 }
