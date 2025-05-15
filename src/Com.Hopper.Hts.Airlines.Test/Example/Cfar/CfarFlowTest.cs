@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Threading.Tasks;
 
-namespace Example
+namespace Example.Cfar
 {
     [TestClass]
     public class PaymentFlowTest

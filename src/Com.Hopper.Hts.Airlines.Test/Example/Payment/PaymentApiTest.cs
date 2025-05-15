@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Xunit.Sdk;
 using System.Threading.Tasks;
 
-namespace Example
+namespace Example.Payment
 {
 
     [TestClass]

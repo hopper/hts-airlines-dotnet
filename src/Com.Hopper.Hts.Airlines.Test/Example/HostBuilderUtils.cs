@@ -7,7 +7,7 @@ using HtsfaClient = Com.Hopper.Hts.Airlines.Client;
 using HtsfaExtensions = Com.Hopper.Hts.Airlines.Extensions;
 using Microsoft.Extensions.Logging;
 using Com.Hopper.Hts.Airlines.Client;
-using Duende.IdentityModel.Client;
+
 
 namespace Example
 {
