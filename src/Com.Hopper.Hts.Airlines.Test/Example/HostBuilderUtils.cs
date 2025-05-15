@@ -24,14 +24,14 @@ namespace Example
           Host.CreateDefaultBuilder(Array.Empty<string>()),
           (context, collection, options) => {
             collection.AddLogging(config => config.SetMinimumLevel(LogLevel.Trace));
-            collection.AddSingleton(TestSecrets.CredentialsRequest);
+            collection.AddSingleton(TestSecrets.Credentials);
 
             // Unfortunate side effect of the default BearerToken setup, we need to feed in a value to start.
             options.AddTokens(new HtsfaClient.BearerToken(TestSecrets.HtsfaAccessToken));
 
             // This is not used, but simply needs to be populated so that the dependency injection step is able to resolve a ApiKey provider
             options.AddTokens(new HtsfaClient.ApiKeyToken("???", HtsfaClient.ClientUtils.ApiKeyHeader.HC_Session_ID));
-            options.UseProvider<OAuthProvider, BearerToken>();
+            options.UseProvider<HopperAuthProvider, BearerToken>();
 
             options.AddApiHttpClients(builder: builder => builder.ConfigureHttpClient(configureClient: client => 
               client.BaseAddress = new Uri("https://airlines-api.staging.hopper.com/airline/v1.1/")

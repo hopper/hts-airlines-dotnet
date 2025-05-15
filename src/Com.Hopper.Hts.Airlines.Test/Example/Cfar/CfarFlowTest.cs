@@ -7,7 +7,6 @@ using FlowModel = Com.Hopper.Hts.Airlines.Flow.Model;
 using System.Collections.Generic;
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using Com.Hopper.Hts.Airlines.Client;
 using System.Threading.Tasks;
 
 namespace Example.Cfar
@@ -25,8 +24,6 @@ namespace Example.Cfar
             var cfarApi = htsfaHost.Services.GetRequiredService<ICancelForAnyReasonCFARApi>() ?? throw new Exception("CFAR service not found");
             var sessionApi = htsfaHost.Services.GetRequiredService<ISessionsApi>() ?? throw new Exception("Session service not found");
 
-            var oAuthProvider = htsfaHost.Services.GetRequiredService<OAuthProvider>();
-
             var paymentFlow = new CfarFlow(paymentApi, TestSecrets.Encryption, cfarApi);
 
             var sessionId = (await sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
@@ -39,8 +36,6 @@ namespace Example.Cfar
                 CfarFixtures.BuildCreateCfarOfferRequest(),
                 hCSessionID: sessionId
             ).Result.Created()?[0].Id ?? throw new Exception("Offer creation failed");
-
-            await oAuthProvider.RefreshToken();
 
             var contractReference = (await cfarApi.PostCfarContractsAsync(CfarFixtures.BuildCreateCfarContractRequest(offerId))).Created()?.Reference ?? throw new Exception("Contract creation failed");
 

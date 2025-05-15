@@ -28,14 +28,10 @@ namespace Example
             PublicKey = SpreedlyPublicKey
         };
 
-        public static ClientCredentialsTokenRequest CredentialsRequest = new ClientCredentialsTokenRequest {
+        public static HopperCredentials Credentials = new HopperCredentials {
             Address = HtsfaAddress,
             ClientId = HtsfaClientId,
             ClientSecret = HtsfaClientSecret,
-            GrantType = "client_credentials",
-            Parameters = {
-                { "audience", HtsfaAudience }
-            }
         };
     }
 }
