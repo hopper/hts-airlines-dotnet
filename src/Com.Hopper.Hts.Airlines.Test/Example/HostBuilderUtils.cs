@@ -27,7 +27,7 @@ namespace Example
             collection.AddSingleton(TestSecrets.Credentials);
 
             // Unfortunate side effect of the default BearerToken setup, we need to feed in a value to start.
-            options.AddTokens(new HtsfaClient.BearerToken(TestSecrets.HtsfaAccessToken));
+            options.AddTokens(new HtsfaClient.BearerToken(TestSecrets.HtsfaAccessTokenThrowaway));
 
             // This is not used, but simply needs to be populated so that the dependency injection step is able to resolve a ApiKey provider
             options.AddTokens(new HtsfaClient.ApiKeyToken("???", HtsfaClient.ClientUtils.ApiKeyHeader.HC_Session_ID));
