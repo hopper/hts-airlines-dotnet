@@ -1,5 +1,5 @@
 using SpreedlyModel = Com.Hopper.Hts.Airlines.Spreedly.Model;
-using Duende.IdentityModel.Client;
+using Com.Hopper.Hts.Airlines.Client;
 
 namespace Example
 {
@@ -11,12 +11,11 @@ namespace Example
         public static string SpreedlyAccessToken = "????";
 
         // Access token from Auth0
-        public static string HtsfaAccessToken = "????";
+        public static string HtsfaAccessTokenThrowaway = "throwaway";
 
         public static string HtsfaAddress = "????";
         public static string HtsfaClientId = "????";
         public static string HtsfaClientSecret = "????";
-        public static string HtsfaAudience = "????";
 
         public static string SpreedlyCertificateToken = "????";
         public static string SpreedlyPublicKey = "????";
@@ -28,14 +27,10 @@ namespace Example
             PublicKey = SpreedlyPublicKey
         };
 
-        public static ClientCredentialsTokenRequest CredentialsRequest = new ClientCredentialsTokenRequest {
+        public static HopperCredentials Credentials = new HopperCredentials {
             Address = HtsfaAddress,
             ClientId = HtsfaClientId,
             ClientSecret = HtsfaClientSecret,
-            GrantType = "client_credentials",
-            Parameters = {
-                { "audience", HtsfaAudience }
-            }
         };
     }
 }
