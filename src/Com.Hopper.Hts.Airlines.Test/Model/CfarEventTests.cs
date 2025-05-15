@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -55,75 +54,12 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'OccurredDateTime'
-        /// </summary>
-        [Fact]
-        public void OccurredDateTimeTest()
-        {
-            // TODO unit test for the property 'OccurredDateTime'
-        }
-
-        /// <summary>
         /// Test the property 'Type'
         /// </summary>
         [Fact]
         public void TypeTest()
         {
             // TODO unit test for the property 'Type'
-        }
-
-        /// <summary>
-        /// Test the property 'CfarOffersIds'
-        /// </summary>
-        [Fact]
-        public void CfarOffersIdsTest()
-        {
-            // TODO unit test for the property 'CfarOffersIds'
-        }
-
-        /// <summary>
-        /// Test the property 'UiSource'
-        /// </summary>
-        [Fact]
-        public void UiSourceTest()
-        {
-            // TODO unit test for the property 'UiSource'
-        }
-
-        /// <summary>
-        /// Test the property 'CfarContractId'
-        /// </summary>
-        [Fact]
-        public void CfarContractIdTest()
-        {
-            // TODO unit test for the property 'CfarContractId'
-        }
-
-        /// <summary>
-        /// Test the property 'UiVariant'
-        /// </summary>
-        [Fact]
-        public void UiVariantTest()
-        {
-            // TODO unit test for the property 'UiVariant'
-        }
-
-        /// <summary>
-        /// Test the property 'CfarExerciseId'
-        /// </summary>
-        [Fact]
-        public void CfarExerciseIdTest()
-        {
-            // TODO unit test for the property 'CfarExerciseId'
-        }
-
-        /// <summary>
-        /// Test the property 'Result'
-        /// </summary>
-        [Fact]
-        public void ResultTest()
-        {
-            // TODO unit test for the property 'Result'
         }
     }
 }

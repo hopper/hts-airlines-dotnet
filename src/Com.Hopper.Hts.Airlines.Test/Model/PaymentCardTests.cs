@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -73,6 +72,15 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Type'
+        /// </summary>
+        [Fact]
+        public void TypeTest()
+        {
+            // TODO unit test for the property 'Type'
+        }
+
+        /// <summary>
         /// Test the property 'Token'
         /// </summary>
         [Fact]
@@ -82,12 +90,30 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Type'
+        /// Test the property 'LastFourDigits'
         /// </summary>
         [Fact]
-        public void TypeTest()
+        public void LastFourDigitsTest()
         {
-            // TODO unit test for the property 'Type'
+            // TODO unit test for the property 'LastFourDigits'
+        }
+
+        /// <summary>
+        /// Test the property 'ExpirationMonth'
+        /// </summary>
+        [Fact]
+        public void ExpirationMonthTest()
+        {
+            // TODO unit test for the property 'ExpirationMonth'
+        }
+
+        /// <summary>
+        /// Test the property 'ExpirationYear'
+        /// </summary>
+        [Fact]
+        public void ExpirationYearTest()
+        {
+            // TODO unit test for the property 'ExpirationYear'
         }
     }
 }

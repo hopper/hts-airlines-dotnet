@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -52,15 +51,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         {
             // TODO uncomment below to test "IsType" DgItinerarySliceSegment
             //Assert.IsType<DgItinerarySliceSegment>(instance);
-        }
-
-        /// <summary>
-        /// Test the property 'SegmentId'
-        /// </summary>
-        [Fact]
-        public void SegmentIdTest()
-        {
-            // TODO unit test for the property 'SegmentId'
         }
 
         /// <summary>
@@ -124,6 +114,15 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         public void CabinTest()
         {
             // TODO unit test for the property 'Cabin'
+        }
+
+        /// <summary>
+        /// Test the property 'SegmentId'
+        /// </summary>
+        [Fact]
+        public void SegmentIdTest()
+        {
+            // TODO unit test for the property 'SegmentId'
         }
 
         /// <summary>

@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace Com.Hopper.Hts.Airlines.Test.Model
 {
@@ -73,6 +72,15 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ExtAttributes'
+        /// </summary>
+        [Fact]
+        public void ExtAttributesTest()
+        {
+            // TODO unit test for the property 'ExtAttributes'
+        }
+
+        /// <summary>
         /// Test the property 'BookingDateTime'
         /// </summary>
         [Fact]
@@ -88,15 +96,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Model
         public void SessionTest()
         {
             // TODO unit test for the property 'Session'
-        }
-
-        /// <summary>
-        /// Test the property 'ExtAttributes'
-        /// </summary>
-        [Fact]
-        public void ExtAttributesTest()
-        {
-            // TODO unit test for the property 'ExtAttributes'
         }
     }
 }
