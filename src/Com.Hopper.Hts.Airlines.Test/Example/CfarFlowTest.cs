@@ -1,5 +1,4 @@
 using Com.Hopper.Hts.Airlines.Spreedly.Api;
-using Com.Hopper.Hts.Airlines.Spreedly.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Com.Hopper.Hts.Airlines.Api;
 using Com.Hopper.Hts.Airlines.Flow;
@@ -8,14 +7,15 @@ using FlowModel = Com.Hopper.Hts.Airlines.Flow.Model;
 using System.Collections.Generic;
 using System;
 using Microsoft.Extensions.DependencyInjection;
-
+using Com.Hopper.Hts.Airlines.Client;
+using System.Threading.Tasks;
 namespace Example
 {
     [TestClass]
     public class PaymentFlowTest
     {
         [TestMethod]
-        public void Test()
+        public async Task Test()
         {
             var spreedlyHost = HostBuilderUtils.CreateSpreedlyHostBuilder().Build();
             var htsfaHost = HostBuilderUtils.CreateHtsfaHostBuilder().Build();
@@ -24,17 +24,24 @@ namespace Example
             var cfarApi = htsfaHost.Services.GetRequiredService<ICancelForAnyReasonCFARApi>() ?? throw new Exception("CFAR service not found");
             var sessionApi = htsfaHost.Services.GetRequiredService<ISessionsApi>() ?? throw new Exception("Session service not found");
 
+            var oAuthProvider = htsfaHost.Services.GetRequiredService<OAuthProvider>();
+
             var paymentFlow = new CfarFlow(paymentApi, TestSecrets.Encryption, cfarApi);
-            var sessionId = sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
+
+            var sessionId = (await sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
                 HtsfaModel.FlowType.Purchase,
                 pointOfSale: "us",
                 language: "en"
-            )).Result.Created()?.Id ?? throw new Exception("Session creation failed");
-            var offerId = cfarApi.PostCfarOffersAsync(
+            ))).Created()?.Id ?? throw new Exception("Session creation failed");
+
+            var offerId = (await cfarApi.PostCfarOffersAsync(
                 CfarFixtures.BuildCreateCfarOfferRequest(),
                 hCSessionID: sessionId
-            ).Result.Created()?[0].Id ?? throw new Exception("Offer creation failed");
-            var contractReference = cfarApi.PostCfarContractsOrDefaultAsync(CfarFixtures.BuildCreateCfarContractRequest(offerId)).Result?.Created()?.Reference ?? throw new Exception("Contract creation failed");
+            )).Created()?[0].Id ?? throw new Exception("Offer creation failed");
+
+            await oAuthProvider.RefreshToken();
+
+            var contractReference = (await cfarApi.PostCfarContractsAsync(CfarFixtures.BuildCreateCfarContractRequest(offerId)))?.Created()?.Reference ?? throw new Exception("Contract creation failed");
 
             var formsOfPayments = new List<FlowModel.FormOfPayment> {
                 new(new FlowModel.Cash("10.00", "USD")),
@@ -55,4 +62,3 @@ namespace Example
         }
     }
 }
-
