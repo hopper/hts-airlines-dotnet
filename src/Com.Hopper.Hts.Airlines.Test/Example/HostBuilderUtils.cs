@@ -7,6 +7,8 @@ using HtsfaClient = Com.Hopper.Hts.Airlines.Client;
 using HtsfaExtensions = Com.Hopper.Hts.Airlines.Extensions;
 using Microsoft.Extensions.Logging;
 using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Flow;
+using Com.Hopper.Hts.Airlines.Spreedly.Model;
 
 
 namespace Example
@@ -23,6 +25,10 @@ namespace Example
         {
           collection.AddLogging(config => config.SetMinimumLevel(LogLevel.Trace));
           collection.AddSingleton(TestSecrets.Credentials);
+          collection.AddTransient<IFormOfPaymentToApi, FormOfPaymentToApi>();
+          collection.AddTransient<ICfarFlow, CfarFlow>();
+          collection.AddTransient<IDgFlow, DgFlow>();
+          collection.AddSingleton(TestSecrets.Encryption);
 
           // Unfortunate side effect of the default BearerToken setup, we need to feed in a value to start.
           options.AddTokens(new HtsfaClient.BearerToken(TestSecrets.HtsfaAccessTokenThrowaway));

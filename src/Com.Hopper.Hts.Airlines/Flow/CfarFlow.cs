@@ -18,10 +18,10 @@ namespace Com.Hopper.Hts.Airlines.Flow
     public partial class CfarFlow : ICfarFlow
     {
 
-        internal FormOfPaymentToApi _formOfPaymentToApi;
+        internal IFormOfPaymentToApi _formOfPaymentToApi;
         internal ICancelForAnyReasonCFARApi _cfarApi;
 
-        public CfarFlow(FormOfPaymentToApi formOfPaymentToApi, ICancelForAnyReasonCFARApi cfar)
+        public CfarFlow(IFormOfPaymentToApi formOfPaymentToApi, ICancelForAnyReasonCFARApi cfar)
         {
             _formOfPaymentToApi = formOfPaymentToApi;
             _cfarApi = cfar;

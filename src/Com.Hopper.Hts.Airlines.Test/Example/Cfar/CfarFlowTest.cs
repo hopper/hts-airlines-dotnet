@@ -21,7 +21,7 @@ namespace Example.Cfar
 
             var cfarApi = host.Services.GetRequiredService<ICancelForAnyReasonCFARApi>() ?? throw new Exception("CFAR service not found");
             var sessionApi = host.Services.GetRequiredService<ISessionsApi>() ?? throw new Exception("Session service not found");
-            var paymentFlow = host.Services.GetRequiredService<CfarFlow>(); 
+            var cfarFlow = host.Services.GetRequiredService<ICfarFlow>(); 
 
             var sessionId = (await sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
                 HtsfaModel.FlowType.Purchase,
@@ -45,7 +45,7 @@ namespace Example.Cfar
             };
             var request = new FlowModel.UpdateCfarContractFormsOfPaymentRequest(formsOfPayments);
 
-            var updated = await paymentFlow.UpdateCfarContractWithFormsOfPayment(
+            var updated = await cfarFlow.UpdateCfarContractWithFormsOfPayment(
                 contractReference,
                 request,
                 shouldTokenize: true,
