@@ -7,17 +7,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Xunit.Sdk;
 using System.Threading.Tasks;
 
-namespace Example.Payment
+namespace Com.Hopper.Hts.Airlines.Test.Spreedly.Api
 {
 
     [TestClass]
-    public class PaymentApiTest
+    public class PaymentApiTest: ApiTestsBase
     {
+        private readonly IPaymentApi _api;
+        public PaymentApiTest() : base(Array.Empty<string>())
+        {
+            _api = _host.Services.GetRequiredService<IPaymentApi>();
+        }
+
         [TestMethod]
         public void TokenizeTest()
         {
-            var host = HostBuilderUtils.CreateHostBuilder().Build();
-            var paymentApi = host.Services.GetRequiredService<IPaymentApi>();
 
             var request = new CreatePaymentMethodRequest(
                 new CreatePaymentMethod(
@@ -31,7 +35,7 @@ namespace Example.Payment
                     )
                 )
             );
-            var response = paymentApi.PostPaymentMethodAsync(request).Result.Created() ?? throw new Exception("Payment method tokenization failed");
+            var response = _api.PostPaymentMethodAsync(request).Result.Created() ?? throw new Exception("Payment method tokenization failed");
             var transaction = response.Transaction ?? throw new Exception("Creation failed");
             Debug.Print("Transaction: " + transaction);
 
@@ -41,9 +45,6 @@ namespace Example.Payment
         [TestMethod]
         public async Task TokenizeWithEncryptionTest()
         {
-            var host = HostBuilderUtils.CreateHostBuilder().Build();
-            var paymentApi = host.Services.GetRequiredService<IPaymentApi>();
-
             var request = new CreatePaymentMethodRequest(
                 new CreatePaymentMethod(
                     new CreateCreditCard(
@@ -57,7 +58,7 @@ namespace Example.Payment
                 )
             );
             var encrypted = TestSecrets.Encryption.Encrypt(request);
-            var response = (await paymentApi.PostPaymentMethodAsync(encrypted)).Created() ?? throw new Exception("Payment method tokenization failed");
+            var response = (await _api.PostPaymentMethodAsync(encrypted)).Created() ?? throw new Exception("Payment method tokenization failed");
             var transaction = response.Transaction;
             Debug.Print("Transaction: " + transaction);
 

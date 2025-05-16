@@ -1,7 +1,7 @@
 using SpreedlyModel = Com.Hopper.Hts.Airlines.Spreedly.Model;
 using Com.Hopper.Hts.Airlines.Client;
 
-namespace Example
+namespace Com.Hopper.Hts.Airlines
 {
 
     public class TestSecrets

@@ -2,9 +2,8 @@
 using HtsfaModel = Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Model;
 using System.Collections.Generic;
-using Com.Hopper.Hts.Airlines.Client;
 
-namespace Example
+namespace Com.Hopper.Hts.Airlines.Test.Fixtures
 {
     public class CfarFixtures
     {
