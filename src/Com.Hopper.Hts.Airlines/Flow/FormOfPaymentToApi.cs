@@ -3,26 +3,25 @@ using ApiModel = Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Flow.Model;
 using Com.Hopper.Hts.Airlines.Client;
 using Com.Hopper.Hts.Airlines.Spreedly.Model;
-using Com.Hopper.Hts.Airlines.Spreedly.Api;
+using Com.Hopper.Hts.Airlines.Spreedly.Services;
+using System.Threading.Tasks;
 
 namespace Com.Hopper.Hts.Airlines.Flow
 {
     public interface IFormOfPaymentToApi
     {
-        public ApiModel.FormOfPayment ToApi(FormOfPayment p, bool shouldTokenize);
+        public Task<ApiModel.FormOfPayment> ToApi(FormOfPayment p, bool shouldTokenize);
     }
     public partial class FormOfPaymentToApi: IFormOfPaymentToApi
     {
-        internal Encryption Encryption;
-        internal IPaymentApi PaymentApi;
+        internal ICardTokenizer _tokenizer;
 
-        public FormOfPaymentToApi(Encryption encryption, IPaymentApi paymentApi)
+        public FormOfPaymentToApi(ICardTokenizer tokenizer)
         {
-            Encryption = encryption;
-            PaymentApi = paymentApi;
+            _tokenizer = tokenizer;
         }
 
-        public ApiModel.FormOfPayment ToApi(FormOfPayment p, bool shouldTokenize)
+        public async Task<ApiModel.FormOfPayment> ToApi(FormOfPayment p, bool shouldTokenize)
         {
             var instance = p.ActualInstance;
             if (instance.GetType() == typeof(Cash) || instance is Cash)
@@ -59,20 +58,18 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 var card = p.GetPaymentCard();
                 if (shouldTokenize)
                 {
-                    var method = new Spreedly.Model.CreatePaymentMethodRequest(new Spreedly.Model.CreatePaymentMethod(new Spreedly.Model.CreateCreditCard(
+                    var token = await _tokenizer.Tokenize(new CreateCreditCard(
                         firstName: card.FirstName,
                         lastName: card.LastName,
                         number: card.Number,
                         verificationValue: card.VerificationValue,
                         month: card.Month,
                         year: card.Year
-                    )));
-                    var encrypted = Encryption.Encrypt(method);
-                    var tokenized = PaymentApi.PostPaymentMethodAsync(encrypted).Result.Created();
+                    ));
                     return new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                         card.Amount,
                         card.Currency,
-                        token: tokenized?.Transaction.PaymentMethod.Token ?? throw new InvalidOperationException("Tokenized payment method creation failed."),
+                        token: token,
                         lastFourDigits: new Option<string?>(),
                         type: "payment_card"
                     ));
