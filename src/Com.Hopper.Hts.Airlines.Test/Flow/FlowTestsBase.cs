@@ -6,21 +6,27 @@ using SpreedlyClient = Com.Hopper.Hts.Airlines.Spreedly.Client;
 using Microsoft.Extensions.Logging;
 using Com.Hopper.Hts.Airlines.Spreedly.Services;
 
-
-namespace Example
+namespace Com.Hopper.Hts.Airlines.Test.Flow
 {
-  public class HostBuilderUtils
+  public class FlowTestsBase
   {
-    public static IHostBuilder CreateHostBuilder()
+    protected readonly IHost _host;
+
+    public FlowTestsBase(string[] args)
     {
-      var builder = Host.CreateDefaultBuilder(Array.Empty<string>());
+      _host = CreateHostBuilder(args).Build();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args)
+    {
+      var builder = Host.CreateDefaultBuilder(args);
       builder.ConfigureFlows(
         configureApi: (context, collection, options) =>
         {
           options.AddApiHttpClients(builder: builder => builder.ConfigureHttpClient(configureClient: client =>
             client.BaseAddress = new Uri("https://airlines-api.staging.hopper.com/airline/v1.1/")
           ));
-          collection.AddTransient<ICardTokenizer, EncryptedCardTokenizer>();
+          collection.AddTransient<ICardTokenizer, CardTokenizer>();
           collection.AddLogging(config => config.SetMinimumLevel(LogLevel.Trace));
           collection.AddSingleton(TestSecrets.Credentials);
           collection.AddSingleton(TestSecrets.Encryption);

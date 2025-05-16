@@ -7,33 +7,39 @@ using System.Collections.Generic;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
+using Com.Hopper.Hts.Airlines.Test.Fixtures;
 
-namespace Example.Dg
+namespace Com.Hopper.Hts.Airlines.Test.Flow
 {
     [TestClass]
-    public class DgFlowTest
+    public class DgFlowTest: FlowTestsBase
     {
+        private readonly IDgFlow _flow;
+        private readonly IDisruptionGuaranteeDGApi _dgApi;
+        private readonly ISessionsApi _sessionApi;
+
+        public DgFlowTest() : base(Array.Empty<string>())
+        {
+            _flow = _host.Services.GetRequiredService<IDgFlow>();
+            _dgApi = _host.Services.GetRequiredService<IDisruptionGuaranteeDGApi>();
+            _sessionApi = _host.Services.GetRequiredService<ISessionsApi>();
+        }
+
         [TestMethod]
         public async Task Test()
         {
-            var host = HostBuilderUtils.CreateHostBuilder().Build();
-
-            var dgApi = host.Services.GetRequiredService<IDisruptionGuaranteeDGApi>();
-            var sessionApi = host.Services.GetRequiredService<ISessionsApi>();
-            var dgFlow = host.Services.GetRequiredService<IDgFlow>(); 
-
-            var sessionId = (await sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
+            var sessionId = (await _sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
                 HtsfaModel.FlowType.Purchase,
                 pointOfSale: "us",
                 language: "en"
             ))).Created()?.Id ?? throw new Exception("Session creation failed");
 
-            var offerId = dgApi.PostDgOffersAsync(
+            var offerId = _dgApi.PostDgOffersAsync(
                 DgFixtures.BuildCreateOfferRequest(),
                 hCSessionID: sessionId
             ).Result.Created()?[0].Id ?? throw new Exception("Offer creation failed");
 
-            var contractId = (await dgApi.PostDgContractsAsync(DgFixtures.BuildCreateContractRequest(offerId))).Created()?.Id ?? throw new Exception("Contract creation failed");
+            var contractId = (await _dgApi.PostDgContractsAsync(DgFixtures.BuildCreateContractRequest(offerId))).Created()?.Id ?? throw new Exception("Contract creation failed");
 
             var formsOfPayments = new List<FlowModel.FormOfPayment> {
                 new(new FlowModel.Cash("10.00", "USD")),
@@ -63,7 +69,7 @@ namespace Example.Dg
                 formsOfPayment: formsOfPayments
             );
 
-            var updated = await dgFlow.UpdateDgContractStatus(
+            var updated = await _flow.UpdateDgContractStatus(
                 contractId,
                 request,
                 shouldTokenize: true

@@ -2,7 +2,7 @@
 using Com.Hopper.Hts.Airlines.Model;
 using System.Collections.Generic;
 
-namespace Example.Dg
+namespace Com.Hopper.Hts.Airlines.Test.Fixtures
 {
     public class DgFixtures
     {
