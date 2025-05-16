@@ -12,19 +12,16 @@ using System.Threading.Tasks;
 namespace Example.Cfar
 {
     [TestClass]
-    public class PaymentFlowTest
+    public class CfarFlowTest
     {
         [TestMethod]
         public async Task Test()
         {
-            var spreedlyHost = HostBuilderUtils.CreateSpreedlyHostBuilder().Build();
-            var htsfaHost = HostBuilderUtils.CreateHtsfaHostBuilder().Build();
+            var host = HostBuilderUtils.CreateHostBuilder().Build();
 
-            var paymentApi = spreedlyHost.Services.GetRequiredService<IPaymentApi>() ?? throw new Exception("Payment service not found");
-            var cfarApi = htsfaHost.Services.GetRequiredService<ICancelForAnyReasonCFARApi>() ?? throw new Exception("CFAR service not found");
-            var sessionApi = htsfaHost.Services.GetRequiredService<ISessionsApi>() ?? throw new Exception("Session service not found");
-
-            var paymentFlow = new CfarFlow(paymentApi, TestSecrets.Encryption, cfarApi);
+            var cfarApi = host.Services.GetRequiredService<ICancelForAnyReasonCFARApi>() ?? throw new Exception("CFAR service not found");
+            var sessionApi = host.Services.GetRequiredService<ISessionsApi>() ?? throw new Exception("Session service not found");
+            var cfarFlow = host.Services.GetRequiredService<ICfarFlow>(); 
 
             var sessionId = (await sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
                 HtsfaModel.FlowType.Purchase,
@@ -48,10 +45,10 @@ namespace Example.Cfar
             };
             var request = new FlowModel.UpdateCfarContractFormsOfPaymentRequest(formsOfPayments);
 
-            var updated = await paymentFlow.UpdateCfarContractWithFormsOfPayment(
+            var updated = await cfarFlow.UpdateCfarContractWithFormsOfPayment(
                 contractReference,
                 request,
-                false,
+                shouldTokenize: true,
                 sessionId
             );
             Assert.IsNotNull(updated);

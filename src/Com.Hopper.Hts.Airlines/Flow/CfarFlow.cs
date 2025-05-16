@@ -12,93 +12,31 @@ namespace Com.Hopper.Hts.Airlines.Flow
 {
     public interface ICfarFlow
     {
-        Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId);
+        Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, bool shouldTokenize, string? sessionId);
     }
 
     public partial class CfarFlow : ICfarFlow
     {
-        public CfarFlow(IPaymentApi payment, Encryption encryption, ICancelForAnyReasonCFARApi cfar)
+
+        internal IFormOfPaymentToApi _formOfPaymentToApi;
+        internal ICancelForAnyReasonCFARApi _cfarApi;
+
+        public CfarFlow(IFormOfPaymentToApi formOfPaymentToApi, ICancelForAnyReasonCFARApi cfar)
         {
-            this.PaymentApi = payment;
-            this.Encryption = encryption;
-            this.CfarApi = cfar;
+            _formOfPaymentToApi = formOfPaymentToApi;
+            _cfarApi = cfar;
         }
 
-        public IPaymentApi PaymentApi { get; set; }
-        public Encryption Encryption { get; set; }
-        public ICancelForAnyReasonCFARApi CfarApi { get; set; }
-
-        public async Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId)
+        public async Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, bool shouldTokenize, string? sessionId)
         {
             var fops = new List<ApiModel.FormOfPayment>();
             foreach (var p in request.FormsOfPayment)
             {
-                var instance = p.ActualInstance;
-                if (instance.GetType() == typeof(Cash) || instance is Cash)
-                {
-                    var cash = p.GetCash();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.Cash(
-                        cash.Amount,
-                        cash.Currency,
-                        "cash"
-                    )));
-                }
-                else if (instance.GetType() == typeof(NonCash) || instance is NonCash)
-                {
-                    var nonCash = p.GetNonCash();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.NonCash(
-                        nonCash.Amount,
-                        nonCash.Currency,
-                        "non_cash"
-                    )));
-                }
-                else if (instance.GetType() == typeof(TokenizedPaymentCard) || instance is TokenizedPaymentCard)
-                {
-                    var card = p.GetTokenizedPaymentCard();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
-                        card.Amount,
-                        card.Currency,
-                        token: card.Token,
-                        lastFourDigits: new Option<string?>(),
-                        type: "payment_card"
-                    )));
-                }
-                else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
-                {
-                    var card = p.GetPaymentCard();
-                    if (paymentCardTokenized) {
-                        var method = new CreatePaymentMethodRequest(new CreatePaymentMethod(new CreateCreditCard(card.FirstName, card.LastName, card.Number, card.VerificationValue, card.Month, card.Year)));
-                        var encrypted = Encryption.Encrypt(method);
-                        var tokenized = PaymentApi.PostPaymentMethodAsync(encrypted).Result.Created();
-                        fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
-                            card.Amount,
-                            card.Currency,
-                            token: tokenized?.Transaction.PaymentMethod.Token ?? throw new InvalidOperationException("Tokenized payment method creation failed."),
-                            lastFourDigits: new Option<string?>(),
-                            type: "payment_card"
-                        )));
-                    } else {
-                        fops.Add(new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
-                            card.Amount,
-                            card.Currency,
-                            token: new Option<string?>(),
-                            lastFourDigits: "1234",
-                            type: "payment_card"
-                        )));
-                    }
-                }
-                else if (instance.GetType() == typeof(Points) || instance is Points)
-                {
-                    var points = p.GetPoints();
-                    fops.Add(new ApiModel.FormOfPayment(new ApiModel.Points(
-                        points.Amount,
-                        "points"
-                    )));
-                }
+                fops.Add(_formOfPaymentToApi.ToApi(p, shouldTokenize: shouldTokenize));
             }
             var paymentRequest = new ApiModel.UpdateCfarFormOfPaymentRequest(fops);
 
-            var task = await CfarApi.PutCfarContractsIdFormsOfPaymentAsync(contractReference, paymentRequest, sessionId ?? new Option<string>());
+            var task = await _cfarApi.PutCfarContractsIdFormsOfPaymentAsync(contractReference, paymentRequest, sessionId ?? new Option<string>());
             return task.Ok() ?? throw new InvalidOperationException("CFAR API response is null or invalid.");
         }
     }
