@@ -8,26 +8,26 @@ namespace Com.Hopper.Hts.Airlines.Flow
 {
     public interface IDgFlow
     {
-        Task<ApiModel.DgContract> UpdateDgContractStatus(string contractReference, Model.UpdateDgContractStatusRequest request, bool paymentCardTokenized);
+        Task<ApiModel.DgContract> UpdateDgContractStatus(string contractId, Model.UpdateDgContractStatusRequest request, bool shouldTokenize);
     }
 
     public partial class DgFlow : IDgFlow
     {
-        internal FormOfPaymentToApi _formOfPaymentToApi;
+        internal IFormOfPaymentToApi _formOfPaymentToApi;
         internal IDisruptionGuaranteeDGApi _dgApi;
 
-        public DgFlow(FormOfPaymentToApi formOfPaymentToApi, IDisruptionGuaranteeDGApi dg)
+        public DgFlow(IFormOfPaymentToApi formOfPaymentToApi, IDisruptionGuaranteeDGApi dg)
         {
             _formOfPaymentToApi = formOfPaymentToApi;
             _dgApi = dg;
         }
 
-        public async Task<ApiModel.DgContract> UpdateDgContractStatus(string contractReference, Model.UpdateDgContractStatusRequest request, bool paymentCardTokenized)
+        public async Task<ApiModel.DgContract> UpdateDgContractStatus(string contractId, Model.UpdateDgContractStatusRequest request, bool shouldTokenize)
         {
             var fops = new List<ApiModel.FormOfPayment>();
             foreach (var p in request.FormsOfPayment)
             {
-                fops.Add(_formOfPaymentToApi.ToApi(p, shouldTokenize: paymentCardTokenized));
+                fops.Add(_formOfPaymentToApi.ToApi(p, shouldTokenize: shouldTokenize));
             }
             var paymentRequest = new ApiModel.UpdateDgContractStatusRequest(
                 status: request.Status,
@@ -47,7 +47,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 formsOfPayment: fops
             );
 
-            var task = await _dgApi.PutDgContractsIdUpdateStatusAsync(contractReference, paymentRequest);
+            var task = await _dgApi.PutDgContractsIdUpdateStatusAsync(contractId, paymentRequest);
             return task.Ok() ?? throw new InvalidOperationException("DG API response is null or invalid.");
         }
     }

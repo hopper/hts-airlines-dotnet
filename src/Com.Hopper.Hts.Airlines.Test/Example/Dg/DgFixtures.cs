@@ -1,40 +1,38 @@
 
-using HtsfaModel = Com.Hopper.Hts.Airlines.Model;
 using Com.Hopper.Hts.Airlines.Model;
 using System.Collections.Generic;
-using Com.Hopper.Hts.Airlines.Client;
 
-namespace Example
+namespace Example.Dg
 {
-    public class CfarFixtures
+    public class DgFixtures
     {
-        public static HtsfaModel.CreateCfarOfferRequest BuildCreateCfarOfferRequest() {
+        public static CreateDgOffersRequest BuildCreateOfferRequest() {
             return new(
-                itinerary: new List<HtsfaModel.CfarOfferItinerary> {
+                itinerary: new List<DgItinerary> {
                     new(
-                        passengerPricing: new List<PassengerPricing> {
+                        passengerPricing: new List<DgPassengerPricing> {
                             new(
-                                passengerCount: new (count: 1, type: HtsfaModel.PassengerType.Adult),
+                                passengerCount: new (count: 1, type: PassengerType.Adult),
                                 individualPrice: "10.00"
                             ),
                             new(
-                                passengerCount: new (count: 1, type: HtsfaModel.PassengerType.Child),
+                                passengerCount: new (count: 1, type: PassengerType.Child),
                                 individualPrice: "10.00"
                             )
                         },
                         currency: "USD",
                         slices: BuildSlices(),
-                        ancillaries: new List<Ancillary> {
-                            new(totalPrice: "1.00", type: HtsfaModel.AncillaryType.CheckedBag, passengerReference: "ABCDEF-1234"),
-                            new(totalPrice: "1.00", type: HtsfaModel.AncillaryType.Bundle, passengerReference: "ABCDEF-5678"),
+                        ancillaries: new List<DgAncillary> {
+                            new(totalPrice: "1.00", type: DgAncillaryType.CheckedBag, passengerReference: "ABCDEF-1234"),
+                            new(totalPrice: "1.00", type: DgAncillaryType.Bundle, passengerReference: "ABCDEF-5678"),
                         },
-                        passengers: new List<CfarOfferPassenger> {
-                            new(passengerReference: "ABCDEF-1234", passengerType: PassengerType.Adult),
-                            new(passengerReference: "ABCDEF-5678", passengerType: PassengerType.Child),
+                        passengers: new List<DgPassenger> {
+                            new(passengerReference: "ABCDEF-1234", passengerType: DgPassengerType.Adult),
+                            new(passengerReference: "ABCDEF-5678", passengerType: DgPassengerType.Child),
                         }
                     )
                 },
-                requestType: HtsfaModel.RequestType.Fare,
+                requestType: DgRequestType.Fare,
                 extAttributes: new Dictionary<string, string>(),
                 session: new(new(
                     userInfo: new(new(airlineUserId: "1234567890")),
@@ -44,25 +42,25 @@ namespace Example
             );
         }
 
-        public static HtsfaModel.CreateCfarContractRequest BuildCreateCfarContractRequest(string offerId) {
+        public static CreateDgContractRequest BuildCreateContractRequest(string offerId) {
             return new(
                 offerIds: new List<string> { offerId },
                 itinerary: new(
-                    passengerPricing: new List<PassengerPricing> {
+                    passengerPricing: new List<DgPassengerPricing> {
                         new (
-                            passengerCount: new(count: 1, type: HtsfaModel.PassengerType.Adult),
+                            passengerCount: new(count: 1, type: PassengerType.Adult),
                             individualPrice: "10.00"
                         ),
                         new (
-                            passengerCount: new(count: 1, type: HtsfaModel.PassengerType.Child),
+                            passengerCount: new(count: 1, type: PassengerType.Child),
                             individualPrice: "10.00"
                         ),
                     },
                     currency: "USD",
                     slices: BuildSlices(),
-                    passengers: new(new List<CfarPassenger> {
-                        new(passengerReference: "ABCDEF-1234", passengerType: PassengerType.Adult, firstName: "John", lastName: "Doe"),
-                        new(passengerReference: "ABCDEF-5678", passengerType: PassengerType.Child, firstName: "Joanne", lastName: "Doe"),
+                    passengers: new(new List<DgPassenger> {
+                        new(passengerReference: "ABCDEF-1234", passengerType: DgPassengerType.Adult, firstName: "John", lastName: "Doe"),
+                        new(passengerReference: "ABCDEF-5678", passengerType: DgPassengerType.Child, firstName: "Joanne", lastName: "Doe"),
                     })
                 ),
                 extAttributes: new Dictionary<string, string>(),
@@ -70,10 +68,10 @@ namespace Example
             );
         }
 
-        public static List<HtsfaModel.CfarItinerarySlice> BuildSlices() {
-            return new List<CfarItinerarySlice> {
+        public static List<DgItinerarySlice> BuildSlices() {
+            return new List<DgItinerarySlice> {
                 new (
-                    segments: new List<CfarItinerarySliceSegment> {
+                    segments: new List<DgItinerarySliceSegment> {
                         new(
                             originAirport: "LGA",
                             destinationAirport: "DEN",
@@ -81,13 +79,13 @@ namespace Example
                             arrivalDateTime: "2025-12-01T06:00",
                             flightNumber: "AA123",
                             validatingCarrierCode: "AA",
-                            fareClass: HtsfaModel.FareClass.BasicEconomy,
+                            cabin: Cabin.Economy,
                             fareBrand: "basic"
                         )
                     }
                 ),
                 new(
-                    segments: new List<CfarItinerarySliceSegment> {
+                    segments: new List<DgItinerarySliceSegment> {
                         new(
                             originAirport: "DEN",
                             destinationAirport: "LGA",
@@ -95,7 +93,7 @@ namespace Example
                             arrivalDateTime: "2025-12-02T06:00",
                             flightNumber: "AA124",
                             validatingCarrierCode: "AA",
-                            fareClass: HtsfaModel.FareClass.BasicEconomy,
+                            cabin: Cabin.Economy,
                             fareBrand: "basic"
                         )
                     }

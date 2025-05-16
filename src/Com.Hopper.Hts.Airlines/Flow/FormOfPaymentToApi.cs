@@ -7,7 +7,11 @@ using Com.Hopper.Hts.Airlines.Spreedly.Api;
 
 namespace Com.Hopper.Hts.Airlines.Flow
 {
-    public class FormOfPaymentToApi
+    public interface IFormOfPaymentToApi
+    {
+        public ApiModel.FormOfPayment ToApi(FormOfPayment p, bool shouldTokenize);
+    }
+    public partial class FormOfPaymentToApi: IFormOfPaymentToApi
     {
         internal Encryption Encryption;
         internal IPaymentApi PaymentApi;
