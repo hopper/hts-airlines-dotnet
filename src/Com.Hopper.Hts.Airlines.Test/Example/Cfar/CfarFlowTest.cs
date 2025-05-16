@@ -17,14 +17,11 @@ namespace Example.Cfar
         [TestMethod]
         public async Task Test()
         {
-            var spreedlyHost = HostBuilderUtils.CreateSpreedlyHostBuilder().Build();
-            var htsfaHost = HostBuilderUtils.CreateHtsfaHostBuilder().Build();
+            var host = HostBuilderUtils.CreateHostBuilder().Build();
 
-            var paymentApi = spreedlyHost.Services.GetRequiredService<IPaymentApi>() ?? throw new Exception("Payment service not found");
-            var cfarApi = htsfaHost.Services.GetRequiredService<ICancelForAnyReasonCFARApi>() ?? throw new Exception("CFAR service not found");
-            var sessionApi = htsfaHost.Services.GetRequiredService<ISessionsApi>() ?? throw new Exception("Session service not found");
-
-            var paymentFlow = new CfarFlow(paymentApi, TestSecrets.Encryption, cfarApi);
+            var cfarApi = host.Services.GetRequiredService<ICancelForAnyReasonCFARApi>() ?? throw new Exception("CFAR service not found");
+            var sessionApi = host.Services.GetRequiredService<ISessionsApi>() ?? throw new Exception("Session service not found");
+            var paymentFlow = host.Services.GetRequiredService<CfarFlow>(); 
 
             var sessionId = (await sessionApi.PostSessionsAsync(new HtsfaModel.CreateAirlineSessionRequest(
                 HtsfaModel.FlowType.Purchase,

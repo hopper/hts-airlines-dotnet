@@ -16,7 +16,7 @@ namespace Example.Payment
         [TestMethod]
         public void TokenizeTest()
         {
-            var host = HostBuilderUtils.CreateSpreedlyHostBuilder().Build();
+            var host = HostBuilderUtils.CreateHostBuilder().Build();
             var paymentApi = host.Services.GetRequiredService<IPaymentApi>();
 
             var request = new CreatePaymentMethodRequest(
@@ -41,7 +41,7 @@ namespace Example.Payment
         [TestMethod]
         public async Task TokenizeWithEncryptionTest()
         {
-            var host = HostBuilderUtils.CreateSpreedlyHostBuilder().Build();
+            var host = HostBuilderUtils.CreateHostBuilder().Build();
             var paymentApi = host.Services.GetRequiredService<IPaymentApi>();
 
             var request = new CreatePaymentMethodRequest(

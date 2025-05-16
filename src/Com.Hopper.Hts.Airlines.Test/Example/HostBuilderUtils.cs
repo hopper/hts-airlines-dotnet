@@ -11,31 +11,42 @@ using Com.Hopper.Hts.Airlines.Client;
 
 namespace Example
 {
-    public class HostBuilderUtils
+  public class HostBuilderUtils
+  {
+    public static IHostBuilder CreateHostBuilder()
     {
-        public static IHostBuilder CreateSpreedlyHostBuilder() => SpreedlyExtensions.IHostBuilderExtensions.ConfigureApi(
-          Host.CreateDefaultBuilder(Array.Empty<string>()),
-          (context, collection, options) => {
-            options.AddTokens(new SpreedlyClient.BasicToken(TestSecrets.SpreedlyEnvironmentKey, TestSecrets.SpreedlyAccessToken));
-            collection.AddLogging(config => config.SetMinimumLevel(LogLevel.Trace));
-          });
+      var builder = Host.CreateDefaultBuilder(Array.Empty<string>());
 
-        public static IHostBuilder CreateHtsfaHostBuilder() => HtsfaExtensions.IHostBuilderExtensions.ConfigureApi(
-          Host.CreateDefaultBuilder(Array.Empty<string>()),
-          (context, collection, options) => {
-            collection.AddLogging(config => config.SetMinimumLevel(LogLevel.Trace));
-            collection.AddSingleton(TestSecrets.Credentials);
+      builder = HtsfaExtensions.IHostBuilderExtensions.ConfigureApi(
+        builder,
+        (context, collection, options) =>
+        {
+          collection.AddLogging(config => config.SetMinimumLevel(LogLevel.Trace));
+          collection.AddSingleton(TestSecrets.Credentials);
 
-            // Unfortunate side effect of the default BearerToken setup, we need to feed in a value to start.
-            options.AddTokens(new HtsfaClient.BearerToken(TestSecrets.HtsfaAccessTokenThrowaway));
+          // Unfortunate side effect of the default BearerToken setup, we need to feed in a value to start.
+          options.AddTokens(new HtsfaClient.BearerToken(TestSecrets.HtsfaAccessTokenThrowaway));
 
-            // This is not used, but simply needs to be populated so that the dependency injection step is able to resolve a ApiKey provider
-            options.AddTokens(new HtsfaClient.ApiKeyToken("???", HtsfaClient.ClientUtils.ApiKeyHeader.HC_Session_ID));
-            options.UseProvider<HopperAuthProvider, BearerToken>();
+          // This is not used, but simply needs to be populated so that the dependency injection step is able to resolve a ApiKey provider
+          options.AddTokens(new HtsfaClient.ApiKeyToken("???", HtsfaClient.ClientUtils.ApiKeyHeader.HC_Session_ID));
+          options.UseProvider<HopperAuthProvider, BearerToken>();
 
-            options.AddApiHttpClients(builder: builder => builder.ConfigureHttpClient(configureClient: client => 
-              client.BaseAddress = new Uri("https://airlines-api.staging.hopper.com/airline/v1.1/")
-            ));
-          });
+          options.AddApiHttpClients(builder: builder => builder.ConfigureHttpClient(configureClient: client =>
+            client.BaseAddress = new Uri("https://airlines-api.staging.hopper.com/airline/v1.1/")
+          ));
+        });
+      builder = SpreedlyExtensions.IHostBuilderExtensions.ConfigureApi(
+        builder,
+        (context, collection, options) =>
+        {
+          collection.AddLogging(config => config.SetMinimumLevel(LogLevel.Trace));
+          options.AddTokens(new SpreedlyClient.BasicToken(
+            username: TestSecrets.SpreedlyEnvironmentKey,
+            password: TestSecrets.SpreedlyAccessToken
+          ));
+        }
+      );
+      return builder;
     }
+  }
 }
