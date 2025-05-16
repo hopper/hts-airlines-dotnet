@@ -12,7 +12,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
 {
     public interface ICfarFlow
     {
-        Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId);
+        Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, bool shouldTokenize, string? sessionId);
     }
 
     public partial class CfarFlow : ICfarFlow
@@ -27,12 +27,12 @@ namespace Com.Hopper.Hts.Airlines.Flow
             _cfarApi = cfar;
         }
 
-        public async Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, Boolean paymentCardTokenized, string? sessionId)
+        public async Task<ApiModel.CfarContract> UpdateCfarContractWithFormsOfPayment(string contractReference, UpdateCfarContractFormsOfPaymentRequest request, bool shouldTokenize, string? sessionId)
         {
             var fops = new List<ApiModel.FormOfPayment>();
             foreach (var p in request.FormsOfPayment)
             {
-                fops.Add(_formOfPaymentToApi.ToApi(p, shouldTokenize: paymentCardTokenized));
+                fops.Add(_formOfPaymentToApi.ToApi(p, shouldTokenize: shouldTokenize));
             }
             var paymentRequest = new ApiModel.UpdateCfarFormOfPaymentRequest(fops);
 

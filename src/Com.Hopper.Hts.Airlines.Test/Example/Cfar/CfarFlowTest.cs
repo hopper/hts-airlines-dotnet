@@ -48,7 +48,7 @@ namespace Example.Cfar
             var updated = await paymentFlow.UpdateCfarContractWithFormsOfPayment(
                 contractReference,
                 request,
-                false,
+                shouldTokenize: true,
                 sessionId
             );
             Assert.IsNotNull(updated);
