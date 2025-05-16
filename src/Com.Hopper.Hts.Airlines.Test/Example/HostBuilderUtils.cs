@@ -8,7 +8,7 @@ using HtsfaExtensions = Com.Hopper.Hts.Airlines.Extensions;
 using Microsoft.Extensions.Logging;
 using Com.Hopper.Hts.Airlines.Client;
 using Com.Hopper.Hts.Airlines.Flow;
-using Com.Hopper.Hts.Airlines.Spreedly.Model;
+using Com.Hopper.Hts.Airlines.Spreedly.Services;
 
 
 namespace Example
@@ -25,6 +25,7 @@ namespace Example
         {
           collection.AddLogging(config => config.SetMinimumLevel(LogLevel.Trace));
           collection.AddSingleton(TestSecrets.Credentials);
+          collection.AddTransient<ICardTokenizer, EncryptedCardTokenizer>();
           collection.AddTransient<IFormOfPaymentToApi, FormOfPaymentToApi>();
           collection.AddTransient<ICfarFlow, CfarFlow>();
           collection.AddTransient<IDgFlow, DgFlow>();

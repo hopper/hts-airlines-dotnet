@@ -27,7 +27,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
             var fops = new List<ApiModel.FormOfPayment>();
             foreach (var p in request.FormsOfPayment)
             {
-                fops.Add(_formOfPaymentToApi.ToApi(p, shouldTokenize: shouldTokenize));
+                fops.Add(await _formOfPaymentToApi.ToApi(p, shouldTokenize: shouldTokenize));
             }
             var paymentRequest = new ApiModel.UpdateDgContractStatusRequest(
                 status: request.Status,
