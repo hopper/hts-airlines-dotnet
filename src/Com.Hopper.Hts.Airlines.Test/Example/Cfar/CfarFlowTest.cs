@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Example.Cfar
 {
     [TestClass]
-    public class PaymentFlowTest
+    public class CfarFlowTest
     {
         [TestMethod]
         public async Task Test()
