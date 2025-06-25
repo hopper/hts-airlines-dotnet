@@ -7,19 +7,20 @@ using Microsoft.Extensions.Logging;
 using Com.Hopper.Hts.Airlines.Api;
 using Com.Hopper.Hts.Airlines.Model;
 using System.Text.Json;
+using System.Text;
 using System.Net.Http.Headers;
-
+using System.Threading;
 namespace Com.Hopper.Hts.Airlines.Client
 {
     /// <summary>
     /// Provides OAuth bearer tokens using client credentials flow.
     /// </summary>
-    public class HopperAuthProvider: TokenProvider<BearerToken>
+    public class HopperAuthProvider : TokenProvider<BearerToken>
     {
         internal HopperCredentials Credentials;
         internal ILogger<object> _logger;
-        internal IAuthenticationApi _api;
         internal JsonSerializerOptions _jsonSerializerOptions;
+        internal Tuple<AuthResponse, DateTime> tokenExpiration;
 
         /// <summary>
         /// Instantiates a OAuthProvider. Tokens can be refreshed periodically.
@@ -34,33 +35,35 @@ namespace Com.Hopper.Hts.Airlines.Client
 
         internal async ValueTask<AuthResponse> RetrieveNewToken(System.Threading.CancellationToken cancellation = default)
         {
-            var client = new HttpClient();
-
-            var authRequest = new AuthRequest(clientId: Credentials.ClientId, clientSecret: Credentials.ClientSecret);
-
-            using var req = new HttpRequestMessage(HttpMethod.Post, Credentials.Address);
-            req.Content = new StringContent(JsonSerializer.Serialize(authRequest, options: null));
-            var accepts = ClientUtils.SelectHeaderAccept(new string[] { "application/json" });
-            req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: accepts));
-
-            try
+            if (tokenExpiration == default || tokenExpiration.Item2 < DateTime.UtcNow)
             {
-                using var raw = await client.SendAsync(req, cancellation);
-                string message = await raw.Content.ReadAsStringAsync(cancellation).ConfigureAwait(false);
-                AuthenticationApi.PostAuthApiResponse resp = new(logger: null, httpRequestMessage: req, raw, message, "", default, _jsonSerializerOptions);
+                var client = new HttpClient();
 
-                var response = resp.Created() ?? throw new Exception("Failed to create token");
+                var authRequest = new AuthRequest(clientId: Credentials.ClientId, clientSecret: Credentials.ClientSecret);
 
-                _logger.LogInformation("Obtained new token");
-
-                return response;
+                using var req = new HttpRequestMessage(HttpMethod.Post, Credentials.Address);
+                req.Content = new StringContent(JsonSerializer.Serialize(authRequest, options: null));
+                var accepts = ClientUtils.SelectHeaderAccept(new string[] { "application/json" });
+                req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: accepts));
+                try
+                {
+                    using var raw = await client.SendAsync(req, cancellation);
+                    string message = await raw.Content.ReadAsStringAsync(cancellation).ConfigureAwait(false);
+                    AuthenticationApi.PostAuthApiResponse resp = new(logger: null, httpRequestMessage: req, raw, message, "", default, _jsonSerializerOptions);
+                    _logger.LogInformation("raw {raw}",raw);
+                    _logger.LogInformation("resp {resp}",resp);
+                    var response = resp.Created() ?? throw new Exception("Failed to create token");
+                    // To avoid an authentication error during a flow, we take a one-hour margin on the token's expiration.
+                    tokenExpiration = new Tuple<AuthResponse, DateTime>(response, DateTime.UtcNow.AddSeconds(response.ExpiresIn - 3600));
+                    _logger.LogInformation("Obtained new token");
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, "Failed to obtain token");
+                    throw;
+                }
             }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to obtain token");
-                throw;
-            }
-            
+            return tokenExpiration.Item1;
         }
 
         internal override async ValueTask<BearerToken> GetAsync(string header = "", System.Threading.CancellationToken cancellation = default)
