@@ -12,7 +12,7 @@
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>Com.Hopper.Hts.Airlines</RootNamespace>
-    <Version>0.1.11</Version>
+    <Version>0.1.12</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Com.Hopper.Hts.Airlines.xml</DocumentationFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>

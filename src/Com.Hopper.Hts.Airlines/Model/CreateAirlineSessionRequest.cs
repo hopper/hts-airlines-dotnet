@@ -36,15 +36,17 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="pointOfSale">An ISO 3166-1-alpha-2 country code; the point of sale of the user</param>
         /// <param name="language">A ISO_639-1 country code; the language associated with the user</param>
         /// <param name="userInfo">userInfo</param>
+        /// <param name="sessionId">The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.</param>
         /// <param name="device">device</param>
         /// <param name="product">product</param>
         [JsonConstructor]
-        public CreateAirlineSessionRequest(FlowType flowType, string pointOfSale, string language, Option<UserInfo?> userInfo = default, Option<Device?> device = default, Option<Product?> product = default)
+        public CreateAirlineSessionRequest(FlowType flowType, string pointOfSale, string language, Option<UserInfo?> userInfo = default, Option<string?> sessionId = default, Option<Device?> device = default, Option<Product?> product = default)
         {
             FlowType = flowType;
             PointOfSale = pointOfSale;
             Language = language;
             UserInfoOption = userInfo;
+            SessionIdOption = sessionId;
             DeviceOption = device;
             ProductOption = product;
             OnCreated();
@@ -101,6 +103,21 @@ namespace Com.Hopper.Hts.Airlines.Model
         public UserInfo? UserInfo { get { return this.UserInfoOption; } set { this.UserInfoOption = new Option<UserInfo?>(value); } }
 
         /// <summary>
+        /// Used to track the state of SessionId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> SessionIdOption { get; private set; }
+
+        /// <summary>
+        /// The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.
+        /// </summary>
+        /// <value>The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.</value>
+        /* <example>d93dd7c9-39c0-499d-903b-d837282231c7</example> */
+        [JsonPropertyName("session_id")]
+        public string? SessionId { get { return this.SessionIdOption; } set { this.SessionIdOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Used to track the state of Device
         /// </summary>
         [JsonIgnore]
@@ -125,6 +142,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  PointOfSale: ").Append(PointOfSale).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  UserInfo: ").Append(UserInfo).Append("\n");
+            sb.Append("  SessionId: ").Append(SessionId).Append("\n");
             sb.Append("  Device: ").Append(Device).Append("\n");
             sb.Append("  Product: ").Append(Product).Append("\n");
             sb.Append("}\n");
@@ -158,6 +176,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<string?> pointOfSale = default;
             Option<string?> language = default;
             Option<UserInfo?> userInfo = default;
+            Option<string?> sessionId = default;
             Option<Device?> device = default;
             Option<Product?> product = default;
 
@@ -190,6 +209,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                         case "user_info":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 userInfo = new Option<UserInfo?>(JsonSerializer.Deserialize<UserInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "session_id":
+                            sessionId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "device":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
@@ -227,13 +249,16 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (userInfo.IsSet && userInfo.Value == null)
                 throw new ArgumentNullException(nameof(userInfo), "Property is not nullable for class CreateAirlineSessionRequest.");
 
+            if (sessionId.IsSet && sessionId.Value == null)
+                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class CreateAirlineSessionRequest.");
+
             if (device.IsSet && device.Value == null)
                 throw new ArgumentNullException(nameof(device), "Property is not nullable for class CreateAirlineSessionRequest.");
 
             if (product.IsSet && product.Value == null)
                 throw new ArgumentNullException(nameof(product), "Property is not nullable for class CreateAirlineSessionRequest.");
 
-            return new CreateAirlineSessionRequest(flowType.Value!.Value!, pointOfSale.Value!, language.Value!, userInfo, device, product);
+            return new CreateAirlineSessionRequest(flowType.Value!.Value!, pointOfSale.Value!, language.Value!, userInfo, sessionId, device, product);
         }
 
         /// <summary>
@@ -269,6 +294,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (createAirlineSessionRequest.UserInfoOption.IsSet && createAirlineSessionRequest.UserInfo == null)
                 throw new ArgumentNullException(nameof(createAirlineSessionRequest.UserInfo), "Property is required for class CreateAirlineSessionRequest.");
 
+            if (createAirlineSessionRequest.SessionIdOption.IsSet && createAirlineSessionRequest.SessionId == null)
+                throw new ArgumentNullException(nameof(createAirlineSessionRequest.SessionId), "Property is required for class CreateAirlineSessionRequest.");
+
             if (createAirlineSessionRequest.DeviceOption.IsSet && createAirlineSessionRequest.Device == null)
                 throw new ArgumentNullException(nameof(createAirlineSessionRequest.Device), "Property is required for class CreateAirlineSessionRequest.");
 
@@ -284,6 +312,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                 writer.WritePropertyName("user_info");
                 JsonSerializer.Serialize(writer, createAirlineSessionRequest.UserInfo, jsonSerializerOptions);
             }
+            if (createAirlineSessionRequest.SessionIdOption.IsSet)
+                writer.WriteString("session_id", createAirlineSessionRequest.SessionId);
+
             if (createAirlineSessionRequest.DeviceOption.IsSet)
             {
                 writer.WritePropertyName("device");

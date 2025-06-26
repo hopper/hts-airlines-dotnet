@@ -42,10 +42,12 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Events can also be sent directly from a frontend running on end customer&#39;s device using the session ID
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="cfarEvent"></param>
+        /// <param name="hCPartnerID">The ID of the current partner, see [Partner](#tag/Partner) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPostCustomerEventsApiResponse"/>&gt;</returns>
-        Task<IPostCustomerEventsApiResponse> PostCustomerEventsAsync(CfarEvent cfarEvent, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPostCustomerEventsApiResponse> PostCustomerEventsAsync(string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Send a Frontend Event
@@ -53,10 +55,12 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <remarks>
         /// Events can also be sent directly from a frontend running on end customer&#39;s device using the session ID
         /// </remarks>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="cfarEvent"></param>
+        /// <param name="hCPartnerID">The ID of the current partner, see [Partner](#tag/Partner) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPostCustomerEventsApiResponse"/>?&gt;</returns>
-        Task<IPostCustomerEventsApiResponse?> PostCustomerEventsOrDefaultAsync(CfarEvent cfarEvent, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPostCustomerEventsApiResponse?> PostCustomerEventsOrDefaultAsync(string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Send a Backend Event
@@ -100,12 +104,6 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// </summary>
         /// <returns></returns>
         bool IsBadRequest { get; }
-
-        /// <summary>
-        /// Returns true if the response is 401 Unauthorized
-        /// </summary>
-        /// <returns></returns>
-        bool IsUnauthorized { get; }
 
         /// <summary>
         /// Returns true if the response is 403 Forbidden
@@ -274,28 +272,38 @@ namespace Com.Hopper.Hts.Airlines.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatPostCustomerEvents(CfarEvent cfarEvent);
+        partial void FormatPostCustomerEvents(ref string hCSessionID, CfarEvent cfarEvent, ref Option<string> hCPartnerID);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
+        /// <param name="hCSessionID"></param>
         /// <param name="cfarEvent"></param>
+        /// <param name="hCPartnerID"></param>
         /// <returns></returns>
-        private void ValidatePostCustomerEvents(CfarEvent cfarEvent)
+        private void ValidatePostCustomerEvents(string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID)
         {
+            if (hCSessionID == null)
+                throw new ArgumentNullException(nameof(hCSessionID));
+
             if (cfarEvent == null)
                 throw new ArgumentNullException(nameof(cfarEvent));
+
+            if (hCPartnerID.IsSet && hCPartnerID.Value == null)
+                throw new ArgumentNullException(nameof(hCPartnerID));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
+        /// <param name="hCSessionID"></param>
         /// <param name="cfarEvent"></param>
-        private void AfterPostCustomerEventsDefaultImplementation(IPostCustomerEventsApiResponse apiResponseLocalVar, CfarEvent cfarEvent)
+        /// <param name="hCPartnerID"></param>
+        private void AfterPostCustomerEventsDefaultImplementation(IPostCustomerEventsApiResponse apiResponseLocalVar, string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID)
         {
             bool suppressDefaultLog = false;
-            AfterPostCustomerEvents(ref suppressDefaultLog, apiResponseLocalVar, cfarEvent);
+            AfterPostCustomerEvents(ref suppressDefaultLog, apiResponseLocalVar, hCSessionID, cfarEvent, hCPartnerID);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -305,8 +313,10 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
+        /// <param name="hCSessionID"></param>
         /// <param name="cfarEvent"></param>
-        partial void AfterPostCustomerEvents(ref bool suppressDefaultLog, IPostCustomerEventsApiResponse apiResponseLocalVar, CfarEvent cfarEvent);
+        /// <param name="hCPartnerID"></param>
+        partial void AfterPostCustomerEvents(ref bool suppressDefaultLog, IPostCustomerEventsApiResponse apiResponseLocalVar, string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -314,11 +324,13 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
+        /// <param name="hCSessionID"></param>
         /// <param name="cfarEvent"></param>
-        private void OnErrorPostCustomerEventsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CfarEvent cfarEvent)
+        /// <param name="hCPartnerID"></param>
+        private void OnErrorPostCustomerEventsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorPostCustomerEvents(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, cfarEvent);
+            OnErrorPostCustomerEvents(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, hCSessionID, cfarEvent, hCPartnerID);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -330,20 +342,24 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
+        /// <param name="hCSessionID"></param>
         /// <param name="cfarEvent"></param>
-        partial void OnErrorPostCustomerEvents(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CfarEvent cfarEvent);
+        /// <param name="hCPartnerID"></param>
+        partial void OnErrorPostCustomerEvents(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID);
 
         /// <summary>
         /// Send a Frontend Event Events can also be sent directly from a frontend running on end customer&#39;s device using the session ID
         /// </summary>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="cfarEvent"></param>
+        /// <param name="hCPartnerID">The ID of the current partner, see [Partner](#tag/Partner) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPostCustomerEventsApiResponse"/>&gt;</returns>
-        public async Task<IPostCustomerEventsApiResponse?> PostCustomerEventsOrDefaultAsync(CfarEvent cfarEvent, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPostCustomerEventsApiResponse?> PostCustomerEventsOrDefaultAsync(string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await PostCustomerEventsAsync(cfarEvent, cancellationToken).ConfigureAwait(false);
+                return await PostCustomerEventsAsync(hCSessionID, cfarEvent, hCPartnerID, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -355,18 +371,20 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Send a Frontend Event Events can also be sent directly from a frontend running on end customer&#39;s device using the session ID
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="cfarEvent"></param>
+        /// <param name="hCPartnerID">The ID of the current partner, see [Partner](#tag/Partner) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPostCustomerEventsApiResponse"/>&gt;</returns>
-        public async Task<IPostCustomerEventsApiResponse> PostCustomerEventsAsync(CfarEvent cfarEvent, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPostCustomerEventsApiResponse> PostCustomerEventsAsync(string hCSessionID, CfarEvent cfarEvent, Option<string> hCPartnerID = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidatePostCustomerEvents(cfarEvent);
+                ValidatePostCustomerEvents(hCSessionID, cfarEvent, hCPartnerID);
 
-                FormatPostCustomerEvents(cfarEvent);
+                FormatPostCustomerEvents(ref hCSessionID, cfarEvent, ref hCPartnerID);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -375,14 +393,14 @@ namespace Com.Hopper.Hts.Airlines.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/customer/events";
 
+                    httpRequestMessageLocalVar.Headers.Add("HC-Session-ID", ClientUtils.ParameterToString(hCSessionID));
+
+                    if (hCPartnerID.IsSet)
+                        httpRequestMessageLocalVar.Headers.Add("HC-Partner-ID", ClientUtils.ParameterToString(hCPartnerID.Value));
+
                     httpRequestMessageLocalVar.Content = (cfarEvent as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
                         : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(cfarEvent, _jsonSerializerOptions));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("HC-Session-ID", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
@@ -416,13 +434,9 @@ namespace Com.Hopper.Hts.Airlines.Api
 
                         PostCustomerEventsApiResponse apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/customer/events", requestedAtLocalVar, _jsonSerializerOptions);
 
-                        AfterPostCustomerEventsDefaultImplementation(apiResponseLocalVar, cfarEvent);
+                        AfterPostCustomerEventsDefaultImplementation(apiResponseLocalVar, hCSessionID, cfarEvent, hCPartnerID);
 
                         Events.ExecuteOnPostCustomerEvents(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
 
                         return apiResponseLocalVar;
                     }
@@ -430,7 +444,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             }
             catch(Exception e)
             {
-                OnErrorPostCustomerEventsDefaultImplementation(e, "/customer/events", uriBuilderLocalVar.Path, cfarEvent);
+                OnErrorPostCustomerEventsDefaultImplementation(e, "/customer/events", uriBuilderLocalVar.Path, hCSessionID, cfarEvent, hCPartnerID);
                 Events.ExecuteOnErrorPostCustomerEvents(e);
                 throw;
             }
@@ -507,12 +521,6 @@ namespace Com.Hopper.Hts.Airlines.Api
 
                 return result != null;
             }
-
-            /// <summary>
-            /// Returns true if the response is 401 Unauthorized
-            /// </summary>
-            /// <returns></returns>
-            public bool IsUnauthorized => 401 == (int)StatusCode;
 
             /// <summary>
             /// Returns true if the response is 403 Forbidden

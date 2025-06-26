@@ -36,13 +36,15 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="language">A ISO_639-1 country code; the language associated with the user</param>
         /// <param name="userInfo">userInfo</param>
         /// <param name="device">device</param>
+        /// <param name="sessionId">The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.</param>
         [JsonConstructor]
-        public CreateAirlineCfarSessionRequest(string pointOfSale, string language, Option<UserInfo?> userInfo = default, Option<Device?> device = default)
+        public CreateAirlineCfarSessionRequest(string pointOfSale, string language, Option<UserInfo?> userInfo = default, Option<Device?> device = default, Option<string?> sessionId = default)
         {
             PointOfSale = pointOfSale;
             Language = language;
             UserInfoOption = userInfo;
             DeviceOption = device;
+            SessionIdOption = sessionId;
             OnCreated();
         }
 
@@ -91,6 +93,21 @@ namespace Com.Hopper.Hts.Airlines.Model
         public Device? Device { get { return this.DeviceOption; } set { this.DeviceOption = new Option<Device?>(value); } }
 
         /// <summary>
+        /// Used to track the state of SessionId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> SessionIdOption { get; private set; }
+
+        /// <summary>
+        /// The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.
+        /// </summary>
+        /// <value>The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.</value>
+        /* <example>d93dd7c9-39c0-499d-903b-d837282231c7</example> */
+        [JsonPropertyName("session_id")]
+        public string? SessionId { get { return this.SessionIdOption; } set { this.SessionIdOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -102,6 +119,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  UserInfo: ").Append(UserInfo).Append("\n");
             sb.Append("  Device: ").Append(Device).Append("\n");
+            sb.Append("  SessionId: ").Append(SessionId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -133,6 +151,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<string?> language = default;
             Option<UserInfo?> userInfo = default;
             Option<Device?> device = default;
+            Option<string?> sessionId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -163,6 +182,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 device = new Option<Device?>(JsonSerializer.Deserialize<Device>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "session_id":
+                            sessionId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -187,7 +209,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (device.IsSet && device.Value == null)
                 throw new ArgumentNullException(nameof(device), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
 
-            return new CreateAirlineCfarSessionRequest(pointOfSale.Value!, language.Value!, userInfo, device);
+            if (sessionId.IsSet && sessionId.Value == null)
+                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
+
+            return new CreateAirlineCfarSessionRequest(pointOfSale.Value!, language.Value!, userInfo, device, sessionId);
         }
 
         /// <summary>
@@ -226,6 +251,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (createAirlineCfarSessionRequest.DeviceOption.IsSet && createAirlineCfarSessionRequest.Device == null)
                 throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.Device), "Property is required for class CreateAirlineCfarSessionRequest.");
 
+            if (createAirlineCfarSessionRequest.SessionIdOption.IsSet && createAirlineCfarSessionRequest.SessionId == null)
+                throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.SessionId), "Property is required for class CreateAirlineCfarSessionRequest.");
+
             writer.WriteString("point_of_sale", createAirlineCfarSessionRequest.PointOfSale);
 
             writer.WriteString("language", createAirlineCfarSessionRequest.Language);
@@ -240,6 +268,8 @@ namespace Com.Hopper.Hts.Airlines.Model
                 writer.WritePropertyName("device");
                 JsonSerializer.Serialize(writer, createAirlineCfarSessionRequest.Device, jsonSerializerOptions);
             }
+            if (createAirlineCfarSessionRequest.SessionIdOption.IsSet)
+                writer.WriteString("session_id", createAirlineCfarSessionRequest.SessionId);
         }
     }
 }
