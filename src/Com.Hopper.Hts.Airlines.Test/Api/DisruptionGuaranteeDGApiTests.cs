@@ -69,7 +69,8 @@ namespace Com.Hopper.Hts.Airlines.Test.Api
         public async Task PostCustomerDgEventsAsyncTest()
         {
             DgEvent dgEvent = default!;
-            await _instance.PostCustomerDgEventsAsync(dgEvent);
+            string hCSessionID = default!;
+            await _instance.PostCustomerDgEventsAsync(hCSessionID,dgEvent);
         }
 
         /// <summary>

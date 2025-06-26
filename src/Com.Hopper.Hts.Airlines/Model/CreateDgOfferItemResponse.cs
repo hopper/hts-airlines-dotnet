@@ -48,9 +48,11 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="extAttributes">extAttributes</param>
         /// <param name="contents">contents</param>
         /// <param name="taxes">List of applicable taxes</param>
+        /// <param name="termsConditionsUrl">The terms and conditions for this offer</param>
+        /// <param name="faqUrl">The faq url for this offer</param>
         /// <param name="merchandisingUrl">The url for rendering offer merchandising</param>
         [JsonConstructor]
-        public CreateDgOfferItemResponse(string id, string premium, string coverage, string coveragePercentage, string serviceCap, string currency, string taxesTotal, DgRequestType requestType, long maxHoursBeforeDeparture, long minMinutesDelay, DateTime createdDateTime, DateTime contractExpiryDateTime, DgItinerary itinerary, Dictionary<string, string> extAttributes, Dictionary<string, DgContents> contents, Option<List<DgTax>?> taxes = default, Option<string?> merchandisingUrl = default)
+        public CreateDgOfferItemResponse(string id, string premium, string coverage, string coveragePercentage, string serviceCap, string currency, string taxesTotal, DgRequestType requestType, long maxHoursBeforeDeparture, long minMinutesDelay, DateTime createdDateTime, DateTime contractExpiryDateTime, DgItinerary itinerary, Dictionary<string, string> extAttributes, Dictionary<string, DgContents> contents, Option<List<DgTax>?> taxes = default, Option<string?> termsConditionsUrl = default, Option<string?> faqUrl = default, Option<string?> merchandisingUrl = default)
         {
             Id = id;
             Premium = premium;
@@ -68,6 +70,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             ExtAttributes = extAttributes;
             Contents = contents;
             TaxesOption = taxes;
+            TermsConditionsUrlOption = termsConditionsUrl;
+            FaqUrlOption = faqUrl;
             MerchandisingUrlOption = merchandisingUrl;
             OnCreated();
         }
@@ -200,6 +204,34 @@ namespace Com.Hopper.Hts.Airlines.Model
         public List<DgTax>? Taxes { get { return this.TaxesOption; } set { this.TaxesOption = new Option<List<DgTax>?>(value); } }
 
         /// <summary>
+        /// Used to track the state of TermsConditionsUrl
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> TermsConditionsUrlOption { get; private set; }
+
+        /// <summary>
+        /// The terms and conditions for this offer
+        /// </summary>
+        /// <value>The terms and conditions for this offer</value>
+        [JsonPropertyName("terms_conditions_url")]
+        public string? TermsConditionsUrl { get { return this.TermsConditionsUrlOption; } set { this.TermsConditionsUrlOption = new Option<string?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of FaqUrl
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> FaqUrlOption { get; private set; }
+
+        /// <summary>
+        /// The faq url for this offer
+        /// </summary>
+        /// <value>The faq url for this offer</value>
+        [JsonPropertyName("faq_url")]
+        public string? FaqUrl { get { return this.FaqUrlOption; } set { this.FaqUrlOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Used to track the state of MerchandisingUrl
         /// </summary>
         [JsonIgnore]
@@ -237,6 +269,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  ExtAttributes: ").Append(ExtAttributes).Append("\n");
             sb.Append("  Contents: ").Append(Contents).Append("\n");
             sb.Append("  Taxes: ").Append(Taxes).Append("\n");
+            sb.Append("  TermsConditionsUrl: ").Append(TermsConditionsUrl).Append("\n");
+            sb.Append("  FaqUrl: ").Append(FaqUrl).Append("\n");
             sb.Append("  MerchandisingUrl: ").Append(MerchandisingUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -291,6 +325,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<Dictionary<string, string>?> extAttributes = default;
             Option<Dictionary<string, DgContents>?> contents = default;
             Option<List<DgTax>?> taxes = default;
+            Option<string?> termsConditionsUrl = default;
+            Option<string?> faqUrl = default;
             Option<string?> merchandisingUrl = default;
 
             while (utf8JsonReader.Read())
@@ -365,6 +401,12 @@ namespace Com.Hopper.Hts.Airlines.Model
                         case "taxes":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 taxes = new Option<List<DgTax>?>(JsonSerializer.Deserialize<List<DgTax>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "terms_conditions_url":
+                            termsConditionsUrl = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "faq_url":
+                            faqUrl = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "merchandising_url":
                             merchandisingUrl = new Option<string?>(utf8JsonReader.GetString()!);
@@ -468,10 +510,16 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (taxes.IsSet && taxes.Value == null)
                 throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class CreateDgOfferItemResponse.");
 
+            if (termsConditionsUrl.IsSet && termsConditionsUrl.Value == null)
+                throw new ArgumentNullException(nameof(termsConditionsUrl), "Property is not nullable for class CreateDgOfferItemResponse.");
+
+            if (faqUrl.IsSet && faqUrl.Value == null)
+                throw new ArgumentNullException(nameof(faqUrl), "Property is not nullable for class CreateDgOfferItemResponse.");
+
             if (merchandisingUrl.IsSet && merchandisingUrl.Value == null)
                 throw new ArgumentNullException(nameof(merchandisingUrl), "Property is not nullable for class CreateDgOfferItemResponse.");
 
-            return new CreateDgOfferItemResponse(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, createdDateTime.Value!.Value!, contractExpiryDateTime.Value!.Value!, itinerary.Value!, extAttributes.Value!, contents.Value!, taxes, merchandisingUrl);
+            return new CreateDgOfferItemResponse(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, createdDateTime.Value!.Value!, contractExpiryDateTime.Value!.Value!, itinerary.Value!, extAttributes.Value!, contents.Value!, taxes, termsConditionsUrl, faqUrl, merchandisingUrl);
         }
 
         /// <summary>
@@ -531,6 +579,12 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (createDgOfferItemResponse.TaxesOption.IsSet && createDgOfferItemResponse.Taxes == null)
                 throw new ArgumentNullException(nameof(createDgOfferItemResponse.Taxes), "Property is required for class CreateDgOfferItemResponse.");
 
+            if (createDgOfferItemResponse.TermsConditionsUrlOption.IsSet && createDgOfferItemResponse.TermsConditionsUrl == null)
+                throw new ArgumentNullException(nameof(createDgOfferItemResponse.TermsConditionsUrl), "Property is required for class CreateDgOfferItemResponse.");
+
+            if (createDgOfferItemResponse.FaqUrlOption.IsSet && createDgOfferItemResponse.FaqUrl == null)
+                throw new ArgumentNullException(nameof(createDgOfferItemResponse.FaqUrl), "Property is required for class CreateDgOfferItemResponse.");
+
             if (createDgOfferItemResponse.MerchandisingUrlOption.IsSet && createDgOfferItemResponse.MerchandisingUrl == null)
                 throw new ArgumentNullException(nameof(createDgOfferItemResponse.MerchandisingUrl), "Property is required for class CreateDgOfferItemResponse.");
 
@@ -570,6 +624,12 @@ namespace Com.Hopper.Hts.Airlines.Model
                 writer.WritePropertyName("taxes");
                 JsonSerializer.Serialize(writer, createDgOfferItemResponse.Taxes, jsonSerializerOptions);
             }
+            if (createDgOfferItemResponse.TermsConditionsUrlOption.IsSet)
+                writer.WriteString("terms_conditions_url", createDgOfferItemResponse.TermsConditionsUrl);
+
+            if (createDgOfferItemResponse.FaqUrlOption.IsSet)
+                writer.WriteString("faq_url", createDgOfferItemResponse.FaqUrl);
+
             if (createDgOfferItemResponse.MerchandisingUrlOption.IsSet)
                 writer.WriteString("merchandising_url", createDgOfferItemResponse.MerchandisingUrl);
         }

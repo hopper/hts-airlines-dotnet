@@ -196,6 +196,25 @@ paths:
       description: Events can also be sent directly from a frontend running on end
         customer's device using the session ID
       operationId: postCustomerEvents
+      parameters:
+      - description: "The ID of the current airline session, see [Sessions](#tag/Sessions)"
+        example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+        explode: false
+        in: header
+        name: HC-Session-ID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The ID of the current partner, see [Partner](#tag/Partner)"
+        example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+        explode: false
+        in: header
+        name: HC-Partner-ID
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -224,8 +243,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/bad_request'
           description: Syntactic errors were encountered while handling the request
-        "401":
-          description: The client could not be authenticated
         "403":
           description: The authenticated client does not have permission to call this
             endpoint
@@ -237,9 +254,6 @@ paths:
           description: Semantic errors were encountered while handling the request
         "500":
           description: The server encountered an internal error
-      security:
-      - {}
-      - SessionAuth: []
       summary: Send a Frontend Event
       tags:
       - Analytics
@@ -1184,7 +1198,6 @@ paths:
           description: The server encountered an internal error
       security:
       - PartnerAuth: []
-        SessionAuth: []
         apiKeyAuth: []
       summary: Get a DG contract
       tags:
@@ -1546,6 +1559,25 @@ paths:
     post:
       description: Create a new event for analytics
       operationId: postCustomerDgEvents
+      parameters:
+      - description: "The ID of the current airline session, see [Sessions](#tag/Sessions)"
+        example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+        explode: false
+        in: header
+        name: HC-Session-ID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The ID of the current partner, see [Partner](#tag/Partner)"
+        example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+        explode: false
+        in: header
+        name: HC-Partner-ID
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1574,8 +1606,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/bad_request'
           description: Syntactic errors were encountered while handling the request
-        "401":
-          description: The client could not be authenticated
         "403":
           description: The authenticated client does not have permission to call this
             endpoint
@@ -1587,9 +1617,6 @@ paths:
           description: Semantic errors were encountered while handling the request
         "500":
           description: The server encountered an internal error
-      security:
-      - {}
-      - SessionAuth: []
       summary: Create an Event
       tags:
       - Disruption Guarantee (DG)
@@ -1788,6 +1815,12 @@ components:
              the date and time at which an event occurred on a client device
           example: 2022-01-24T15:34:30Z
           format: date-time
+          type: string
+        cfar_contract_id:
+          description: "The purchased CFAR contract, if one is present"
+          type: string
+        dg_contract_id:
+          description: "The purchased DG contract, if one is present"
           type: string
         type:
           type: string
@@ -4481,6 +4514,11 @@ components:
           $ref: '#/components/schemas/user_info'
         device:
           $ref: '#/components/schemas/device'
+        session_id:
+          description: "The custom identifier for the customer's session. If omitted,\
+            \ a new session ID will be generated."
+          example: d93dd7c9-39c0-499d-903b-d837282231c7
+          type: string
         point_of_sale:
           description: An ISO 3166-1-alpha-2 country code; the point of sale of the
             user
@@ -4503,6 +4541,11 @@ components:
           $ref: '#/components/schemas/user_info'
         device:
           $ref: '#/components/schemas/device'
+        session_id:
+          description: "The custom identifier for the customer's session. If omitted,\
+            \ a new session ID will be generated."
+          example: d93dd7c9-39c0-499d-903b-d837282231c7
+          type: string
         point_of_sale:
           description: An ISO 3166-1-alpha-2 country code; the point of sale of the
             user
@@ -4524,6 +4567,11 @@ components:
           $ref: '#/components/schemas/flow_type'
         user_info:
           $ref: '#/components/schemas/user_info'
+        session_id:
+          description: "The custom identifier for the customer's session. If omitted,\
+            \ a new session ID will be generated."
+          example: d93dd7c9-39c0-499d-903b-d837282231c7
+          type: string
         device:
           $ref: '#/components/schemas/device'
         point_of_sale:
@@ -4748,6 +4796,7 @@ components:
       example:
         coverage: "400.00"
         taxes_total: "20.00"
+        faq_url: faq_url
         ext_attributes:
           key: ext_attributes
         request_type: post_booking
@@ -4907,6 +4956,7 @@ components:
               code: RC
               currency: CAD
         created_date_time: 2020-11-02T18:34:30Z
+        terms_conditions_url: terms_conditions_url
         premium: "40.80"
         contents:
           key:
@@ -5003,6 +5053,12 @@ components:
             $ref: '#/components/schemas/dg_contents'
           title: map_dg_contents
           type: object
+        terms_conditions_url:
+          description: The terms and conditions for this offer
+          type: string
+        faq_url:
+          description: The faq url for this offer
+          type: string
         merchandising_url:
           description: The url for rendering offer merchandising
           type: string
@@ -5159,6 +5215,7 @@ components:
         offers:
         - coverage: "180.60"
           taxes_total: "20.00"
+          faq_url: faq_url
           ext_attributes:
             key: ext_attributes
           request_type: post_booking
@@ -5318,6 +5375,7 @@ components:
                 code: RC
                 currency: CAD
           created_date_time: 2020-11-02T18:34:30Z
+          terms_conditions_url: terms_conditions_url
           premium: "20.80"
           contents:
             key:
@@ -5335,6 +5393,7 @@ components:
           merchandising_url: merchandising_url
         - coverage: "180.60"
           taxes_total: "20.00"
+          faq_url: faq_url
           ext_attributes:
             key: ext_attributes
           request_type: post_booking
@@ -5494,6 +5553,7 @@ components:
                 code: RC
                 currency: CAD
           created_date_time: 2020-11-02T18:34:30Z
+          terms_conditions_url: terms_conditions_url
           premium: "20.80"
           contents:
             key:
@@ -6238,6 +6298,7 @@ components:
       example:
         coverage: "180.60"
         taxes_total: "20.00"
+        faq_url: faq_url
         ext_attributes:
           key: ext_attributes
         request_type: post_booking
@@ -6397,6 +6458,7 @@ components:
               code: RC
               currency: CAD
         created_date_time: 2020-11-02T18:34:30Z
+        terms_conditions_url: terms_conditions_url
         premium: "20.80"
         contents:
           key:
@@ -6496,6 +6558,12 @@ components:
             $ref: '#/components/schemas/dg_contents'
           title: map_dg_contents
           type: object
+        terms_conditions_url:
+          description: The terms and conditions for this offer
+          type: string
+        faq_url:
+          description: The faq url for this offer
+          type: string
         merchandising_url:
           description: The url for rendering offer merchandising
           type: string

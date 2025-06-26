@@ -50,8 +50,6 @@ namespace Com.Hopper.Hts.Airlines.Client
                     using var raw = await client.SendAsync(req, cancellation);
                     string message = await raw.Content.ReadAsStringAsync(cancellation).ConfigureAwait(false);
                     AuthenticationApi.PostAuthApiResponse resp = new(logger: null, httpRequestMessage: req, raw, message, "", default, _jsonSerializerOptions);
-                    _logger.LogInformation("raw {raw}",raw);
-                    _logger.LogInformation("resp {resp}",resp);
                     var response = resp.Created() ?? throw new Exception("Failed to create token");
                     // To avoid an authentication error during a flow, we take a one-hour margin on the token's expiration.
                     tokenExpiration = new Tuple<AuthResponse, DateTime>(response, DateTime.UtcNow.AddSeconds(response.ExpiresIn - 3600));

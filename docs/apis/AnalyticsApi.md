@@ -9,7 +9,7 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
 <a id="postcustomerevents"></a>
 # **PostCustomerEvents**
-> void PostCustomerEvents (CfarEvent cfarEvent)
+> void PostCustomerEvents (string hCSessionID, CfarEvent cfarEvent, string hCPartnerID = null)
 
 Send a Frontend Event
 
@@ -31,18 +31,15 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            // Configure API key authorization: SessionAuth
-            config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
-
             var apiInstance = new AnalyticsApi(config);
+            var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions)
             var cfarEvent = new CfarEvent(); // CfarEvent | 
+            var hCPartnerID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current partner, see [Partner](#tag/Partner) (optional) 
 
             try
             {
                 // Send a Frontend Event
-                apiInstance.PostCustomerEvents(cfarEvent);
+                apiInstance.PostCustomerEvents(hCSessionID, cfarEvent, hCPartnerID);
             }
             catch (ApiException  e)
             {
@@ -62,7 +59,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Send a Frontend Event
-    apiInstance.PostCustomerEventsWithHttpInfo(cfarEvent);
+    apiInstance.PostCustomerEventsWithHttpInfo(hCSessionID, cfarEvent, hCPartnerID);
 }
 catch (ApiException e)
 {
@@ -76,7 +73,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) |  |
 | **cfarEvent** | [**CfarEvent**](CfarEvent.md) |  |  |
+| **hCPartnerID** | **string** | The ID of the current partner, see [Partner](#tag/Partner) | [optional]  |
 
 ### Return type
 
@@ -84,7 +83,7 @@ void (empty response body)
 
 ### Authorization
 
-[SessionAuth](../README.md#SessionAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -97,7 +96,6 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **201** | The event has been successfully created |  * Expires -  <br>  * Cache-Control -  <br>  |
 | **400** | Syntactic errors were encountered while handling the request |  -  |
-| **401** | The client could not be authenticated |  -  |
 | **403** | The authenticated client does not have permission to call this endpoint |  -  |
 | **422** | Semantic errors were encountered while handling the request |  -  |
 | **500** | The server encountered an internal error |  -  |

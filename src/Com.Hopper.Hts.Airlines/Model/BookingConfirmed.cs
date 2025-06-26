@@ -34,11 +34,15 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// </summary>
         /// <param name="occurredDateTime">A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device</param>
         /// <param name="type">type</param>
+        /// <param name="cfarContractId">The purchased CFAR contract, if one is present</param>
+        /// <param name="dgContractId">The purchased DG contract, if one is present</param>
         [JsonConstructor]
-        public BookingConfirmed(DateTime occurredDateTime, string type)
+        public BookingConfirmed(DateTime occurredDateTime, string type, Option<string?> cfarContractId = default, Option<string?> dgContractId = default)
         {
             OccurredDateTime = occurredDateTime;
             Type = type;
+            CfarContractIdOption = cfarContractId;
+            DgContractIdOption = dgContractId;
             OnCreated();
         }
 
@@ -59,6 +63,34 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string Type { get; set; }
 
         /// <summary>
+        /// Used to track the state of CfarContractId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> CfarContractIdOption { get; private set; }
+
+        /// <summary>
+        /// The purchased CFAR contract, if one is present
+        /// </summary>
+        /// <value>The purchased CFAR contract, if one is present</value>
+        [JsonPropertyName("cfar_contract_id")]
+        public string? CfarContractId { get { return this.CfarContractIdOption; } set { this.CfarContractIdOption = new Option<string?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of DgContractId
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> DgContractIdOption { get; private set; }
+
+        /// <summary>
+        /// The purchased DG contract, if one is present
+        /// </summary>
+        /// <value>The purchased DG contract, if one is present</value>
+        [JsonPropertyName("dg_contract_id")]
+        public string? DgContractId { get { return this.DgContractIdOption; } set { this.DgContractIdOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -68,6 +100,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("class BookingConfirmed {\n");
             sb.Append("  OccurredDateTime: ").Append(OccurredDateTime).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  CfarContractId: ").Append(CfarContractId).Append("\n");
+            sb.Append("  DgContractId: ").Append(DgContractId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,6 +136,8 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             Option<DateTime?> occurredDateTime = default;
             Option<string?> type = default;
+            Option<string?> cfarContractId = default;
+            Option<string?> dgContractId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -125,6 +161,12 @@ namespace Com.Hopper.Hts.Airlines.Model
                         case "type":
                             type = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "cfar_contract_id":
+                            cfarContractId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "dg_contract_id":
+                            dgContractId = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -143,7 +185,13 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class BookingConfirmed.");
 
-            return new BookingConfirmed(occurredDateTime.Value!.Value!, type.Value!);
+            if (cfarContractId.IsSet && cfarContractId.Value == null)
+                throw new ArgumentNullException(nameof(cfarContractId), "Property is not nullable for class BookingConfirmed.");
+
+            if (dgContractId.IsSet && dgContractId.Value == null)
+                throw new ArgumentNullException(nameof(dgContractId), "Property is not nullable for class BookingConfirmed.");
+
+            return new BookingConfirmed(occurredDateTime.Value!.Value!, type.Value!, cfarContractId, dgContractId);
         }
 
         /// <summary>
@@ -173,9 +221,21 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (bookingConfirmed.Type == null)
                 throw new ArgumentNullException(nameof(bookingConfirmed.Type), "Property is required for class BookingConfirmed.");
 
+            if (bookingConfirmed.CfarContractIdOption.IsSet && bookingConfirmed.CfarContractId == null)
+                throw new ArgumentNullException(nameof(bookingConfirmed.CfarContractId), "Property is required for class BookingConfirmed.");
+
+            if (bookingConfirmed.DgContractIdOption.IsSet && bookingConfirmed.DgContractId == null)
+                throw new ArgumentNullException(nameof(bookingConfirmed.DgContractId), "Property is required for class BookingConfirmed.");
+
             writer.WriteString("occurred_date_time", bookingConfirmed.OccurredDateTime.ToString(OccurredDateTimeFormat));
 
             writer.WriteString("type", bookingConfirmed.Type);
+
+            if (bookingConfirmed.CfarContractIdOption.IsSet)
+                writer.WriteString("cfar_contract_id", bookingConfirmed.CfarContractId);
+
+            if (bookingConfirmed.DgContractIdOption.IsSet)
+                writer.WriteString("dg_contract_id", bookingConfirmed.DgContractId);
         }
     }
 }
