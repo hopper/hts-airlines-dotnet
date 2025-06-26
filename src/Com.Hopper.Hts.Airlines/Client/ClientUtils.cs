@@ -166,8 +166,6 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return DgRequestTypeValueConverter.ToJsonValue(dgRequestType);
             if (obj is DgStatus dgStatus)
                 return DgStatusValueConverter.ToJsonValue(dgStatus);
-            if (obj is ExerciseStepResult exerciseStepResult)
-                return ExerciseStepResultValueConverter.ToJsonValue(exerciseStepResult);
             if (obj is FareClass fareClass)
                 return FareClassValueConverter.ToJsonValue(fareClass);
             if (obj is FlightStatus flightStatus)
@@ -188,10 +186,6 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return RequestTypeValueConverter.ToJsonValue(requestType);
             if (obj is TokenType tokenType)
                 return TokenTypeValueConverter.ToJsonValue(tokenType);
-            if (obj is UiSource uiSource)
-                return UiSourceValueConverter.ToJsonValue(uiSource);
-            if (obj is UiVariant uiVariant)
-                return UiVariantValueConverter.ToJsonValue(uiVariant);
             if (obj is ICollection collection)
             {
                 List<string?> entries = new List<string?>();

@@ -63,17 +63,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Api
         }
 
         /// <summary>
-        /// Test PostCustomerDgEvents
-        /// </summary>
-        [Fact (Skip = "not implemented")]
-        public async Task PostCustomerDgEventsAsyncTest()
-        {
-            DgEvent dgEvent = default!;
-            string hCSessionID = default!;
-            await _instance.PostCustomerDgEventsAsync(hCSessionID,dgEvent);
-        }
-
-        /// <summary>
         /// Test PostDgContractExercises
         /// </summary>
         [Fact (Skip = "not implemented")]

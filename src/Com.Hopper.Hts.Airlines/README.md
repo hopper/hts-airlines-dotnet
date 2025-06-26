@@ -62,7 +62,7 @@ namespace YourProject
         {
             var host = CreateHostBuilder(args).Build();
             var api = host.Services.GetRequiredService<IAnalyticsApi>();
-            PostCustomerEventsApiResponse apiResponse = await api.PostCustomerEventsAsync("todo");
+            PostEventsApiResponse apiResponse = await api.PostEventsAsync("todo");
             object model = apiResponse.Ok();
         }
 
@@ -177,7 +177,7 @@ Authentication schemes defined for the API:
 - packageCompany: OpenAPI
 - packageCopyright: No Copyright
 - packageDescription: A library generated from a OpenAPI doc
-- packageGuid: {32CFE147-6D12-4DAB-8326-A023DE66F535}
+- packageGuid: {ED3FB230-15C5-4824-96A4-3359C5954C5D}
 - packageName: Com.Hopper.Hts.Airlines
 - packageTags: 
 - packageTitle: OpenAPI Library

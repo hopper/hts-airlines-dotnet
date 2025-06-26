@@ -5,7 +5,6 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetDgContractsId**](DisruptionGuaranteeDGApi.md#getdgcontractsid) | **GET** /dg_contracts/{id} | Get a DG contract |
-| [**PostCustomerDgEvents**](DisruptionGuaranteeDGApi.md#postcustomerdgevents) | **POST** /customer/dg/events | Create an Event |
 | [**PostDgContractExercises**](DisruptionGuaranteeDGApi.md#postdgcontractexercises) | **POST** /dg_contract_exercises | Create DG Exercise |
 | [**PostDgContracts**](DisruptionGuaranteeDGApi.md#postdgcontracts) | **POST** /dg_contracts | Create a DG Contract |
 | [**PostDgContractsIdPayment**](DisruptionGuaranteeDGApi.md#postdgcontractsidpayment) | **POST** /dg_contracts/{id}/payment | Process DG payment |
@@ -108,101 +107,6 @@ catch (ApiException e)
 | **401** | The client could not be authenticated |  -  |
 | **403** | The authenticated client does not have permission to call this endpoint |  -  |
 | **404** | The requested resource could not be found |  -  |
-| **422** | Semantic errors were encountered while handling the request |  -  |
-| **500** | The server encountered an internal error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="postcustomerdgevents"></a>
-# **PostCustomerDgEvents**
-> void PostCustomerDgEvents (string hCSessionID, DgEvent dgEvent, string hCPartnerID = null)
-
-Create an Event
-
-Create a new event for analytics
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Com.Hopper.Hts.Airlines.Api;
-using Com.Hopper.Hts.Airlines.Client;
-using Com.Hopper.Hts.Airlines.Model;
-
-namespace Example
-{
-    public class PostCustomerDgEventsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
-            var apiInstance = new DisruptionGuaranteeDGApi(config);
-            var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions)
-            var dgEvent = new DgEvent(); // DgEvent | 
-            var hCPartnerID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current partner, see [Partner](#tag/Partner) (optional) 
-
-            try
-            {
-                // Create an Event
-                apiInstance.PostCustomerDgEvents(hCSessionID, dgEvent, hCPartnerID);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DisruptionGuaranteeDGApi.PostCustomerDgEvents: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the PostCustomerDgEventsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Create an Event
-    apiInstance.PostCustomerDgEventsWithHttpInfo(hCSessionID, dgEvent, hCPartnerID);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling DisruptionGuaranteeDGApi.PostCustomerDgEventsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) |  |
-| **dgEvent** | [**DgEvent**](DgEvent.md) |  |  |
-| **hCPartnerID** | **string** | The ID of the current partner, see [Partner](#tag/Partner) | [optional]  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | The event has been successfully created |  * Expires -  <br>  * Cache-Control -  <br>  |
-| **400** | Syntactic errors were encountered while handling the request |  -  |
-| **403** | The authenticated client does not have permission to call this endpoint |  -  |
 | **422** | Semantic errors were encountered while handling the request |  -  |
 | **500** | The server encountered an internal error |  -  |
 

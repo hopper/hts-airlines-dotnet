@@ -51,17 +51,6 @@ namespace Com.Hopper.Hts.Airlines.Test.Api
         }
 
         /// <summary>
-        /// Test PostCustomerEvents
-        /// </summary>
-        [Fact (Skip = "not implemented")]
-        public async Task PostCustomerEventsAsyncTest()
-        {
-            CfarEvent cfarEvent = default!;
-            string hCSessionID = default!;
-            await _instance.PostCustomerEventsAsync(hCSessionID, cfarEvent);
-        }
-
-        /// <summary>
         /// Test PostEvents
         /// </summary>
         [Fact (Skip = "not implemented")]
@@ -69,7 +58,8 @@ namespace Com.Hopper.Hts.Airlines.Test.Api
         {
             string hCSessionID = default!;
             Event varEvent = default!;
-            await _instance.PostEventsAsync(hCSessionID, varEvent);
+            System.Threading.CancellationToken cancellationToken = default!;
+            await _instance.PostEventsAsync(hCSessionID, varEvent, cancellationToken);
         }
     }
 }
