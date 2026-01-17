@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ExtAttributes** | **Dictionary&lt;string, string&gt;** |  | 
 **BookingDateTime** | **DateTime** | A UTC RFC3339 datetime; the date and time at which the booking was made. To be used only with the request type \&quot;post_booking\&quot; | [optional] 
 **Session** | [**CreateAirlineCfarSessionRequest**](CreateAirlineCfarSessionRequest.md) |  | [optional] 
+**EntryPoint** | **string** | Information about product placement on partner&#39;s website | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

@@ -37,7 +37,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="cfarContractId">The purchased CFAR contract, if one is present</param>
         /// <param name="dgContractId">The purchased DG contract, if one is present</param>
         [JsonConstructor]
-        public BookingConfirmed(DateTime occurredDateTime, string type, Option<string?> cfarContractId = default, Option<string?> dgContractId = default)
+        public BookingConfirmed(DateTime occurredDateTime, TypeEnum type, Option<string?> cfarContractId = default, Option<string?> dgContractId = default)
         {
             OccurredDateTime = occurredDateTime;
             Type = type;
@@ -49,18 +49,70 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum BookingConfirmed for value: booking_confirmed
+            /// </summary>
+            BookingConfirmed = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("booking_confirmed"))
+                return TypeEnum.BookingConfirmed;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("booking_confirmed"))
+                return TypeEnum.BookingConfirmed;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.BookingConfirmed)
+                return "booking_confirmed";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Gets or Sets Type
+        /// </summary>
+        [JsonPropertyName("type")]
+        public TypeEnum Type { get; set; }
+
+        /// <summary>
         /// A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device
         /// </summary>
         /// <value>A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device</value>
         /* <example>2022-01-24T15:34:30Z</example> */
         [JsonPropertyName("occurred_date_time")]
         public DateTime OccurredDateTime { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
 
         /// <summary>
         /// Used to track the state of CfarContractId
@@ -135,7 +187,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<DateTime?> occurredDateTime = default;
-            Option<string?> type = default;
+            Option<BookingConfirmed.TypeEnum?> type = default;
             Option<string?> cfarContractId = default;
             Option<string?> dgContractId = default;
 
@@ -159,7 +211,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                                 occurredDateTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<BookingConfirmed.TypeEnum?>(BookingConfirmed.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "cfar_contract_id":
                             cfarContractId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -191,7 +245,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (dgContractId.IsSet && dgContractId.Value == null)
                 throw new ArgumentNullException(nameof(dgContractId), "Property is not nullable for class BookingConfirmed.");
 
-            return new BookingConfirmed(occurredDateTime.Value!.Value!, type.Value!, cfarContractId, dgContractId);
+            return new BookingConfirmed(occurredDateTime.Value!.Value!, type.Value!.Value!, cfarContractId, dgContractId);
         }
 
         /// <summary>
@@ -218,9 +272,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BookingConfirmed bookingConfirmed, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (bookingConfirmed.Type == null)
-                throw new ArgumentNullException(nameof(bookingConfirmed.Type), "Property is required for class BookingConfirmed.");
-
             if (bookingConfirmed.CfarContractIdOption.IsSet && bookingConfirmed.CfarContractId == null)
                 throw new ArgumentNullException(nameof(bookingConfirmed.CfarContractId), "Property is required for class BookingConfirmed.");
 
@@ -229,8 +280,8 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             writer.WriteString("occurred_date_time", bookingConfirmed.OccurredDateTime.ToString(OccurredDateTimeFormat));
 
-            writer.WriteString("type", bookingConfirmed.Type);
-
+            var typeRawValue = BookingConfirmed.TypeEnumToJsonValue(bookingConfirmed.Type);
+            writer.WriteString("type", typeRawValue);
             if (bookingConfirmed.CfarContractIdOption.IsSet)
                 writer.WriteString("cfar_contract_id", bookingConfirmed.CfarContractId);
 

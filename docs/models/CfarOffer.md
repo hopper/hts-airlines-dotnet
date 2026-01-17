@@ -17,8 +17,10 @@ Name | Type | Description | Notes
 **Itinerary** | [**CfarItinerary**](CfarItinerary.md) |  | 
 **Contents** | [**Dictionary&lt;string, CfarContents&gt;**](CfarContents.md) | One or more contents describing the offer and its conditions in the available languages | 
 **ExtAttributes** | **Dictionary&lt;string, string&gt;** |  | 
+**Experiments** | **Dictionary&lt;string, string&gt;** |  | 
 **CoverageExtension** | **string** | Maximum amount added on top of the coverage to cover ancillaries | [optional] 
 **Taxes** | [**List&lt;CfarTax&gt;**](CfarTax.md) | List of applicable taxes | [optional] 
+**EntryPoint** | **string** | Information about product placement on partner&#39;s website | [optional] 
 **TermsConditionsUrl** | **string** | The terms and conditions for this offer | [optional] 
 **FaqUrl** | **string** | The faq url for this offer | [optional] 
 **MerchandisingUrl** | **string** | The url for rendering offer merchandising | [optional] 

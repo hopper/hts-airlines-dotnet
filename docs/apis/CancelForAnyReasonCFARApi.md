@@ -9,8 +9,10 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | [**PostCfarContracts**](CancelForAnyReasonCFARApi.md#postcfarcontracts) | **POST** /cfar_contracts | Create a CFAR Contract |
 | [**PostCfarContractsIdPayment**](CancelForAnyReasonCFARApi.md#postcfarcontractsidpayment) | **POST** /cfar_contracts/{id}/payment | Process CFAR Payment |
 | [**PostCfarOffers**](CancelForAnyReasonCFARApi.md#postcfaroffers) | **POST** /cfar_offers | Create CFAR Offers |
+| [**PostCfarOffersExternal**](CancelForAnyReasonCFARApi.md#postcfaroffersexternal) | **POST** /cfar_offers/external | Create External CFAR Offer |
 | [**PutCfarContractExercisesIdMarkCompleted**](CancelForAnyReasonCFARApi.md#putcfarcontractexercisesidmarkcompleted) | **PUT** /cfar_contract_exercises/{id}/mark_completed | Complete CFAR Exercise |
 | [**PutCfarContractsIdFormsOfPayment**](CancelForAnyReasonCFARApi.md#putcfarcontractsidformsofpayment) | **PUT** /cfar_contracts/{id}/forms_of_payment | Update forms of payment of a CFAR Contract |
+| [**PutCfarContractsIdItinerarySlices**](CancelForAnyReasonCFARApi.md#putcfarcontractsiditineraryslices) | **PUT** /cfar_contracts/{id}/itinerary_slices | Update CFAR Contract Itinerary Slices |
 | [**PutCfarContractsIdUpdateStatus**](CancelForAnyReasonCFARApi.md#putcfarcontractsidupdatestatus) | **PUT** /cfar_contracts/{id}/update_status | Update CFAR Contract Status |
 
 <a id="getcfarcontractsid"></a>
@@ -524,6 +526,108 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+<a id="postcfaroffersexternal"></a>
+# **PostCfarOffersExternal**
+> CfarOffer PostCfarOffersExternal (CreateExternalCfarOfferRequest createExternalCfarOfferRequest, string hCSessionID = null)
+
+Create External CFAR Offer
+
+Create a CFAR offer with externally provided pricing and coverage details (temporal API for data migration)
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
+
+namespace Example
+{
+    public class PostCfarOffersExternalExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new CancelForAnyReasonCFARApi(config);
+            var createExternalCfarOfferRequest = new CreateExternalCfarOfferRequest(); // CreateExternalCfarOfferRequest | 
+            var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions) (optional) 
+
+            try
+            {
+                // Create External CFAR Offer
+                CfarOffer result = apiInstance.PostCfarOffersExternal(createExternalCfarOfferRequest, hCSessionID);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CancelForAnyReasonCFARApi.PostCfarOffersExternal: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PostCfarOffersExternalWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create External CFAR Offer
+    ApiResponse<CfarOffer> response = apiInstance.PostCfarOffersExternalWithHttpInfo(createExternalCfarOfferRequest, hCSessionID);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CancelForAnyReasonCFARApi.PostCfarOffersExternalWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createExternalCfarOfferRequest** | [**CreateExternalCfarOfferRequest**](CreateExternalCfarOfferRequest.md) |  |  |
+| **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) | [optional]  |
+
+### Return type
+
+[**CfarOffer**](CfarOffer.md)
+
+### Authorization
+
+[PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The created CFAR offer |  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **403** | The authenticated client does not have permission to call this endpoint |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 <a id="putcfarcontractexercisesidmarkcompleted"></a>
 # **PutCfarContractExercisesIdMarkCompleted**
 > CfarContractExercise PutCfarContractExercisesIdMarkCompleted (string id, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, string hCSessionID = null)
@@ -724,6 +828,111 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The updated CFAR contract |  * Expires -  <br>  * Cache-Control -  <br>  |
 | **204** | Forms of payment update request was successfully validated but not performed |  * Expires -  <br>  * Cache-Control -  <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **403** | The authenticated client does not have permission to call this endpoint |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="putcfarcontractsiditineraryslices"></a>
+# **PutCfarContractsIdItinerarySlices**
+> CfarContract PutCfarContractsIdItinerarySlices (string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, string hCSessionID = null)
+
+Update CFAR Contract Itinerary Slices
+
+Update itinerary slices of a CFAR contract.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
+
+namespace Example
+{
+    public class PutCfarContractsIdItinerarySlicesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
+            // Configure Bearer token for authorization: PartnerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new CancelForAnyReasonCFARApi(config);
+            var id = "id_example";  // string | A unique identifier for a contract
+            var updateCfarContractItinerarySlicesRequest = new UpdateCfarContractItinerarySlicesRequest(); // UpdateCfarContractItinerarySlicesRequest | 
+            var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions) (optional) 
+
+            try
+            {
+                // Update CFAR Contract Itinerary Slices
+                CfarContract result = apiInstance.PutCfarContractsIdItinerarySlices(id, updateCfarContractItinerarySlicesRequest, hCSessionID);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CancelForAnyReasonCFARApi.PutCfarContractsIdItinerarySlices: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PutCfarContractsIdItinerarySlicesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update CFAR Contract Itinerary Slices
+    ApiResponse<CfarContract> response = apiInstance.PutCfarContractsIdItinerarySlicesWithHttpInfo(id, updateCfarContractItinerarySlicesRequest, hCSessionID);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CancelForAnyReasonCFARApi.PutCfarContractsIdItinerarySlicesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | A unique identifier for a contract |  |
+| **updateCfarContractItinerarySlicesRequest** | [**UpdateCfarContractItinerarySlicesRequest**](UpdateCfarContractItinerarySlicesRequest.md) |  |  |
+| **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) | [optional]  |
+
+### Return type
+
+[**CfarContract**](CfarContract.md)
+
+### Authorization
+
+[PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated CFAR contract |  * Expires -  <br>  * Cache-Control -  <br>  |
+| **204** | The CFAR Contract Itinerary Slices update request was successfully validated but not performed |  * Expires -  <br>  * Cache-Control -  <br>  |
 | **400** | Syntactic errors were encountered while handling the request |  -  |
 | **401** | The client could not be authenticated |  -  |
 | **403** | The authenticated client does not have permission to call this endpoint |  -  |

@@ -1,11 +1,11 @@
-# Com.Hopper.Hts.Airlines.Model.PassengerCount
+# Com.Hopper.Hts.Airlines.Model.UpdateCfarContractItinerarySliceRequest
+An itinerary slice containing only flight segments
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | **long** | Number of passenger type | 
-**Type** | **PassengerType** |  | 
+**Segments** | [**List&lt;CfarItinerarySliceSegment&gt;**](CfarItinerarySliceSegment.md) | A list of segments which make up the slice | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

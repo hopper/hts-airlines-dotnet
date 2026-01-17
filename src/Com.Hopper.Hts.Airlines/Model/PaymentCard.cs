@@ -40,7 +40,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="expirationMonth">the expiry month of the payment card</param>
         /// <param name="expirationYear">the expiry year of the payment card</param>
         [JsonConstructor]
-        public PaymentCard(string amount, string currency, string type, Option<string?> token = default, Option<string?> lastFourDigits = default, Option<string?> expirationMonth = default, Option<string?> expirationYear = default)
+        public PaymentCard(string amount, string currency, TypeEnum type, Option<string?> token = default, Option<string?> lastFourDigits = default, Option<string?> expirationMonth = default, Option<string?> expirationYear = default)
         {
             Amount = amount;
             Currency = currency;
@@ -53,6 +53,64 @@ namespace Com.Hopper.Hts.Airlines.Model
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum PaymentCard for value: payment_card
+            /// </summary>
+            PaymentCard = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("payment_card"))
+                return TypeEnum.PaymentCard;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("payment_card"))
+                return TypeEnum.PaymentCard;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.PaymentCard)
+                return "payment_card";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Gets or Sets Type
+        /// </summary>
+        [JsonPropertyName("type")]
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// Amount charged on the form of payment
@@ -68,12 +126,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /* <example>CAD</example> */
         [JsonPropertyName("currency")]
         public string Currency { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
 
         /// <summary>
         /// Used to track the state of Token
@@ -177,7 +229,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             Option<string?> amount = default;
             Option<string?> currency = default;
-            Option<string?> type = default;
+            Option<PaymentCard.TypeEnum?> type = default;
             Option<string?> token = default;
             Option<string?> lastFourDigits = default;
             Option<string?> expirationMonth = default;
@@ -205,7 +257,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             currency = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<PaymentCard.TypeEnum?>(PaymentCard.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "token":
                             token = new Option<string?>(utf8JsonReader.GetString()!);
@@ -255,7 +309,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (expirationYear.IsSet && expirationYear.Value == null)
                 throw new ArgumentNullException(nameof(expirationYear), "Property is not nullable for class PaymentCard.");
 
-            return new PaymentCard(amount.Value!, currency.Value!, type.Value!, token, lastFourDigits, expirationMonth, expirationYear);
+            return new PaymentCard(amount.Value!, currency.Value!, type.Value!.Value!, token, lastFourDigits, expirationMonth, expirationYear);
         }
 
         /// <summary>
@@ -288,9 +342,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (paymentCard.Currency == null)
                 throw new ArgumentNullException(nameof(paymentCard.Currency), "Property is required for class PaymentCard.");
 
-            if (paymentCard.Type == null)
-                throw new ArgumentNullException(nameof(paymentCard.Type), "Property is required for class PaymentCard.");
-
             if (paymentCard.TokenOption.IsSet && paymentCard.Token == null)
                 throw new ArgumentNullException(nameof(paymentCard.Token), "Property is required for class PaymentCard.");
 
@@ -307,8 +358,8 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             writer.WriteString("currency", paymentCard.Currency);
 
-            writer.WriteString("type", paymentCard.Type);
-
+            var typeRawValue = PaymentCard.TypeEnumToJsonValue(paymentCard.Type);
+            writer.WriteString("type", typeRawValue);
             if (paymentCard.TokenOption.IsSet)
                 writer.WriteString("token", paymentCard.Token);
 

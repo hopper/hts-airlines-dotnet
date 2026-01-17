@@ -36,7 +36,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="type">type</param>
         /// <param name="varVersion">varVersion</param>
         [JsonConstructor]
-        public OtherBrowser(string name, string type, Option<string?> varVersion = default)
+        public OtherBrowser(string name, TypeEnum type, Option<string?> varVersion = default)
         {
             Name = name;
             Type = type;
@@ -47,16 +47,68 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Defines Type
         /// </summary>
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum OtherBrowser for value: other_browser
+            /// </summary>
+            OtherBrowser = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("other_browser"))
+                return TypeEnum.OtherBrowser;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("other_browser"))
+                return TypeEnum.OtherBrowser;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.OtherBrowser)
+                return "other_browser";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
 
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Name
+        /// </summary>
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -110,7 +162,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> name = default;
-            Option<string?> type = default;
+            Option<OtherBrowser.TypeEnum?> type = default;
             Option<string?> varVersion = default;
 
             while (utf8JsonReader.Read())
@@ -132,7 +184,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             name = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<OtherBrowser.TypeEnum?>(OtherBrowser.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "version":
                             varVersion = new Option<string?>(utf8JsonReader.GetString()!);
@@ -158,7 +212,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (varVersion.IsSet && varVersion.Value == null)
                 throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class OtherBrowser.");
 
-            return new OtherBrowser(name.Value!, type.Value!, varVersion);
+            return new OtherBrowser(name.Value!, type.Value!.Value!, varVersion);
         }
 
         /// <summary>
@@ -188,16 +242,13 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (otherBrowser.Name == null)
                 throw new ArgumentNullException(nameof(otherBrowser.Name), "Property is required for class OtherBrowser.");
 
-            if (otherBrowser.Type == null)
-                throw new ArgumentNullException(nameof(otherBrowser.Type), "Property is required for class OtherBrowser.");
-
             if (otherBrowser.VarVersionOption.IsSet && otherBrowser.VarVersion == null)
                 throw new ArgumentNullException(nameof(otherBrowser.VarVersion), "Property is required for class OtherBrowser.");
 
             writer.WriteString("name", otherBrowser.Name);
 
-            writer.WriteString("type", otherBrowser.Type);
-
+            var typeRawValue = OtherBrowser.TypeEnumToJsonValue(otherBrowser.Type);
+            writer.WriteString("type", typeRawValue);
             if (otherBrowser.VarVersionOption.IsSet)
                 writer.WriteString("version", otherBrowser.VarVersion);
         }

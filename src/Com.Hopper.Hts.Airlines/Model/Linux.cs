@@ -35,7 +35,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="type">type</param>
         /// <param name="varVersion">varVersion</param>
         [JsonConstructor]
-        public Linux(string type, Option<string?> varVersion = default)
+        public Linux(TypeEnum type, Option<string?> varVersion = default)
         {
             Type = type;
             VarVersionOption = varVersion;
@@ -45,11 +45,63 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Linux for value: linux
+            /// </summary>
+            Linux = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("linux"))
+                return TypeEnum.Linux;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("linux"))
+                return TypeEnum.Linux;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Linux)
+                return "linux";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Type
         /// </summary>
         /* <example>i_os</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -102,7 +154,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<Linux.TypeEnum?> type = default;
             Option<string?> varVersion = default;
 
             while (utf8JsonReader.Read())
@@ -121,7 +173,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<Linux.TypeEnum?>(Linux.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "version":
                             varVersion = new Option<string?>(utf8JsonReader.GetString()!);
@@ -141,7 +195,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (varVersion.IsSet && varVersion.Value == null)
                 throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Linux.");
 
-            return new Linux(type.Value!, varVersion);
+            return new Linux(type.Value!.Value!, varVersion);
         }
 
         /// <summary>
@@ -168,14 +222,11 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Linux linux, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (linux.Type == null)
-                throw new ArgumentNullException(nameof(linux.Type), "Property is required for class Linux.");
-
             if (linux.VarVersionOption.IsSet && linux.VarVersion == null)
                 throw new ArgumentNullException(nameof(linux.VarVersion), "Property is required for class Linux.");
 
-            writer.WriteString("type", linux.Type);
-
+            var typeRawValue = Linux.TypeEnumToJsonValue(linux.Type);
+            writer.WriteString("type", typeRawValue);
             if (linux.VarVersionOption.IsSet)
                 writer.WriteString("version", linux.VarVersion);
         }

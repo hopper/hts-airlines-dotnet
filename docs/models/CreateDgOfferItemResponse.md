@@ -19,11 +19,14 @@ Name | Type | Description | Notes
 **ContractExpiryDateTime** | **DateTime** | A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which the DG contract will expire once purchased | 
 **Itinerary** | [**DgItinerary**](DgItinerary.md) |  | 
 **ExtAttributes** | **Dictionary&lt;string, string&gt;** |  | 
+**Experiments** | **Dictionary&lt;string, string&gt;** |  | 
 **Contents** | [**Dictionary&lt;string, DgContents&gt;**](DgContents.md) |  | 
 **Taxes** | [**List&lt;DgTax&gt;**](DgTax.md) | List of applicable taxes | [optional] 
+**EntryPoint** | **string** | Information about product placement on partner&#39;s website | [optional] 
 **TermsConditionsUrl** | **string** | The terms and conditions for this offer | [optional] 
 **FaqUrl** | **string** | The faq url for this offer | [optional] 
 **MerchandisingUrl** | **string** | The url for rendering offer merchandising | [optional] 
+**MerchandisingUrlWebComponent** | **string** | The url for the web component SDK for rendering offer merchandising | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

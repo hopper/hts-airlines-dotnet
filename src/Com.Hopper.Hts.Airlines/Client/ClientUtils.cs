@@ -154,10 +154,28 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return AirlineRefundMethodValueConverter.ToJsonValue(airlineRefundMethod);
             if (obj is AncillaryType ancillaryType)
                 return AncillaryTypeValueConverter.ToJsonValue(ancillaryType);
+            if (obj is Android.TypeEnum androidTypeEnum)
+                return Android.TypeEnumToJsonValue(androidTypeEnum);
+            if (obj is App.TypeEnum appTypeEnum)
+                return App.TypeEnumToJsonValue(appTypeEnum);
+            if (obj is BookingConfirmed.TypeEnum bookingConfirmedTypeEnum)
+                return BookingConfirmed.TypeEnumToJsonValue(bookingConfirmedTypeEnum);
+            if (obj is Browser.TypeEnum browserTypeEnum)
+                return Browser.TypeEnumToJsonValue(browserTypeEnum);
             if (obj is Cabin cabin)
                 return CabinValueConverter.ToJsonValue(cabin);
+            if (obj is Cash.TypeEnum cashTypeEnum)
+                return Cash.TypeEnumToJsonValue(cashTypeEnum);
             if (obj is CfarStatus cfarStatus)
                 return CfarStatusValueConverter.ToJsonValue(cfarStatus);
+            if (obj is Chrome.TypeEnum chromeTypeEnum)
+                return Chrome.TypeEnumToJsonValue(chromeTypeEnum);
+            if (obj is ChromeOs.TypeEnum chromeOsTypeEnum)
+                return ChromeOs.TypeEnumToJsonValue(chromeOsTypeEnum);
+            if (obj is Desktop.TypeEnum desktopTypeEnum)
+                return Desktop.TypeEnumToJsonValue(desktopTypeEnum);
+            if (obj is Device.TypeEnum deviceTypeEnum)
+                return Device.TypeEnumToJsonValue(deviceTypeEnum);
             if (obj is DgAncillaryType dgAncillaryType)
                 return DgAncillaryTypeValueConverter.ToJsonValue(dgAncillaryType);
             if (obj is DgPassengerType dgPassengerType)
@@ -166,26 +184,70 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return DgRequestTypeValueConverter.ToJsonValue(dgRequestType);
             if (obj is DgStatus dgStatus)
                 return DgStatusValueConverter.ToJsonValue(dgStatus);
+            if (obj is Edge.TypeEnum edgeTypeEnum)
+                return Edge.TypeEnumToJsonValue(edgeTypeEnum);
+            if (obj is Event.TypeEnum eventTypeEnum)
+                return Event.TypeEnumToJsonValue(eventTypeEnum);
             if (obj is FareClass fareClass)
                 return FareClassValueConverter.ToJsonValue(fareClass);
+            if (obj is Firefox.TypeEnum firefoxTypeEnum)
+                return Firefox.TypeEnumToJsonValue(firefoxTypeEnum);
             if (obj is FlightStatus flightStatus)
                 return FlightStatusValueConverter.ToJsonValue(flightStatus);
             if (obj is FlowType flowType)
                 return FlowTypeValueConverter.ToJsonValue(flowType);
+            if (obj is FormOfPayment.TypeEnum formOfPaymentTypeEnum)
+                return FormOfPayment.TypeEnumToJsonValue(formOfPaymentTypeEnum);
             if (obj is Gender gender)
                 return GenderValueConverter.ToJsonValue(gender);
+            if (obj is IOs.TypeEnum iOsTypeEnum)
+                return IOs.TypeEnumToJsonValue(iOsTypeEnum);
+            if (obj is InternetExplorer.TypeEnum internetExplorerTypeEnum)
+                return InternetExplorer.TypeEnumToJsonValue(internetExplorerTypeEnum);
+            if (obj is Linux.TypeEnum linuxTypeEnum)
+                return Linux.TypeEnumToJsonValue(linuxTypeEnum);
+            if (obj is MacOs.TypeEnum macOsTypeEnum)
+                return MacOs.TypeEnumToJsonValue(macOsTypeEnum);
+            if (obj is Mobile.TypeEnum mobileTypeEnum)
+                return Mobile.TypeEnumToJsonValue(mobileTypeEnum);
+            if (obj is ModelOperatingSystem.TypeEnum modelOperatingSystemTypeEnum)
+                return ModelOperatingSystem.TypeEnumToJsonValue(modelOperatingSystemTypeEnum);
             if (obj is ModificationTime modificationTime)
                 return ModificationTimeValueConverter.ToJsonValue(modificationTime);
             if (obj is ModificationType modificationType)
                 return ModificationTypeValueConverter.ToJsonValue(modificationType);
+            if (obj is NonCash.TypeEnum nonCashTypeEnum)
+                return NonCash.TypeEnumToJsonValue(nonCashTypeEnum);
+            if (obj is OffersDisplayed.TypeEnum offersDisplayedTypeEnum)
+                return OffersDisplayed.TypeEnumToJsonValue(offersDisplayedTypeEnum);
+            if (obj is Opera.TypeEnum operaTypeEnum)
+                return Opera.TypeEnumToJsonValue(operaTypeEnum);
+            if (obj is OtherBrowser.TypeEnum otherBrowserTypeEnum)
+                return OtherBrowser.TypeEnumToJsonValue(otherBrowserTypeEnum);
+            if (obj is OtherOs.TypeEnum otherOsTypeEnum)
+                return OtherOs.TypeEnumToJsonValue(otherOsTypeEnum);
             if (obj is PassengerType passengerType)
                 return PassengerTypeValueConverter.ToJsonValue(passengerType);
+            if (obj is PaymentCard.TypeEnum paymentCardTypeEnum)
+                return PaymentCard.TypeEnumToJsonValue(paymentCardTypeEnum);
+            if (obj is Platform.TypeEnum platformTypeEnum)
+                return Platform.TypeEnumToJsonValue(platformTypeEnum);
+            if (obj is Points.TypeEnum pointsTypeEnum)
+                return Points.TypeEnumToJsonValue(pointsTypeEnum);
             if (obj is Product product)
                 return ProductValueConverter.ToJsonValue(product);
             if (obj is RequestType requestType)
                 return RequestTypeValueConverter.ToJsonValue(requestType);
+            if (obj is Safari.TypeEnum safariTypeEnum)
+                return Safari.TypeEnumToJsonValue(safariTypeEnum);
+            if (obj is Tablet.TypeEnum tabletTypeEnum)
+                return Tablet.TypeEnumToJsonValue(tabletTypeEnum);
             if (obj is TokenType tokenType)
                 return TokenTypeValueConverter.ToJsonValue(tokenType);
+            if (obj is Web.TypeEnum webTypeEnum)
+                return Web.TypeEnumToJsonValue(webTypeEnum);
+            if (obj is Windows.TypeEnum windowsTypeEnum)
+                return Windows.TypeEnumToJsonValue(windowsTypeEnum);
             if (obj is ICollection collection)
             {
                 List<string?> entries = new List<string?>();

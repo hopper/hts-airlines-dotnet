@@ -62,6 +62,86 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Desktop for value: desktop
+            /// </summary>
+            Desktop = 1,
+
+            /// <summary>
+            /// Enum Mobile for value: mobile
+            /// </summary>
+            Mobile = 2,
+
+            /// <summary>
+            /// Enum Tablet for value: tablet
+            /// </summary>
+            Tablet = 3
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("desktop"))
+                return TypeEnum.Desktop;
+
+            if (value.Equals("mobile"))
+                return TypeEnum.Mobile;
+
+            if (value.Equals("tablet"))
+                return TypeEnum.Tablet;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("desktop"))
+                return TypeEnum.Desktop;
+
+            if (value.Equals("mobile"))
+                return TypeEnum.Mobile;
+
+            if (value.Equals("tablet"))
+                return TypeEnum.Tablet;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Desktop)
+                return "desktop";
+
+            if (value == TypeEnum.Mobile)
+                return "mobile";
+
+            if (value == TypeEnum.Tablet)
+                return "tablet";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Desktop
         /// </summary>
         public Desktop? Desktop { get; set; }
@@ -111,7 +191,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<Device.TypeEnum?> type = default;
 
             Desktop? desktop = null;
             Mobile? mobile = null;
@@ -168,7 +248,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<Device.TypeEnum?>(Device.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;

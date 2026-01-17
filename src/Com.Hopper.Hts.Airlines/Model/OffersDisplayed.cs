@@ -35,7 +35,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="occurredDateTime">A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device</param>
         /// <param name="type">type</param>
         [JsonConstructor]
-        public OffersDisplayed(DateTime occurredDateTime, string type)
+        public OffersDisplayed(DateTime occurredDateTime, TypeEnum type)
         {
             OccurredDateTime = occurredDateTime;
             Type = type;
@@ -45,18 +45,70 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum OffersDisplayed for value: offers_displayed
+            /// </summary>
+            OffersDisplayed = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("offers_displayed"))
+                return TypeEnum.OffersDisplayed;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("offers_displayed"))
+                return TypeEnum.OffersDisplayed;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.OffersDisplayed)
+                return "offers_displayed";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Gets or Sets Type
+        /// </summary>
+        [JsonPropertyName("type")]
+        public TypeEnum Type { get; set; }
+
+        /// <summary>
         /// A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device
         /// </summary>
         /// <value>A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device</value>
         /* <example>2022-01-24T15:34:30Z</example> */
         [JsonPropertyName("occurred_date_time")]
         public DateTime OccurredDateTime { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,7 +153,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<DateTime?> occurredDateTime = default;
-            Option<string?> type = default;
+            Option<OffersDisplayed.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -123,7 +175,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                                 occurredDateTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<OffersDisplayed.TypeEnum?>(OffersDisplayed.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;
@@ -143,7 +197,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class OffersDisplayed.");
 
-            return new OffersDisplayed(occurredDateTime.Value!.Value!, type.Value!);
+            return new OffersDisplayed(occurredDateTime.Value!.Value!, type.Value!.Value!);
         }
 
         /// <summary>
@@ -170,12 +224,10 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OffersDisplayed offersDisplayed, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (offersDisplayed.Type == null)
-                throw new ArgumentNullException(nameof(offersDisplayed.Type), "Property is required for class OffersDisplayed.");
-
             writer.WriteString("occurred_date_time", offersDisplayed.OccurredDateTime.ToString(OccurredDateTimeFormat));
 
-            writer.WriteString("type", offersDisplayed.Type);
+            var typeRawValue = OffersDisplayed.TypeEnumToJsonValue(offersDisplayed.Type);
+            writer.WriteString("type", typeRawValue);
         }
     }
 }

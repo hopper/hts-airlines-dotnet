@@ -35,7 +35,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="type">type</param>
         /// <param name="varVersion">varVersion</param>
         [JsonConstructor]
-        public ChromeOs(string type, Option<string?> varVersion = default)
+        public ChromeOs(TypeEnum type, Option<string?> varVersion = default)
         {
             Type = type;
             VarVersionOption = varVersion;
@@ -45,11 +45,63 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum ChromeOs for value: chrome_os
+            /// </summary>
+            ChromeOs = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("chrome_os"))
+                return TypeEnum.ChromeOs;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("chrome_os"))
+                return TypeEnum.ChromeOs;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.ChromeOs)
+                return "chrome_os";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Type
         /// </summary>
         /* <example>i_os</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -102,7 +154,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<ChromeOs.TypeEnum?> type = default;
             Option<string?> varVersion = default;
 
             while (utf8JsonReader.Read())
@@ -121,7 +173,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<ChromeOs.TypeEnum?>(ChromeOs.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "version":
                             varVersion = new Option<string?>(utf8JsonReader.GetString()!);
@@ -141,7 +195,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (varVersion.IsSet && varVersion.Value == null)
                 throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class ChromeOs.");
 
-            return new ChromeOs(type.Value!, varVersion);
+            return new ChromeOs(type.Value!.Value!, varVersion);
         }
 
         /// <summary>
@@ -168,14 +222,11 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChromeOs chromeOs, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chromeOs.Type == null)
-                throw new ArgumentNullException(nameof(chromeOs.Type), "Property is required for class ChromeOs.");
-
             if (chromeOs.VarVersionOption.IsSet && chromeOs.VarVersion == null)
                 throw new ArgumentNullException(nameof(chromeOs.VarVersion), "Property is required for class ChromeOs.");
 
-            writer.WriteString("type", chromeOs.Type);
-
+            var typeRawValue = ChromeOs.TypeEnumToJsonValue(chromeOs.Type);
+            writer.WriteString("type", typeRawValue);
             if (chromeOs.VarVersionOption.IsSet)
                 writer.WriteString("version", chromeOs.VarVersion);
         }

@@ -35,7 +35,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="amount">Amount charged on the form of payment</param>
         /// <param name="type">type</param>
         [JsonConstructor]
-        public Points(string amount, string type)
+        public Points(string amount, TypeEnum type)
         {
             Amount = amount;
             Type = type;
@@ -45,17 +45,69 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Amount charged on the form of payment
+        /// Defines Type
         /// </summary>
-        /// <value>Amount charged on the form of payment</value>
-        [JsonPropertyName("amount")]
-        public string Amount { get; set; }
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Points for value: points
+            /// </summary>
+            Points = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("points"))
+                return TypeEnum.Points;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("points"))
+                return TypeEnum.Points;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Points)
+                return "points";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
 
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
+
+        /// <summary>
+        /// Amount charged on the form of payment
+        /// </summary>
+        /// <value>Amount charged on the form of payment</value>
+        [JsonPropertyName("amount")]
+        public string Amount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,7 +147,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> amount = default;
-            Option<string?> type = default;
+            Option<Points.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -116,7 +168,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             amount = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<Points.TypeEnum?>(Points.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;
@@ -136,7 +190,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Points.");
 
-            return new Points(amount.Value!, type.Value!);
+            return new Points(amount.Value!, type.Value!.Value!);
         }
 
         /// <summary>
@@ -166,12 +220,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (points.Amount == null)
                 throw new ArgumentNullException(nameof(points.Amount), "Property is required for class Points.");
 
-            if (points.Type == null)
-                throw new ArgumentNullException(nameof(points.Type), "Property is required for class Points.");
-
             writer.WriteString("amount", points.Amount);
 
-            writer.WriteString("type", points.Type);
+            var typeRawValue = Points.TypeEnumToJsonValue(points.Type);
+            writer.WriteString("type", typeRawValue);
         }
     }
 }

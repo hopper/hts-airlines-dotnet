@@ -36,7 +36,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="currency">Currency of the form of payment</param>
         /// <param name="type">type</param>
         [JsonConstructor]
-        public Cash(string amount, string currency, string type)
+        public Cash(string amount, string currency, TypeEnum type)
         {
             Amount = amount;
             Currency = currency;
@@ -45,6 +45,64 @@ namespace Com.Hopper.Hts.Airlines.Model
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Cash for value: cash
+            /// </summary>
+            Cash = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("cash"))
+                return TypeEnum.Cash;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("cash"))
+                return TypeEnum.Cash;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Cash)
+                return "cash";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// Gets or Sets Type
+        /// </summary>
+        [JsonPropertyName("type")]
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// Amount charged on the form of payment
@@ -60,12 +118,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /* <example>CAD</example> */
         [JsonPropertyName("currency")]
         public string Currency { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -107,7 +159,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             Option<string?> amount = default;
             Option<string?> currency = default;
-            Option<string?> type = default;
+            Option<Cash.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -131,7 +183,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             currency = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<Cash.TypeEnum?>(Cash.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;
@@ -157,7 +211,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Cash.");
 
-            return new Cash(amount.Value!, currency.Value!, type.Value!);
+            return new Cash(amount.Value!, currency.Value!, type.Value!.Value!);
         }
 
         /// <summary>
@@ -190,14 +244,12 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (cash.Currency == null)
                 throw new ArgumentNullException(nameof(cash.Currency), "Property is required for class Cash.");
 
-            if (cash.Type == null)
-                throw new ArgumentNullException(nameof(cash.Type), "Property is required for class Cash.");
-
             writer.WriteString("amount", cash.Amount);
 
             writer.WriteString("currency", cash.Currency);
 
-            writer.WriteString("type", cash.Type);
+            var typeRawValue = Cash.TypeEnumToJsonValue(cash.Type);
+            writer.WriteString("type", typeRawValue);
         }
     }
 }

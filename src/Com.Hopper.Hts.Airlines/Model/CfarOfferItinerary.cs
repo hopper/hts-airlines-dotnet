@@ -25,7 +25,7 @@ using Com.Hopper.Hts.Airlines.Client;
 namespace Com.Hopper.Hts.Airlines.Model
 {
     /// <summary>
-    /// An object detailing an itinerary used to create a CFAR offer
+    /// CfarOfferItinerary
     /// </summary>
     public partial class CfarOfferItinerary
     {

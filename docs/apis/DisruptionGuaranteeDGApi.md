@@ -4,6 +4,7 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**GetCustomerDgExercisesIdSession**](DisruptionGuaranteeDGApi.md#getcustomerdgexercisesidsession) | **GET** /customer/dg_exercises/{id}/session | Get session ID by DG exercise ID |
 | [**GetDgContractsId**](DisruptionGuaranteeDGApi.md#getdgcontractsid) | **GET** /dg_contracts/{id} | Get a DG contract |
 | [**PostDgContractExercises**](DisruptionGuaranteeDGApi.md#postdgcontractexercises) | **POST** /dg_contract_exercises | Create DG Exercise |
 | [**PostDgContracts**](DisruptionGuaranteeDGApi.md#postdgcontracts) | **POST** /dg_contracts | Create a DG Contract |
@@ -11,6 +12,101 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | [**PostDgOffers**](DisruptionGuaranteeDGApi.md#postdgoffers) | **POST** /dg_offers | Create DG Offers |
 | [**PutDgContractsIdItinerarySlices**](DisruptionGuaranteeDGApi.md#putdgcontractsiditineraryslices) | **PUT** /dg_contracts/{id}/itinerary_slices | Update DG Contract Itinerary Slices |
 | [**PutDgContractsIdUpdateStatus**](DisruptionGuaranteeDGApi.md#putdgcontractsidupdatestatus) | **PUT** /dg_contracts/{id}/update_status | Update DG Contract Status |
+
+<a id="getcustomerdgexercisesidsession"></a>
+# **GetCustomerDgExercisesIdSession**
+> GetDgExerciseSessionResponse GetCustomerDgExercisesIdSession (string id)
+
+Get session ID by DG exercise ID
+
+Retrieve the session ID for a given DG exercise ID
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
+
+namespace Example
+{
+    public class GetCustomerDgExercisesIdSessionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
+            var apiInstance = new DisruptionGuaranteeDGApi(config);
+            var id = "id_example";  // string | A unique identifier for a exercise
+
+            try
+            {
+                // Get session ID by DG exercise ID
+                GetDgExerciseSessionResponse result = apiInstance.GetCustomerDgExercisesIdSession(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DisruptionGuaranteeDGApi.GetCustomerDgExercisesIdSession: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCustomerDgExercisesIdSessionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get session ID by DG exercise ID
+    ApiResponse<GetDgExerciseSessionResponse> response = apiInstance.GetCustomerDgExercisesIdSessionWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DisruptionGuaranteeDGApi.GetCustomerDgExercisesIdSessionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | A unique identifier for a exercise |  |
+
+### Return type
+
+[**GetDgExerciseSessionResponse**](GetDgExerciseSessionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The session ID for the DG exercise |  -  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 <a id="getdgcontractsid"></a>
 # **GetDgContractsId**

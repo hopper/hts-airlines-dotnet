@@ -91,6 +91,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new CreateDgContractRequestJsonConverter());
             _jsonOptions.Converters.Add(new CreateDgOfferItemResponseJsonConverter());
             _jsonOptions.Converters.Add(new CreateDgOffersRequestJsonConverter());
+            _jsonOptions.Converters.Add(new CreateExternalCfarOfferRequestJsonConverter());
             _jsonOptions.Converters.Add(new DesktopJsonConverter());
             _jsonOptions.Converters.Add(new DeviceJsonConverter());
             _jsonOptions.Converters.Add(new DgAncillaryJsonConverter());
@@ -132,6 +133,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new FormOfPaymentJsonConverter());
             _jsonOptions.Converters.Add(new GenderJsonConverter());
             _jsonOptions.Converters.Add(new GenderNullableJsonConverter());
+            _jsonOptions.Converters.Add(new GetDgExerciseSessionResponseJsonConverter());
             _jsonOptions.Converters.Add(new IOsJsonConverter());
             _jsonOptions.Converters.Add(new InternetExplorerJsonConverter());
             _jsonOptions.Converters.Add(new LinuxJsonConverter());
@@ -166,6 +168,8 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new TokenTypeJsonConverter());
             _jsonOptions.Converters.Add(new TokenTypeNullableJsonConverter());
             _jsonOptions.Converters.Add(new UnprocessableEntityJsonConverter());
+            _jsonOptions.Converters.Add(new UpdateCfarContractItinerarySliceRequestJsonConverter());
+            _jsonOptions.Converters.Add(new UpdateCfarContractItinerarySlicesRequestJsonConverter());
             _jsonOptions.Converters.Add(new UpdateCfarContractRequestJsonConverter());
             _jsonOptions.Converters.Add(new UpdateCfarFormOfPaymentRequestJsonConverter());
             _jsonOptions.Converters.Add(new UpdateDgContractStatusRequestJsonConverter());

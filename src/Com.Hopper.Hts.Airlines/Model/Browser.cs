@@ -102,6 +102,142 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Chrome for value: chrome
+            /// </summary>
+            Chrome = 1,
+
+            /// <summary>
+            /// Enum Edge for value: edge
+            /// </summary>
+            Edge = 2,
+
+            /// <summary>
+            /// Enum Firefox for value: firefox
+            /// </summary>
+            Firefox = 3,
+
+            /// <summary>
+            /// Enum InternetExplorer for value: internet_explorer
+            /// </summary>
+            InternetExplorer = 4,
+
+            /// <summary>
+            /// Enum Opera for value: opera
+            /// </summary>
+            Opera = 5,
+
+            /// <summary>
+            /// Enum OtherBrowser for value: other_browser
+            /// </summary>
+            OtherBrowser = 6,
+
+            /// <summary>
+            /// Enum Safari for value: safari
+            /// </summary>
+            Safari = 7
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("chrome"))
+                return TypeEnum.Chrome;
+
+            if (value.Equals("edge"))
+                return TypeEnum.Edge;
+
+            if (value.Equals("firefox"))
+                return TypeEnum.Firefox;
+
+            if (value.Equals("internet_explorer"))
+                return TypeEnum.InternetExplorer;
+
+            if (value.Equals("opera"))
+                return TypeEnum.Opera;
+
+            if (value.Equals("other_browser"))
+                return TypeEnum.OtherBrowser;
+
+            if (value.Equals("safari"))
+                return TypeEnum.Safari;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("chrome"))
+                return TypeEnum.Chrome;
+
+            if (value.Equals("edge"))
+                return TypeEnum.Edge;
+
+            if (value.Equals("firefox"))
+                return TypeEnum.Firefox;
+
+            if (value.Equals("internet_explorer"))
+                return TypeEnum.InternetExplorer;
+
+            if (value.Equals("opera"))
+                return TypeEnum.Opera;
+
+            if (value.Equals("other_browser"))
+                return TypeEnum.OtherBrowser;
+
+            if (value.Equals("safari"))
+                return TypeEnum.Safari;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Chrome)
+                return "chrome";
+
+            if (value == TypeEnum.Edge)
+                return "edge";
+
+            if (value == TypeEnum.Firefox)
+                return "firefox";
+
+            if (value == TypeEnum.InternetExplorer)
+                return "internet_explorer";
+
+            if (value == TypeEnum.Opera)
+                return "opera";
+
+            if (value == TypeEnum.OtherBrowser)
+                return "other_browser";
+
+            if (value == TypeEnum.Safari)
+                return "safari";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Chrome
         /// </summary>
         public Chrome? Chrome { get; set; }
@@ -171,7 +307,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<Browser.TypeEnum?> type = default;
 
             Chrome? chrome = null;
             Edge? edge = null;
@@ -252,7 +388,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<Browser.TypeEnum?>(Browser.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;

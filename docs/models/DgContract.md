@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Reference** | **string** | Unique reference for a contract | 
 **Status** | **DgStatus** |  | 
 **Offers** | [**List&lt;DgOffer&gt;**](DgOffer.md) | DG Offer(s) used to create the contract | 
+**Itinerary** | [**DgItinerary**](DgItinerary.md) |  | 
 **CoveragePercentage** | **string** | Percentage of the ticket’s value to be refunded upon DG exercise | 
 **Coverage** | **string** | Total amount to be refunded upon DG exercise | 
 **Premium** | **string** | Total amount to be paid for DG | 
