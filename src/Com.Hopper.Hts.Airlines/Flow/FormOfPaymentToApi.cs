@@ -30,7 +30,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 return new ApiModel.FormOfPayment(new ApiModel.Cash(
                     cash.Amount,
                     cash.Currency,
-                    "cash"
+                    ApiModel.Cash.TypeEnumFromString("cash")
                 ));
             }
             else if (instance.GetType() == typeof(NonCash) || instance is NonCash)
@@ -39,7 +39,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 return new ApiModel.FormOfPayment(new ApiModel.NonCash(
                     nonCash.Amount,
                     nonCash.Currency,
-                    "non_cash"
+                    ApiModel.NonCash.TypeEnumFromString("non_cash")
                 ));
             }
             else if (instance.GetType() == typeof(TokenizedPaymentCard) || instance is TokenizedPaymentCard)
@@ -48,9 +48,9 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 return new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                     card.Amount,
                     card.Currency,
+                    ApiModel.PaymentCard.TypeEnumFromString("payment_card"),
                     token: card.Token,
-                    lastFourDigits: new Option<string?>(),
-                    type: "payment_card"
+                    lastFourDigits: new Option<string?>()
                 ));
             }
             else if (instance.GetType() == typeof(PaymentCard) || instance is PaymentCard)
@@ -69,9 +69,9 @@ namespace Com.Hopper.Hts.Airlines.Flow
                     return new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                         card.Amount,
                         card.Currency,
+                        ApiModel.PaymentCard.TypeEnumFromString("payment_card"),
                         token: token,
-                        lastFourDigits: new Option<string?>(),
-                        type: "payment_card"
+                        lastFourDigits: new Option<string?>()
                     ));
                 }
                 else
@@ -79,9 +79,9 @@ namespace Com.Hopper.Hts.Airlines.Flow
                     return new ApiModel.FormOfPayment(new ApiModel.PaymentCard(
                         card.Amount,
                         card.Currency,
+                        ApiModel.PaymentCard.TypeEnumFromString("payment_card"),
                         token: new Option<string?>(),
-                        lastFourDigits: "1234",
-                        type: "payment_card"
+                        lastFourDigits: new Option<string?>("1234")
                     ));
                 }
             }
@@ -90,7 +90,7 @@ namespace Com.Hopper.Hts.Airlines.Flow
                 var points = p.GetPoints();
                 return new ApiModel.FormOfPayment(new ApiModel.Points(
                     points.Amount,
-                    "points"
+                    ApiModel.Points.TypeEnumFromString("points")
                 ));
             }
             else

@@ -56,7 +56,7 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         /*
         <example>CAD</example>
         */
-        public string Currency { get; set; }
+        public string Currency { get; set; } = null!;
 
         /// <summary>
         /// Returns the string presentation of the object
