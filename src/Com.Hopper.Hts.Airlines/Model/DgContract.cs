@@ -36,6 +36,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="reference">Unique reference for a contract</param>
         /// <param name="status">status</param>
         /// <param name="offers">DG Offer(s) used to create the contract</param>
+        /// <param name="itinerary">itinerary</param>
         /// <param name="coveragePercentage">Percentage of the ticket’s value to be refunded upon DG exercise</param>
         /// <param name="coverage">Total amount to be refunded upon DG exercise</param>
         /// <param name="premium">Total amount to be paid for DG</param>
@@ -51,12 +52,13 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="language">Language of the booking</param>
         /// <param name="pnrReference">Reference of the PNR in the airline system</param>
         [JsonConstructor]
-        public DgContract(string id, string reference, DgStatus status, List<DgOffer> offers, string coveragePercentage, string coverage, string premium, string serviceCap, string currency, string taxesTotal, long maxHoursBeforeDeparture, long minMinutesDelay, DateTime createdDateTime, DateTime expiryDateTime, Dictionary<string, string> extAttributes, Option<List<DgTax>?> taxes = default, Option<string?> language = default, Option<string?> pnrReference = default)
+        public DgContract(string id, string reference, DgStatus status, List<DgOffer> offers, DgItinerary itinerary, string coveragePercentage, string coverage, string premium, string serviceCap, string currency, string taxesTotal, long maxHoursBeforeDeparture, long minMinutesDelay, DateTime createdDateTime, DateTime expiryDateTime, Dictionary<string, string> extAttributes, Option<List<DgTax>?> taxes = default, Option<string?> language = default, Option<string?> pnrReference = default)
         {
             Id = id;
             Reference = reference;
             Status = status;
             Offers = offers;
+            Itinerary = itinerary;
             CoveragePercentage = coveragePercentage;
             Coverage = coverage;
             Premium = premium;
@@ -104,6 +106,12 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <value>DG Offer(s) used to create the contract</value>
         [JsonPropertyName("offers")]
         public List<DgOffer> Offers { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Itinerary
+        /// </summary>
+        [JsonPropertyName("itinerary")]
+        public DgItinerary Itinerary { get; set; }
 
         /// <summary>
         /// Percentage of the ticket’s value to be refunded upon DG exercise
@@ -247,6 +255,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Offers: ").Append(Offers).Append("\n");
+            sb.Append("  Itinerary: ").Append(Itinerary).Append("\n");
             sb.Append("  CoveragePercentage: ").Append(CoveragePercentage).Append("\n");
             sb.Append("  Coverage: ").Append(Coverage).Append("\n");
             sb.Append("  Premium: ").Append(Premium).Append("\n");
@@ -302,6 +311,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<string?> reference = default;
             Option<DgStatus?> status = default;
             Option<List<DgOffer>?> offers = default;
+            Option<DgItinerary?> itinerary = default;
             Option<string?> coveragePercentage = default;
             Option<string?> coverage = default;
             Option<string?> premium = default;
@@ -346,6 +356,10 @@ namespace Com.Hopper.Hts.Airlines.Model
                         case "offers":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 offers = new Option<List<DgOffer>?>(JsonSerializer.Deserialize<List<DgOffer>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "itinerary":
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                itinerary = new Option<DgItinerary?>(JsonSerializer.Deserialize<DgItinerary>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "coverage_percentage":
                             coveragePercentage = new Option<string?>(utf8JsonReader.GetString()!);
@@ -413,6 +427,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (!offers.IsSet)
                 throw new ArgumentException("Property is required for class DgContract.", nameof(offers));
 
+            if (!itinerary.IsSet)
+                throw new ArgumentException("Property is required for class DgContract.", nameof(itinerary));
+
             if (!coveragePercentage.IsSet)
                 throw new ArgumentException("Property is required for class DgContract.", nameof(coveragePercentage));
 
@@ -458,6 +475,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (offers.IsSet && offers.Value == null)
                 throw new ArgumentNullException(nameof(offers), "Property is not nullable for class DgContract.");
 
+            if (itinerary.IsSet && itinerary.Value == null)
+                throw new ArgumentNullException(nameof(itinerary), "Property is not nullable for class DgContract.");
+
             if (coveragePercentage.IsSet && coveragePercentage.Value == null)
                 throw new ArgumentNullException(nameof(coveragePercentage), "Property is not nullable for class DgContract.");
 
@@ -500,7 +520,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (pnrReference.IsSet && pnrReference.Value == null)
                 throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class DgContract.");
 
-            return new DgContract(id.Value!, reference.Value!, status.Value!.Value!, offers.Value!, coveragePercentage.Value!, coverage.Value!, premium.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, createdDateTime.Value!.Value!, expiryDateTime.Value!.Value!, extAttributes.Value!, taxes, language, pnrReference);
+            return new DgContract(id.Value!, reference.Value!, status.Value!.Value!, offers.Value!, itinerary.Value!, coveragePercentage.Value!, coverage.Value!, premium.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, createdDateTime.Value!.Value!, expiryDateTime.Value!.Value!, extAttributes.Value!, taxes, language, pnrReference);
         }
 
         /// <summary>
@@ -535,6 +555,9 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (dgContract.Offers == null)
                 throw new ArgumentNullException(nameof(dgContract.Offers), "Property is required for class DgContract.");
+
+            if (dgContract.Itinerary == null)
+                throw new ArgumentNullException(nameof(dgContract.Itinerary), "Property is required for class DgContract.");
 
             if (dgContract.CoveragePercentage == null)
                 throw new ArgumentNullException(nameof(dgContract.CoveragePercentage), "Property is required for class DgContract.");
@@ -575,6 +598,8 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             writer.WritePropertyName("offers");
             JsonSerializer.Serialize(writer, dgContract.Offers, jsonSerializerOptions);
+            writer.WritePropertyName("itinerary");
+            JsonSerializer.Serialize(writer, dgContract.Itinerary, jsonSerializerOptions);
             writer.WriteString("coverage_percentage", dgContract.CoveragePercentage);
 
             writer.WriteString("coverage", dgContract.Coverage);

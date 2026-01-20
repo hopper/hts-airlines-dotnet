@@ -35,7 +35,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="type">type</param>
         /// <param name="varOperatingSystem">varOperatingSystem</param>
         [JsonConstructor]
-        public App(string type, Option<ModelOperatingSystem?> varOperatingSystem = default)
+        public App(TypeEnum type, Option<ModelOperatingSystem?> varOperatingSystem = default)
         {
             Type = type;
             VarOperatingSystemOption = varOperatingSystem;
@@ -45,11 +45,63 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum App for value: app
+            /// </summary>
+            App = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("app"))
+                return TypeEnum.App;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("app"))
+                return TypeEnum.App;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.App)
+                return "app";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Type
         /// </summary>
         /* <example>app</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// Used to track the state of VarOperatingSystem
@@ -101,7 +153,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<App.TypeEnum?> type = default;
             Option<ModelOperatingSystem?> varOperatingSystem = default;
 
             while (utf8JsonReader.Read())
@@ -120,7 +172,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<App.TypeEnum?>(App.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "operating_system":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
@@ -141,7 +195,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (varOperatingSystem.IsSet && varOperatingSystem.Value == null)
                 throw new ArgumentNullException(nameof(varOperatingSystem), "Property is not nullable for class App.");
 
-            return new App(type.Value!, varOperatingSystem);
+            return new App(type.Value!.Value!, varOperatingSystem);
         }
 
         /// <summary>
@@ -168,14 +222,11 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, App app, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (app.Type == null)
-                throw new ArgumentNullException(nameof(app.Type), "Property is required for class App.");
-
             if (app.VarOperatingSystemOption.IsSet && app.VarOperatingSystem == null)
                 throw new ArgumentNullException(nameof(app.VarOperatingSystem), "Property is required for class App.");
 
-            writer.WriteString("type", app.Type);
-
+            var typeRawValue = App.TypeEnumToJsonValue(app.Type);
+            writer.WriteString("type", typeRawValue);
             if (app.VarOperatingSystemOption.IsSet)
             {
                 writer.WritePropertyName("operating_system");

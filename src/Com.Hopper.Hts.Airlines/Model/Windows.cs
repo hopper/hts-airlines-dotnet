@@ -35,7 +35,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="type">type</param>
         /// <param name="varVersion">varVersion</param>
         [JsonConstructor]
-        public Windows(string type, Option<string?> varVersion = default)
+        public Windows(TypeEnum type, Option<string?> varVersion = default)
         {
             Type = type;
             VarVersionOption = varVersion;
@@ -45,11 +45,63 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Windows for value: windows
+            /// </summary>
+            Windows = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("windows"))
+                return TypeEnum.Windows;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("windows"))
+                return TypeEnum.Windows;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Windows)
+                return "windows";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Type
         /// </summary>
         /* <example>i_os</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -102,7 +154,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<Windows.TypeEnum?> type = default;
             Option<string?> varVersion = default;
 
             while (utf8JsonReader.Read())
@@ -121,7 +173,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<Windows.TypeEnum?>(Windows.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "version":
                             varVersion = new Option<string?>(utf8JsonReader.GetString()!);
@@ -141,7 +195,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (varVersion.IsSet && varVersion.Value == null)
                 throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Windows.");
 
-            return new Windows(type.Value!, varVersion);
+            return new Windows(type.Value!.Value!, varVersion);
         }
 
         /// <summary>
@@ -168,14 +222,11 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Windows windows, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (windows.Type == null)
-                throw new ArgumentNullException(nameof(windows.Type), "Property is required for class Windows.");
-
             if (windows.VarVersionOption.IsSet && windows.VarVersion == null)
                 throw new ArgumentNullException(nameof(windows.VarVersion), "Property is required for class Windows.");
 
-            writer.WriteString("type", windows.Type);
-
+            var typeRawValue = Windows.TypeEnumToJsonValue(windows.Type);
+            writer.WriteString("type", typeRawValue);
             if (windows.VarVersionOption.IsSet)
                 writer.WriteString("version", windows.VarVersion);
         }

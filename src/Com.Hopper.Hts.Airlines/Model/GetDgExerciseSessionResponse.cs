@@ -25,38 +25,30 @@ using Com.Hopper.Hts.Airlines.Client;
 namespace Com.Hopper.Hts.Airlines.Model
 {
     /// <summary>
-    /// PassengerCount
+    /// Response containing the session ID for a DG exercise
     /// </summary>
-    public partial class PassengerCount
+    public partial class GetDgExerciseSessionResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PassengerCount" /> class.
+        /// Initializes a new instance of the <see cref="GetDgExerciseSessionResponse" /> class.
         /// </summary>
-        /// <param name="count">Number of passenger type</param>
-        /// <param name="type">type</param>
+        /// <param name="sessionId">The session ID associated with the DG exercise</param>
         [JsonConstructor]
-        public PassengerCount(long count, PassengerType type)
+        public GetDgExerciseSessionResponse(string sessionId)
         {
-            Count = count;
-            Type = type;
+            SessionId = sessionId;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Type
+        /// The session ID associated with the DG exercise
         /// </summary>
-        [JsonPropertyName("type")]
-        public PassengerType Type { get; set; }
-
-        /// <summary>
-        /// Number of passenger type
-        /// </summary>
-        /// <value>Number of passenger type</value>
-        /* <example>3</example> */
-        [JsonPropertyName("count")]
-        public long Count { get; set; }
+        /// <value>The session ID associated with the DG exercise</value>
+        /* <example>af585dfd-dddf-4726-9ef7-f1bb8909a79a</example> */
+        [JsonPropertyName("session_id")]
+        public string SessionId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,28 +57,27 @@ namespace Com.Hopper.Hts.Airlines.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PassengerCount {\n");
-            sb.Append("  Count: ").Append(Count).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("class GetDgExerciseSessionResponse {\n");
+            sb.Append("  SessionId: ").Append(SessionId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="PassengerCount" />
+    /// A Json converter for type <see cref="GetDgExerciseSessionResponse" />
     /// </summary>
-    public class PassengerCountJsonConverter : JsonConverter<PassengerCount>
+    public class GetDgExerciseSessionResponseJsonConverter : JsonConverter<GetDgExerciseSessionResponse>
     {
         /// <summary>
-        /// Deserializes json to <see cref="PassengerCount" />
+        /// Deserializes json to <see cref="GetDgExerciseSessionResponse" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override PassengerCount Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override GetDgExerciseSessionResponse Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -95,8 +86,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<long?> count = default;
-            Option<PassengerType?> type = default;
+            Option<string?> sessionId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -113,14 +103,8 @@ namespace Com.Hopper.Hts.Airlines.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "count":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                count = new Option<long?>(utf8JsonReader.GetInt32());
-                            break;
-                        case "type":
-                            string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<PassengerType?>(PassengerTypeValueConverter.FromStringOrDefault(typeRawValue));
+                        case "session_id":
+                            sessionId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -128,49 +112,43 @@ namespace Com.Hopper.Hts.Airlines.Model
                 }
             }
 
-            if (!count.IsSet)
-                throw new ArgumentException("Property is required for class PassengerCount.", nameof(count));
+            if (!sessionId.IsSet)
+                throw new ArgumentException("Property is required for class GetDgExerciseSessionResponse.", nameof(sessionId));
 
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PassengerCount.", nameof(type));
+            if (sessionId.IsSet && sessionId.Value == null)
+                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class GetDgExerciseSessionResponse.");
 
-            if (count.IsSet && count.Value == null)
-                throw new ArgumentNullException(nameof(count), "Property is not nullable for class PassengerCount.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class PassengerCount.");
-
-            return new PassengerCount(count.Value!.Value!, type.Value!.Value!);
+            return new GetDgExerciseSessionResponse(sessionId.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="PassengerCount" />
+        /// Serializes a <see cref="GetDgExerciseSessionResponse" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="passengerCount"></param>
+        /// <param name="getDgExerciseSessionResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, PassengerCount passengerCount, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, GetDgExerciseSessionResponse getDgExerciseSessionResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, passengerCount, jsonSerializerOptions);
+            WriteProperties(writer, getDgExerciseSessionResponse, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="PassengerCount" />
+        /// Serializes the properties of <see cref="GetDgExerciseSessionResponse" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="passengerCount"></param>
+        /// <param name="getDgExerciseSessionResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, PassengerCount passengerCount, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, GetDgExerciseSessionResponse getDgExerciseSessionResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            writer.WriteNumber("count", passengerCount.Count);
+            if (getDgExerciseSessionResponse.SessionId == null)
+                throw new ArgumentNullException(nameof(getDgExerciseSessionResponse.SessionId), "Property is required for class GetDgExerciseSessionResponse.");
 
-            var typeRawValue = PassengerTypeValueConverter.ToJsonValue(passengerCount.Type);
-            writer.WriteString("type", typeRawValue);
+            writer.WriteString("session_id", getDgExerciseSessionResponse.SessionId);
         }
     }
 }

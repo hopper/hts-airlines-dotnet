@@ -36,7 +36,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="varOperatingSystem">varOperatingSystem</param>
         /// <param name="browser">browser</param>
         [JsonConstructor]
-        public Web(string type, Option<ModelOperatingSystem?> varOperatingSystem = default, Option<Browser?> browser = default)
+        public Web(TypeEnum type, Option<ModelOperatingSystem?> varOperatingSystem = default, Option<Browser?> browser = default)
         {
             Type = type;
             VarOperatingSystemOption = varOperatingSystem;
@@ -47,11 +47,63 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Web for value: web
+            /// </summary>
+            Web = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("web"))
+                return TypeEnum.Web;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("web"))
+                return TypeEnum.Web;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Web)
+                return "web";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Type
         /// </summary>
         /* <example>app</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// Used to track the state of VarOperatingSystem
@@ -117,7 +169,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<Web.TypeEnum?> type = default;
             Option<ModelOperatingSystem?> varOperatingSystem = default;
             Option<Browser?> browser = default;
 
@@ -137,7 +189,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<Web.TypeEnum?>(Web.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "operating_system":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
@@ -165,7 +219,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (browser.IsSet && browser.Value == null)
                 throw new ArgumentNullException(nameof(browser), "Property is not nullable for class Web.");
 
-            return new Web(type.Value!, varOperatingSystem, browser);
+            return new Web(type.Value!.Value!, varOperatingSystem, browser);
         }
 
         /// <summary>
@@ -192,17 +246,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Web web, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (web.Type == null)
-                throw new ArgumentNullException(nameof(web.Type), "Property is required for class Web.");
-
             if (web.VarOperatingSystemOption.IsSet && web.VarOperatingSystem == null)
                 throw new ArgumentNullException(nameof(web.VarOperatingSystem), "Property is required for class Web.");
 
             if (web.BrowserOption.IsSet && web.Browser == null)
                 throw new ArgumentNullException(nameof(web.Browser), "Property is required for class Web.");
 
-            writer.WriteString("type", web.Type);
-
+            var typeRawValue = Web.TypeEnumToJsonValue(web.Type);
+            writer.WriteString("type", typeRawValue);
             if (web.VarOperatingSystemOption.IsSet)
             {
                 writer.WritePropertyName("operating_system");

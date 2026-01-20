@@ -44,13 +44,15 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="itinerary">itinerary</param>
         /// <param name="contents">One or more contents describing the offer and its conditions in the available languages</param>
         /// <param name="extAttributes">extAttributes</param>
+        /// <param name="experiments">experiments</param>
         /// <param name="coverageExtension">Maximum amount added on top of the coverage to cover ancillaries</param>
         /// <param name="taxes">List of applicable taxes</param>
+        /// <param name="entryPoint">Information about product placement on partner&#39;s website</param>
         /// <param name="termsConditionsUrl">The terms and conditions for this offer</param>
         /// <param name="faqUrl">The faq url for this offer</param>
         /// <param name="merchandisingUrl">The url for rendering offer merchandising</param>
         [JsonConstructor]
-        public CfarOffer(string id, string premium, string coverage, string coveragePercentage, string currency, string taxesTotal, RequestType requestType, DateTime contractExpiryDateTime, DateTime createdDateTime, CfarItinerary itinerary, Dictionary<string, CfarContents> contents, Dictionary<string, string> extAttributes, Option<string?> coverageExtension = default, Option<List<CfarTax>?> taxes = default, Option<string?> termsConditionsUrl = default, Option<string?> faqUrl = default, Option<string?> merchandisingUrl = default)
+        public CfarOffer(string id, string premium, string coverage, string coveragePercentage, string currency, string taxesTotal, RequestType requestType, DateTime contractExpiryDateTime, DateTime createdDateTime, CfarItinerary itinerary, Dictionary<string, CfarContents> contents, Dictionary<string, string> extAttributes, Dictionary<string, string> experiments, Option<string?> coverageExtension = default, Option<List<CfarTax>?> taxes = default, Option<string?> entryPoint = default, Option<string?> termsConditionsUrl = default, Option<string?> faqUrl = default, Option<string?> merchandisingUrl = default)
         {
             Id = id;
             Premium = premium;
@@ -64,8 +66,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             Itinerary = itinerary;
             Contents = contents;
             ExtAttributes = extAttributes;
+            Experiments = experiments;
             CoverageExtensionOption = coverageExtension;
             TaxesOption = taxes;
+            EntryPointOption = entryPoint;
             TermsConditionsUrlOption = termsConditionsUrl;
             FaqUrlOption = faqUrl;
             MerchandisingUrlOption = merchandisingUrl;
@@ -164,6 +168,12 @@ namespace Com.Hopper.Hts.Airlines.Model
         public Dictionary<string, string> ExtAttributes { get; set; }
 
         /// <summary>
+        /// Gets or Sets Experiments
+        /// </summary>
+        [JsonPropertyName("experiments")]
+        public Dictionary<string, string> Experiments { get; set; }
+
+        /// <summary>
         /// Used to track the state of CoverageExtension
         /// </summary>
         [JsonIgnore]
@@ -191,6 +201,20 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <value>List of applicable taxes</value>
         [JsonPropertyName("taxes")]
         public List<CfarTax>? Taxes { get { return this.TaxesOption; } set { this.TaxesOption = new Option<List<CfarTax>?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of EntryPoint
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> EntryPointOption { get; private set; }
+
+        /// <summary>
+        /// Information about product placement on partner&#39;s website
+        /// </summary>
+        /// <value>Information about product placement on partner&#39;s website</value>
+        [JsonPropertyName("entry_point")]
+        public string? EntryPoint { get { return this.EntryPointOption; } set { this.EntryPointOption = new Option<string?>(value); } }
 
         /// <summary>
         /// Used to track the state of TermsConditionsUrl
@@ -254,8 +278,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  Itinerary: ").Append(Itinerary).Append("\n");
             sb.Append("  Contents: ").Append(Contents).Append("\n");
             sb.Append("  ExtAttributes: ").Append(ExtAttributes).Append("\n");
+            sb.Append("  Experiments: ").Append(Experiments).Append("\n");
             sb.Append("  CoverageExtension: ").Append(CoverageExtension).Append("\n");
             sb.Append("  Taxes: ").Append(Taxes).Append("\n");
+            sb.Append("  EntryPoint: ").Append(EntryPoint).Append("\n");
             sb.Append("  TermsConditionsUrl: ").Append(TermsConditionsUrl).Append("\n");
             sb.Append("  FaqUrl: ").Append(FaqUrl).Append("\n");
             sb.Append("  MerchandisingUrl: ").Append(MerchandisingUrl).Append("\n");
@@ -308,8 +334,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<CfarItinerary?> itinerary = default;
             Option<Dictionary<string, CfarContents>?> contents = default;
             Option<Dictionary<string, string>?> extAttributes = default;
+            Option<Dictionary<string, string>?> experiments = default;
             Option<string?> coverageExtension = default;
             Option<List<CfarTax>?> taxes = default;
+            Option<string?> entryPoint = default;
             Option<string?> termsConditionsUrl = default;
             Option<string?> faqUrl = default;
             Option<string?> merchandisingUrl = default;
@@ -372,12 +400,19 @@ namespace Com.Hopper.Hts.Airlines.Model
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 extAttributes = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "experiments":
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                experiments = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "coverage_extension":
                             coverageExtension = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "taxes":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 taxes = new Option<List<CfarTax>?>(JsonSerializer.Deserialize<List<CfarTax>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "entry_point":
+                            entryPoint = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "terms_conditions_url":
                             termsConditionsUrl = new Option<string?>(utf8JsonReader.GetString()!);
@@ -430,6 +465,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (!extAttributes.IsSet)
                 throw new ArgumentException("Property is required for class CfarOffer.", nameof(extAttributes));
 
+            if (!experiments.IsSet)
+                throw new ArgumentException("Property is required for class CfarOffer.", nameof(experiments));
+
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class CfarOffer.");
 
@@ -466,11 +504,17 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (extAttributes.IsSet && extAttributes.Value == null)
                 throw new ArgumentNullException(nameof(extAttributes), "Property is not nullable for class CfarOffer.");
 
+            if (experiments.IsSet && experiments.Value == null)
+                throw new ArgumentNullException(nameof(experiments), "Property is not nullable for class CfarOffer.");
+
             if (coverageExtension.IsSet && coverageExtension.Value == null)
                 throw new ArgumentNullException(nameof(coverageExtension), "Property is not nullable for class CfarOffer.");
 
             if (taxes.IsSet && taxes.Value == null)
                 throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class CfarOffer.");
+
+            if (entryPoint.IsSet && entryPoint.Value == null)
+                throw new ArgumentNullException(nameof(entryPoint), "Property is not nullable for class CfarOffer.");
 
             if (termsConditionsUrl.IsSet && termsConditionsUrl.Value == null)
                 throw new ArgumentNullException(nameof(termsConditionsUrl), "Property is not nullable for class CfarOffer.");
@@ -481,7 +525,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (merchandisingUrl.IsSet && merchandisingUrl.Value == null)
                 throw new ArgumentNullException(nameof(merchandisingUrl), "Property is not nullable for class CfarOffer.");
 
-            return new CfarOffer(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, contractExpiryDateTime.Value!.Value!, createdDateTime.Value!.Value!, itinerary.Value!, contents.Value!, extAttributes.Value!, coverageExtension, taxes, termsConditionsUrl, faqUrl, merchandisingUrl);
+            return new CfarOffer(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, contractExpiryDateTime.Value!.Value!, createdDateTime.Value!.Value!, itinerary.Value!, contents.Value!, extAttributes.Value!, experiments.Value!, coverageExtension, taxes, entryPoint, termsConditionsUrl, faqUrl, merchandisingUrl);
         }
 
         /// <summary>
@@ -535,11 +579,17 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (cfarOffer.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(cfarOffer.ExtAttributes), "Property is required for class CfarOffer.");
 
+            if (cfarOffer.Experiments == null)
+                throw new ArgumentNullException(nameof(cfarOffer.Experiments), "Property is required for class CfarOffer.");
+
             if (cfarOffer.CoverageExtensionOption.IsSet && cfarOffer.CoverageExtension == null)
                 throw new ArgumentNullException(nameof(cfarOffer.CoverageExtension), "Property is required for class CfarOffer.");
 
             if (cfarOffer.TaxesOption.IsSet && cfarOffer.Taxes == null)
                 throw new ArgumentNullException(nameof(cfarOffer.Taxes), "Property is required for class CfarOffer.");
+
+            if (cfarOffer.EntryPointOption.IsSet && cfarOffer.EntryPoint == null)
+                throw new ArgumentNullException(nameof(cfarOffer.EntryPoint), "Property is required for class CfarOffer.");
 
             if (cfarOffer.TermsConditionsUrlOption.IsSet && cfarOffer.TermsConditionsUrl == null)
                 throw new ArgumentNullException(nameof(cfarOffer.TermsConditionsUrl), "Property is required for class CfarOffer.");
@@ -575,6 +625,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             JsonSerializer.Serialize(writer, cfarOffer.Contents, jsonSerializerOptions);
             writer.WritePropertyName("ext_attributes");
             JsonSerializer.Serialize(writer, cfarOffer.ExtAttributes, jsonSerializerOptions);
+            writer.WritePropertyName("experiments");
+            JsonSerializer.Serialize(writer, cfarOffer.Experiments, jsonSerializerOptions);
             if (cfarOffer.CoverageExtensionOption.IsSet)
                 writer.WriteString("coverage_extension", cfarOffer.CoverageExtension);
 
@@ -583,6 +635,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                 writer.WritePropertyName("taxes");
                 JsonSerializer.Serialize(writer, cfarOffer.Taxes, jsonSerializerOptions);
             }
+            if (cfarOffer.EntryPointOption.IsSet)
+                writer.WriteString("entry_point", cfarOffer.EntryPoint);
+
             if (cfarOffer.TermsConditionsUrlOption.IsSet)
                 writer.WriteString("terms_conditions_url", cfarOffer.TermsConditionsUrl);
 

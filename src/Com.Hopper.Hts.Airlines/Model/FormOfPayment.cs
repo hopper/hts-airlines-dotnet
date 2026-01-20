@@ -72,6 +72,100 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Cash for value: cash
+            /// </summary>
+            Cash = 1,
+
+            /// <summary>
+            /// Enum NonCash for value: non_cash
+            /// </summary>
+            NonCash = 2,
+
+            /// <summary>
+            /// Enum PaymentCard for value: payment_card
+            /// </summary>
+            PaymentCard = 3,
+
+            /// <summary>
+            /// Enum Points for value: points
+            /// </summary>
+            Points = 4
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("cash"))
+                return TypeEnum.Cash;
+
+            if (value.Equals("non_cash"))
+                return TypeEnum.NonCash;
+
+            if (value.Equals("payment_card"))
+                return TypeEnum.PaymentCard;
+
+            if (value.Equals("points"))
+                return TypeEnum.Points;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("cash"))
+                return TypeEnum.Cash;
+
+            if (value.Equals("non_cash"))
+                return TypeEnum.NonCash;
+
+            if (value.Equals("payment_card"))
+                return TypeEnum.PaymentCard;
+
+            if (value.Equals("points"))
+                return TypeEnum.Points;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Cash)
+                return "cash";
+
+            if (value == TypeEnum.NonCash)
+                return "non_cash";
+
+            if (value == TypeEnum.PaymentCard)
+                return "payment_card";
+
+            if (value == TypeEnum.Points)
+                return "points";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Cash
         /// </summary>
         public Cash? Cash { get; set; }
@@ -126,7 +220,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<FormOfPayment.TypeEnum?> type = default;
 
             Cash? cash = null;
             NonCash? nonCash = null;
@@ -189,7 +283,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<FormOfPayment.TypeEnum?>(FormOfPayment.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;

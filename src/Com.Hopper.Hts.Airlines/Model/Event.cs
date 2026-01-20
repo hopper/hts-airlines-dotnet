@@ -52,6 +52,72 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum BookingConfirmed for value: booking_confirmed
+            /// </summary>
+            BookingConfirmed = 1,
+
+            /// <summary>
+            /// Enum OffersDisplayed for value: offers_displayed
+            /// </summary>
+            OffersDisplayed = 2
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("booking_confirmed"))
+                return TypeEnum.BookingConfirmed;
+
+            if (value.Equals("offers_displayed"))
+                return TypeEnum.OffersDisplayed;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("booking_confirmed"))
+                return TypeEnum.BookingConfirmed;
+
+            if (value.Equals("offers_displayed"))
+                return TypeEnum.OffersDisplayed;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.BookingConfirmed)
+                return "booking_confirmed";
+
+            if (value == TypeEnum.OffersDisplayed)
+                return "offers_displayed";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets BookingConfirmed
         /// </summary>
         public BookingConfirmed? BookingConfirmed { get; set; }
@@ -96,7 +162,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<Event.TypeEnum?> type = default;
 
             BookingConfirmed? bookingConfirmed = null;
             OffersDisplayed? offersDisplayed = null;
@@ -147,7 +213,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<Event.TypeEnum?>(Event.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;

@@ -102,6 +102,142 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Android for value: android
+            /// </summary>
+            Android = 1,
+
+            /// <summary>
+            /// Enum ChromeOs for value: chrome_os
+            /// </summary>
+            ChromeOs = 2,
+
+            /// <summary>
+            /// Enum IOs for value: i_os
+            /// </summary>
+            IOs = 3,
+
+            /// <summary>
+            /// Enum Linux for value: linux
+            /// </summary>
+            Linux = 4,
+
+            /// <summary>
+            /// Enum MacOs for value: mac_os
+            /// </summary>
+            MacOs = 5,
+
+            /// <summary>
+            /// Enum OtherOs for value: other_os
+            /// </summary>
+            OtherOs = 6,
+
+            /// <summary>
+            /// Enum Windows for value: windows
+            /// </summary>
+            Windows = 7
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("android"))
+                return TypeEnum.Android;
+
+            if (value.Equals("chrome_os"))
+                return TypeEnum.ChromeOs;
+
+            if (value.Equals("i_os"))
+                return TypeEnum.IOs;
+
+            if (value.Equals("linux"))
+                return TypeEnum.Linux;
+
+            if (value.Equals("mac_os"))
+                return TypeEnum.MacOs;
+
+            if (value.Equals("other_os"))
+                return TypeEnum.OtherOs;
+
+            if (value.Equals("windows"))
+                return TypeEnum.Windows;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("android"))
+                return TypeEnum.Android;
+
+            if (value.Equals("chrome_os"))
+                return TypeEnum.ChromeOs;
+
+            if (value.Equals("i_os"))
+                return TypeEnum.IOs;
+
+            if (value.Equals("linux"))
+                return TypeEnum.Linux;
+
+            if (value.Equals("mac_os"))
+                return TypeEnum.MacOs;
+
+            if (value.Equals("other_os"))
+                return TypeEnum.OtherOs;
+
+            if (value.Equals("windows"))
+                return TypeEnum.Windows;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.Android)
+                return "android";
+
+            if (value == TypeEnum.ChromeOs)
+                return "chrome_os";
+
+            if (value == TypeEnum.IOs)
+                return "i_os";
+
+            if (value == TypeEnum.Linux)
+                return "linux";
+
+            if (value == TypeEnum.MacOs)
+                return "mac_os";
+
+            if (value == TypeEnum.OtherOs)
+                return "other_os";
+
+            if (value == TypeEnum.Windows)
+                return "windows";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Android
         /// </summary>
         public Android? Android { get; set; }
@@ -171,7 +307,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<ModelOperatingSystem.TypeEnum?> type = default;
 
             Android? android = null;
             ChromeOs? chromeOs = null;
@@ -252,7 +388,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<ModelOperatingSystem.TypeEnum?>(ModelOperatingSystem.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;

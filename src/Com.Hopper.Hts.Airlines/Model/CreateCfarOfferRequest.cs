@@ -37,14 +37,16 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="extAttributes">extAttributes</param>
         /// <param name="bookingDateTime">A UTC RFC3339 datetime; the date and time at which the booking was made. To be used only with the request type \&quot;post_booking\&quot;</param>
         /// <param name="session">session</param>
+        /// <param name="entryPoint">Information about product placement on partner&#39;s website</param>
         [JsonConstructor]
-        public CreateCfarOfferRequest(List<CfarOfferItinerary> itinerary, RequestType requestType, Dictionary<string, string> extAttributes, Option<DateTime?> bookingDateTime = default, Option<CreateAirlineCfarSessionRequest?> session = default)
+        public CreateCfarOfferRequest(List<CfarOfferItinerary> itinerary, RequestType requestType, Dictionary<string, string> extAttributes, Option<DateTime?> bookingDateTime = default, Option<CreateAirlineCfarSessionRequest?> session = default, Option<string?> entryPoint = default)
         {
             Itinerary = itinerary;
             RequestType = requestType;
             ExtAttributes = extAttributes;
             BookingDateTimeOption = bookingDateTime;
             SessionOption = session;
+            EntryPointOption = entryPoint;
             OnCreated();
         }
 
@@ -98,6 +100,20 @@ namespace Com.Hopper.Hts.Airlines.Model
         public CreateAirlineCfarSessionRequest? Session { get { return this.SessionOption; } set { this.SessionOption = new Option<CreateAirlineCfarSessionRequest?>(value); } }
 
         /// <summary>
+        /// Used to track the state of EntryPoint
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> EntryPointOption { get; private set; }
+
+        /// <summary>
+        /// Information about product placement on partner&#39;s website
+        /// </summary>
+        /// <value>Information about product placement on partner&#39;s website</value>
+        [JsonPropertyName("entry_point")]
+        public string? EntryPoint { get { return this.EntryPointOption; } set { this.EntryPointOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -110,6 +126,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  ExtAttributes: ").Append(ExtAttributes).Append("\n");
             sb.Append("  BookingDateTime: ").Append(BookingDateTime).Append("\n");
             sb.Append("  Session: ").Append(Session).Append("\n");
+            sb.Append("  EntryPoint: ").Append(EntryPoint).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -147,6 +164,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<Dictionary<string, string>?> extAttributes = default;
             Option<DateTime?> bookingDateTime = default;
             Option<CreateAirlineCfarSessionRequest?> session = default;
+            Option<string?> entryPoint = default;
 
             while (utf8JsonReader.Read())
             {
@@ -184,6 +202,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 session = new Option<CreateAirlineCfarSessionRequest?>(JsonSerializer.Deserialize<CreateAirlineCfarSessionRequest>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "entry_point":
+                            entryPoint = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -214,7 +235,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (session.IsSet && session.Value == null)
                 throw new ArgumentNullException(nameof(session), "Property is not nullable for class CreateCfarOfferRequest.");
 
-            return new CreateCfarOfferRequest(itinerary.Value!, requestType.Value!.Value!, extAttributes.Value!, bookingDateTime, session);
+            if (entryPoint.IsSet && entryPoint.Value == null)
+                throw new ArgumentNullException(nameof(entryPoint), "Property is not nullable for class CreateCfarOfferRequest.");
+
+            return new CreateCfarOfferRequest(itinerary.Value!, requestType.Value!.Value!, extAttributes.Value!, bookingDateTime, session, entryPoint);
         }
 
         /// <summary>
@@ -250,6 +274,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (createCfarOfferRequest.SessionOption.IsSet && createCfarOfferRequest.Session == null)
                 throw new ArgumentNullException(nameof(createCfarOfferRequest.Session), "Property is required for class CreateCfarOfferRequest.");
 
+            if (createCfarOfferRequest.EntryPointOption.IsSet && createCfarOfferRequest.EntryPoint == null)
+                throw new ArgumentNullException(nameof(createCfarOfferRequest.EntryPoint), "Property is required for class CreateCfarOfferRequest.");
+
             writer.WritePropertyName("itinerary");
             JsonSerializer.Serialize(writer, createCfarOfferRequest.Itinerary, jsonSerializerOptions);
             var requestTypeRawValue = RequestTypeValueConverter.ToJsonValue(createCfarOfferRequest.RequestType);
@@ -265,6 +292,8 @@ namespace Com.Hopper.Hts.Airlines.Model
                 writer.WritePropertyName("session");
                 JsonSerializer.Serialize(writer, createCfarOfferRequest.Session, jsonSerializerOptions);
             }
+            if (createCfarOfferRequest.EntryPointOption.IsSet)
+                writer.WriteString("entry_point", createCfarOfferRequest.EntryPoint);
         }
     }
 }

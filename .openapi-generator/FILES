@@ -52,6 +52,7 @@ docs/models/CreateDgContractExerciseResponse.md
 docs/models/CreateDgContractRequest.md
 docs/models/CreateDgOfferItemResponse.md
 docs/models/CreateDgOffersRequest.md
+docs/models/CreateExternalCfarOfferRequest.md
 docs/models/Desktop.md
 docs/models/Device.md
 docs/models/DgAncillary.md
@@ -85,6 +86,7 @@ docs/models/FlightStatus.md
 docs/models/FlowType.md
 docs/models/FormOfPayment.md
 docs/models/Gender.md
+docs/models/GetDgExerciseSessionResponse.md
 docs/models/IOs.md
 docs/models/InternetExplorer.md
 docs/models/Linux.md
@@ -113,6 +115,8 @@ docs/models/Safari.md
 docs/models/Tablet.md
 docs/models/TokenType.md
 docs/models/UnprocessableEntity.md
+docs/models/UpdateCfarContractItinerarySliceRequest.md
+docs/models/UpdateCfarContractItinerarySlicesRequest.md
 docs/models/UpdateCfarContractRequest.md
 docs/models/UpdateCfarFormOfPaymentRequest.md
 docs/models/UpdateDgContractStatusRequest.md
@@ -198,6 +202,7 @@ src/Com.Hopper.Hts.Airlines/Model/CreateDgContractExerciseResponse.cs
 src/Com.Hopper.Hts.Airlines/Model/CreateDgContractRequest.cs
 src/Com.Hopper.Hts.Airlines/Model/CreateDgOfferItemResponse.cs
 src/Com.Hopper.Hts.Airlines/Model/CreateDgOffersRequest.cs
+src/Com.Hopper.Hts.Airlines/Model/CreateExternalCfarOfferRequest.cs
 src/Com.Hopper.Hts.Airlines/Model/Desktop.cs
 src/Com.Hopper.Hts.Airlines/Model/Device.cs
 src/Com.Hopper.Hts.Airlines/Model/DgAncillary.cs
@@ -231,6 +236,7 @@ src/Com.Hopper.Hts.Airlines/Model/FlightStatus.cs
 src/Com.Hopper.Hts.Airlines/Model/FlowType.cs
 src/Com.Hopper.Hts.Airlines/Model/FormOfPayment.cs
 src/Com.Hopper.Hts.Airlines/Model/Gender.cs
+src/Com.Hopper.Hts.Airlines/Model/GetDgExerciseSessionResponse.cs
 src/Com.Hopper.Hts.Airlines/Model/IOs.cs
 src/Com.Hopper.Hts.Airlines/Model/InternetExplorer.cs
 src/Com.Hopper.Hts.Airlines/Model/Linux.cs
@@ -259,6 +265,8 @@ src/Com.Hopper.Hts.Airlines/Model/Safari.cs
 src/Com.Hopper.Hts.Airlines/Model/Tablet.cs
 src/Com.Hopper.Hts.Airlines/Model/TokenType.cs
 src/Com.Hopper.Hts.Airlines/Model/UnprocessableEntity.cs
+src/Com.Hopper.Hts.Airlines/Model/UpdateCfarContractItinerarySliceRequest.cs
+src/Com.Hopper.Hts.Airlines/Model/UpdateCfarContractItinerarySlicesRequest.cs
 src/Com.Hopper.Hts.Airlines/Model/UpdateCfarContractRequest.cs
 src/Com.Hopper.Hts.Airlines/Model/UpdateCfarFormOfPaymentRequest.cs
 src/Com.Hopper.Hts.Airlines/Model/UpdateDgContractStatusRequest.cs

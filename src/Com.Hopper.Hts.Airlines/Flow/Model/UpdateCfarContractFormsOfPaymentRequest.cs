@@ -40,7 +40,7 @@ namespace Com.Hopper.Hts.Airlines.Flow.Model
         /// List of the forms of payment used to purchase the booking
         /// </summary>
         /// <value>List of the forms of payment used to purchase the booking</value>
-        public List<FormOfPayment> FormsOfPayment { get; set; }
+        public List<FormOfPayment> FormsOfPayment { get; set; } = null!;
 
         /// <summary>
         /// Returns the string presentation of the object

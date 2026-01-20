@@ -161,6 +161,31 @@ namespace Com.Hopper.Hts.Airlines.Api
         Task<IPostCfarOffersApiResponse?> PostCfarOffersOrDefaultAsync(CreateCfarOfferRequest createCfarOfferRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Create External CFAR Offer
+        /// </summary>
+        /// <remarks>
+        /// Create a CFAR offer with externally provided pricing and coverage details (temporal API for data migration)
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostCfarOffersExternalApiResponse"/>&gt;</returns>
+        Task<IPostCfarOffersExternalApiResponse> PostCfarOffersExternalAsync(CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create External CFAR Offer
+        /// </summary>
+        /// <remarks>
+        /// Create a CFAR offer with externally provided pricing and coverage details (temporal API for data migration)
+        /// </remarks>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostCfarOffersExternalApiResponse"/>?&gt;</returns>
+        Task<IPostCfarOffersExternalApiResponse?> PostCfarOffersExternalOrDefaultAsync(CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Complete CFAR Exercise
         /// </summary>
         /// <remarks>
@@ -213,6 +238,33 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCfarContractsIdFormsOfPaymentApiResponse"/>?&gt;</returns>
         Task<IPutCfarContractsIdFormsOfPaymentApiResponse?> PutCfarContractsIdFormsOfPaymentOrDefaultAsync(string id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update CFAR Contract Itinerary Slices
+        /// </summary>
+        /// <remarks>
+        /// Update itinerary slices of a CFAR contract.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">A unique identifier for a contract</param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutCfarContractsIdItinerarySlicesApiResponse"/>&gt;</returns>
+        Task<IPutCfarContractsIdItinerarySlicesApiResponse> PutCfarContractsIdItinerarySlicesAsync(string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update CFAR Contract Itinerary Slices
+        /// </summary>
+        /// <remarks>
+        /// Update itinerary slices of a CFAR contract.
+        /// </remarks>
+        /// <param name="id">A unique identifier for a contract</param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutCfarContractsIdItinerarySlicesApiResponse"/>?&gt;</returns>
+        Task<IPutCfarContractsIdItinerarySlicesApiResponse?> PutCfarContractsIdItinerarySlicesOrDefaultAsync(string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update CFAR Contract Status
@@ -489,6 +541,54 @@ namespace Com.Hopper.Hts.Airlines.Api
     }
 
     /// <summary>
+    /// The <see cref="IPostCfarOffersExternalApiResponse"/>
+    /// </summary>
+    public interface IPostCfarOffersExternalApiResponse : Com.Hopper.Hts.Airlines.Client.IApiResponse, ICreated<Com.Hopper.Hts.Airlines.Model.CfarOffer?>, IBadRequest<Com.Hopper.Hts.Airlines.Model.BadRequest?>, IUnprocessableContent<Com.Hopper.Hts.Airlines.Model.UnprocessableEntity?>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 403 Forbidden
+        /// </summary>
+        /// <returns></returns>
+        bool IsForbidden { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 500 InternalServerError
+        /// </summary>
+        /// <returns></returns>
+        bool IsInternalServerError { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IPutCfarContractExercisesIdMarkCompletedApiResponse"/>
     /// </summary>
     public interface IPutCfarContractExercisesIdMarkCompletedApiResponse : Com.Hopper.Hts.Airlines.Client.IApiResponse, IOk<Com.Hopper.Hts.Airlines.Model.CfarContractExercise?>, IBadRequest<Com.Hopper.Hts.Airlines.Model.BadRequest?>, IUnprocessableContent<Com.Hopper.Hts.Airlines.Model.UnprocessableEntity?>
@@ -540,6 +640,60 @@ namespace Com.Hopper.Hts.Airlines.Api
     /// The <see cref="IPutCfarContractsIdFormsOfPaymentApiResponse"/>
     /// </summary>
     public interface IPutCfarContractsIdFormsOfPaymentApiResponse : Com.Hopper.Hts.Airlines.Client.IApiResponse, IOk<Com.Hopper.Hts.Airlines.Model.CfarContract?>, IBadRequest<Com.Hopper.Hts.Airlines.Model.BadRequest?>, IUnprocessableContent<Com.Hopper.Hts.Airlines.Model.UnprocessableEntity?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 204 NoContent
+        /// </summary>
+        /// <returns></returns>
+        bool IsNoContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 403 Forbidden
+        /// </summary>
+        /// <returns></returns>
+        bool IsForbidden { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 500 InternalServerError
+        /// </summary>
+        /// <returns></returns>
+        bool IsInternalServerError { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPutCfarContractsIdItinerarySlicesApiResponse"/>
+    /// </summary>
+    public interface IPutCfarContractsIdItinerarySlicesApiResponse : Com.Hopper.Hts.Airlines.Client.IApiResponse, IOk<Com.Hopper.Hts.Airlines.Model.CfarContract?>, IBadRequest<Com.Hopper.Hts.Airlines.Model.BadRequest?>, IUnprocessableContent<Com.Hopper.Hts.Airlines.Model.UnprocessableEntity?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -752,6 +906,26 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPostCfarOffersExternal;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostCfarOffersExternal;
+
+        internal void ExecuteOnPostCfarOffersExternal(CancelForAnyReasonCFARApi.PostCfarOffersExternalApiResponse apiResponse)
+        {
+            OnPostCfarOffersExternal?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPostCfarOffersExternal(Exception exception)
+        {
+            OnErrorPostCfarOffersExternal?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs>? OnPutCfarContractExercisesIdMarkCompleted;
 
         /// <summary>
@@ -787,6 +961,26 @@ namespace Com.Hopper.Hts.Airlines.Api
         internal void ExecuteOnErrorPutCfarContractsIdFormsOfPayment(Exception exception)
         {
             OnErrorPutCfarContractsIdFormsOfPayment?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPutCfarContractsIdItinerarySlices;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutCfarContractsIdItinerarySlices;
+
+        internal void ExecuteOnPutCfarContractsIdItinerarySlices(CancelForAnyReasonCFARApi.PutCfarContractsIdItinerarySlicesApiResponse apiResponse)
+        {
+            OnPutCfarContractsIdItinerarySlices?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPutCfarContractsIdItinerarySlices(Exception exception)
+        {
+            OnErrorPutCfarContractsIdItinerarySlices?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -2626,6 +2820,360 @@ namespace Com.Hopper.Hts.Airlines.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatPostCfarOffersExternal(CreateExternalCfarOfferRequest createExternalCfarOfferRequest, ref Option<string> hCSessionID);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID"></param>
+        /// <returns></returns>
+        private void ValidatePostCfarOffersExternal(CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID)
+        {
+            if (createExternalCfarOfferRequest == null)
+                throw new ArgumentNullException(nameof(createExternalCfarOfferRequest));
+
+            if (hCSessionID.IsSet && hCSessionID.Value == null)
+                throw new ArgumentNullException(nameof(hCSessionID));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID"></param>
+        private void AfterPostCfarOffersExternalDefaultImplementation(IPostCfarOffersExternalApiResponse apiResponseLocalVar, CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostCfarOffersExternal(ref suppressDefaultLog, apiResponseLocalVar, createExternalCfarOfferRequest, hCSessionID);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID"></param>
+        partial void AfterPostCfarOffersExternal(ref bool suppressDefaultLog, IPostCfarOffersExternalApiResponse apiResponseLocalVar, CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID"></param>
+        private void OnErrorPostCfarOffersExternalDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostCfarOffersExternal(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, createExternalCfarOfferRequest, hCSessionID);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID"></param>
+        partial void OnErrorPostCfarOffersExternal(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID);
+
+        /// <summary>
+        /// Create External CFAR Offer Create a CFAR offer with externally provided pricing and coverage details (temporal API for data migration)
+        /// </summary>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostCfarOffersExternalApiResponse"/>&gt;</returns>
+        public async Task<IPostCfarOffersExternalApiResponse?> PostCfarOffersExternalOrDefaultAsync(CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostCfarOffersExternalAsync(createExternalCfarOfferRequest, hCSessionID, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Create External CFAR Offer Create a CFAR offer with externally provided pricing and coverage details (temporal API for data migration)
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createExternalCfarOfferRequest"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostCfarOffersExternalApiResponse"/>&gt;</returns>
+        public async Task<IPostCfarOffersExternalApiResponse> PostCfarOffersExternalAsync(CreateExternalCfarOfferRequest createExternalCfarOfferRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostCfarOffersExternal(createExternalCfarOfferRequest, hCSessionID);
+
+                FormatPostCfarOffersExternal(createExternalCfarOfferRequest, ref hCSessionID);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/cfar_offers/external";
+
+                    if (hCSessionID.IsSet)
+                        httpRequestMessageLocalVar.Headers.Add("HC-Session-ID", ClientUtils.ParameterToString(hCSessionID.Value));
+
+                    httpRequestMessageLocalVar.Content = (createExternalCfarOfferRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(createExternalCfarOfferRequest, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    BearerToken bearerTokenLocalVar1 = (BearerToken) await BearerTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
+
+                    tokenBaseLocalVars.Add(bearerTokenLocalVar1);
+
+                    bearerTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar, "");
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+
+                    if (acceptLocalVar != null)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+                        ILogger<PostCfarOffersExternalApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<PostCfarOffersExternalApiResponse>();
+
+                        PostCfarOffersExternalApiResponse apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/cfar_offers/external", requestedAtLocalVar, _jsonSerializerOptions);
+
+                        AfterPostCfarOffersExternalDefaultImplementation(apiResponseLocalVar, createExternalCfarOfferRequest, hCSessionID);
+
+                        Events.ExecuteOnPostCfarOffersExternal(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostCfarOffersExternalDefaultImplementation(e, "/cfar_offers/external", uriBuilderLocalVar.Path, createExternalCfarOfferRequest, hCSessionID);
+                Events.ExecuteOnErrorPostCfarOffersExternal(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostCfarOffersExternalApiResponse"/>
+        /// </summary>
+        public partial class PostCfarOffersExternalApiResponse : Com.Hopper.Hts.Airlines.Client.ApiResponse, IPostCfarOffersExternalApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<PostCfarOffersExternalApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostCfarOffersExternalApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostCfarOffersExternalApiResponse(ILogger<PostCfarOffersExternalApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Com.Hopper.Hts.Airlines.Model.CfarOffer? Created()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Com.Hopper.Hts.Airlines.Model.CfarOffer>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Com.Hopper.Hts.Airlines.Model.CfarOffer? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public Com.Hopper.Hts.Airlines.Model.BadRequest? BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<Com.Hopper.Hts.Airlines.Model.BadRequest>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest([NotNullWhen(true)]out Com.Hopper.Hts.Airlines.Model.BadRequest? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden
+            /// </summary>
+            /// <returns></returns>
+            public bool IsForbidden => 403 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent
+            /// </summary>
+            /// <returns></returns>
+            public Com.Hopper.Hts.Airlines.Model.UnprocessableEntity? UnprocessableContent()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<Com.Hopper.Hts.Airlines.Model.UnprocessableEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnprocessableContent([NotNullWhen(true)]out Com.Hopper.Hts.Airlines.Model.UnprocessableEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)422);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError
+            /// </summary>
+            /// <returns></returns>
+            public bool IsInternalServerError => 500 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
         partial void FormatPutCfarContractExercisesIdMarkCompleted(ref string id, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, ref Option<string> hCSessionID);
 
         /// <summary>
@@ -3200,6 +3748,377 @@ namespace Com.Hopper.Hts.Airlines.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public PutCfarContractsIdFormsOfPaymentApiResponse(ILogger<PutCfarContractsIdFormsOfPaymentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Com.Hopper.Hts.Airlines.Model.CfarContract? Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Com.Hopper.Hts.Airlines.Model.CfarContract>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Com.Hopper.Hts.Airlines.Model.CfarContract? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 204 NoContent
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNoContent => 204 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public Com.Hopper.Hts.Airlines.Model.BadRequest? BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<Com.Hopper.Hts.Airlines.Model.BadRequest>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest([NotNullWhen(true)]out Com.Hopper.Hts.Airlines.Model.BadRequest? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden
+            /// </summary>
+            /// <returns></returns>
+            public bool IsForbidden => 403 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent
+            /// </summary>
+            /// <returns></returns>
+            public Com.Hopper.Hts.Airlines.Model.UnprocessableEntity? UnprocessableContent()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<Com.Hopper.Hts.Airlines.Model.UnprocessableEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnprocessableContent([NotNullWhen(true)]out Com.Hopper.Hts.Airlines.Model.UnprocessableEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)422);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError
+            /// </summary>
+            /// <returns></returns>
+            public bool IsInternalServerError => 500 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutCfarContractsIdItinerarySlices(ref string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, ref Option<string> hCSessionID);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID"></param>
+        /// <returns></returns>
+        private void ValidatePutCfarContractsIdItinerarySlices(string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID)
+        {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
+            if (updateCfarContractItinerarySlicesRequest == null)
+                throw new ArgumentNullException(nameof(updateCfarContractItinerarySlicesRequest));
+
+            if (hCSessionID.IsSet && hCSessionID.Value == null)
+                throw new ArgumentNullException(nameof(hCSessionID));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID"></param>
+        private void AfterPutCfarContractsIdItinerarySlicesDefaultImplementation(IPutCfarContractsIdItinerarySlicesApiResponse apiResponseLocalVar, string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutCfarContractsIdItinerarySlices(ref suppressDefaultLog, apiResponseLocalVar, id, updateCfarContractItinerarySlicesRequest, hCSessionID);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID"></param>
+        partial void AfterPutCfarContractsIdItinerarySlices(ref bool suppressDefaultLog, IPutCfarContractsIdItinerarySlicesApiResponse apiResponseLocalVar, string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID"></param>
+        private void OnErrorPutCfarContractsIdItinerarySlicesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutCfarContractsIdItinerarySlices(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, updateCfarContractItinerarySlicesRequest, hCSessionID);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID"></param>
+        partial void OnErrorPutCfarContractsIdItinerarySlices(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID);
+
+        /// <summary>
+        /// Update CFAR Contract Itinerary Slices Update itinerary slices of a CFAR contract.
+        /// </summary>
+        /// <param name="id">A unique identifier for a contract</param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutCfarContractsIdItinerarySlicesApiResponse"/>&gt;</returns>
+        public async Task<IPutCfarContractsIdItinerarySlicesApiResponse?> PutCfarContractsIdItinerarySlicesOrDefaultAsync(string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutCfarContractsIdItinerarySlicesAsync(id, updateCfarContractItinerarySlicesRequest, hCSessionID, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Update CFAR Contract Itinerary Slices Update itinerary slices of a CFAR contract.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">A unique identifier for a contract</param>
+        /// <param name="updateCfarContractItinerarySlicesRequest"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutCfarContractsIdItinerarySlicesApiResponse"/>&gt;</returns>
+        public async Task<IPutCfarContractsIdItinerarySlicesApiResponse> PutCfarContractsIdItinerarySlicesAsync(string id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutCfarContractsIdItinerarySlices(id, updateCfarContractItinerarySlicesRequest, hCSessionID);
+
+                FormatPutCfarContractsIdItinerarySlices(ref id, updateCfarContractItinerarySlicesRequest, ref hCSessionID);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/cfar_contracts/{id}/itinerary_slices";
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    if (hCSessionID.IsSet)
+                        httpRequestMessageLocalVar.Headers.Add("HC-Session-ID", ClientUtils.ParameterToString(hCSessionID.Value));
+
+                    httpRequestMessageLocalVar.Content = (updateCfarContractItinerarySlicesRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateCfarContractItinerarySlicesRequest, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    BearerToken bearerTokenLocalVar1 = (BearerToken) await BearerTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
+
+                    tokenBaseLocalVars.Add(bearerTokenLocalVar1);
+
+                    bearerTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar, "");
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+
+                    if (acceptLocalVar != null)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+                        ILogger<PutCfarContractsIdItinerarySlicesApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<PutCfarContractsIdItinerarySlicesApiResponse>();
+
+                        PutCfarContractsIdItinerarySlicesApiResponse apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/cfar_contracts/{id}/itinerary_slices", requestedAtLocalVar, _jsonSerializerOptions);
+
+                        AfterPutCfarContractsIdItinerarySlicesDefaultImplementation(apiResponseLocalVar, id, updateCfarContractItinerarySlicesRequest, hCSessionID);
+
+                        Events.ExecuteOnPutCfarContractsIdItinerarySlices(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutCfarContractsIdItinerarySlicesDefaultImplementation(e, "/cfar_contracts/{id}/itinerary_slices", uriBuilderLocalVar.Path, id, updateCfarContractItinerarySlicesRequest, hCSessionID);
+                Events.ExecuteOnErrorPutCfarContractsIdItinerarySlices(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutCfarContractsIdItinerarySlicesApiResponse"/>
+        /// </summary>
+        public partial class PutCfarContractsIdItinerarySlicesApiResponse : Com.Hopper.Hts.Airlines.Client.ApiResponse, IPutCfarContractsIdItinerarySlicesApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<PutCfarContractsIdItinerarySlicesApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutCfarContractsIdItinerarySlicesApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutCfarContractsIdItinerarySlicesApiResponse(ILogger<PutCfarContractsIdItinerarySlicesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

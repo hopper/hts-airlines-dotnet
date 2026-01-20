@@ -36,7 +36,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="type">type</param>
         /// <param name="varVersion">varVersion</param>
         [JsonConstructor]
-        public OtherOs(string name, string type, Option<string?> varVersion = default)
+        public OtherOs(string name, TypeEnum type, Option<string?> varVersion = default)
         {
             Name = name;
             Type = type;
@@ -47,18 +47,70 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Defines Type
         /// </summary>
-        /* <example>15.0.2</example> */
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum OtherOs for value: other_os
+            /// </summary>
+            OtherOs = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("other_os"))
+                return TypeEnum.OtherOs;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("other_os"))
+                return TypeEnum.OtherOs;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.OtherOs)
+                return "other_os";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
 
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
         /* <example>i_os</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Name
+        /// </summary>
+        /* <example>15.0.2</example> */
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -112,7 +164,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> name = default;
-            Option<string?> type = default;
+            Option<OtherOs.TypeEnum?> type = default;
             Option<string?> varVersion = default;
 
             while (utf8JsonReader.Read())
@@ -134,7 +186,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             name = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<OtherOs.TypeEnum?>(OtherOs.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "version":
                             varVersion = new Option<string?>(utf8JsonReader.GetString()!);
@@ -160,7 +214,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (varVersion.IsSet && varVersion.Value == null)
                 throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class OtherOs.");
 
-            return new OtherOs(name.Value!, type.Value!, varVersion);
+            return new OtherOs(name.Value!, type.Value!.Value!, varVersion);
         }
 
         /// <summary>
@@ -190,16 +244,13 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (otherOs.Name == null)
                 throw new ArgumentNullException(nameof(otherOs.Name), "Property is required for class OtherOs.");
 
-            if (otherOs.Type == null)
-                throw new ArgumentNullException(nameof(otherOs.Type), "Property is required for class OtherOs.");
-
             if (otherOs.VarVersionOption.IsSet && otherOs.VarVersion == null)
                 throw new ArgumentNullException(nameof(otherOs.VarVersion), "Property is required for class OtherOs.");
 
             writer.WriteString("name", otherOs.Name);
 
-            writer.WriteString("type", otherOs.Type);
-
+            var typeRawValue = OtherOs.TypeEnumToJsonValue(otherOs.Type);
+            writer.WriteString("type", typeRawValue);
             if (otherOs.VarVersionOption.IsSet)
                 writer.WriteString("version", otherOs.VarVersion);
         }

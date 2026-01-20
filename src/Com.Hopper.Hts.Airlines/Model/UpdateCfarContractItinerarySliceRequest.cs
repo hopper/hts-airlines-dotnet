@@ -25,38 +25,29 @@ using Com.Hopper.Hts.Airlines.Client;
 namespace Com.Hopper.Hts.Airlines.Model
 {
     /// <summary>
-    /// PassengerCount
+    /// An itinerary slice containing only flight segments
     /// </summary>
-    public partial class PassengerCount
+    public partial class UpdateCfarContractItinerarySliceRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PassengerCount" /> class.
+        /// Initializes a new instance of the <see cref="UpdateCfarContractItinerarySliceRequest" /> class.
         /// </summary>
-        /// <param name="count">Number of passenger type</param>
-        /// <param name="type">type</param>
+        /// <param name="segments">A list of segments which make up the slice</param>
         [JsonConstructor]
-        public PassengerCount(long count, PassengerType type)
+        public UpdateCfarContractItinerarySliceRequest(List<CfarItinerarySliceSegment> segments)
         {
-            Count = count;
-            Type = type;
+            Segments = segments;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Type
+        /// A list of segments which make up the slice
         /// </summary>
-        [JsonPropertyName("type")]
-        public PassengerType Type { get; set; }
-
-        /// <summary>
-        /// Number of passenger type
-        /// </summary>
-        /// <value>Number of passenger type</value>
-        /* <example>3</example> */
-        [JsonPropertyName("count")]
-        public long Count { get; set; }
+        /// <value>A list of segments which make up the slice</value>
+        [JsonPropertyName("segments")]
+        public List<CfarItinerarySliceSegment> Segments { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,28 +56,27 @@ namespace Com.Hopper.Hts.Airlines.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PassengerCount {\n");
-            sb.Append("  Count: ").Append(Count).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("class UpdateCfarContractItinerarySliceRequest {\n");
+            sb.Append("  Segments: ").Append(Segments).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="PassengerCount" />
+    /// A Json converter for type <see cref="UpdateCfarContractItinerarySliceRequest" />
     /// </summary>
-    public class PassengerCountJsonConverter : JsonConverter<PassengerCount>
+    public class UpdateCfarContractItinerarySliceRequestJsonConverter : JsonConverter<UpdateCfarContractItinerarySliceRequest>
     {
         /// <summary>
-        /// Deserializes json to <see cref="PassengerCount" />
+        /// Deserializes json to <see cref="UpdateCfarContractItinerarySliceRequest" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override PassengerCount Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override UpdateCfarContractItinerarySliceRequest Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -95,8 +85,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<long?> count = default;
-            Option<PassengerType?> type = default;
+            Option<List<CfarItinerarySliceSegment>?> segments = default;
 
             while (utf8JsonReader.Read())
             {
@@ -113,14 +102,9 @@ namespace Com.Hopper.Hts.Airlines.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "count":
+                        case "segments":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                count = new Option<long?>(utf8JsonReader.GetInt32());
-                            break;
-                        case "type":
-                            string? typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                                type = new Option<PassengerType?>(PassengerTypeValueConverter.FromStringOrDefault(typeRawValue));
+                                segments = new Option<List<CfarItinerarySliceSegment>?>(JsonSerializer.Deserialize<List<CfarItinerarySliceSegment>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -128,49 +112,44 @@ namespace Com.Hopper.Hts.Airlines.Model
                 }
             }
 
-            if (!count.IsSet)
-                throw new ArgumentException("Property is required for class PassengerCount.", nameof(count));
+            if (!segments.IsSet)
+                throw new ArgumentException("Property is required for class UpdateCfarContractItinerarySliceRequest.", nameof(segments));
 
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PassengerCount.", nameof(type));
+            if (segments.IsSet && segments.Value == null)
+                throw new ArgumentNullException(nameof(segments), "Property is not nullable for class UpdateCfarContractItinerarySliceRequest.");
 
-            if (count.IsSet && count.Value == null)
-                throw new ArgumentNullException(nameof(count), "Property is not nullable for class PassengerCount.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class PassengerCount.");
-
-            return new PassengerCount(count.Value!.Value!, type.Value!.Value!);
+            return new UpdateCfarContractItinerarySliceRequest(segments.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="PassengerCount" />
+        /// Serializes a <see cref="UpdateCfarContractItinerarySliceRequest" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="passengerCount"></param>
+        /// <param name="updateCfarContractItinerarySliceRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, PassengerCount passengerCount, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, UpdateCfarContractItinerarySliceRequest updateCfarContractItinerarySliceRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, passengerCount, jsonSerializerOptions);
+            WriteProperties(writer, updateCfarContractItinerarySliceRequest, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="PassengerCount" />
+        /// Serializes the properties of <see cref="UpdateCfarContractItinerarySliceRequest" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="passengerCount"></param>
+        /// <param name="updateCfarContractItinerarySliceRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, PassengerCount passengerCount, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, UpdateCfarContractItinerarySliceRequest updateCfarContractItinerarySliceRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            writer.WriteNumber("count", passengerCount.Count);
+            if (updateCfarContractItinerarySliceRequest.Segments == null)
+                throw new ArgumentNullException(nameof(updateCfarContractItinerarySliceRequest.Segments), "Property is required for class UpdateCfarContractItinerarySliceRequest.");
 
-            var typeRawValue = PassengerTypeValueConverter.ToJsonValue(passengerCount.Type);
-            writer.WriteString("type", typeRawValue);
+            writer.WritePropertyName("segments");
+            JsonSerializer.Serialize(writer, updateCfarContractItinerarySliceRequest.Segments, jsonSerializerOptions);
         }
     }
 }

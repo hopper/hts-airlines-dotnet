@@ -35,7 +35,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="type">type</param>
         /// <param name="varVersion">varVersion</param>
         [JsonConstructor]
-        public InternetExplorer(string type, Option<string?> varVersion = default)
+        public InternetExplorer(TypeEnum type, Option<string?> varVersion = default)
         {
             Type = type;
             VarVersionOption = varVersion;
@@ -45,10 +45,62 @@ namespace Com.Hopper.Hts.Airlines.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum InternetExplorer for value: internet_explorer
+            /// </summary>
+            InternetExplorer = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("internet_explorer"))
+                return TypeEnum.InternetExplorer;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("internet_explorer"))
+                return TypeEnum.InternetExplorer;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.InternetExplorer)
+                return "internet_explorer";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -100,7 +152,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> type = default;
+            Option<InternetExplorer.TypeEnum?> type = default;
             Option<string?> varVersion = default;
 
             while (utf8JsonReader.Read())
@@ -119,7 +171,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "type":
-                            type = new Option<string?>(utf8JsonReader.GetString()!);
+                            string? typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                                type = new Option<InternetExplorer.TypeEnum?>(InternetExplorer.TypeEnumFromStringOrDefault(typeRawValue));
                             break;
                         case "version":
                             varVersion = new Option<string?>(utf8JsonReader.GetString()!);
@@ -139,7 +193,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (varVersion.IsSet && varVersion.Value == null)
                 throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class InternetExplorer.");
 
-            return new InternetExplorer(type.Value!, varVersion);
+            return new InternetExplorer(type.Value!.Value!, varVersion);
         }
 
         /// <summary>
@@ -166,14 +220,11 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InternetExplorer internetExplorer, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (internetExplorer.Type == null)
-                throw new ArgumentNullException(nameof(internetExplorer.Type), "Property is required for class InternetExplorer.");
-
             if (internetExplorer.VarVersionOption.IsSet && internetExplorer.VarVersion == null)
                 throw new ArgumentNullException(nameof(internetExplorer.VarVersion), "Property is required for class InternetExplorer.");
 
-            writer.WriteString("type", internetExplorer.Type);
-
+            var typeRawValue = InternetExplorer.TypeEnumToJsonValue(internetExplorer.Type);
+            writer.WriteString("type", typeRawValue);
             if (internetExplorer.VarVersionOption.IsSet)
                 writer.WriteString("version", internetExplorer.VarVersion);
         }
