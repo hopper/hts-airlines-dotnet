@@ -6,6 +6,8 @@ You can regenerate the client using `regenerate.sh`.
 
 ## Publishing
 
+Update the `<Version>` property in `src/Com.Hopper.Hts.Airlines/Com.Hopper.Hts.Airlines.csproj` to the next version number.
+
 Create the package
 
 ```bash
