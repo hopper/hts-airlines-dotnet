@@ -5,6 +5,7 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetCustomerDgExercisesIdSession**](DisruptionGuaranteeDGApi.md#getcustomerdgexercisesidsession) | **GET** /customer/dg_exercises/{id}/session | Get session ID by DG exercise ID |
+| [**GetCustomerDgPayoutReceipt**](DisruptionGuaranteeDGApi.md#getcustomerdgpayoutreceipt) | **GET** /customer/dg/payout/receipt | Get payout receipt PDF |
 | [**GetDgContractsId**](DisruptionGuaranteeDGApi.md#getdgcontractsid) | **GET** /dg_contracts/{id} | Get a DG contract |
 | [**PostDgContractExercises**](DisruptionGuaranteeDGApi.md#postdgcontractexercises) | **POST** /dg_contract_exercises | Create DG Exercise |
 | [**PostDgContracts**](DisruptionGuaranteeDGApi.md#postdgcontracts) | **POST** /dg_contracts | Create a DG Contract |
@@ -102,6 +103,108 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | The session ID for the DG exercise |  -  |
 | **400** | Syntactic errors were encountered while handling the request |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="getcustomerdgpayoutreceipt"></a>
+# **GetCustomerDgPayoutReceipt**
+> System.IO.Stream GetCustomerDgPayoutReceipt (string verificationCode = null)
+
+Get payout receipt PDF
+
+Download payout receipt as PDF
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Com.Hopper.Hts.Airlines.Api;
+using Com.Hopper.Hts.Airlines.Client;
+using Com.Hopper.Hts.Airlines.Model;
+
+namespace Example
+{
+    public class GetCustomerDgPayoutReceiptExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://airlines-api.hopper.com/airline/v1.1";
+            // Configure API key authorization: SessionAuth
+            config.AddApiKey("HC-Session-ID", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("HC-Session-ID", "Bearer");
+
+            var apiInstance = new DisruptionGuaranteeDGApi(config);
+            var verificationCode = "verificationCode_example";  // string |  (optional) 
+
+            try
+            {
+                // Get payout receipt PDF
+                System.IO.Stream result = apiInstance.GetCustomerDgPayoutReceipt(verificationCode);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DisruptionGuaranteeDGApi.GetCustomerDgPayoutReceipt: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCustomerDgPayoutReceiptWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get payout receipt PDF
+    ApiResponse<System.IO.Stream> response = apiInstance.GetCustomerDgPayoutReceiptWithHttpInfo(verificationCode);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DisruptionGuaranteeDGApi.GetCustomerDgPayoutReceiptWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **verificationCode** | **string** |  | [optional]  |
+
+### Return type
+
+**System.IO.Stream**
+
+### Authorization
+
+[SessionAuth](../README.md#SessionAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/pdf, application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | PDF receipt file |  * Expires -  <br>  * Cache-Control -  <br>  * Content-Type -  <br>  * Content-Disposition -  <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **403** | The authenticated client does not have permission to call this endpoint |  -  |
 | **404** | The requested resource could not be found |  -  |
 | **422** | Semantic errors were encountered while handling the request |  -  |
 | **500** | The server encountered an internal error |  -  |

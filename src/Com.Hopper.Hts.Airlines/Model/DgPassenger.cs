@@ -36,16 +36,15 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="passengerType">passengerType</param>
         /// <param name="firstName">Ancillaries attached to the itinerary and their prices</param>
         /// <param name="lastName">Ancillaries attached to the itinerary and their prices</param>
-        /// <param name="dateOfBirth">The birth date in ISO Local Date format</param>
+        /// <param name="dateOfBirth">The birth date in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.</param>
         /// <param name="gender">gender</param>
-        /// <param name="passportNumber">The passport number of the passenger</param>
-        /// <param name="passportCountryIssuance">The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)</param>
-        /// <param name="passportIssuanceDate">The date of issuance of the passenger&#39;s passport</param>
-        /// <param name="passportExpirationDate">The passport expiration date of the passenger</param>
-        /// <param name="nationality">The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)</param>
-        /// <param name="dateOfBirthEncrypted">Encrypted date of birth (Base64 encoded). Used only when PII encryption is enabled. If provided, this takes precedence over dateOfBirth.</param>
+        /// <param name="passportNumber">The passport number of the passenger. For encrypted partners, this contains the encrypted Base64 string.</param>
+        /// <param name="passportCountryIssuance">The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;). For encrypted partners, this contains the encrypted Base64 string.</param>
+        /// <param name="passportIssuanceDate">The date of issuance of the passenger&#39;s passport in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.</param>
+        /// <param name="passportExpirationDate">The passport expiration date of the passenger in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.</param>
+        /// <param name="nationality">The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;). For encrypted partners, this contains the encrypted Base64 string.</param>
         [JsonConstructor]
-        public DgPassenger(string passengerReference, DgPassengerType passengerType, Option<string?> firstName = default, Option<string?> lastName = default, Option<DateOnly?> dateOfBirth = default, Option<Gender?> gender = default, Option<string?> passportNumber = default, Option<string?> passportCountryIssuance = default, Option<DateOnly?> passportIssuanceDate = default, Option<DateOnly?> passportExpirationDate = default, Option<string?> nationality = default, Option<string?> dateOfBirthEncrypted = default)
+        public DgPassenger(string passengerReference, DgPassengerType passengerType, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> dateOfBirth = default, Option<Gender?> gender = default, Option<string?> passportNumber = default, Option<string?> passportCountryIssuance = default, Option<string?> passportIssuanceDate = default, Option<string?> passportExpirationDate = default, Option<string?> nationality = default)
         {
             PassengerReference = passengerReference;
             PassengerType = passengerType;
@@ -58,7 +57,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             PassportIssuanceDateOption = passportIssuanceDate;
             PassportExpirationDateOption = passportExpirationDate;
             NationalityOption = nationality;
-            DateOfBirthEncryptedOption = dateOfBirthEncrypted;
             OnCreated();
         }
 
@@ -126,15 +124,15 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateOnly?> DateOfBirthOption { get; private set; }
+        public Option<string?> DateOfBirthOption { get; private set; }
 
         /// <summary>
-        /// The birth date in ISO Local Date format
+        /// The birth date in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.
         /// </summary>
-        /// <value>The birth date in ISO Local Date format</value>
-        /* <example>Sun Apr 02 00:00:00 UTC 2000</example> */
+        /// <value>The birth date in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.</value>
+        /* <example>2000-04-02</example> */
         [JsonPropertyName("date_of_birth")]
-        public DateOnly? DateOfBirth { get { return this.DateOfBirthOption; } set { this.DateOfBirthOption = new Option<DateOnly?>(value); } }
+        public string? DateOfBirth { get { return this.DateOfBirthOption; } set { this.DateOfBirthOption = new Option<string?>(value); } }
 
         /// <summary>
         /// Used to track the state of PassportNumber
@@ -144,9 +142,9 @@ namespace Com.Hopper.Hts.Airlines.Model
         public Option<string?> PassportNumberOption { get; private set; }
 
         /// <summary>
-        /// The passport number of the passenger
+        /// The passport number of the passenger. For encrypted partners, this contains the encrypted Base64 string.
         /// </summary>
-        /// <value>The passport number of the passenger</value>
+        /// <value>The passport number of the passenger. For encrypted partners, this contains the encrypted Base64 string.</value>
         /* <example>J12393496</example> */
         [JsonPropertyName("passport_number")]
         public string? PassportNumber { get { return this.PassportNumberOption; } set { this.PassportNumberOption = new Option<string?>(value); } }
@@ -159,9 +157,9 @@ namespace Com.Hopper.Hts.Airlines.Model
         public Option<string?> PassportCountryIssuanceOption { get; private set; }
 
         /// <summary>
-        /// The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)
+        /// The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;). For encrypted partners, this contains the encrypted Base64 string.
         /// </summary>
-        /// <value>The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)</value>
+        /// <value>The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;). For encrypted partners, this contains the encrypted Base64 string.</value>
         /* <example>US</example> */
         [JsonPropertyName("passport_country_issuance")]
         public string? PassportCountryIssuance { get { return this.PassportCountryIssuanceOption; } set { this.PassportCountryIssuanceOption = new Option<string?>(value); } }
@@ -171,30 +169,30 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateOnly?> PassportIssuanceDateOption { get; private set; }
+        public Option<string?> PassportIssuanceDateOption { get; private set; }
 
         /// <summary>
-        /// The date of issuance of the passenger&#39;s passport
+        /// The date of issuance of the passenger&#39;s passport in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.
         /// </summary>
-        /// <value>The date of issuance of the passenger&#39;s passport</value>
-        /* <example>Mon Apr 02 00:00:00 UTC 2018</example> */
+        /// <value>The date of issuance of the passenger&#39;s passport in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.</value>
+        /* <example>2018-04-02</example> */
         [JsonPropertyName("passport_issuance_date")]
-        public DateOnly? PassportIssuanceDate { get { return this.PassportIssuanceDateOption; } set { this.PassportIssuanceDateOption = new Option<DateOnly?>(value); } }
+        public string? PassportIssuanceDate { get { return this.PassportIssuanceDateOption; } set { this.PassportIssuanceDateOption = new Option<string?>(value); } }
 
         /// <summary>
         /// Used to track the state of PassportExpirationDate
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<DateOnly?> PassportExpirationDateOption { get; private set; }
+        public Option<string?> PassportExpirationDateOption { get; private set; }
 
         /// <summary>
-        /// The passport expiration date of the passenger
+        /// The passport expiration date of the passenger in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.
         /// </summary>
-        /// <value>The passport expiration date of the passenger</value>
-        /* <example>Tue Apr 02 00:00:00 UTC 2030</example> */
+        /// <value>The passport expiration date of the passenger in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.</value>
+        /* <example>2030-04-02</example> */
         [JsonPropertyName("passport_expiration_date")]
-        public DateOnly? PassportExpirationDate { get { return this.PassportExpirationDateOption; } set { this.PassportExpirationDateOption = new Option<DateOnly?>(value); } }
+        public string? PassportExpirationDate { get { return this.PassportExpirationDateOption; } set { this.PassportExpirationDateOption = new Option<string?>(value); } }
 
         /// <summary>
         /// Used to track the state of Nationality
@@ -204,27 +202,12 @@ namespace Com.Hopper.Hts.Airlines.Model
         public Option<string?> NationalityOption { get; private set; }
 
         /// <summary>
-        /// The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)
+        /// The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;). For encrypted partners, this contains the encrypted Base64 string.
         /// </summary>
-        /// <value>The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)</value>
+        /// <value>The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;). For encrypted partners, this contains the encrypted Base64 string.</value>
         /* <example>US</example> */
         [JsonPropertyName("nationality")]
         public string? Nationality { get { return this.NationalityOption; } set { this.NationalityOption = new Option<string?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of DateOfBirthEncrypted
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> DateOfBirthEncryptedOption { get; private set; }
-
-        /// <summary>
-        /// Encrypted date of birth (Base64 encoded). Used only when PII encryption is enabled. If provided, this takes precedence over dateOfBirth.
-        /// </summary>
-        /// <value>Encrypted date of birth (Base64 encoded). Used only when PII encryption is enabled. If provided, this takes precedence over dateOfBirth.</value>
-        /* <example>ZW5jcnlwdGVkRGF0ZQ&#x3D;&#x3D;</example> */
-        [JsonPropertyName("date_of_birth_encrypted")]
-        public string? DateOfBirthEncrypted { get { return this.DateOfBirthEncryptedOption; } set { this.DateOfBirthEncryptedOption = new Option<string?>(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -245,7 +228,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  PassportIssuanceDate: ").Append(PassportIssuanceDate).Append("\n");
             sb.Append("  PassportExpirationDate: ").Append(PassportExpirationDate).Append("\n");
             sb.Append("  Nationality: ").Append(Nationality).Append("\n");
-            sb.Append("  DateOfBirthEncrypted: ").Append(DateOfBirthEncrypted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -256,21 +238,6 @@ namespace Com.Hopper.Hts.Airlines.Model
     /// </summary>
     public class DgPassengerJsonConverter : JsonConverter<DgPassenger>
     {
-        /// <summary>
-        /// The format to use to serialize DateOfBirth
-        /// </summary>
-        public static string DateOfBirthFormat { get; set; } = "yyyy'-'MM'-'dd";
-
-        /// <summary>
-        /// The format to use to serialize PassportIssuanceDate
-        /// </summary>
-        public static string PassportIssuanceDateFormat { get; set; } = "yyyy'-'MM'-'dd";
-
-        /// <summary>
-        /// The format to use to serialize PassportExpirationDate
-        /// </summary>
-        public static string PassportExpirationDateFormat { get; set; } = "yyyy'-'MM'-'dd";
-
         /// <summary>
         /// Deserializes json to <see cref="DgPassenger" />
         /// </summary>
@@ -292,14 +259,13 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<DgPassengerType?> passengerType = default;
             Option<string?> firstName = default;
             Option<string?> lastName = default;
-            Option<DateOnly?> dateOfBirth = default;
+            Option<string?> dateOfBirth = default;
             Option<Gender?> gender = default;
             Option<string?> passportNumber = default;
             Option<string?> passportCountryIssuance = default;
-            Option<DateOnly?> passportIssuanceDate = default;
-            Option<DateOnly?> passportExpirationDate = default;
+            Option<string?> passportIssuanceDate = default;
+            Option<string?> passportExpirationDate = default;
             Option<string?> nationality = default;
-            Option<string?> dateOfBirthEncrypted = default;
 
             while (utf8JsonReader.Read())
             {
@@ -331,8 +297,7 @@ namespace Com.Hopper.Hts.Airlines.Model
                             lastName = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "date_of_birth":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                dateOfBirth = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            dateOfBirth = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "gender":
                             string? genderRawValue = utf8JsonReader.GetString();
@@ -346,18 +311,13 @@ namespace Com.Hopper.Hts.Airlines.Model
                             passportCountryIssuance = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "passport_issuance_date":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                passportIssuanceDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            passportIssuanceDate = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "passport_expiration_date":
-                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
-                                passportExpirationDate = new Option<DateOnly?>(JsonSerializer.Deserialize<DateOnly>(ref utf8JsonReader, jsonSerializerOptions));
+                            passportExpirationDate = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "nationality":
                             nationality = new Option<string?>(utf8JsonReader.GetString()!);
-                            break;
-                        case "date_of_birth_encrypted":
-                            dateOfBirthEncrypted = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -404,10 +364,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (nationality.IsSet && nationality.Value == null)
                 throw new ArgumentNullException(nameof(nationality), "Property is not nullable for class DgPassenger.");
 
-            if (dateOfBirthEncrypted.IsSet && dateOfBirthEncrypted.Value == null)
-                throw new ArgumentNullException(nameof(dateOfBirthEncrypted), "Property is not nullable for class DgPassenger.");
-
-            return new DgPassenger(passengerReference.Value!, passengerType.Value!.Value!, firstName, lastName, dateOfBirth, gender, passportNumber, passportCountryIssuance, passportIssuanceDate, passportExpirationDate, nationality, dateOfBirthEncrypted);
+            return new DgPassenger(passengerReference.Value!, passengerType.Value!.Value!, firstName, lastName, dateOfBirth, gender, passportNumber, passportCountryIssuance, passportIssuanceDate, passportExpirationDate, nationality);
         }
 
         /// <summary>
@@ -443,17 +400,23 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (dgPassenger.LastNameOption.IsSet && dgPassenger.LastName == null)
                 throw new ArgumentNullException(nameof(dgPassenger.LastName), "Property is required for class DgPassenger.");
 
+            if (dgPassenger.DateOfBirthOption.IsSet && dgPassenger.DateOfBirth == null)
+                throw new ArgumentNullException(nameof(dgPassenger.DateOfBirth), "Property is required for class DgPassenger.");
+
             if (dgPassenger.PassportNumberOption.IsSet && dgPassenger.PassportNumber == null)
                 throw new ArgumentNullException(nameof(dgPassenger.PassportNumber), "Property is required for class DgPassenger.");
 
             if (dgPassenger.PassportCountryIssuanceOption.IsSet && dgPassenger.PassportCountryIssuance == null)
                 throw new ArgumentNullException(nameof(dgPassenger.PassportCountryIssuance), "Property is required for class DgPassenger.");
 
+            if (dgPassenger.PassportIssuanceDateOption.IsSet && dgPassenger.PassportIssuanceDate == null)
+                throw new ArgumentNullException(nameof(dgPassenger.PassportIssuanceDate), "Property is required for class DgPassenger.");
+
+            if (dgPassenger.PassportExpirationDateOption.IsSet && dgPassenger.PassportExpirationDate == null)
+                throw new ArgumentNullException(nameof(dgPassenger.PassportExpirationDate), "Property is required for class DgPassenger.");
+
             if (dgPassenger.NationalityOption.IsSet && dgPassenger.Nationality == null)
                 throw new ArgumentNullException(nameof(dgPassenger.Nationality), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.DateOfBirthEncryptedOption.IsSet && dgPassenger.DateOfBirthEncrypted == null)
-                throw new ArgumentNullException(nameof(dgPassenger.DateOfBirthEncrypted), "Property is required for class DgPassenger.");
 
             writer.WriteString("passenger_reference", dgPassenger.PassengerReference);
 
@@ -467,7 +430,7 @@ namespace Com.Hopper.Hts.Airlines.Model
                 writer.WriteString("last_name", dgPassenger.LastName);
 
             if (dgPassenger.DateOfBirthOption.IsSet)
-                writer.WriteString("date_of_birth", dgPassenger.DateOfBirthOption.Value!.Value.ToString(DateOfBirthFormat));
+                writer.WriteString("date_of_birth", dgPassenger.DateOfBirth);
 
             if (dgPassenger.GenderOption.IsSet)
             {
@@ -481,16 +444,13 @@ namespace Com.Hopper.Hts.Airlines.Model
                 writer.WriteString("passport_country_issuance", dgPassenger.PassportCountryIssuance);
 
             if (dgPassenger.PassportIssuanceDateOption.IsSet)
-                writer.WriteString("passport_issuance_date", dgPassenger.PassportIssuanceDateOption.Value!.Value.ToString(PassportIssuanceDateFormat));
+                writer.WriteString("passport_issuance_date", dgPassenger.PassportIssuanceDate);
 
             if (dgPassenger.PassportExpirationDateOption.IsSet)
-                writer.WriteString("passport_expiration_date", dgPassenger.PassportExpirationDateOption.Value!.Value.ToString(PassportExpirationDateFormat));
+                writer.WriteString("passport_expiration_date", dgPassenger.PassportExpirationDate);
 
             if (dgPassenger.NationalityOption.IsSet)
                 writer.WriteString("nationality", dgPassenger.Nationality);
-
-            if (dgPassenger.DateOfBirthEncryptedOption.IsSet)
-                writer.WriteString("date_of_birth_encrypted", dgPassenger.DateOfBirthEncrypted);
         }
     }
 }

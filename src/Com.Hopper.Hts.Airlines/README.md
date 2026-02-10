@@ -177,7 +177,7 @@ Authentication schemes defined for the API:
 - packageCompany: OpenAPI
 - packageCopyright: No Copyright
 - packageDescription: A library generated from a OpenAPI doc
-- packageGuid: {32DB9703-63C7-43F9-B979-B82EF0EFFA10}
+- packageGuid: {9FF14537-FA41-4617-99DE-CFAB107E693E}
 - packageName: Com.Hopper.Hts.Airlines
 - packageTags: 
 - packageTitle: OpenAPI Library

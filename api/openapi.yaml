@@ -1093,6 +1093,78 @@ paths:
       summary: Complete CFAR Exercise
       tags:
       - Cancel For Any Reason (CFAR)
+  /customer/cfar/payout/receipt:
+    get:
+      description: Download payout receipt as PDF
+      operationId: getCustomerCfarPayoutReceipt
+      parameters:
+      - explode: false
+        in: header
+        name: verification-code
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/pdf:
+              schema:
+                format: binary
+                type: string
+          description: PDF receipt file
+          headers:
+            Expires:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+            Content-Type:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+            Content-Disposition:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bad_request'
+          description: Syntactic errors were encountered while handling the request
+        "401":
+          description: The client could not be authenticated
+        "403":
+          description: The authenticated client does not have permission to call this
+            endpoint
+        "404":
+          description: The requested resource could not be found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_entity'
+          description: Semantic errors were encountered while handling the request
+        "500":
+          description: The server encountered an internal error
+      security:
+      - {}
+      - SessionAuth: []
+      summary: Get payout receipt PDF
+      tags:
+      - Cancel For Any Reason (CFAR)
   /dg_offers:
     post:
       description: Create DG offers for a user's trip
@@ -1654,6 +1726,78 @@ paths:
       - PartnerAuth: []
         apiKeyAuth: []
       summary: Create DG Exercise
+      tags:
+      - Disruption Guarantee (DG)
+  /customer/dg/payout/receipt:
+    get:
+      description: Download payout receipt as PDF
+      operationId: getCustomerDgPayoutReceipt
+      parameters:
+      - explode: false
+        in: header
+        name: verification-code
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/pdf:
+              schema:
+                format: binary
+                type: string
+          description: PDF receipt file
+          headers:
+            Expires:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+            Content-Type:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+            Content-Disposition:
+              explode: false
+              required: true
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bad_request'
+          description: Syntactic errors were encountered while handling the request
+        "401":
+          description: The client could not be authenticated
+        "403":
+          description: The authenticated client does not have permission to call this
+            endpoint
+        "404":
+          description: The requested resource could not be found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_entity'
+          description: Semantic errors were encountered while handling the request
+        "500":
+          description: The server encountered an internal error
+      security:
+      - {}
+      - SessionAuth: []
+      summary: Get payout receipt PDF
       tags:
       - Disruption Guarantee (DG)
   /customer/dg_exercises/{id}/session:
@@ -4463,8 +4607,6 @@ components:
           description: Identifier of the offer(s) for which the contract is created
           example: 1ec9eed3-4486-6460-9d6c-2fb8469d35db
           items:
-            description: Unique identifier for a DG offer
-            example: 2e1006b3-aba6-4899-8682-b95bce693c27
             type: string
           type: array
         itinerary:
@@ -4492,6 +4634,7 @@ components:
         faq_url: faq_url
         ext_attributes:
           key: ext_attributes
+        premium_per_passenger: "3.34"
         request_type: post_booking
         coverage_percentage: "80.00"
         experiments:
@@ -4611,7 +4754,6 @@ components:
             date_of_birth: 2000-04-02
             passport_number: J12393496
             last_name: Smith
-            date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
             passport_country_issuance: US
             first_name: John
             passenger_type: adult
@@ -4623,7 +4765,6 @@ components:
             date_of_birth: 2000-04-02
             passport_number: J12393496
             last_name: Smith
-            date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
             passport_country_issuance: US
             first_name: John
             passenger_type: adult
@@ -4679,6 +4820,11 @@ components:
         premium:
           description: Total amount to be paid for DG
           example: "40.80"
+          minimum: 0
+          type: string
+        premium_per_passenger:
+          description: Premium amount per paying passenger
+          example: "3.34"
           minimum: 0
           type: string
         coverage:
@@ -4786,6 +4932,7 @@ components:
       - max_hours_before_departure
       - min_minutes_delay
       - premium
+      - premium_per_passenger
       - request_type
       - service_cap
       - taxes_total
@@ -5142,7 +5289,6 @@ components:
               date_of_birth: 2000-04-02
               passport_number: J12393496
               last_name: Smith
-              date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
               passport_country_issuance: US
               first_name: John
               passenger_type: adult
@@ -5154,7 +5300,6 @@ components:
               date_of_birth: 2000-04-02
               passport_number: J12393496
               last_name: Smith
-              date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
               passport_country_issuance: US
               first_name: John
               passenger_type: adult
@@ -5195,7 +5340,7 @@ components:
                 key: labels
           contract_expiry_date_time: 2020-12-20T12:15:48Z
           currency: CAD
-          id: 2e1006b3-aba6-4899-8682-b95bce693c27
+          id: id
           service_cap: "1000.00"
           max_hours_before_departure: 24
           entry_point: entry_point
@@ -5326,7 +5471,6 @@ components:
               date_of_birth: 2000-04-02
               passport_number: J12393496
               last_name: Smith
-              date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
               passport_country_issuance: US
               first_name: John
               passenger_type: adult
@@ -5338,7 +5482,6 @@ components:
               date_of_birth: 2000-04-02
               passport_number: J12393496
               last_name: Smith
-              date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
               passport_country_issuance: US
               first_name: John
               passenger_type: adult
@@ -5379,7 +5522,7 @@ components:
                 key: labels
           contract_expiry_date_time: 2020-12-20T12:15:48Z
           currency: CAD
-          id: 2e1006b3-aba6-4899-8682-b95bce693c27
+          id: id
           service_cap: "1000.00"
           max_hours_before_departure: 24
           entry_point: entry_point
@@ -5506,7 +5649,6 @@ components:
             date_of_birth: 2000-04-02
             passport_number: J12393496
             last_name: Smith
-            date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
             passport_country_issuance: US
             first_name: John
             passenger_type: adult
@@ -5518,7 +5660,6 @@ components:
             date_of_birth: 2000-04-02
             passport_number: J12393496
             last_name: Smith
-            date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
             passport_country_issuance: US
             first_name: John
             passenger_type: adult
@@ -5908,7 +6049,6 @@ components:
           date_of_birth: 2000-04-02
           passport_number: J12393496
           last_name: Smith
-          date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
           passport_country_issuance: US
           first_name: John
           passenger_type: adult
@@ -5920,7 +6060,6 @@ components:
           date_of_birth: 2000-04-02
           passport_number: J12393496
           last_name: Smith
-          date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
           passport_country_issuance: US
           first_name: John
           passenger_type: adult
@@ -6244,7 +6383,6 @@ components:
             date_of_birth: 2000-04-02
             passport_number: J12393496
             last_name: Smith
-            date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
             passport_country_issuance: US
             first_name: John
             passenger_type: adult
@@ -6256,7 +6394,6 @@ components:
             date_of_birth: 2000-04-02
             passport_number: J12393496
             last_name: Smith
-            date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
             passport_country_issuance: US
             first_name: John
             passenger_type: adult
@@ -6297,7 +6434,7 @@ components:
               key: labels
         contract_expiry_date_time: 2020-12-20T12:15:48Z
         currency: CAD
-        id: 2e1006b3-aba6-4899-8682-b95bce693c27
+        id: id
         service_cap: "1000.00"
         max_hours_before_departure: 24
         entry_point: entry_point
@@ -6306,8 +6443,6 @@ components:
         merchandising_url_web_component: merchandising_url_web_component
       properties:
         id:
-          description: Unique identifier for a DG offer
-          example: 2e1006b3-aba6-4899-8682-b95bce693c27
           type: string
         premium:
           description: Total amount to be paid for DG
@@ -6438,7 +6573,6 @@ components:
         date_of_birth: 2000-04-02
         passport_number: J12393496
         last_name: Smith
-        date_of_birth_encrypted: ZW5jcnlwdGVkRGF0ZQ==
         passport_country_issuance: US
         first_name: John
         passenger_type: adult
@@ -6458,41 +6592,41 @@ components:
           example: Smith
           type: string
         date_of_birth:
-          description: The birth date in ISO Local Date format
+          description: "The birth date in ISO Local Date format (yyyy-MM-dd). For\
+            \ encrypted partners, this contains the encrypted Base64 string."
           example: 2000-04-02
-          format: date
           type: string
         gender:
           $ref: '#/components/schemas/gender'
         passport_number:
-          description: The passport number of the passenger
+          description: "The passport number of the passenger. For encrypted partners,\
+            \ this contains the encrypted Base64 string."
           example: J12393496
           type: string
         passport_country_issuance:
           description: "The country of issuance of the passenger's passport. Must\
             \ be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g.,\
-            \ 'US', 'JP', 'TH')"
+            \ 'US', 'JP', 'TH'). For encrypted partners, this contains the encrypted\
+            \ Base64 string."
           example: US
           type: string
         passport_issuance_date:
-          description: The date of issuance of the passenger's passport
+          description: "The date of issuance of the passenger's passport in ISO Local\
+            \ Date format (yyyy-MM-dd). For encrypted partners, this contains the\
+            \ encrypted Base64 string."
           example: 2018-04-02
-          format: date
           type: string
         passport_expiration_date:
-          description: The passport expiration date of the passenger
+          description: "The passport expiration date of the passenger in ISO Local\
+            \ Date format (yyyy-MM-dd). For encrypted partners, this contains the\
+            \ encrypted Base64 string."
           example: 2030-04-02
-          format: date
           type: string
         nationality:
           description: "The nationality of the passenger. Must be a valid ISO 3166-1\
-            \ alpha-2 country code (e.g., 'US', 'JP', 'TH')"
+            \ alpha-2 country code (e.g., 'US', 'JP', 'TH'). For encrypted partners,\
+            \ this contains the encrypted Base64 string."
           example: US
-          type: string
-        date_of_birth_encrypted:
-          description: "Encrypted date of birth (Base64 encoded). Used only when PII\
-            \ encryption is enabled. If provided, this takes precedence over dateOfBirth."
-          example: ZW5jcnlwdGVkRGF0ZQ==
           type: string
       required:
       - passenger_reference
