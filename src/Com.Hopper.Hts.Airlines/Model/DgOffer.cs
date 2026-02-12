@@ -32,7 +32,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DgOffer" /> class.
         /// </summary>
-        /// <param name="id">Unique identifier for a DG offer</param>
+        /// <param name="id">id</param>
         /// <param name="premium">Total amount to be paid for DG</param>
         /// <param name="coverage">Total amount to be refunded upon DG exercise</param>
         /// <param name="coveragePercentage">Percentage of the amount to be refunded to customer compared to flight tickets price</param>
@@ -91,10 +91,8 @@ namespace Com.Hopper.Hts.Airlines.Model
         public DgRequestType RequestType { get; set; }
 
         /// <summary>
-        /// Unique identifier for a DG offer
+        /// Gets or Sets Id
         /// </summary>
-        /// <value>Unique identifier for a DG offer</value>
-        /* <example>2e1006b3-aba6-4899-8682-b95bce693c27</example> */
         [JsonPropertyName("id")]
         public string Id { get; set; }
 

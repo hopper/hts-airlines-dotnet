@@ -5,7 +5,7 @@ A Dg offer
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Unique identifier for a DG offer | 
+**Id** | **string** |  | 
 **Premium** | **string** | Total amount to be paid for DG | 
 **Coverage** | **string** | Total amount to be refunded upon DG exercise | 
 **CoveragePercentage** | **string** | Percentage of the amount to be refunded to customer compared to flight tickets price | 

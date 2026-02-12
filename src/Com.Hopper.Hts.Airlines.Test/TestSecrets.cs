@@ -1,4 +1,5 @@
 using SpreedlyModel = Com.Hopper.Hts.Airlines.Spreedly.Model;
+using PiiEncryptionModel = Com.Hopper.Hts.Airlines.PiiEncryption.Model;
 using Com.Hopper.Hts.Airlines.Client;
 
 namespace Com.Hopper.Hts.Airlines
@@ -14,6 +15,8 @@ namespace Com.Hopper.Hts.Airlines
         public static string HtsfaAccessTokenThrowaway = "throwaway";
 
         public static string HtsfaAddress = "????";
+        public static string HtsfaApiAddress = HtsfaAddress + "/airline/v1.1/";
+        public static string HtsfaAuthAddress = HtsfaApiAddress + "auth";
         public static string HtsfaClientId = "????";
         public static string HtsfaClientSecret = "????";
 
@@ -27,8 +30,18 @@ namespace Com.Hopper.Hts.Airlines
             PublicKey = SpreedlyPublicKey
         };
 
+        // PII Encryption credentials
+        public static string PiiEncryptionPartnerName = "????";
+        public static string PiiEncryptionPublicKey = "????";
+
+        // PII Encryption instance (mirrors Spreedly.Encryption pattern)
+        public static PiiEncryptionModel.PiiEncryption PiiEncryption = new PiiEncryptionModel.PiiEncryption
+        {
+            PublicKeyPem = PiiEncryptionPublicKey
+        };
+
         public static HopperCredentials Credentials = new HopperCredentials {
-            Address = HtsfaAddress,
+            Address = HtsfaAuthAddress,
             ClientId = HtsfaClientId,
             ClientSecret = HtsfaClientSecret,
         };

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Unique identifier for an offer | 
 **Premium** | **string** | Total amount to be paid for DG | 
+**PremiumPerPassenger** | **string** | Premium amount per paying passenger | 
 **Coverage** | **string** | Total amount to be refunded upon DG exercise | 
 **CoveragePercentage** | **string** | Percentage of the ticket’s value to be refunded upon DG exercise | 
 **ServiceCap** | **string** |  | 

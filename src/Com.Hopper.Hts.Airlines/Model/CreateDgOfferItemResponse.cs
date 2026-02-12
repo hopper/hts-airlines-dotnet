@@ -34,6 +34,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// </summary>
         /// <param name="id">Unique identifier for an offer</param>
         /// <param name="premium">Total amount to be paid for DG</param>
+        /// <param name="premiumPerPassenger">Premium amount per paying passenger</param>
         /// <param name="coverage">Total amount to be refunded upon DG exercise</param>
         /// <param name="coveragePercentage">Percentage of the ticket’s value to be refunded upon DG exercise</param>
         /// <param name="serviceCap">serviceCap</param>
@@ -55,10 +56,11 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="merchandisingUrl">The url for rendering offer merchandising</param>
         /// <param name="merchandisingUrlWebComponent">The url for the web component SDK for rendering offer merchandising</param>
         [JsonConstructor]
-        public CreateDgOfferItemResponse(string id, string premium, string coverage, string coveragePercentage, string serviceCap, string currency, string taxesTotal, DgRequestType requestType, long maxHoursBeforeDeparture, long minMinutesDelay, DateTime createdDateTime, DateTime contractExpiryDateTime, DgItinerary itinerary, Dictionary<string, string> extAttributes, Dictionary<string, string> experiments, Dictionary<string, DgContents> contents, Option<List<DgTax>?> taxes = default, Option<string?> entryPoint = default, Option<string?> termsConditionsUrl = default, Option<string?> faqUrl = default, Option<string?> merchandisingUrl = default, Option<string?> merchandisingUrlWebComponent = default)
+        public CreateDgOfferItemResponse(string id, string premium, string premiumPerPassenger, string coverage, string coveragePercentage, string serviceCap, string currency, string taxesTotal, DgRequestType requestType, long maxHoursBeforeDeparture, long minMinutesDelay, DateTime createdDateTime, DateTime contractExpiryDateTime, DgItinerary itinerary, Dictionary<string, string> extAttributes, Dictionary<string, string> experiments, Dictionary<string, DgContents> contents, Option<List<DgTax>?> taxes = default, Option<string?> entryPoint = default, Option<string?> termsConditionsUrl = default, Option<string?> faqUrl = default, Option<string?> merchandisingUrl = default, Option<string?> merchandisingUrlWebComponent = default)
         {
             Id = id;
             Premium = premium;
+            PremiumPerPassenger = premiumPerPassenger;
             Coverage = coverage;
             CoveragePercentage = coveragePercentage;
             ServiceCap = serviceCap;
@@ -105,6 +107,14 @@ namespace Com.Hopper.Hts.Airlines.Model
         /* <example>40.80</example> */
         [JsonPropertyName("premium")]
         public string Premium { get; set; }
+
+        /// <summary>
+        /// Premium amount per paying passenger
+        /// </summary>
+        /// <value>Premium amount per paying passenger</value>
+        /* <example>3.34</example> */
+        [JsonPropertyName("premium_per_passenger")]
+        public string PremiumPerPassenger { get; set; }
 
         /// <summary>
         /// Total amount to be refunded upon DG exercise
@@ -295,6 +305,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("class CreateDgOfferItemResponse {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Premium: ").Append(Premium).Append("\n");
+            sb.Append("  PremiumPerPassenger: ").Append(PremiumPerPassenger).Append("\n");
             sb.Append("  Coverage: ").Append(Coverage).Append("\n");
             sb.Append("  CoveragePercentage: ").Append(CoveragePercentage).Append("\n");
             sb.Append("  ServiceCap: ").Append(ServiceCap).Append("\n");
@@ -354,6 +365,7 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             Option<string?> id = default;
             Option<string?> premium = default;
+            Option<string?> premiumPerPassenger = default;
             Option<string?> coverage = default;
             Option<string?> coveragePercentage = default;
             Option<string?> serviceCap = default;
@@ -395,6 +407,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             break;
                         case "premium":
                             premium = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "premium_per_passenger":
+                            premiumPerPassenger = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "coverage":
                             coverage = new Option<string?>(utf8JsonReader.GetString()!);
@@ -479,6 +494,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (!premium.IsSet)
                 throw new ArgumentException("Property is required for class CreateDgOfferItemResponse.", nameof(premium));
 
+            if (!premiumPerPassenger.IsSet)
+                throw new ArgumentException("Property is required for class CreateDgOfferItemResponse.", nameof(premiumPerPassenger));
+
             if (!coverage.IsSet)
                 throw new ArgumentException("Property is required for class CreateDgOfferItemResponse.", nameof(coverage));
 
@@ -526,6 +544,9 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (premium.IsSet && premium.Value == null)
                 throw new ArgumentNullException(nameof(premium), "Property is not nullable for class CreateDgOfferItemResponse.");
+
+            if (premiumPerPassenger.IsSet && premiumPerPassenger.Value == null)
+                throw new ArgumentNullException(nameof(premiumPerPassenger), "Property is not nullable for class CreateDgOfferItemResponse.");
 
             if (coverage.IsSet && coverage.Value == null)
                 throw new ArgumentNullException(nameof(coverage), "Property is not nullable for class CreateDgOfferItemResponse.");
@@ -587,7 +608,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (merchandisingUrlWebComponent.IsSet && merchandisingUrlWebComponent.Value == null)
                 throw new ArgumentNullException(nameof(merchandisingUrlWebComponent), "Property is not nullable for class CreateDgOfferItemResponse.");
 
-            return new CreateDgOfferItemResponse(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, createdDateTime.Value!.Value!, contractExpiryDateTime.Value!.Value!, itinerary.Value!, extAttributes.Value!, experiments.Value!, contents.Value!, taxes, entryPoint, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
+            return new CreateDgOfferItemResponse(id.Value!, premium.Value!, premiumPerPassenger.Value!, coverage.Value!, coveragePercentage.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, createdDateTime.Value!.Value!, contractExpiryDateTime.Value!.Value!, itinerary.Value!, extAttributes.Value!, experiments.Value!, contents.Value!, taxes, entryPoint, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
         }
 
         /// <summary>
@@ -619,6 +640,9 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createDgOfferItemResponse.Premium == null)
                 throw new ArgumentNullException(nameof(createDgOfferItemResponse.Premium), "Property is required for class CreateDgOfferItemResponse.");
+
+            if (createDgOfferItemResponse.PremiumPerPassenger == null)
+                throw new ArgumentNullException(nameof(createDgOfferItemResponse.PremiumPerPassenger), "Property is required for class CreateDgOfferItemResponse.");
 
             if (createDgOfferItemResponse.Coverage == null)
                 throw new ArgumentNullException(nameof(createDgOfferItemResponse.Coverage), "Property is required for class CreateDgOfferItemResponse.");
@@ -668,6 +692,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             writer.WriteString("id", createDgOfferItemResponse.Id);
 
             writer.WriteString("premium", createDgOfferItemResponse.Premium);
+
+            writer.WriteString("premium_per_passenger", createDgOfferItemResponse.PremiumPerPassenger);
 
             writer.WriteString("coverage", createDgOfferItemResponse.Coverage);
 

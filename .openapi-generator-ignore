@@ -21,3 +21,9 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+# Custom PII Encryption - DO NOT OVERWRITE
+src/Com.Hopper.Hts.Airlines/PiiEncryption/**
+
+# Custom test configuration - DO NOT OVERWRITE
+src/Com.Hopper.Hts.Airlines.Test/Com.Hopper.Hts.Airlines.Test.csproj

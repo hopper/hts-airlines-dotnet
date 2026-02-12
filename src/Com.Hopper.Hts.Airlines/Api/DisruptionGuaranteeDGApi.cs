@@ -59,6 +59,29 @@ namespace Com.Hopper.Hts.Airlines.Api
         Task<IGetCustomerDgExercisesIdSessionApiResponse?> GetCustomerDgExercisesIdSessionOrDefaultAsync(string id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Get payout receipt PDF
+        /// </summary>
+        /// <remarks>
+        /// Download payout receipt as PDF
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="verificationCode"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerDgPayoutReceiptApiResponse"/>&gt;</returns>
+        Task<IGetCustomerDgPayoutReceiptApiResponse> GetCustomerDgPayoutReceiptAsync(Option<string> verificationCode = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get payout receipt PDF
+        /// </summary>
+        /// <remarks>
+        /// Download payout receipt as PDF
+        /// </remarks>
+        /// <param name="verificationCode"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerDgPayoutReceiptApiResponse"/>?&gt;</returns>
+        Task<IGetCustomerDgPayoutReceiptApiResponse?> GetCustomerDgPayoutReceiptOrDefaultAsync(Option<string> verificationCode = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Get a DG contract
         /// </summary>
         /// <remarks>
@@ -246,6 +269,54 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// </summary>
         /// <returns></returns>
         bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+
+        /// <summary>
+        /// Returns true if the response is 422 UnprocessableContent
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnprocessableContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 500 InternalServerError
+        /// </summary>
+        /// <returns></returns>
+        bool IsInternalServerError { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetCustomerDgPayoutReceiptApiResponse"/>
+    /// </summary>
+    public interface IGetCustomerDgPayoutReceiptApiResponse : Com.Hopper.Hts.Airlines.Client.IApiResponse, IOk<System.IO.Stream?>, IBadRequest<Com.Hopper.Hts.Airlines.Model.BadRequest?>, IUnprocessableContent<Com.Hopper.Hts.Airlines.Model.UnprocessableEntity?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 403 Forbidden
+        /// </summary>
+        /// <returns></returns>
+        bool IsForbidden { get; }
 
         /// <summary>
         /// Returns true if the response is 404 NotFound
@@ -643,6 +714,26 @@ namespace Com.Hopper.Hts.Airlines.Api
         internal void ExecuteOnErrorGetCustomerDgExercisesIdSession(Exception exception)
         {
             OnErrorGetCustomerDgExercisesIdSession?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnGetCustomerDgPayoutReceipt;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetCustomerDgPayoutReceipt;
+
+        internal void ExecuteOnGetCustomerDgPayoutReceipt(DisruptionGuaranteeDGApi.GetCustomerDgPayoutReceiptApiResponse apiResponse)
+        {
+            OnGetCustomerDgPayoutReceipt?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetCustomerDgPayoutReceipt(Exception exception)
+        {
+            OnErrorGetCustomerDgPayoutReceipt?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -1084,6 +1175,336 @@ namespace Com.Hopper.Hts.Airlines.Api
 
                 return result != null;
             }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnprocessableContent => 422 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 422 UnprocessableContent
+            /// </summary>
+            /// <returns></returns>
+            public Com.Hopper.Hts.Airlines.Model.UnprocessableEntity? UnprocessableContent()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsUnprocessableContent
+                    ? System.Text.Json.JsonSerializer.Deserialize<Com.Hopper.Hts.Airlines.Model.UnprocessableEntity>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 422 UnprocessableContent and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnprocessableContent([NotNullWhen(true)]out Com.Hopper.Hts.Airlines.Model.UnprocessableEntity? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = UnprocessableContent();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)422);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 500 InternalServerError
+            /// </summary>
+            /// <returns></returns>
+            public bool IsInternalServerError => 500 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetCustomerDgPayoutReceipt(ref Option<string> verificationCode);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="verificationCode"></param>
+        /// <returns></returns>
+        private void ValidateGetCustomerDgPayoutReceipt(Option<string> verificationCode)
+        {
+            if (verificationCode.IsSet && verificationCode.Value == null)
+                throw new ArgumentNullException(nameof(verificationCode));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="verificationCode"></param>
+        private void AfterGetCustomerDgPayoutReceiptDefaultImplementation(IGetCustomerDgPayoutReceiptApiResponse apiResponseLocalVar, Option<string> verificationCode)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetCustomerDgPayoutReceipt(ref suppressDefaultLog, apiResponseLocalVar, verificationCode);
+            if (!suppressDefaultLog)
+                Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="verificationCode"></param>
+        partial void AfterGetCustomerDgPayoutReceipt(ref bool suppressDefaultLog, IGetCustomerDgPayoutReceiptApiResponse apiResponseLocalVar, Option<string> verificationCode);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="verificationCode"></param>
+        private void OnErrorGetCustomerDgPayoutReceiptDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> verificationCode)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetCustomerDgPayoutReceipt(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, verificationCode);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="verificationCode"></param>
+        partial void OnErrorGetCustomerDgPayoutReceipt(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> verificationCode);
+
+        /// <summary>
+        /// Get payout receipt PDF Download payout receipt as PDF
+        /// </summary>
+        /// <param name="verificationCode"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerDgPayoutReceiptApiResponse"/>&gt;</returns>
+        public async Task<IGetCustomerDgPayoutReceiptApiResponse?> GetCustomerDgPayoutReceiptOrDefaultAsync(Option<string> verificationCode = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetCustomerDgPayoutReceiptAsync(verificationCode, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get payout receipt PDF Download payout receipt as PDF
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="verificationCode"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCustomerDgPayoutReceiptApiResponse"/>&gt;</returns>
+        public async Task<IGetCustomerDgPayoutReceiptApiResponse> GetCustomerDgPayoutReceiptAsync(Option<string> verificationCode = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateGetCustomerDgPayoutReceipt(verificationCode);
+
+                FormatGetCustomerDgPayoutReceipt(ref verificationCode);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/customer/dg/payout/receipt";
+
+                    if (verificationCode.IsSet)
+                        httpRequestMessageLocalVar.Headers.Add("verification-code", ClientUtils.ParameterToString(verificationCode.Value));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("HC-Session-ID", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/pdf",
+                        "application/json"
+                    };
+
+                    string? acceptLocalVar = ClientUtils.SelectHeaderAccept(acceptLocalVars);
+
+                    if (acceptLocalVar != null)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+                        ILogger<GetCustomerDgPayoutReceiptApiResponse> apiResponseLoggerLocalVar = LoggerFactory.CreateLogger<GetCustomerDgPayoutReceiptApiResponse>();
+
+                        GetCustomerDgPayoutReceiptApiResponse apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/customer/dg/payout/receipt", requestedAtLocalVar, _jsonSerializerOptions);
+
+                        AfterGetCustomerDgPayoutReceiptDefaultImplementation(apiResponseLocalVar, verificationCode);
+
+                        Events.ExecuteOnGetCustomerDgPayoutReceipt(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetCustomerDgPayoutReceiptDefaultImplementation(e, "/customer/dg/payout/receipt", uriBuilderLocalVar.Path, verificationCode);
+                Events.ExecuteOnErrorGetCustomerDgPayoutReceipt(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetCustomerDgPayoutReceiptApiResponse"/>
+        /// </summary>
+        public partial class GetCustomerDgPayoutReceiptApiResponse : Com.Hopper.Hts.Airlines.Client.ApiResponse, IGetCustomerDgPayoutReceiptApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<GetCustomerDgPayoutReceiptApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetCustomerDgPayoutReceiptApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCustomerDgPayoutReceiptApiResponse(ILogger<GetCustomerDgPayoutReceiptApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public System.IO.Stream? Ok()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<System.IO.Stream>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out System.IO.Stream? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public Com.Hopper.Hts.Airlines.Model.BadRequest? BadRequest()
+            {
+                // This logic may be modified with the AsModel.mustache template
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<Com.Hopper.Hts.Airlines.Model.BadRequest>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest([NotNullWhen(true)]out Com.Hopper.Hts.Airlines.Model.BadRequest? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 403 Forbidden
+            /// </summary>
+            /// <returns></returns>
+            public bool IsForbidden => 403 == (int)StatusCode;
 
             /// <summary>
             /// Returns true if the response is 404 NotFound
