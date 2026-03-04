@@ -1,9 +1,11 @@
 #!/bin/bash
 
-VERSION=0.1.11 docker run --rm -v "${PWD}/spreedly/:/local" -v "${PWD}/api/:/api" openapitools/openapi-generator-cli:v7.10.0 generate \
+VERSION=0.1.11
+docker run --rm -v "${PWD}/spreedly/:/local" -v "${PWD}/api/:/api" -v "${PWD}/templates/:/templates" openapitools/openapi-generator-cli:v7.10.0 generate \
     -i /api/spreedly.yaml \
     -g csharp \
     -o /local \
+    --template-dir /templates \
     --package-name Com.Hopper.Hts.Airlines.Spreedly \
     --additional-properties=nullableReferenceTypes=true,validatable=false,licenseId=MIT,packageVersion=$VERSION,library=generichost,targetFramework=net6.0\;net8.0 \
     --skip-validate-spec

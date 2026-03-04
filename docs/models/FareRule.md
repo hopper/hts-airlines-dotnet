@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Fee** | **string** | Amount to be paid as penalty fee to perform the modification | [optional] 
 **Percentage** | **string** | Percentage of the fare to be paid as penalty to perform the modification | [optional] 
 **RefundMethod** | **AirlineRefundMethod** |  | [optional] 
+**Currency** | **string** | Currency of fee field. This will default to the contract currency if not specified. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

@@ -37,14 +37,16 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="userInfo">userInfo</param>
         /// <param name="device">device</param>
         /// <param name="sessionId">The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.</param>
+        /// <param name="channel">channel</param>
         [JsonConstructor]
-        public CreateAirlineCfarSessionRequest(string pointOfSale, string language, Option<UserInfo?> userInfo = default, Option<Device?> device = default, Option<string?> sessionId = default)
+        public CreateAirlineCfarSessionRequest(string pointOfSale, string language, Option<UserInfo?> userInfo = default, Option<Device?> device = default, Option<string?> sessionId = default, Option<Channel?> channel = default)
         {
             PointOfSale = pointOfSale;
             Language = language;
             UserInfoOption = userInfo;
             DeviceOption = device;
             SessionIdOption = sessionId;
+            ChannelOption = channel;
             OnCreated();
         }
 
@@ -108,6 +110,19 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string? SessionId { get { return this.SessionIdOption; } set { this.SessionIdOption = new Option<string?>(value); } }
 
         /// <summary>
+        /// Used to track the state of Channel
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Channel?> ChannelOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Channel
+        /// </summary>
+        [JsonPropertyName("channel")]
+        public Channel? Channel { get { return this.ChannelOption; } set { this.ChannelOption = new Option<Channel?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -120,6 +135,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  UserInfo: ").Append(UserInfo).Append("\n");
             sb.Append("  Device: ").Append(Device).Append("\n");
             sb.Append("  SessionId: ").Append(SessionId).Append("\n");
+            sb.Append("  Channel: ").Append(Channel).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -152,6 +168,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<UserInfo?> userInfo = default;
             Option<Device?> device = default;
             Option<string?> sessionId = default;
+            Option<Channel?> channel = default;
 
             while (utf8JsonReader.Read())
             {
@@ -185,6 +202,10 @@ namespace Com.Hopper.Hts.Airlines.Model
                         case "session_id":
                             sessionId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "channel":
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                channel = new Option<Channel?>(JsonSerializer.Deserialize<Channel>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
@@ -212,7 +233,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (sessionId.IsSet && sessionId.Value == null)
                 throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
 
-            return new CreateAirlineCfarSessionRequest(pointOfSale.Value!, language.Value!, userInfo, device, sessionId);
+            if (channel.IsSet && channel.Value == null)
+                throw new ArgumentNullException(nameof(channel), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
+
+            return new CreateAirlineCfarSessionRequest(pointOfSale.Value!, language.Value!, userInfo, device, sessionId, channel);
         }
 
         /// <summary>
@@ -254,6 +278,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (createAirlineCfarSessionRequest.SessionIdOption.IsSet && createAirlineCfarSessionRequest.SessionId == null)
                 throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.SessionId), "Property is required for class CreateAirlineCfarSessionRequest.");
 
+            if (createAirlineCfarSessionRequest.ChannelOption.IsSet && createAirlineCfarSessionRequest.Channel == null)
+                throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.Channel), "Property is required for class CreateAirlineCfarSessionRequest.");
+
             writer.WriteString("point_of_sale", createAirlineCfarSessionRequest.PointOfSale);
 
             writer.WriteString("language", createAirlineCfarSessionRequest.Language);
@@ -270,6 +297,12 @@ namespace Com.Hopper.Hts.Airlines.Model
             }
             if (createAirlineCfarSessionRequest.SessionIdOption.IsSet)
                 writer.WriteString("session_id", createAirlineCfarSessionRequest.SessionId);
+
+            if (createAirlineCfarSessionRequest.ChannelOption.IsSet)
+            {
+                writer.WritePropertyName("channel");
+                JsonSerializer.Serialize(writer, createAirlineCfarSessionRequest.Channel, jsonSerializerOptions);
+            }
         }
     }
 }

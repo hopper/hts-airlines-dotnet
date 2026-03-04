@@ -8,11 +8,13 @@ docs/apis/AuthenticationApi.md
 docs/apis/CancelForAnyReasonCFARApi.md
 docs/apis/DisruptionGuaranteeDGApi.md
 docs/apis/SessionsApi.md
+docs/models/AgentReseller.md
 docs/models/AirlineRefundMethod.md
 docs/models/AirlineSession.md
 docs/models/Ancillary.md
 docs/models/AncillaryType.md
 docs/models/Android.md
+docs/models/Api.md
 docs/models/App.md
 docs/models/AuthRequest.md
 docs/models/AuthResponse.md
@@ -39,6 +41,7 @@ docs/models/CfarPassengerTax.md
 docs/models/CfarPayment.md
 docs/models/CfarStatus.md
 docs/models/CfarTax.md
+docs/models/Channel.md
 docs/models/Chrome.md
 docs/models/ChromeOs.md
 docs/models/CreateAirlineCfarSessionRequest.md
@@ -75,6 +78,7 @@ docs/models/DgPayment.md
 docs/models/DgRequestType.md
 docs/models/DgStatus.md
 docs/models/DgTax.md
+docs/models/Direct.md
 docs/models/Edge.md
 docs/models/Error.md
 docs/models/Event.md
@@ -98,6 +102,7 @@ docs/models/ModificationTime.md
 docs/models/ModificationType.md
 docs/models/NonCash.md
 docs/models/OffersDisplayed.md
+docs/models/OnlineBookingTool.md
 docs/models/Opera.md
 docs/models/OtherBrowser.md
 docs/models/OtherOs.md
@@ -122,11 +127,11 @@ docs/models/UpdateCfarFormOfPaymentRequest.md
 docs/models/UpdateDgContractStatusRequest.md
 docs/models/UserInfo.md
 docs/models/Web.md
+docs/models/WhiteLabel.md
 docs/models/Windows.md
 docs/scripts/git_push.ps1
 docs/scripts/git_push.sh
 src/Com.Hopper.Hts.Airlines.Test/Api/DependencyInjectionTests.cs
-src/Com.Hopper.Hts.Airlines.Test/Com.Hopper.Hts.Airlines.Test.csproj
 src/Com.Hopper.Hts.Airlines.Test/README.md
 src/Com.Hopper.Hts.Airlines/Api/AnalyticsApi.cs
 src/Com.Hopper.Hts.Airlines/Api/AuthenticationApi.cs
@@ -158,11 +163,13 @@ src/Com.Hopper.Hts.Airlines/Com.Hopper.Hts.Airlines.csproj
 src/Com.Hopper.Hts.Airlines/Extensions/IHostBuilderExtensions.cs
 src/Com.Hopper.Hts.Airlines/Extensions/IHttpClientBuilderExtensions.cs
 src/Com.Hopper.Hts.Airlines/Extensions/IServiceCollectionExtensions.cs
+src/Com.Hopper.Hts.Airlines/Model/AgentReseller.cs
 src/Com.Hopper.Hts.Airlines/Model/AirlineRefundMethod.cs
 src/Com.Hopper.Hts.Airlines/Model/AirlineSession.cs
 src/Com.Hopper.Hts.Airlines/Model/Ancillary.cs
 src/Com.Hopper.Hts.Airlines/Model/AncillaryType.cs
 src/Com.Hopper.Hts.Airlines/Model/Android.cs
+src/Com.Hopper.Hts.Airlines/Model/Api.cs
 src/Com.Hopper.Hts.Airlines/Model/App.cs
 src/Com.Hopper.Hts.Airlines/Model/AuthRequest.cs
 src/Com.Hopper.Hts.Airlines/Model/AuthResponse.cs
@@ -189,6 +196,7 @@ src/Com.Hopper.Hts.Airlines/Model/CfarPassengerTax.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarPayment.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarStatus.cs
 src/Com.Hopper.Hts.Airlines/Model/CfarTax.cs
+src/Com.Hopper.Hts.Airlines/Model/Channel.cs
 src/Com.Hopper.Hts.Airlines/Model/Chrome.cs
 src/Com.Hopper.Hts.Airlines/Model/ChromeOs.cs
 src/Com.Hopper.Hts.Airlines/Model/CreateAirlineCfarSessionRequest.cs
@@ -225,6 +233,7 @@ src/Com.Hopper.Hts.Airlines/Model/DgPayment.cs
 src/Com.Hopper.Hts.Airlines/Model/DgRequestType.cs
 src/Com.Hopper.Hts.Airlines/Model/DgStatus.cs
 src/Com.Hopper.Hts.Airlines/Model/DgTax.cs
+src/Com.Hopper.Hts.Airlines/Model/Direct.cs
 src/Com.Hopper.Hts.Airlines/Model/Edge.cs
 src/Com.Hopper.Hts.Airlines/Model/Error.cs
 src/Com.Hopper.Hts.Airlines/Model/Event.cs
@@ -248,6 +257,7 @@ src/Com.Hopper.Hts.Airlines/Model/ModificationTime.cs
 src/Com.Hopper.Hts.Airlines/Model/ModificationType.cs
 src/Com.Hopper.Hts.Airlines/Model/NonCash.cs
 src/Com.Hopper.Hts.Airlines/Model/OffersDisplayed.cs
+src/Com.Hopper.Hts.Airlines/Model/OnlineBookingTool.cs
 src/Com.Hopper.Hts.Airlines/Model/Opera.cs
 src/Com.Hopper.Hts.Airlines/Model/OtherBrowser.cs
 src/Com.Hopper.Hts.Airlines/Model/OtherOs.cs
@@ -272,5 +282,6 @@ src/Com.Hopper.Hts.Airlines/Model/UpdateCfarFormOfPaymentRequest.cs
 src/Com.Hopper.Hts.Airlines/Model/UpdateDgContractStatusRequest.cs
 src/Com.Hopper.Hts.Airlines/Model/UserInfo.cs
 src/Com.Hopper.Hts.Airlines/Model/Web.cs
+src/Com.Hopper.Hts.Airlines/Model/WhiteLabel.cs
 src/Com.Hopper.Hts.Airlines/Model/Windows.cs
 src/Com.Hopper.Hts.Airlines/README.md

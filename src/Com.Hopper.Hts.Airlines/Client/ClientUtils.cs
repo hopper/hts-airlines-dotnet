@@ -150,12 +150,16 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return boolean
                     ? "true"
                     : "false";
+            if (obj is AgentReseller.TypeEnum agentResellerTypeEnum)
+                return AgentReseller.TypeEnumToJsonValue(agentResellerTypeEnum);
             if (obj is AirlineRefundMethod airlineRefundMethod)
                 return AirlineRefundMethodValueConverter.ToJsonValue(airlineRefundMethod);
             if (obj is AncillaryType ancillaryType)
                 return AncillaryTypeValueConverter.ToJsonValue(ancillaryType);
             if (obj is Android.TypeEnum androidTypeEnum)
                 return Android.TypeEnumToJsonValue(androidTypeEnum);
+            if (obj is Model.Api.TypeEnum apiTypeEnum)
+                return Model.Api.TypeEnumToJsonValue(apiTypeEnum);
             if (obj is App.TypeEnum appTypeEnum)
                 return App.TypeEnumToJsonValue(appTypeEnum);
             if (obj is BookingConfirmed.TypeEnum bookingConfirmedTypeEnum)
@@ -168,6 +172,8 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return Cash.TypeEnumToJsonValue(cashTypeEnum);
             if (obj is CfarStatus cfarStatus)
                 return CfarStatusValueConverter.ToJsonValue(cfarStatus);
+            if (obj is Channel.TypeEnum channelTypeEnum)
+                return Channel.TypeEnumToJsonValue(channelTypeEnum);
             if (obj is Chrome.TypeEnum chromeTypeEnum)
                 return Chrome.TypeEnumToJsonValue(chromeTypeEnum);
             if (obj is ChromeOs.TypeEnum chromeOsTypeEnum)
@@ -184,6 +190,8 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return DgRequestTypeValueConverter.ToJsonValue(dgRequestType);
             if (obj is DgStatus dgStatus)
                 return DgStatusValueConverter.ToJsonValue(dgStatus);
+            if (obj is Direct.TypeEnum directTypeEnum)
+                return Direct.TypeEnumToJsonValue(directTypeEnum);
             if (obj is Edge.TypeEnum edgeTypeEnum)
                 return Edge.TypeEnumToJsonValue(edgeTypeEnum);
             if (obj is Event.TypeEnum eventTypeEnum)
@@ -220,6 +228,8 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return NonCash.TypeEnumToJsonValue(nonCashTypeEnum);
             if (obj is OffersDisplayed.TypeEnum offersDisplayedTypeEnum)
                 return OffersDisplayed.TypeEnumToJsonValue(offersDisplayedTypeEnum);
+            if (obj is OnlineBookingTool.TypeEnum onlineBookingToolTypeEnum)
+                return OnlineBookingTool.TypeEnumToJsonValue(onlineBookingToolTypeEnum);
             if (obj is Opera.TypeEnum operaTypeEnum)
                 return Opera.TypeEnumToJsonValue(operaTypeEnum);
             if (obj is OtherBrowser.TypeEnum otherBrowserTypeEnum)
@@ -246,6 +256,8 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return TokenTypeValueConverter.ToJsonValue(tokenType);
             if (obj is Web.TypeEnum webTypeEnum)
                 return Web.TypeEnumToJsonValue(webTypeEnum);
+            if (obj is WhiteLabel.TypeEnum whiteLabelTypeEnum)
+                return WhiteLabel.TypeEnumToJsonValue(whiteLabelTypeEnum);
             if (obj is Windows.TypeEnum windowsTypeEnum)
                 return Windows.TypeEnumToJsonValue(windowsTypeEnum);
             if (obj is ICollection collection)

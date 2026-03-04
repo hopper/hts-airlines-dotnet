@@ -64,7 +64,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             return tokenExpiration.Item1;
         }
 
-        internal override async ValueTask<BearerToken> GetAsync(string header = "", System.Threading.CancellationToken cancellation = default)
+        protected internal override async ValueTask<BearerToken> GetAsync(string header = "", System.Threading.CancellationToken cancellation = default)
         {
             return new BearerToken((await RetrieveNewToken(cancellation)).AccessToken);
         }

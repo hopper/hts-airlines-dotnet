@@ -47,8 +47,10 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="taxesTotal">Total of taxes</param>
         /// <param name="taxes">List of taxes that is associated with a contract</param>
         /// <param name="formsOfPayment">List of the forms of payment used to purchase the booking</param>
+        /// <param name="totalPrice">Updated total price of the itinerary in case it can change at payment time</param>
+        /// <param name="currency">Currency of the total_price (ISO 4217). Defaults to contract currency if absent.</param>
         [JsonConstructor]
-        public UpdateDgContractStatusRequest(DgStatus status, Option<string?> pnrReference = default, Option<string?> emailAddress = default, Option<string?> phoneNumber = default, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> addressLine1 = default, Option<string?> addressLine2 = default, Option<string?> city = default, Option<string?> stateOrProvince = default, Option<string?> postalCode = default, Option<string?> country = default, Option<string?> taxesTotal = default, Option<List<DgTax>?> taxes = default, Option<List<FormOfPayment>?> formsOfPayment = default)
+        public UpdateDgContractStatusRequest(DgStatus status, Option<string?> pnrReference = default, Option<string?> emailAddress = default, Option<string?> phoneNumber = default, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> addressLine1 = default, Option<string?> addressLine2 = default, Option<string?> city = default, Option<string?> stateOrProvince = default, Option<string?> postalCode = default, Option<string?> country = default, Option<string?> taxesTotal = default, Option<List<DgTax>?> taxes = default, Option<List<FormOfPayment>?> formsOfPayment = default, Option<string?> totalPrice = default, Option<string?> currency = default)
         {
             Status = status;
             PnrReferenceOption = pnrReference;
@@ -65,6 +67,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             TaxesTotalOption = taxesTotal;
             TaxesOption = taxes;
             FormsOfPaymentOption = formsOfPayment;
+            TotalPriceOption = totalPrice;
+            CurrencyOption = currency;
             OnCreated();
         }
 
@@ -285,6 +289,36 @@ namespace Com.Hopper.Hts.Airlines.Model
         public List<FormOfPayment>? FormsOfPayment { get { return this.FormsOfPaymentOption; } set { this.FormsOfPaymentOption = new Option<List<FormOfPayment>?>(value); } }
 
         /// <summary>
+        /// Used to track the state of TotalPrice
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> TotalPriceOption { get; private set; }
+
+        /// <summary>
+        /// Updated total price of the itinerary in case it can change at payment time
+        /// </summary>
+        /// <value>Updated total price of the itinerary in case it can change at payment time</value>
+        /* <example>401.10</example> */
+        [JsonPropertyName("total_price")]
+        public string? TotalPrice { get { return this.TotalPriceOption; } set { this.TotalPriceOption = new Option<string?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Currency
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> CurrencyOption { get; private set; }
+
+        /// <summary>
+        /// Currency of the total_price (ISO 4217). Defaults to contract currency if absent.
+        /// </summary>
+        /// <value>Currency of the total_price (ISO 4217). Defaults to contract currency if absent.</value>
+        /* <example>USD</example> */
+        [JsonPropertyName("currency")]
+        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -307,6 +341,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  TaxesTotal: ").Append(TaxesTotal).Append("\n");
             sb.Append("  Taxes: ").Append(Taxes).Append("\n");
             sb.Append("  FormsOfPayment: ").Append(FormsOfPayment).Append("\n");
+            sb.Append("  TotalPrice: ").Append(TotalPrice).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -349,6 +385,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<string?> taxesTotal = default;
             Option<List<DgTax>?> taxes = default;
             Option<List<FormOfPayment>?> formsOfPayment = default;
+            Option<string?> totalPrice = default;
+            Option<string?> currency = default;
 
             while (utf8JsonReader.Read())
             {
@@ -414,6 +452,12 @@ namespace Com.Hopper.Hts.Airlines.Model
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 formsOfPayment = new Option<List<FormOfPayment>?>(JsonSerializer.Deserialize<List<FormOfPayment>>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
+                        case "total_price":
+                            totalPrice = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "currency":
+                            currency = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -468,7 +512,13 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (formsOfPayment.IsSet && formsOfPayment.Value == null)
                 throw new ArgumentNullException(nameof(formsOfPayment), "Property is not nullable for class UpdateDgContractStatusRequest.");
 
-            return new UpdateDgContractStatusRequest(status.Value!.Value!, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes, formsOfPayment);
+            if (totalPrice.IsSet && totalPrice.Value == null)
+                throw new ArgumentNullException(nameof(totalPrice), "Property is not nullable for class UpdateDgContractStatusRequest.");
+
+            if (currency.IsSet && currency.Value == null)
+                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class UpdateDgContractStatusRequest.");
+
+            return new UpdateDgContractStatusRequest(status.Value!.Value!, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes, formsOfPayment, totalPrice, currency);
         }
 
         /// <summary>
@@ -537,6 +587,12 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (updateDgContractStatusRequest.FormsOfPaymentOption.IsSet && updateDgContractStatusRequest.FormsOfPayment == null)
                 throw new ArgumentNullException(nameof(updateDgContractStatusRequest.FormsOfPayment), "Property is required for class UpdateDgContractStatusRequest.");
 
+            if (updateDgContractStatusRequest.TotalPriceOption.IsSet && updateDgContractStatusRequest.TotalPrice == null)
+                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.TotalPrice), "Property is required for class UpdateDgContractStatusRequest.");
+
+            if (updateDgContractStatusRequest.CurrencyOption.IsSet && updateDgContractStatusRequest.Currency == null)
+                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.Currency), "Property is required for class UpdateDgContractStatusRequest.");
+
             var statusRawValue = DgStatusValueConverter.ToJsonValue(updateDgContractStatusRequest.Status);
             writer.WriteString("status", statusRawValue);
 
@@ -586,6 +642,11 @@ namespace Com.Hopper.Hts.Airlines.Model
                 writer.WritePropertyName("forms_of_payment");
                 JsonSerializer.Serialize(writer, updateDgContractStatusRequest.FormsOfPayment, jsonSerializerOptions);
             }
+            if (updateDgContractStatusRequest.TotalPriceOption.IsSet)
+                writer.WriteString("total_price", updateDgContractStatusRequest.TotalPrice);
+
+            if (updateDgContractStatusRequest.CurrencyOption.IsSet)
+                writer.WriteString("currency", updateDgContractStatusRequest.Currency);
         }
     }
 }
