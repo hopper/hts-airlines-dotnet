@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **TermsConditionsUrl** | **string** | The terms and conditions for this offer | [optional] 
 **FaqUrl** | **string** | The faq url for this offer | [optional] 
 **MerchandisingUrl** | **string** | The url for rendering offer merchandising | [optional] 
+**MerchandisingUrlWebComponent** | **string** | The url for the web component SDK for rendering offer merchandising | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

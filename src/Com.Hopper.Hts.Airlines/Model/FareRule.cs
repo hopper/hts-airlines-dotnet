@@ -38,8 +38,9 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="fee">Amount to be paid as penalty fee to perform the modification</param>
         /// <param name="percentage">Percentage of the fare to be paid as penalty to perform the modification</param>
         /// <param name="refundMethod">refundMethod</param>
+        /// <param name="currency">Currency of fee field. This will default to the contract currency if not specified.</param>
         [JsonConstructor]
-        public FareRule(ModificationType modificationType, ModificationTime modificationTime, bool allowed, Option<string?> fee = default, Option<string?> percentage = default, Option<AirlineRefundMethod?> refundMethod = default)
+        public FareRule(ModificationType modificationType, ModificationTime modificationTime, bool allowed, Option<string?> fee = default, Option<string?> percentage = default, Option<AirlineRefundMethod?> refundMethod = default, Option<string?> currency = default)
         {
             ModificationType = modificationType;
             ModificationTime = modificationTime;
@@ -47,6 +48,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             FeeOption = fee;
             PercentageOption = percentage;
             RefundMethodOption = refundMethod;
+            CurrencyOption = currency;
             OnCreated();
         }
 
@@ -113,6 +115,21 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string? Percentage { get { return this.PercentageOption; } set { this.PercentageOption = new Option<string?>(value); } }
 
         /// <summary>
+        /// Used to track the state of Currency
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> CurrencyOption { get; private set; }
+
+        /// <summary>
+        /// Currency of fee field. This will default to the contract currency if not specified.
+        /// </summary>
+        /// <value>Currency of fee field. This will default to the contract currency if not specified.</value>
+        /* <example>CAD</example> */
+        [JsonPropertyName("currency")]
+        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -126,6 +143,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  Fee: ").Append(Fee).Append("\n");
             sb.Append("  Percentage: ").Append(Percentage).Append("\n");
             sb.Append("  RefundMethod: ").Append(RefundMethod).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -159,6 +177,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<string?> fee = default;
             Option<string?> percentage = default;
             Option<AirlineRefundMethod?> refundMethod = default;
+            Option<string?> currency = default;
 
             while (utf8JsonReader.Read())
             {
@@ -200,6 +219,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             if (refundMethodRawValue != null)
                                 refundMethod = new Option<AirlineRefundMethod?>(AirlineRefundMethodValueConverter.FromStringOrDefault(refundMethodRawValue));
                             break;
+                        case "currency":
+                            currency = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -233,7 +255,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (refundMethod.IsSet && refundMethod.Value == null)
                 throw new ArgumentNullException(nameof(refundMethod), "Property is not nullable for class FareRule.");
 
-            return new FareRule(modificationType.Value!.Value!, modificationTime.Value!.Value!, allowed.Value!.Value!, fee, percentage, refundMethod);
+            if (currency.IsSet && currency.Value == null)
+                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class FareRule.");
+
+            return new FareRule(modificationType.Value!.Value!, modificationTime.Value!.Value!, allowed.Value!.Value!, fee, percentage, refundMethod, currency);
         }
 
         /// <summary>
@@ -266,6 +291,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (fareRule.PercentageOption.IsSet && fareRule.Percentage == null)
                 throw new ArgumentNullException(nameof(fareRule.Percentage), "Property is required for class FareRule.");
 
+            if (fareRule.CurrencyOption.IsSet && fareRule.Currency == null)
+                throw new ArgumentNullException(nameof(fareRule.Currency), "Property is required for class FareRule.");
+
             var modificationTypeRawValue = ModificationTypeValueConverter.ToJsonValue(fareRule.ModificationType);
             writer.WriteString("modification_type", modificationTypeRawValue);
 
@@ -285,6 +313,8 @@ namespace Com.Hopper.Hts.Airlines.Model
                 var refundMethodRawValue = AirlineRefundMethodValueConverter.ToJsonValue(fareRule.RefundMethod!.Value);
                 writer.WriteString("refund_method", refundMethodRawValue);
             }
+            if (fareRule.CurrencyOption.IsSet)
+                writer.WriteString("currency", fareRule.Currency);
         }
     }
 }

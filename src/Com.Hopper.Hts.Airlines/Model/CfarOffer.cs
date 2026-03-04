@@ -51,8 +51,9 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="termsConditionsUrl">The terms and conditions for this offer</param>
         /// <param name="faqUrl">The faq url for this offer</param>
         /// <param name="merchandisingUrl">The url for rendering offer merchandising</param>
+        /// <param name="merchandisingUrlWebComponent">The url for the web component SDK for rendering offer merchandising</param>
         [JsonConstructor]
-        public CfarOffer(string id, string premium, string coverage, string coveragePercentage, string currency, string taxesTotal, RequestType requestType, DateTime contractExpiryDateTime, DateTime createdDateTime, CfarItinerary itinerary, Dictionary<string, CfarContents> contents, Dictionary<string, string> extAttributes, Dictionary<string, string> experiments, Option<string?> coverageExtension = default, Option<List<CfarTax>?> taxes = default, Option<string?> entryPoint = default, Option<string?> termsConditionsUrl = default, Option<string?> faqUrl = default, Option<string?> merchandisingUrl = default)
+        public CfarOffer(string id, string premium, string coverage, string coveragePercentage, string currency, string taxesTotal, RequestType requestType, DateTime contractExpiryDateTime, DateTime createdDateTime, CfarItinerary itinerary, Dictionary<string, CfarContents> contents, Dictionary<string, string> extAttributes, Dictionary<string, string> experiments, Option<string?> coverageExtension = default, Option<List<CfarTax>?> taxes = default, Option<string?> entryPoint = default, Option<string?> termsConditionsUrl = default, Option<string?> faqUrl = default, Option<string?> merchandisingUrl = default, Option<string?> merchandisingUrlWebComponent = default)
         {
             Id = id;
             Premium = premium;
@@ -73,6 +74,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             TermsConditionsUrlOption = termsConditionsUrl;
             FaqUrlOption = faqUrl;
             MerchandisingUrlOption = merchandisingUrl;
+            MerchandisingUrlWebComponentOption = merchandisingUrlWebComponent;
             OnCreated();
         }
 
@@ -259,6 +261,20 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string? MerchandisingUrl { get { return this.MerchandisingUrlOption; } set { this.MerchandisingUrlOption = new Option<string?>(value); } }
 
         /// <summary>
+        /// Used to track the state of MerchandisingUrlWebComponent
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> MerchandisingUrlWebComponentOption { get; private set; }
+
+        /// <summary>
+        /// The url for the web component SDK for rendering offer merchandising
+        /// </summary>
+        /// <value>The url for the web component SDK for rendering offer merchandising</value>
+        [JsonPropertyName("merchandising_url_web_component")]
+        public string? MerchandisingUrlWebComponent { get { return this.MerchandisingUrlWebComponentOption; } set { this.MerchandisingUrlWebComponentOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -285,6 +301,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  TermsConditionsUrl: ").Append(TermsConditionsUrl).Append("\n");
             sb.Append("  FaqUrl: ").Append(FaqUrl).Append("\n");
             sb.Append("  MerchandisingUrl: ").Append(MerchandisingUrl).Append("\n");
+            sb.Append("  MerchandisingUrlWebComponent: ").Append(MerchandisingUrlWebComponent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -341,6 +358,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<string?> termsConditionsUrl = default;
             Option<string?> faqUrl = default;
             Option<string?> merchandisingUrl = default;
+            Option<string?> merchandisingUrlWebComponent = default;
 
             while (utf8JsonReader.Read())
             {
@@ -422,6 +440,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                             break;
                         case "merchandising_url":
                             merchandisingUrl = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
+                        case "merchandising_url_web_component":
+                            merchandisingUrlWebComponent = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -525,7 +546,10 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (merchandisingUrl.IsSet && merchandisingUrl.Value == null)
                 throw new ArgumentNullException(nameof(merchandisingUrl), "Property is not nullable for class CfarOffer.");
 
-            return new CfarOffer(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, contractExpiryDateTime.Value!.Value!, createdDateTime.Value!.Value!, itinerary.Value!, contents.Value!, extAttributes.Value!, experiments.Value!, coverageExtension, taxes, entryPoint, termsConditionsUrl, faqUrl, merchandisingUrl);
+            if (merchandisingUrlWebComponent.IsSet && merchandisingUrlWebComponent.Value == null)
+                throw new ArgumentNullException(nameof(merchandisingUrlWebComponent), "Property is not nullable for class CfarOffer.");
+
+            return new CfarOffer(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, contractExpiryDateTime.Value!.Value!, createdDateTime.Value!.Value!, itinerary.Value!, contents.Value!, extAttributes.Value!, experiments.Value!, coverageExtension, taxes, entryPoint, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
         }
 
         /// <summary>
@@ -600,6 +624,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (cfarOffer.MerchandisingUrlOption.IsSet && cfarOffer.MerchandisingUrl == null)
                 throw new ArgumentNullException(nameof(cfarOffer.MerchandisingUrl), "Property is required for class CfarOffer.");
 
+            if (cfarOffer.MerchandisingUrlWebComponentOption.IsSet && cfarOffer.MerchandisingUrlWebComponent == null)
+                throw new ArgumentNullException(nameof(cfarOffer.MerchandisingUrlWebComponent), "Property is required for class CfarOffer.");
+
             writer.WriteString("id", cfarOffer.Id);
 
             writer.WriteString("premium", cfarOffer.Premium);
@@ -646,6 +673,9 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (cfarOffer.MerchandisingUrlOption.IsSet)
                 writer.WriteString("merchandising_url", cfarOffer.MerchandisingUrl);
+
+            if (cfarOffer.MerchandisingUrlWebComponentOption.IsSet)
+                writer.WriteString("merchandising_url_web_component", cfarOffer.MerchandisingUrlWebComponent);
         }
     }
 }

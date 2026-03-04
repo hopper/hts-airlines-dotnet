@@ -43,6 +43,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new DateTimeNullableJsonConverter());
             _jsonOptions.Converters.Add(new DateOnlyJsonConverter());
             _jsonOptions.Converters.Add(new DateOnlyNullableJsonConverter());
+            _jsonOptions.Converters.Add(new AgentResellerJsonConverter());
             _jsonOptions.Converters.Add(new AirlineRefundMethodJsonConverter());
             _jsonOptions.Converters.Add(new AirlineRefundMethodNullableJsonConverter());
             _jsonOptions.Converters.Add(new AirlineSessionJsonConverter());
@@ -50,6 +51,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new AncillaryTypeJsonConverter());
             _jsonOptions.Converters.Add(new AncillaryTypeNullableJsonConverter());
             _jsonOptions.Converters.Add(new AndroidJsonConverter());
+            _jsonOptions.Converters.Add(new ApiJsonConverter());
             _jsonOptions.Converters.Add(new AppJsonConverter());
             _jsonOptions.Converters.Add(new AuthRequestJsonConverter());
             _jsonOptions.Converters.Add(new AuthResponseJsonConverter());
@@ -78,6 +80,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new CfarStatusJsonConverter());
             _jsonOptions.Converters.Add(new CfarStatusNullableJsonConverter());
             _jsonOptions.Converters.Add(new CfarTaxJsonConverter());
+            _jsonOptions.Converters.Add(new ChannelJsonConverter());
             _jsonOptions.Converters.Add(new ChromeJsonConverter());
             _jsonOptions.Converters.Add(new ChromeOsJsonConverter());
             _jsonOptions.Converters.Add(new CreateAirlineCfarSessionRequestJsonConverter());
@@ -118,6 +121,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new DgStatusJsonConverter());
             _jsonOptions.Converters.Add(new DgStatusNullableJsonConverter());
             _jsonOptions.Converters.Add(new DgTaxJsonConverter());
+            _jsonOptions.Converters.Add(new DirectJsonConverter());
             _jsonOptions.Converters.Add(new EdgeJsonConverter());
             _jsonOptions.Converters.Add(new ErrorJsonConverter());
             _jsonOptions.Converters.Add(new EventJsonConverter());
@@ -147,6 +151,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new ModificationTypeNullableJsonConverter());
             _jsonOptions.Converters.Add(new NonCashJsonConverter());
             _jsonOptions.Converters.Add(new OffersDisplayedJsonConverter());
+            _jsonOptions.Converters.Add(new OnlineBookingToolJsonConverter());
             _jsonOptions.Converters.Add(new OperaJsonConverter());
             _jsonOptions.Converters.Add(new OtherBrowserJsonConverter());
             _jsonOptions.Converters.Add(new OtherOsJsonConverter());
@@ -175,6 +180,7 @@ namespace Com.Hopper.Hts.Airlines.Client
             _jsonOptions.Converters.Add(new UpdateDgContractStatusRequestJsonConverter());
             _jsonOptions.Converters.Add(new UserInfoJsonConverter());
             _jsonOptions.Converters.Add(new WebJsonConverter());
+            _jsonOptions.Converters.Add(new WhiteLabelJsonConverter());
             _jsonOptions.Converters.Add(new WindowsJsonConverter());
             JsonSerializerOptionsProvider jsonSerializerOptionsProvider = new(_jsonOptions);
             _services.AddSingleton(jsonSerializerOptionsProvider);
