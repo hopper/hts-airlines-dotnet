@@ -10,7 +10,7 @@ $properties = @(
     'validatable=false',
     'nullableReferenceTypes=true',
     'hideGenerationTimestamp=true',
-    'packageVersion=0.1.15',
+    'packageVersion=0.1.16',
     'packageAuthors=OpenAPI',
     'packageCompany=OpenAPI',
     'packageCopyright=No Copyright',
@@ -133,7 +133,7 @@ Authentication schemes defined for the API:
 
 
 ## Build
-- SDK version: 0.1.15
+- SDK version: 0.1.16
 - Generator version: 7.10.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen
 
@@ -177,11 +177,11 @@ Authentication schemes defined for the API:
 - packageCompany: OpenAPI
 - packageCopyright: No Copyright
 - packageDescription: A library generated from a OpenAPI doc
-- packageGuid: {6264059E-4183-44FF-A352-FE86621F778C}
+- packageGuid: {48E9A5D3-6295-4012-AB0B-D54773FFFA1D}
 - packageName: Com.Hopper.Hts.Airlines
 - packageTags: 
 - packageTitle: OpenAPI Library
-- packageVersion: 0.1.15
+- packageVersion: 0.1.16
 - releaseNote: Minor update
 - returnICollection: false
 - sortParamsByRequiredFlag: 

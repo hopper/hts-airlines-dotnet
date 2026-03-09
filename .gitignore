@@ -360,6 +360,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-
-# JetBrains IDEs (Rider, IntelliJ, etc.)
-.idea/

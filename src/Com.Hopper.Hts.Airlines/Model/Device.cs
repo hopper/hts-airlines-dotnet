@@ -289,19 +289,19 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (device.Desktop != null)
             {
-                DesktopJsonConverter desktopJsonConverter = (DesktopJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(device.Desktop.GetType()));
+                DesktopJsonConverter desktopJsonConverter = new DesktopJsonConverter();
                 desktopJsonConverter.WriteProperties(writer, device.Desktop, jsonSerializerOptions);
             }
 
             if (device.Mobile != null)
             {
-                MobileJsonConverter mobileJsonConverter = (MobileJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(device.Mobile.GetType()));
+                MobileJsonConverter mobileJsonConverter = new MobileJsonConverter();
                 mobileJsonConverter.WriteProperties(writer, device.Mobile, jsonSerializerOptions);
             }
 
             if (device.Tablet != null)
             {
-                TabletJsonConverter tabletJsonConverter = (TabletJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(device.Tablet.GetType()));
+                TabletJsonConverter tabletJsonConverter = new TabletJsonConverter();
                 tabletJsonConverter.WriteProperties(writer, device.Tablet, jsonSerializerOptions);
             }
 

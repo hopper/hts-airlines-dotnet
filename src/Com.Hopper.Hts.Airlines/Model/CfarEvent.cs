@@ -560,103 +560,103 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (cfarEvent.BookingConfirmed1 != null)
             {
-                BookingConfirmed1JsonConverter bookingConfirmed1JsonConverter = (BookingConfirmed1JsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.BookingConfirmed1.GetType()));
+                BookingConfirmed1JsonConverter bookingConfirmed1JsonConverter = new BookingConfirmed1JsonConverter();
                 bookingConfirmed1JsonConverter.WriteProperties(writer, cfarEvent.BookingConfirmed1, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarDenyPurchase != null)
             {
-                CfarDenyPurchaseJsonConverter cfarDenyPurchaseJsonConverter = (CfarDenyPurchaseJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarDenyPurchase.GetType()));
+                CfarDenyPurchaseJsonConverter cfarDenyPurchaseJsonConverter = new CfarDenyPurchaseJsonConverter();
                 cfarDenyPurchaseJsonConverter.WriteProperties(writer, cfarEvent.CfarDenyPurchase, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarEventWithContract != null)
             {
-                CfarEventWithContractJsonConverter cfarEventWithContractJsonConverter = (CfarEventWithContractJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarEventWithContract.GetType()));
+                CfarEventWithContractJsonConverter cfarEventWithContractJsonConverter = new CfarEventWithContractJsonConverter();
                 cfarEventWithContractJsonConverter.WriteProperties(writer, cfarEvent.CfarEventWithContract, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarExerciseCallbackLaunched != null)
             {
-                CfarExerciseCallbackLaunchedJsonConverter cfarExerciseCallbackLaunchedJsonConverter = (CfarExerciseCallbackLaunchedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarExerciseCallbackLaunched.GetType()));
+                CfarExerciseCallbackLaunchedJsonConverter cfarExerciseCallbackLaunchedJsonConverter = new CfarExerciseCallbackLaunchedJsonConverter();
                 cfarExerciseCallbackLaunchedJsonConverter.WriteProperties(writer, cfarEvent.CfarExerciseCallbackLaunched, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarExerciseCustomerDataComplete != null)
             {
-                CfarExerciseCustomerDataCompleteJsonConverter cfarExerciseCustomerDataCompleteJsonConverter = (CfarExerciseCustomerDataCompleteJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarExerciseCustomerDataComplete.GetType()));
+                CfarExerciseCustomerDataCompleteJsonConverter cfarExerciseCustomerDataCompleteJsonConverter = new CfarExerciseCustomerDataCompleteJsonConverter();
                 cfarExerciseCustomerDataCompleteJsonConverter.WriteProperties(writer, cfarEvent.CfarExerciseCustomerDataComplete, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarExercisePortalComplete != null)
             {
-                CfarExercisePortalCompleteJsonConverter cfarExercisePortalCompleteJsonConverter = (CfarExercisePortalCompleteJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarExercisePortalComplete.GetType()));
+                CfarExercisePortalCompleteJsonConverter cfarExercisePortalCompleteJsonConverter = new CfarExercisePortalCompleteJsonConverter();
                 cfarExercisePortalCompleteJsonConverter.WriteProperties(writer, cfarEvent.CfarExercisePortalComplete, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarExercisePortalDisplay != null)
             {
-                CfarExercisePortalDisplayJsonConverter cfarExercisePortalDisplayJsonConverter = (CfarExercisePortalDisplayJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarExercisePortalDisplay.GetType()));
+                CfarExercisePortalDisplayJsonConverter cfarExercisePortalDisplayJsonConverter = new CfarExercisePortalDisplayJsonConverter();
                 cfarExercisePortalDisplayJsonConverter.WriteProperties(writer, cfarEvent.CfarExercisePortalDisplay, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarExerciseVerificationComplete != null)
             {
-                CfarExerciseVerificationCompleteJsonConverter cfarExerciseVerificationCompleteJsonConverter = (CfarExerciseVerificationCompleteJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarExerciseVerificationComplete.GetType()));
+                CfarExerciseVerificationCompleteJsonConverter cfarExerciseVerificationCompleteJsonConverter = new CfarExerciseVerificationCompleteJsonConverter();
                 cfarExerciseVerificationCompleteJsonConverter.WriteProperties(writer, cfarEvent.CfarExerciseVerificationComplete, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarExerciseVerificationSent != null)
             {
-                CfarExerciseVerificationSentJsonConverter cfarExerciseVerificationSentJsonConverter = (CfarExerciseVerificationSentJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarExerciseVerificationSent.GetType()));
+                CfarExerciseVerificationSentJsonConverter cfarExerciseVerificationSentJsonConverter = new CfarExerciseVerificationSentJsonConverter();
                 cfarExerciseVerificationSentJsonConverter.WriteProperties(writer, cfarEvent.CfarExerciseVerificationSent, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarForcedChoiceWarning != null)
             {
-                CfarForcedChoiceWarningJsonConverter cfarForcedChoiceWarningJsonConverter = (CfarForcedChoiceWarningJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarForcedChoiceWarning.GetType()));
+                CfarForcedChoiceWarningJsonConverter cfarForcedChoiceWarningJsonConverter = new CfarForcedChoiceWarningJsonConverter();
                 cfarForcedChoiceWarningJsonConverter.WriteProperties(writer, cfarEvent.CfarForcedChoiceWarning, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarOfferSelected != null)
             {
-                CfarOfferSelectedJsonConverter cfarOfferSelectedJsonConverter = (CfarOfferSelectedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarOfferSelected.GetType()));
+                CfarOfferSelectedJsonConverter cfarOfferSelectedJsonConverter = new CfarOfferSelectedJsonConverter();
                 cfarOfferSelectedJsonConverter.WriteProperties(writer, cfarEvent.CfarOfferSelected, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarOffersBannerDisplay != null)
             {
-                CfarOffersBannerDisplayJsonConverter cfarOffersBannerDisplayJsonConverter = (CfarOffersBannerDisplayJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarOffersBannerDisplay.GetType()));
+                CfarOffersBannerDisplayJsonConverter cfarOffersBannerDisplayJsonConverter = new CfarOffersBannerDisplayJsonConverter();
                 cfarOffersBannerDisplayJsonConverter.WriteProperties(writer, cfarEvent.CfarOffersBannerDisplay, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarOffersBannerLoaded != null)
             {
-                CfarOffersBannerLoadedJsonConverter cfarOffersBannerLoadedJsonConverter = (CfarOffersBannerLoadedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarOffersBannerLoaded.GetType()));
+                CfarOffersBannerLoadedJsonConverter cfarOffersBannerLoadedJsonConverter = new CfarOffersBannerLoadedJsonConverter();
                 cfarOffersBannerLoadedJsonConverter.WriteProperties(writer, cfarEvent.CfarOffersBannerLoaded, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarOffersMoreInfoClicked != null)
             {
-                CfarOffersMoreInfoClickedJsonConverter cfarOffersMoreInfoClickedJsonConverter = (CfarOffersMoreInfoClickedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarOffersMoreInfoClicked.GetType()));
+                CfarOffersMoreInfoClickedJsonConverter cfarOffersMoreInfoClickedJsonConverter = new CfarOffersMoreInfoClickedJsonConverter();
                 cfarOffersMoreInfoClickedJsonConverter.WriteProperties(writer, cfarEvent.CfarOffersMoreInfoClicked, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarOffersTakeoverDisplay != null)
             {
-                CfarOffersTakeoverDisplayJsonConverter cfarOffersTakeoverDisplayJsonConverter = (CfarOffersTakeoverDisplayJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarOffersTakeoverDisplay.GetType()));
+                CfarOffersTakeoverDisplayJsonConverter cfarOffersTakeoverDisplayJsonConverter = new CfarOffersTakeoverDisplayJsonConverter();
                 cfarOffersTakeoverDisplayJsonConverter.WriteProperties(writer, cfarEvent.CfarOffersTakeoverDisplay, jsonSerializerOptions);
             }
 
             if (cfarEvent.CfarViewInfo != null)
             {
-                CfarViewInfoJsonConverter cfarViewInfoJsonConverter = (CfarViewInfoJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.CfarViewInfo.GetType()));
+                CfarViewInfoJsonConverter cfarViewInfoJsonConverter = new CfarViewInfoJsonConverter();
                 cfarViewInfoJsonConverter.WriteProperties(writer, cfarEvent.CfarViewInfo, jsonSerializerOptions);
             }
 
             if (cfarEvent.OffersDisplayed1 != null)
             {
-                OffersDisplayed1JsonConverter offersDisplayed1JsonConverter = (OffersDisplayed1JsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(cfarEvent.OffersDisplayed1.GetType()));
+                OffersDisplayed1JsonConverter offersDisplayed1JsonConverter = new OffersDisplayed1JsonConverter();
                 offersDisplayed1JsonConverter.WriteProperties(writer, cfarEvent.OffersDisplayed1, jsonSerializerOptions);
             }
 
