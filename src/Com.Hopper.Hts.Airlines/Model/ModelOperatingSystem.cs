@@ -441,43 +441,43 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (modelOperatingSystem.Android != null)
             {
-                AndroidJsonConverter androidJsonConverter = (AndroidJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(modelOperatingSystem.Android.GetType()));
+                AndroidJsonConverter androidJsonConverter = new AndroidJsonConverter();
                 androidJsonConverter.WriteProperties(writer, modelOperatingSystem.Android, jsonSerializerOptions);
             }
 
             if (modelOperatingSystem.ChromeOs != null)
             {
-                ChromeOsJsonConverter chromeOsJsonConverter = (ChromeOsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(modelOperatingSystem.ChromeOs.GetType()));
+                ChromeOsJsonConverter chromeOsJsonConverter = new ChromeOsJsonConverter();
                 chromeOsJsonConverter.WriteProperties(writer, modelOperatingSystem.ChromeOs, jsonSerializerOptions);
             }
 
             if (modelOperatingSystem.IOs != null)
             {
-                IOsJsonConverter iOsJsonConverter = (IOsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(modelOperatingSystem.IOs.GetType()));
+                IOsJsonConverter iOsJsonConverter = new IOsJsonConverter();
                 iOsJsonConverter.WriteProperties(writer, modelOperatingSystem.IOs, jsonSerializerOptions);
             }
 
             if (modelOperatingSystem.Linux != null)
             {
-                LinuxJsonConverter linuxJsonConverter = (LinuxJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(modelOperatingSystem.Linux.GetType()));
+                LinuxJsonConverter linuxJsonConverter = new LinuxJsonConverter();
                 linuxJsonConverter.WriteProperties(writer, modelOperatingSystem.Linux, jsonSerializerOptions);
             }
 
             if (modelOperatingSystem.MacOs != null)
             {
-                MacOsJsonConverter macOsJsonConverter = (MacOsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(modelOperatingSystem.MacOs.GetType()));
+                MacOsJsonConverter macOsJsonConverter = new MacOsJsonConverter();
                 macOsJsonConverter.WriteProperties(writer, modelOperatingSystem.MacOs, jsonSerializerOptions);
             }
 
             if (modelOperatingSystem.OtherOs != null)
             {
-                OtherOsJsonConverter otherOsJsonConverter = (OtherOsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(modelOperatingSystem.OtherOs.GetType()));
+                OtherOsJsonConverter otherOsJsonConverter = new OtherOsJsonConverter();
                 otherOsJsonConverter.WriteProperties(writer, modelOperatingSystem.OtherOs, jsonSerializerOptions);
             }
 
             if (modelOperatingSystem.Windows != null)
             {
-                WindowsJsonConverter windowsJsonConverter = (WindowsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(modelOperatingSystem.Windows.GetType()));
+                WindowsJsonConverter windowsJsonConverter = new WindowsJsonConverter();
                 windowsJsonConverter.WriteProperties(writer, modelOperatingSystem.Windows, jsonSerializerOptions);
             }
 

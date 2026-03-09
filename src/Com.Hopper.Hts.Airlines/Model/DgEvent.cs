@@ -384,61 +384,61 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (dgEvent.BookingConfirmed2 != null)
             {
-                BookingConfirmed2JsonConverter bookingConfirmed2JsonConverter = (BookingConfirmed2JsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.BookingConfirmed2.GetType()));
+                BookingConfirmed2JsonConverter bookingConfirmed2JsonConverter = new BookingConfirmed2JsonConverter();
                 bookingConfirmed2JsonConverter.WriteProperties(writer, dgEvent.BookingConfirmed2, jsonSerializerOptions);
             }
 
             if (dgEvent.DgDenyPurchase != null)
             {
-                DgDenyPurchaseJsonConverter dgDenyPurchaseJsonConverter = (DgDenyPurchaseJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgDenyPurchase.GetType()));
+                DgDenyPurchaseJsonConverter dgDenyPurchaseJsonConverter = new DgDenyPurchaseJsonConverter();
                 dgDenyPurchaseJsonConverter.WriteProperties(writer, dgEvent.DgDenyPurchase, jsonSerializerOptions);
             }
 
             if (dgEvent.DgExerciseCallbackLaunched != null)
             {
-                DgExerciseCallbackLaunchedJsonConverter dgExerciseCallbackLaunchedJsonConverter = (DgExerciseCallbackLaunchedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgExerciseCallbackLaunched.GetType()));
+                DgExerciseCallbackLaunchedJsonConverter dgExerciseCallbackLaunchedJsonConverter = new DgExerciseCallbackLaunchedJsonConverter();
                 dgExerciseCallbackLaunchedJsonConverter.WriteProperties(writer, dgEvent.DgExerciseCallbackLaunched, jsonSerializerOptions);
             }
 
             if (dgEvent.DgExerciseCustomerDataComplete != null)
             {
-                DgExerciseCustomerDataCompleteJsonConverter dgExerciseCustomerDataCompleteJsonConverter = (DgExerciseCustomerDataCompleteJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgExerciseCustomerDataComplete.GetType()));
+                DgExerciseCustomerDataCompleteJsonConverter dgExerciseCustomerDataCompleteJsonConverter = new DgExerciseCustomerDataCompleteJsonConverter();
                 dgExerciseCustomerDataCompleteJsonConverter.WriteProperties(writer, dgEvent.DgExerciseCustomerDataComplete, jsonSerializerOptions);
             }
 
             if (dgEvent.DgExercisePortalComplete != null)
             {
-                DgExercisePortalCompleteJsonConverter dgExercisePortalCompleteJsonConverter = (DgExercisePortalCompleteJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgExercisePortalComplete.GetType()));
+                DgExercisePortalCompleteJsonConverter dgExercisePortalCompleteJsonConverter = new DgExercisePortalCompleteJsonConverter();
                 dgExercisePortalCompleteJsonConverter.WriteProperties(writer, dgEvent.DgExercisePortalComplete, jsonSerializerOptions);
             }
 
             if (dgEvent.DgExerciseVerificationComplete != null)
             {
-                DgExerciseVerificationCompleteJsonConverter dgExerciseVerificationCompleteJsonConverter = (DgExerciseVerificationCompleteJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgExerciseVerificationComplete.GetType()));
+                DgExerciseVerificationCompleteJsonConverter dgExerciseVerificationCompleteJsonConverter = new DgExerciseVerificationCompleteJsonConverter();
                 dgExerciseVerificationCompleteJsonConverter.WriteProperties(writer, dgEvent.DgExerciseVerificationComplete, jsonSerializerOptions);
             }
 
             if (dgEvent.DgOfferSelected != null)
             {
-                DgOfferSelectedJsonConverter dgOfferSelectedJsonConverter = (DgOfferSelectedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgOfferSelected.GetType()));
+                DgOfferSelectedJsonConverter dgOfferSelectedJsonConverter = new DgOfferSelectedJsonConverter();
                 dgOfferSelectedJsonConverter.WriteProperties(writer, dgEvent.DgOfferSelected, jsonSerializerOptions);
             }
 
             if (dgEvent.DgOffersBannerDisplay != null)
             {
-                DgOffersBannerDisplayJsonConverter dgOffersBannerDisplayJsonConverter = (DgOffersBannerDisplayJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgOffersBannerDisplay.GetType()));
+                DgOffersBannerDisplayJsonConverter dgOffersBannerDisplayJsonConverter = new DgOffersBannerDisplayJsonConverter();
                 dgOffersBannerDisplayJsonConverter.WriteProperties(writer, dgEvent.DgOffersBannerDisplay, jsonSerializerOptions);
             }
 
             if (dgEvent.DgOffersBannerLoaded != null)
             {
-                DgOffersBannerLoadedJsonConverter dgOffersBannerLoadedJsonConverter = (DgOffersBannerLoadedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgOffersBannerLoaded.GetType()));
+                DgOffersBannerLoadedJsonConverter dgOffersBannerLoadedJsonConverter = new DgOffersBannerLoadedJsonConverter();
                 dgOffersBannerLoadedJsonConverter.WriteProperties(writer, dgEvent.DgOffersBannerLoaded, jsonSerializerOptions);
             }
 
             if (dgEvent.DgOffersMoreInfoClicked != null)
             {
-                DgOffersMoreInfoClickedJsonConverter dgOffersMoreInfoClickedJsonConverter = (DgOffersMoreInfoClickedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(dgEvent.DgOffersMoreInfoClicked.GetType()));
+                DgOffersMoreInfoClickedJsonConverter dgOffersMoreInfoClickedJsonConverter = new DgOffersMoreInfoClickedJsonConverter();
                 dgOffersMoreInfoClickedJsonConverter.WriteProperties(writer, dgEvent.DgOffersMoreInfoClicked, jsonSerializerOptions);
             }
 

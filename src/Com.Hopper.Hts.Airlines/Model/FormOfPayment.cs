@@ -327,25 +327,25 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (formOfPayment.Cash != null)
             {
-                CashJsonConverter cashJsonConverter = (CashJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(formOfPayment.Cash.GetType()));
+                CashJsonConverter cashJsonConverter = new CashJsonConverter();
                 cashJsonConverter.WriteProperties(writer, formOfPayment.Cash, jsonSerializerOptions);
             }
 
             if (formOfPayment.NonCash != null)
             {
-                NonCashJsonConverter nonCashJsonConverter = (NonCashJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(formOfPayment.NonCash.GetType()));
+                NonCashJsonConverter nonCashJsonConverter = new NonCashJsonConverter();
                 nonCashJsonConverter.WriteProperties(writer, formOfPayment.NonCash, jsonSerializerOptions);
             }
 
             if (formOfPayment.PaymentCard != null)
             {
-                PaymentCardJsonConverter paymentCardJsonConverter = (PaymentCardJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(formOfPayment.PaymentCard.GetType()));
+                PaymentCardJsonConverter paymentCardJsonConverter = new PaymentCardJsonConverter();
                 paymentCardJsonConverter.WriteProperties(writer, formOfPayment.PaymentCard, jsonSerializerOptions);
             }
 
             if (formOfPayment.Points != null)
             {
-                PointsJsonConverter pointsJsonConverter = (PointsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(formOfPayment.Points.GetType()));
+                PointsJsonConverter pointsJsonConverter = new PointsJsonConverter();
                 pointsJsonConverter.WriteProperties(writer, formOfPayment.Points, jsonSerializerOptions);
             }
 

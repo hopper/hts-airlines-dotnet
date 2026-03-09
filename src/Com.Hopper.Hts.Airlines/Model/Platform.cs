@@ -251,13 +251,13 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (platform.App != null)
             {
-                AppJsonConverter appJsonConverter = (AppJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(platform.App.GetType()));
+                AppJsonConverter appJsonConverter = new AppJsonConverter();
                 appJsonConverter.WriteProperties(writer, platform.App, jsonSerializerOptions);
             }
 
             if (platform.Web != null)
             {
-                WebJsonConverter webJsonConverter = (WebJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(platform.Web.GetType()));
+                WebJsonConverter webJsonConverter = new WebJsonConverter();
                 webJsonConverter.WriteProperties(writer, platform.Web, jsonSerializerOptions);
             }
 

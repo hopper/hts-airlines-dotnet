@@ -441,43 +441,43 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (browser.Chrome != null)
             {
-                ChromeJsonConverter chromeJsonConverter = (ChromeJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(browser.Chrome.GetType()));
+                ChromeJsonConverter chromeJsonConverter = new ChromeJsonConverter();
                 chromeJsonConverter.WriteProperties(writer, browser.Chrome, jsonSerializerOptions);
             }
 
             if (browser.Edge != null)
             {
-                EdgeJsonConverter edgeJsonConverter = (EdgeJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(browser.Edge.GetType()));
+                EdgeJsonConverter edgeJsonConverter = new EdgeJsonConverter();
                 edgeJsonConverter.WriteProperties(writer, browser.Edge, jsonSerializerOptions);
             }
 
             if (browser.Firefox != null)
             {
-                FirefoxJsonConverter firefoxJsonConverter = (FirefoxJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(browser.Firefox.GetType()));
+                FirefoxJsonConverter firefoxJsonConverter = new FirefoxJsonConverter();
                 firefoxJsonConverter.WriteProperties(writer, browser.Firefox, jsonSerializerOptions);
             }
 
             if (browser.InternetExplorer != null)
             {
-                InternetExplorerJsonConverter internetExplorerJsonConverter = (InternetExplorerJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(browser.InternetExplorer.GetType()));
+                InternetExplorerJsonConverter internetExplorerJsonConverter = new InternetExplorerJsonConverter();
                 internetExplorerJsonConverter.WriteProperties(writer, browser.InternetExplorer, jsonSerializerOptions);
             }
 
             if (browser.Opera != null)
             {
-                OperaJsonConverter operaJsonConverter = (OperaJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(browser.Opera.GetType()));
+                OperaJsonConverter operaJsonConverter = new OperaJsonConverter();
                 operaJsonConverter.WriteProperties(writer, browser.Opera, jsonSerializerOptions);
             }
 
             if (browser.OtherBrowser != null)
             {
-                OtherBrowserJsonConverter otherBrowserJsonConverter = (OtherBrowserJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(browser.OtherBrowser.GetType()));
+                OtherBrowserJsonConverter otherBrowserJsonConverter = new OtherBrowserJsonConverter();
                 otherBrowserJsonConverter.WriteProperties(writer, browser.OtherBrowser, jsonSerializerOptions);
             }
 
             if (browser.Safari != null)
             {
-                SafariJsonConverter safariJsonConverter = (SafariJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(browser.Safari.GetType()));
+                SafariJsonConverter safariJsonConverter = new SafariJsonConverter();
                 safariJsonConverter.WriteProperties(writer, browser.Safari, jsonSerializerOptions);
             }
 

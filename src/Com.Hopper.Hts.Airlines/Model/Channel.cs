@@ -393,31 +393,31 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (channel.AgentReseller != null)
             {
-                AgentResellerJsonConverter agentResellerJsonConverter = (AgentResellerJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(channel.AgentReseller.GetType()));
+                AgentResellerJsonConverter agentResellerJsonConverter = new AgentResellerJsonConverter();
                 agentResellerJsonConverter.WriteProperties(writer, channel.AgentReseller, jsonSerializerOptions);
             }
 
             if (channel.Api != null)
             {
-                ApiJsonConverter apiJsonConverter = (ApiJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(channel.Api.GetType()));
+                ApiJsonConverter apiJsonConverter = new ApiJsonConverter();
                 apiJsonConverter.WriteProperties(writer, channel.Api, jsonSerializerOptions);
             }
 
             if (channel.Direct != null)
             {
-                DirectJsonConverter directJsonConverter = (DirectJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(channel.Direct.GetType()));
+                DirectJsonConverter directJsonConverter = new DirectJsonConverter();
                 directJsonConverter.WriteProperties(writer, channel.Direct, jsonSerializerOptions);
             }
 
             if (channel.OnlineBookingTool != null)
             {
-                OnlineBookingToolJsonConverter onlineBookingToolJsonConverter = (OnlineBookingToolJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(channel.OnlineBookingTool.GetType()));
+                OnlineBookingToolJsonConverter onlineBookingToolJsonConverter = new OnlineBookingToolJsonConverter();
                 onlineBookingToolJsonConverter.WriteProperties(writer, channel.OnlineBookingTool, jsonSerializerOptions);
             }
 
             if (channel.WhiteLabel != null)
             {
-                WhiteLabelJsonConverter whiteLabelJsonConverter = (WhiteLabelJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(channel.WhiteLabel.GetType()));
+                WhiteLabelJsonConverter whiteLabelJsonConverter = new WhiteLabelJsonConverter();
                 whiteLabelJsonConverter.WriteProperties(writer, channel.WhiteLabel, jsonSerializerOptions);
             }
 

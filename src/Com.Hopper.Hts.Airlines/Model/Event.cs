@@ -251,13 +251,13 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (varEvent.BookingConfirmed != null)
             {
-                BookingConfirmedJsonConverter bookingConfirmedJsonConverter = (BookingConfirmedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(varEvent.BookingConfirmed.GetType()));
+                BookingConfirmedJsonConverter bookingConfirmedJsonConverter = new BookingConfirmedJsonConverter();
                 bookingConfirmedJsonConverter.WriteProperties(writer, varEvent.BookingConfirmed, jsonSerializerOptions);
             }
 
             if (varEvent.OffersDisplayed != null)
             {
-                OffersDisplayedJsonConverter offersDisplayedJsonConverter = (OffersDisplayedJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(varEvent.OffersDisplayed.GetType()));
+                OffersDisplayedJsonConverter offersDisplayedJsonConverter = new OffersDisplayedJsonConverter();
                 offersDisplayedJsonConverter.WriteProperties(writer, varEvent.OffersDisplayed, jsonSerializerOptions);
             }
 
