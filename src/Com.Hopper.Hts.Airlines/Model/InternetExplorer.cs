@@ -190,9 +190,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class InternetExplorer.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class InternetExplorer.");
-
             return new InternetExplorer(type.Value!.Value!, varVersion);
         }
 
@@ -220,9 +217,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InternetExplorer internetExplorer, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (internetExplorer.VarVersionOption.IsSet && internetExplorer.VarVersion == null)
-                throw new ArgumentNullException(nameof(internetExplorer.VarVersion), "Property is required for class InternetExplorer.");
-
             var typeRawValue = InternetExplorer.TypeEnumToJsonValue(internetExplorer.Type);
             writer.WriteString("type", typeRawValue);
             if (internetExplorer.VarVersionOption.IsSet)

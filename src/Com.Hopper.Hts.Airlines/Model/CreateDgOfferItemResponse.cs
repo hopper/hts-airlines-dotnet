@@ -590,24 +590,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (contents.IsSet && contents.Value == null)
                 throw new ArgumentNullException(nameof(contents), "Property is not nullable for class CreateDgOfferItemResponse.");
 
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class CreateDgOfferItemResponse.");
-
-            if (entryPoint.IsSet && entryPoint.Value == null)
-                throw new ArgumentNullException(nameof(entryPoint), "Property is not nullable for class CreateDgOfferItemResponse.");
-
-            if (termsConditionsUrl.IsSet && termsConditionsUrl.Value == null)
-                throw new ArgumentNullException(nameof(termsConditionsUrl), "Property is not nullable for class CreateDgOfferItemResponse.");
-
-            if (faqUrl.IsSet && faqUrl.Value == null)
-                throw new ArgumentNullException(nameof(faqUrl), "Property is not nullable for class CreateDgOfferItemResponse.");
-
-            if (merchandisingUrl.IsSet && merchandisingUrl.Value == null)
-                throw new ArgumentNullException(nameof(merchandisingUrl), "Property is not nullable for class CreateDgOfferItemResponse.");
-
-            if (merchandisingUrlWebComponent.IsSet && merchandisingUrlWebComponent.Value == null)
-                throw new ArgumentNullException(nameof(merchandisingUrlWebComponent), "Property is not nullable for class CreateDgOfferItemResponse.");
-
             return new CreateDgOfferItemResponse(id.Value!, premium.Value!, premiumPerPassenger.Value!, coverage.Value!, coveragePercentage.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, createdDateTime.Value!.Value!, contractExpiryDateTime.Value!.Value!, itinerary.Value!, extAttributes.Value!, experiments.Value!, contents.Value!, taxes, entryPoint, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
         }
 
@@ -670,24 +652,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createDgOfferItemResponse.Contents == null)
                 throw new ArgumentNullException(nameof(createDgOfferItemResponse.Contents), "Property is required for class CreateDgOfferItemResponse.");
-
-            if (createDgOfferItemResponse.TaxesOption.IsSet && createDgOfferItemResponse.Taxes == null)
-                throw new ArgumentNullException(nameof(createDgOfferItemResponse.Taxes), "Property is required for class CreateDgOfferItemResponse.");
-
-            if (createDgOfferItemResponse.EntryPointOption.IsSet && createDgOfferItemResponse.EntryPoint == null)
-                throw new ArgumentNullException(nameof(createDgOfferItemResponse.EntryPoint), "Property is required for class CreateDgOfferItemResponse.");
-
-            if (createDgOfferItemResponse.TermsConditionsUrlOption.IsSet && createDgOfferItemResponse.TermsConditionsUrl == null)
-                throw new ArgumentNullException(nameof(createDgOfferItemResponse.TermsConditionsUrl), "Property is required for class CreateDgOfferItemResponse.");
-
-            if (createDgOfferItemResponse.FaqUrlOption.IsSet && createDgOfferItemResponse.FaqUrl == null)
-                throw new ArgumentNullException(nameof(createDgOfferItemResponse.FaqUrl), "Property is required for class CreateDgOfferItemResponse.");
-
-            if (createDgOfferItemResponse.MerchandisingUrlOption.IsSet && createDgOfferItemResponse.MerchandisingUrl == null)
-                throw new ArgumentNullException(nameof(createDgOfferItemResponse.MerchandisingUrl), "Property is required for class CreateDgOfferItemResponse.");
-
-            if (createDgOfferItemResponse.MerchandisingUrlWebComponentOption.IsSet && createDgOfferItemResponse.MerchandisingUrlWebComponent == null)
-                throw new ArgumentNullException(nameof(createDgOfferItemResponse.MerchandisingUrlWebComponent), "Property is required for class CreateDgOfferItemResponse.");
 
             writer.WriteString("id", createDgOfferItemResponse.Id);
 

@@ -211,9 +211,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class OtherOs.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class OtherOs.");
-
             return new OtherOs(name.Value!, type.Value!.Value!, varVersion);
         }
 
@@ -243,9 +240,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (otherOs.Name == null)
                 throw new ArgumentNullException(nameof(otherOs.Name), "Property is required for class OtherOs.");
-
-            if (otherOs.VarVersionOption.IsSet && otherOs.VarVersion == null)
-                throw new ArgumentNullException(nameof(otherOs.VarVersion), "Property is required for class OtherOs.");
 
             writer.WriteString("name", otherOs.Name);
 

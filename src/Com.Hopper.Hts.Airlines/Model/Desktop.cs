@@ -253,15 +253,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Desktop.");
 
-            if (platform.IsSet && platform.Value == null)
-                throw new ArgumentNullException(nameof(platform), "Property is not nullable for class Desktop.");
-
-            if (uiTheme.IsSet && uiTheme.Value == null)
-                throw new ArgumentNullException(nameof(uiTheme), "Property is not nullable for class Desktop.");
-
-            if (releaseBuild.IsSet && releaseBuild.Value == null)
-                throw new ArgumentNullException(nameof(releaseBuild), "Property is not nullable for class Desktop.");
-
             return new Desktop(id.Value!, type.Value!.Value!, platform, uiTheme, releaseBuild);
         }
 
@@ -291,15 +282,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (desktop.Id == null)
                 throw new ArgumentNullException(nameof(desktop.Id), "Property is required for class Desktop.");
-
-            if (desktop.PlatformOption.IsSet && desktop.Platform == null)
-                throw new ArgumentNullException(nameof(desktop.Platform), "Property is required for class Desktop.");
-
-            if (desktop.UiThemeOption.IsSet && desktop.UiTheme == null)
-                throw new ArgumentNullException(nameof(desktop.UiTheme), "Property is required for class Desktop.");
-
-            if (desktop.ReleaseBuildOption.IsSet && desktop.ReleaseBuild == null)
-                throw new ArgumentNullException(nameof(desktop.ReleaseBuild), "Property is required for class Desktop.");
 
             writer.WriteString("id", desktop.Id);
 

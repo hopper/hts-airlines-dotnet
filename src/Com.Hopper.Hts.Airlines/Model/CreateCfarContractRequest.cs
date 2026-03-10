@@ -181,9 +181,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (extAttributes.IsSet && extAttributes.Value == null)
                 throw new ArgumentNullException(nameof(extAttributes), "Property is not nullable for class CreateCfarContractRequest.");
 
-            if (pnrReference.IsSet && pnrReference.Value == null)
-                throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class CreateCfarContractRequest.");
-
             return new CreateCfarContractRequest(offerIds.Value!, itinerary.Value!, extAttributes.Value!, pnrReference);
         }
 
@@ -219,9 +216,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createCfarContractRequest.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(createCfarContractRequest.ExtAttributes), "Property is required for class CreateCfarContractRequest.");
-
-            if (createCfarContractRequest.PnrReferenceOption.IsSet && createCfarContractRequest.PnrReference == null)
-                throw new ArgumentNullException(nameof(createCfarContractRequest.PnrReference), "Property is required for class CreateCfarContractRequest.");
 
             writer.WritePropertyName("offer_ids");
             JsonSerializer.Serialize(writer, createCfarContractRequest.OfferIds, jsonSerializerOptions);

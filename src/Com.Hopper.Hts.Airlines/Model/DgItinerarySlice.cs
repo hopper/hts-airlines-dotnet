@@ -162,12 +162,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (segments.IsSet && segments.Value == null)
                 throw new ArgumentNullException(nameof(segments), "Property is not nullable for class DgItinerarySlice.");
 
-            if (fareBrand.IsSet && fareBrand.Value == null)
-                throw new ArgumentNullException(nameof(fareBrand), "Property is not nullable for class DgItinerarySlice.");
-
-            if (passengerPricing.IsSet && passengerPricing.Value == null)
-                throw new ArgumentNullException(nameof(passengerPricing), "Property is not nullable for class DgItinerarySlice.");
-
             return new DgItinerarySlice(segments.Value!, fareBrand, passengerPricing);
         }
 
@@ -197,12 +191,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (dgItinerarySlice.Segments == null)
                 throw new ArgumentNullException(nameof(dgItinerarySlice.Segments), "Property is required for class DgItinerarySlice.");
-
-            if (dgItinerarySlice.FareBrandOption.IsSet && dgItinerarySlice.FareBrand == null)
-                throw new ArgumentNullException(nameof(dgItinerarySlice.FareBrand), "Property is required for class DgItinerarySlice.");
-
-            if (dgItinerarySlice.PassengerPricingOption.IsSet && dgItinerarySlice.PassengerPricing == null)
-                throw new ArgumentNullException(nameof(dgItinerarySlice.PassengerPricing), "Property is required for class DgItinerarySlice.");
 
             writer.WritePropertyName("segments");
             JsonSerializer.Serialize(writer, dgItinerarySlice.Segments, jsonSerializerOptions);

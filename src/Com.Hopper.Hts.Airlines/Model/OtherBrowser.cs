@@ -209,9 +209,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class OtherBrowser.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class OtherBrowser.");
-
             return new OtherBrowser(name.Value!, type.Value!.Value!, varVersion);
         }
 
@@ -241,9 +238,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (otherBrowser.Name == null)
                 throw new ArgumentNullException(nameof(otherBrowser.Name), "Property is required for class OtherBrowser.");
-
-            if (otherBrowser.VarVersionOption.IsSet && otherBrowser.VarVersion == null)
-                throw new ArgumentNullException(nameof(otherBrowser.VarVersion), "Property is required for class OtherBrowser.");
 
             writer.WriteString("name", otherBrowser.Name);
 

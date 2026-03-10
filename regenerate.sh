@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.1.16
+VERSION=0.1.17
 docker run --rm -v "${PWD}/:/local" -v "${PWD}/api/:/api" openapitools/openapi-generator-cli:v7.10.0 generate \
     -i https://airlines-api.hopper.com/airline/v1.1/docs/docs.yaml \
     -g csharp \

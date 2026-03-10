@@ -169,12 +169,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (airlineUserId.IsSet && airlineUserId.Value == null)
                 throw new ArgumentNullException(nameof(airlineUserId), "Property is not nullable for class UserInfo.");
 
-            if (createdDateTime.IsSet && createdDateTime.Value == null)
-                throw new ArgumentNullException(nameof(createdDateTime), "Property is not nullable for class UserInfo.");
-
-            if (previousBookings.IsSet && previousBookings.Value == null)
-                throw new ArgumentNullException(nameof(previousBookings), "Property is not nullable for class UserInfo.");
-
             return new UserInfo(airlineUserId.Value!, createdDateTime, previousBookings);
         }
 

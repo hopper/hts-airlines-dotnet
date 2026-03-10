@@ -528,27 +528,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (experiments.IsSet && experiments.Value == null)
                 throw new ArgumentNullException(nameof(experiments), "Property is not nullable for class CfarOffer.");
 
-            if (coverageExtension.IsSet && coverageExtension.Value == null)
-                throw new ArgumentNullException(nameof(coverageExtension), "Property is not nullable for class CfarOffer.");
-
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class CfarOffer.");
-
-            if (entryPoint.IsSet && entryPoint.Value == null)
-                throw new ArgumentNullException(nameof(entryPoint), "Property is not nullable for class CfarOffer.");
-
-            if (termsConditionsUrl.IsSet && termsConditionsUrl.Value == null)
-                throw new ArgumentNullException(nameof(termsConditionsUrl), "Property is not nullable for class CfarOffer.");
-
-            if (faqUrl.IsSet && faqUrl.Value == null)
-                throw new ArgumentNullException(nameof(faqUrl), "Property is not nullable for class CfarOffer.");
-
-            if (merchandisingUrl.IsSet && merchandisingUrl.Value == null)
-                throw new ArgumentNullException(nameof(merchandisingUrl), "Property is not nullable for class CfarOffer.");
-
-            if (merchandisingUrlWebComponent.IsSet && merchandisingUrlWebComponent.Value == null)
-                throw new ArgumentNullException(nameof(merchandisingUrlWebComponent), "Property is not nullable for class CfarOffer.");
-
             return new CfarOffer(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, contractExpiryDateTime.Value!.Value!, createdDateTime.Value!.Value!, itinerary.Value!, contents.Value!, extAttributes.Value!, experiments.Value!, coverageExtension, taxes, entryPoint, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
         }
 
@@ -605,27 +584,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (cfarOffer.Experiments == null)
                 throw new ArgumentNullException(nameof(cfarOffer.Experiments), "Property is required for class CfarOffer.");
-
-            if (cfarOffer.CoverageExtensionOption.IsSet && cfarOffer.CoverageExtension == null)
-                throw new ArgumentNullException(nameof(cfarOffer.CoverageExtension), "Property is required for class CfarOffer.");
-
-            if (cfarOffer.TaxesOption.IsSet && cfarOffer.Taxes == null)
-                throw new ArgumentNullException(nameof(cfarOffer.Taxes), "Property is required for class CfarOffer.");
-
-            if (cfarOffer.EntryPointOption.IsSet && cfarOffer.EntryPoint == null)
-                throw new ArgumentNullException(nameof(cfarOffer.EntryPoint), "Property is required for class CfarOffer.");
-
-            if (cfarOffer.TermsConditionsUrlOption.IsSet && cfarOffer.TermsConditionsUrl == null)
-                throw new ArgumentNullException(nameof(cfarOffer.TermsConditionsUrl), "Property is required for class CfarOffer.");
-
-            if (cfarOffer.FaqUrlOption.IsSet && cfarOffer.FaqUrl == null)
-                throw new ArgumentNullException(nameof(cfarOffer.FaqUrl), "Property is required for class CfarOffer.");
-
-            if (cfarOffer.MerchandisingUrlOption.IsSet && cfarOffer.MerchandisingUrl == null)
-                throw new ArgumentNullException(nameof(cfarOffer.MerchandisingUrl), "Property is required for class CfarOffer.");
-
-            if (cfarOffer.MerchandisingUrlWebComponentOption.IsSet && cfarOffer.MerchandisingUrlWebComponent == null)
-                throw new ArgumentNullException(nameof(cfarOffer.MerchandisingUrlWebComponent), "Property is required for class CfarOffer.");
 
             writer.WriteString("id", cfarOffer.Id);
 

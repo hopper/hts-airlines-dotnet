@@ -192,9 +192,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class MacOs.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class MacOs.");
-
             return new MacOs(type.Value!.Value!, varVersion);
         }
 
@@ -222,9 +219,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MacOs macOs, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (macOs.VarVersionOption.IsSet && macOs.VarVersion == null)
-                throw new ArgumentNullException(nameof(macOs.VarVersion), "Property is required for class MacOs.");
-
             var typeRawValue = MacOs.TypeEnumToJsonValue(macOs.Type);
             writer.WriteString("type", typeRawValue);
             if (macOs.VarVersionOption.IsSet)

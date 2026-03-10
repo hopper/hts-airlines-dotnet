@@ -182,9 +182,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (amount.IsSet && amount.Value == null)
                 throw new ArgumentNullException(nameof(amount), "Property is not nullable for class DgTax.");
 
-            if (registrationNumber.IsSet && registrationNumber.Value == null)
-                throw new ArgumentNullException(nameof(registrationNumber), "Property is not nullable for class DgTax.");
-
             return new DgTax(name.Value!, rate.Value!, amount.Value!, registrationNumber);
         }
 
@@ -220,9 +217,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (dgTax.Amount == null)
                 throw new ArgumentNullException(nameof(dgTax.Amount), "Property is required for class DgTax.");
-
-            if (dgTax.RegistrationNumberOption.IsSet && dgTax.RegistrationNumber == null)
-                throw new ArgumentNullException(nameof(dgTax.RegistrationNumber), "Property is required for class DgTax.");
 
             writer.WriteString("name", dgTax.Name);
 

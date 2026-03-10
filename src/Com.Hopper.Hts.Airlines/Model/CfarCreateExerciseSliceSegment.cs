@@ -267,15 +267,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (flightNumber.IsSet && flightNumber.Value == null)
                 throw new ArgumentNullException(nameof(flightNumber), "Property is not nullable for class CfarCreateExerciseSliceSegment.");
 
-            if (validatingCarrierCode.IsSet && validatingCarrierCode.Value == null)
-                throw new ArgumentNullException(nameof(validatingCarrierCode), "Property is not nullable for class CfarCreateExerciseSliceSegment.");
-
-            if (fareClass.IsSet && fareClass.Value == null)
-                throw new ArgumentNullException(nameof(fareClass), "Property is not nullable for class CfarCreateExerciseSliceSegment.");
-
-            if (fareBrand.IsSet && fareBrand.Value == null)
-                throw new ArgumentNullException(nameof(fareBrand), "Property is not nullable for class CfarCreateExerciseSliceSegment.");
-
             return new CfarCreateExerciseSliceSegment(originAirport.Value!, destinationAirport.Value!, departureDateTime.Value!, arrivalDateTime.Value!, flightNumber.Value!, validatingCarrierCode, fareClass, fareBrand);
         }
 
@@ -317,12 +308,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (cfarCreateExerciseSliceSegment.FlightNumber == null)
                 throw new ArgumentNullException(nameof(cfarCreateExerciseSliceSegment.FlightNumber), "Property is required for class CfarCreateExerciseSliceSegment.");
-
-            if (cfarCreateExerciseSliceSegment.ValidatingCarrierCodeOption.IsSet && cfarCreateExerciseSliceSegment.ValidatingCarrierCode == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseSliceSegment.ValidatingCarrierCode), "Property is required for class CfarCreateExerciseSliceSegment.");
-
-            if (cfarCreateExerciseSliceSegment.FareBrandOption.IsSet && cfarCreateExerciseSliceSegment.FareBrand == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseSliceSegment.FareBrand), "Property is required for class CfarCreateExerciseSliceSegment.");
 
             writer.WriteString("origin_airport", cfarCreateExerciseSliceSegment.OriginAirport);
 

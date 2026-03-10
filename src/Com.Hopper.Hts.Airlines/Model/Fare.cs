@@ -185,18 +185,6 @@ namespace Com.Hopper.Hts.Airlines.Model
                 }
             }
 
-            if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class Fare.");
-
-            if (fareBrand.IsSet && fareBrand.Value == null)
-                throw new ArgumentNullException(nameof(fareBrand), "Property is not nullable for class Fare.");
-
-            if (fareBasis.IsSet && fareBasis.Value == null)
-                throw new ArgumentNullException(nameof(fareBasis), "Property is not nullable for class Fare.");
-
-            if (fareRules.IsSet && fareRules.Value == null)
-                throw new ArgumentNullException(nameof(fareRules), "Property is not nullable for class Fare.");
-
             return new Fare(price, fareBrand, fareBasis, fareRules);
         }
 
@@ -224,18 +212,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Fare fare, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (fare.PriceOption.IsSet && fare.Price == null)
-                throw new ArgumentNullException(nameof(fare.Price), "Property is required for class Fare.");
-
-            if (fare.FareBrandOption.IsSet && fare.FareBrand == null)
-                throw new ArgumentNullException(nameof(fare.FareBrand), "Property is required for class Fare.");
-
-            if (fare.FareBasisOption.IsSet && fare.FareBasis == null)
-                throw new ArgumentNullException(nameof(fare.FareBasis), "Property is required for class Fare.");
-
-            if (fare.FareRulesOption.IsSet && fare.FareRules == null)
-                throw new ArgumentNullException(nameof(fare.FareRules), "Property is required for class Fare.");
-
             if (fare.PriceOption.IsSet)
                 writer.WriteString("price", fare.Price);
 

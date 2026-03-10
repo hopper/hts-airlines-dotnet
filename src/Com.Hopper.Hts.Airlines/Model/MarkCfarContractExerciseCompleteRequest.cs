@@ -141,12 +141,6 @@ namespace Com.Hopper.Hts.Airlines.Model
                 }
             }
 
-            if (refundAmount.IsSet && refundAmount.Value == null)
-                throw new ArgumentNullException(nameof(refundAmount), "Property is not nullable for class MarkCfarContractExerciseCompleteRequest.");
-
-            if (refundMethod.IsSet && refundMethod.Value == null)
-                throw new ArgumentNullException(nameof(refundMethod), "Property is not nullable for class MarkCfarContractExerciseCompleteRequest.");
-
             return new MarkCfarContractExerciseCompleteRequest(refundAmount, refundMethod);
         }
 
@@ -174,9 +168,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (markCfarContractExerciseCompleteRequest.RefundAmountOption.IsSet && markCfarContractExerciseCompleteRequest.RefundAmount == null)
-                throw new ArgumentNullException(nameof(markCfarContractExerciseCompleteRequest.RefundAmount), "Property is required for class MarkCfarContractExerciseCompleteRequest.");
-
             if (markCfarContractExerciseCompleteRequest.RefundAmountOption.IsSet)
                 writer.WriteString("refund_amount", markCfarContractExerciseCompleteRequest.RefundAmount);
 

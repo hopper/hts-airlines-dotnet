@@ -192,9 +192,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Linux.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Linux.");
-
             return new Linux(type.Value!.Value!, varVersion);
         }
 
@@ -222,9 +219,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Linux linux, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (linux.VarVersionOption.IsSet && linux.VarVersion == null)
-                throw new ArgumentNullException(nameof(linux.VarVersion), "Property is required for class Linux.");
-
             var typeRawValue = Linux.TypeEnumToJsonValue(linux.Type);
             writer.WriteString("type", typeRawValue);
             if (linux.VarVersionOption.IsSet)

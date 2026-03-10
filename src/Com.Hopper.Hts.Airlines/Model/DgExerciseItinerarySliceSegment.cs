@@ -417,21 +417,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (flightStatus.IsSet && flightStatus.Value == null)
                 throw new ArgumentNullException(nameof(flightStatus), "Property is not nullable for class DgExerciseItinerarySliceSegment.");
 
-            if (checkedIn.IsSet && checkedIn.Value == null)
-                throw new ArgumentNullException(nameof(checkedIn), "Property is not nullable for class DgExerciseItinerarySliceSegment.");
-
-            if (checkedInBags.IsSet && checkedInBags.Value == null)
-                throw new ArgumentNullException(nameof(checkedInBags), "Property is not nullable for class DgExerciseItinerarySliceSegment.");
-
-            if (checkedBagAllowance.IsSet && checkedBagAllowance.Value == null)
-                throw new ArgumentNullException(nameof(checkedBagAllowance), "Property is not nullable for class DgExerciseItinerarySliceSegment.");
-
-            if (boarded.IsSet && boarded.Value == null)
-                throw new ArgumentNullException(nameof(boarded), "Property is not nullable for class DgExerciseItinerarySliceSegment.");
-
-            if (flown.IsSet && flown.Value == null)
-                throw new ArgumentNullException(nameof(flown), "Property is not nullable for class DgExerciseItinerarySliceSegment.");
-
             return new DgExerciseItinerarySliceSegment(originAirport.Value!, destinationAirport.Value!, departureDateTime.Value!, arrivalDateTime.Value!, estimatedDepartureDateTime.Value!, estimatedArrivalDateTime.Value!, flightNumber.Value!, validatingCarrierCode.Value!, cabin.Value!.Value!, flightStatus.Value!.Value!, checkedIn, checkedInBags, checkedBagAllowance, boarded, flown);
         }
 

@@ -190,9 +190,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Firefox.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Firefox.");
-
             return new Firefox(type.Value!.Value!, varVersion);
         }
 
@@ -220,9 +217,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Firefox firefox, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (firefox.VarVersionOption.IsSet && firefox.VarVersion == null)
-                throw new ArgumentNullException(nameof(firefox.VarVersion), "Property is required for class Firefox.");
-
             var typeRawValue = Firefox.TypeEnumToJsonValue(firefox.Type);
             writer.WriteString("type", typeRawValue);
             if (firefox.VarVersionOption.IsSet)

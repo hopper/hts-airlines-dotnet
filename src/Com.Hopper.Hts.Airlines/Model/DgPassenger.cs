@@ -337,33 +337,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (passengerType.IsSet && passengerType.Value == null)
                 throw new ArgumentNullException(nameof(passengerType), "Property is not nullable for class DgPassenger.");
 
-            if (firstName.IsSet && firstName.Value == null)
-                throw new ArgumentNullException(nameof(firstName), "Property is not nullable for class DgPassenger.");
-
-            if (lastName.IsSet && lastName.Value == null)
-                throw new ArgumentNullException(nameof(lastName), "Property is not nullable for class DgPassenger.");
-
-            if (dateOfBirth.IsSet && dateOfBirth.Value == null)
-                throw new ArgumentNullException(nameof(dateOfBirth), "Property is not nullable for class DgPassenger.");
-
-            if (gender.IsSet && gender.Value == null)
-                throw new ArgumentNullException(nameof(gender), "Property is not nullable for class DgPassenger.");
-
-            if (passportNumber.IsSet && passportNumber.Value == null)
-                throw new ArgumentNullException(nameof(passportNumber), "Property is not nullable for class DgPassenger.");
-
-            if (passportCountryIssuance.IsSet && passportCountryIssuance.Value == null)
-                throw new ArgumentNullException(nameof(passportCountryIssuance), "Property is not nullable for class DgPassenger.");
-
-            if (passportIssuanceDate.IsSet && passportIssuanceDate.Value == null)
-                throw new ArgumentNullException(nameof(passportIssuanceDate), "Property is not nullable for class DgPassenger.");
-
-            if (passportExpirationDate.IsSet && passportExpirationDate.Value == null)
-                throw new ArgumentNullException(nameof(passportExpirationDate), "Property is not nullable for class DgPassenger.");
-
-            if (nationality.IsSet && nationality.Value == null)
-                throw new ArgumentNullException(nameof(nationality), "Property is not nullable for class DgPassenger.");
-
             return new DgPassenger(passengerReference.Value!, passengerType.Value!.Value!, firstName, lastName, dateOfBirth, gender, passportNumber, passportCountryIssuance, passportIssuanceDate, passportExpirationDate, nationality);
         }
 
@@ -393,30 +366,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (dgPassenger.PassengerReference == null)
                 throw new ArgumentNullException(nameof(dgPassenger.PassengerReference), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.FirstNameOption.IsSet && dgPassenger.FirstName == null)
-                throw new ArgumentNullException(nameof(dgPassenger.FirstName), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.LastNameOption.IsSet && dgPassenger.LastName == null)
-                throw new ArgumentNullException(nameof(dgPassenger.LastName), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.DateOfBirthOption.IsSet && dgPassenger.DateOfBirth == null)
-                throw new ArgumentNullException(nameof(dgPassenger.DateOfBirth), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.PassportNumberOption.IsSet && dgPassenger.PassportNumber == null)
-                throw new ArgumentNullException(nameof(dgPassenger.PassportNumber), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.PassportCountryIssuanceOption.IsSet && dgPassenger.PassportCountryIssuance == null)
-                throw new ArgumentNullException(nameof(dgPassenger.PassportCountryIssuance), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.PassportIssuanceDateOption.IsSet && dgPassenger.PassportIssuanceDate == null)
-                throw new ArgumentNullException(nameof(dgPassenger.PassportIssuanceDate), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.PassportExpirationDateOption.IsSet && dgPassenger.PassportExpirationDate == null)
-                throw new ArgumentNullException(nameof(dgPassenger.PassportExpirationDate), "Property is required for class DgPassenger.");
-
-            if (dgPassenger.NationalityOption.IsSet && dgPassenger.Nationality == null)
-                throw new ArgumentNullException(nameof(dgPassenger.Nationality), "Property is required for class DgPassenger.");
 
             writer.WriteString("passenger_reference", dgPassenger.PassengerReference);
 

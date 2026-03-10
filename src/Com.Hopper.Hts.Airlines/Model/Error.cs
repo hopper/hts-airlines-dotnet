@@ -157,12 +157,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (message.IsSet && message.Value == null)
                 throw new ArgumentNullException(nameof(message), "Property is not nullable for class Error.");
 
-            if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class Error.");
-
-            if (messages.IsSet && messages.Value == null)
-                throw new ArgumentNullException(nameof(messages), "Property is not nullable for class Error.");
-
             return new Error(message.Value!, code, messages);
         }
 
@@ -192,12 +186,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (error.Message == null)
                 throw new ArgumentNullException(nameof(error.Message), "Property is required for class Error.");
-
-            if (error.CodeOption.IsSet && error.Code == null)
-                throw new ArgumentNullException(nameof(error.Code), "Property is required for class Error.");
-
-            if (error.MessagesOption.IsSet && error.Messages == null)
-                throw new ArgumentNullException(nameof(error.Messages), "Property is required for class Error.");
 
             writer.WriteString("message", error.Message);
 

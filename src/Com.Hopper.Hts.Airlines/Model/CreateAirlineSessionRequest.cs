@@ -246,18 +246,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (language.IsSet && language.Value == null)
                 throw new ArgumentNullException(nameof(language), "Property is not nullable for class CreateAirlineSessionRequest.");
 
-            if (userInfo.IsSet && userInfo.Value == null)
-                throw new ArgumentNullException(nameof(userInfo), "Property is not nullable for class CreateAirlineSessionRequest.");
-
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class CreateAirlineSessionRequest.");
-
-            if (device.IsSet && device.Value == null)
-                throw new ArgumentNullException(nameof(device), "Property is not nullable for class CreateAirlineSessionRequest.");
-
-            if (product.IsSet && product.Value == null)
-                throw new ArgumentNullException(nameof(product), "Property is not nullable for class CreateAirlineSessionRequest.");
-
             return new CreateAirlineSessionRequest(flowType.Value!.Value!, pointOfSale.Value!, language.Value!, userInfo, sessionId, device, product);
         }
 
@@ -290,15 +278,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createAirlineSessionRequest.Language == null)
                 throw new ArgumentNullException(nameof(createAirlineSessionRequest.Language), "Property is required for class CreateAirlineSessionRequest.");
-
-            if (createAirlineSessionRequest.UserInfoOption.IsSet && createAirlineSessionRequest.UserInfo == null)
-                throw new ArgumentNullException(nameof(createAirlineSessionRequest.UserInfo), "Property is required for class CreateAirlineSessionRequest.");
-
-            if (createAirlineSessionRequest.SessionIdOption.IsSet && createAirlineSessionRequest.SessionId == null)
-                throw new ArgumentNullException(nameof(createAirlineSessionRequest.SessionId), "Property is required for class CreateAirlineSessionRequest.");
-
-            if (createAirlineSessionRequest.DeviceOption.IsSet && createAirlineSessionRequest.Device == null)
-                throw new ArgumentNullException(nameof(createAirlineSessionRequest.Device), "Property is required for class CreateAirlineSessionRequest.");
 
             var flowTypeRawValue = FlowTypeValueConverter.ToJsonValue(createAirlineSessionRequest.FlowType);
             writer.WriteString("flow_type", flowTypeRawValue);

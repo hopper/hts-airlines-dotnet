@@ -161,12 +161,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (passengerCount.IsSet && passengerCount.Value == null)
                 throw new ArgumentNullException(nameof(passengerCount), "Property is not nullable for class CfarCreateExercisePassengerPricing.");
 
-            if (individualPrice.IsSet && individualPrice.Value == null)
-                throw new ArgumentNullException(nameof(individualPrice), "Property is not nullable for class CfarCreateExercisePassengerPricing.");
-
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class CfarCreateExercisePassengerPricing.");
-
             return new CfarCreateExercisePassengerPricing(passengerCount.Value!, individualPrice, taxes);
         }
 
@@ -196,12 +190,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (cfarCreateExercisePassengerPricing.PassengerCount == null)
                 throw new ArgumentNullException(nameof(cfarCreateExercisePassengerPricing.PassengerCount), "Property is required for class CfarCreateExercisePassengerPricing.");
-
-            if (cfarCreateExercisePassengerPricing.IndividualPriceOption.IsSet && cfarCreateExercisePassengerPricing.IndividualPrice == null)
-                throw new ArgumentNullException(nameof(cfarCreateExercisePassengerPricing.IndividualPrice), "Property is required for class CfarCreateExercisePassengerPricing.");
-
-            if (cfarCreateExercisePassengerPricing.TaxesOption.IsSet && cfarCreateExercisePassengerPricing.Taxes == null)
-                throw new ArgumentNullException(nameof(cfarCreateExercisePassengerPricing.Taxes), "Property is required for class CfarCreateExercisePassengerPricing.");
 
             writer.WritePropertyName("passenger_count");
             JsonSerializer.Serialize(writer, cfarCreateExercisePassengerPricing.PassengerCount, jsonSerializerOptions);

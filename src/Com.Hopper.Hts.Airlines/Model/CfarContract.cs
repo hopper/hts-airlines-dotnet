@@ -445,15 +445,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (extAttributes.IsSet && extAttributes.Value == null)
                 throw new ArgumentNullException(nameof(extAttributes), "Property is not nullable for class CfarContract.");
 
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class CfarContract.");
-
-            if (pnrReference.IsSet && pnrReference.Value == null)
-                throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class CfarContract.");
-
-            if (exerciseUrl.IsSet && exerciseUrl.Value == null)
-                throw new ArgumentNullException(nameof(exerciseUrl), "Property is not nullable for class CfarContract.");
-
             return new CfarContract(id.Value!, reference.Value!, offers.Value!, itinerary.Value!, coveragePercentage.Value!, coverage.Value!, premium.Value!, currency.Value!, taxesTotal.Value!, createdDateTime.Value!.Value!, expiryDateTime.Value!.Value!, status.Value!.Value!, extAttributes.Value!, taxes, pnrReference, exerciseUrl);
         }
 
@@ -510,15 +501,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (cfarContract.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(cfarContract.ExtAttributes), "Property is required for class CfarContract.");
-
-            if (cfarContract.TaxesOption.IsSet && cfarContract.Taxes == null)
-                throw new ArgumentNullException(nameof(cfarContract.Taxes), "Property is required for class CfarContract.");
-
-            if (cfarContract.PnrReferenceOption.IsSet && cfarContract.PnrReference == null)
-                throw new ArgumentNullException(nameof(cfarContract.PnrReference), "Property is required for class CfarContract.");
-
-            if (cfarContract.ExerciseUrlOption.IsSet && cfarContract.ExerciseUrl == null)
-                throw new ArgumentNullException(nameof(cfarContract.ExerciseUrl), "Property is required for class CfarContract.");
 
             writer.WriteString("id", cfarContract.Id);
 

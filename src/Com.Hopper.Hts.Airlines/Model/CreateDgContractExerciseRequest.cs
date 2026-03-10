@@ -246,18 +246,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (pnrReference.IsSet && pnrReference.Value == null)
                 throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class CreateDgContractExerciseRequest.");
 
-            if (emailAddress.IsSet && emailAddress.Value == null)
-                throw new ArgumentNullException(nameof(emailAddress), "Property is not nullable for class CreateDgContractExerciseRequest.");
-
-            if (callbackUrl.IsSet && callbackUrl.Value == null)
-                throw new ArgumentNullException(nameof(callbackUrl), "Property is not nullable for class CreateDgContractExerciseRequest.");
-
-            if (redirectbackUrl.IsSet && redirectbackUrl.Value == null)
-                throw new ArgumentNullException(nameof(redirectbackUrl), "Property is not nullable for class CreateDgContractExerciseRequest.");
-
-            if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class CreateDgContractExerciseRequest.");
-
             return new CreateDgContractExerciseRequest(contractId.Value!, itinerary.Value!, pnrReference.Value!, emailAddress, callbackUrl, redirectbackUrl, session);
         }
 
@@ -293,18 +281,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createDgContractExerciseRequest.PnrReference == null)
                 throw new ArgumentNullException(nameof(createDgContractExerciseRequest.PnrReference), "Property is required for class CreateDgContractExerciseRequest.");
-
-            if (createDgContractExerciseRequest.EmailAddressOption.IsSet && createDgContractExerciseRequest.EmailAddress == null)
-                throw new ArgumentNullException(nameof(createDgContractExerciseRequest.EmailAddress), "Property is required for class CreateDgContractExerciseRequest.");
-
-            if (createDgContractExerciseRequest.CallbackUrlOption.IsSet && createDgContractExerciseRequest.CallbackUrl == null)
-                throw new ArgumentNullException(nameof(createDgContractExerciseRequest.CallbackUrl), "Property is required for class CreateDgContractExerciseRequest.");
-
-            if (createDgContractExerciseRequest.RedirectbackUrlOption.IsSet && createDgContractExerciseRequest.RedirectbackUrl == null)
-                throw new ArgumentNullException(nameof(createDgContractExerciseRequest.RedirectbackUrl), "Property is required for class CreateDgContractExerciseRequest.");
-
-            if (createDgContractExerciseRequest.SessionOption.IsSet && createDgContractExerciseRequest.Session == null)
-                throw new ArgumentNullException(nameof(createDgContractExerciseRequest.Session), "Property is required for class CreateDgContractExerciseRequest.");
 
             writer.WriteString("contract_id", createDgContractExerciseRequest.ContractId);
 

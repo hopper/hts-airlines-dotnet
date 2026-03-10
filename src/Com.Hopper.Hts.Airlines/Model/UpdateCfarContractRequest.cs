@@ -492,57 +492,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class UpdateCfarContractRequest.");
 
-            if (pnrReference.IsSet && pnrReference.Value == null)
-                throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (emailAddress.IsSet && emailAddress.Value == null)
-                throw new ArgumentNullException(nameof(emailAddress), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (phoneNumber.IsSet && phoneNumber.Value == null)
-                throw new ArgumentNullException(nameof(phoneNumber), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (firstName.IsSet && firstName.Value == null)
-                throw new ArgumentNullException(nameof(firstName), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (lastName.IsSet && lastName.Value == null)
-                throw new ArgumentNullException(nameof(lastName), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (addressLine1.IsSet && addressLine1.Value == null)
-                throw new ArgumentNullException(nameof(addressLine1), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (addressLine2.IsSet && addressLine2.Value == null)
-                throw new ArgumentNullException(nameof(addressLine2), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (city.IsSet && city.Value == null)
-                throw new ArgumentNullException(nameof(city), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (stateOrProvince.IsSet && stateOrProvince.Value == null)
-                throw new ArgumentNullException(nameof(stateOrProvince), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (postalCode.IsSet && postalCode.Value == null)
-                throw new ArgumentNullException(nameof(postalCode), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (country.IsSet && country.Value == null)
-                throw new ArgumentNullException(nameof(country), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (taxesTotal.IsSet && taxesTotal.Value == null)
-                throw new ArgumentNullException(nameof(taxesTotal), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (exchangeRate.IsSet && exchangeRate.Value == null)
-                throw new ArgumentNullException(nameof(exchangeRate), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (totalPrice.IsSet && totalPrice.Value == null)
-                throw new ArgumentNullException(nameof(totalPrice), "Property is not nullable for class UpdateCfarContractRequest.");
-
-            if (formsOfPayment.IsSet && formsOfPayment.Value == null)
-                throw new ArgumentNullException(nameof(formsOfPayment), "Property is not nullable for class UpdateCfarContractRequest.");
-
             return new UpdateCfarContractRequest(status.Value!.Value!, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes, currency, exchangeRate, totalPrice, formsOfPayment);
         }
 
@@ -570,57 +519,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCfarContractRequest updateCfarContractRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateCfarContractRequest.PnrReferenceOption.IsSet && updateCfarContractRequest.PnrReference == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.PnrReference), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.EmailAddressOption.IsSet && updateCfarContractRequest.EmailAddress == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.EmailAddress), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.PhoneNumberOption.IsSet && updateCfarContractRequest.PhoneNumber == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.PhoneNumber), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.FirstNameOption.IsSet && updateCfarContractRequest.FirstName == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.FirstName), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.LastNameOption.IsSet && updateCfarContractRequest.LastName == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.LastName), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.AddressLine1Option.IsSet && updateCfarContractRequest.AddressLine1 == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.AddressLine1), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.AddressLine2Option.IsSet && updateCfarContractRequest.AddressLine2 == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.AddressLine2), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.CityOption.IsSet && updateCfarContractRequest.City == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.City), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.StateOrProvinceOption.IsSet && updateCfarContractRequest.StateOrProvince == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.StateOrProvince), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.PostalCodeOption.IsSet && updateCfarContractRequest.PostalCode == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.PostalCode), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.CountryOption.IsSet && updateCfarContractRequest.Country == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.Country), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.TaxesTotalOption.IsSet && updateCfarContractRequest.TaxesTotal == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.TaxesTotal), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.TaxesOption.IsSet && updateCfarContractRequest.Taxes == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.Taxes), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.CurrencyOption.IsSet && updateCfarContractRequest.Currency == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.Currency), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.ExchangeRateOption.IsSet && updateCfarContractRequest.ExchangeRate == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.ExchangeRate), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.TotalPriceOption.IsSet && updateCfarContractRequest.TotalPrice == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.TotalPrice), "Property is required for class UpdateCfarContractRequest.");
-
-            if (updateCfarContractRequest.FormsOfPaymentOption.IsSet && updateCfarContractRequest.FormsOfPayment == null)
-                throw new ArgumentNullException(nameof(updateCfarContractRequest.FormsOfPayment), "Property is required for class UpdateCfarContractRequest.");
-
             var statusRawValue = CfarStatusValueConverter.ToJsonValue(updateCfarContractRequest.Status);
             writer.WriteString("status", statusRawValue);
 

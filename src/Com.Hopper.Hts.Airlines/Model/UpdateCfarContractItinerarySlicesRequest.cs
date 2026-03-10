@@ -162,12 +162,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (slices.IsSet && slices.Value == null)
                 throw new ArgumentNullException(nameof(slices), "Property is not nullable for class UpdateCfarContractItinerarySlicesRequest.");
 
-            if (passengerCounts.IsSet && passengerCounts.Value == null)
-                throw new ArgumentNullException(nameof(passengerCounts), "Property is not nullable for class UpdateCfarContractItinerarySlicesRequest.");
-
-            if (pnrReference.IsSet && pnrReference.Value == null)
-                throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class UpdateCfarContractItinerarySlicesRequest.");
-
             return new UpdateCfarContractItinerarySlicesRequest(slices.Value!, passengerCounts, pnrReference);
         }
 
@@ -197,12 +191,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (updateCfarContractItinerarySlicesRequest.Slices == null)
                 throw new ArgumentNullException(nameof(updateCfarContractItinerarySlicesRequest.Slices), "Property is required for class UpdateCfarContractItinerarySlicesRequest.");
-
-            if (updateCfarContractItinerarySlicesRequest.PassengerCountsOption.IsSet && updateCfarContractItinerarySlicesRequest.PassengerCounts == null)
-                throw new ArgumentNullException(nameof(updateCfarContractItinerarySlicesRequest.PassengerCounts), "Property is required for class UpdateCfarContractItinerarySlicesRequest.");
-
-            if (updateCfarContractItinerarySlicesRequest.PnrReferenceOption.IsSet && updateCfarContractItinerarySlicesRequest.PnrReference == null)
-                throw new ArgumentNullException(nameof(updateCfarContractItinerarySlicesRequest.PnrReference), "Property is required for class UpdateCfarContractItinerarySlicesRequest.");
 
             writer.WritePropertyName("slices");
             JsonSerializer.Serialize(writer, updateCfarContractItinerarySlicesRequest.Slices, jsonSerializerOptions);

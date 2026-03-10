@@ -224,18 +224,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (language.IsSet && language.Value == null)
                 throw new ArgumentNullException(nameof(language), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
 
-            if (userInfo.IsSet && userInfo.Value == null)
-                throw new ArgumentNullException(nameof(userInfo), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
-
-            if (device.IsSet && device.Value == null)
-                throw new ArgumentNullException(nameof(device), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
-
-            if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
-
-            if (channel.IsSet && channel.Value == null)
-                throw new ArgumentNullException(nameof(channel), "Property is not nullable for class CreateAirlineCfarSessionRequest.");
-
             return new CreateAirlineCfarSessionRequest(pointOfSale.Value!, language.Value!, userInfo, device, sessionId, channel);
         }
 
@@ -268,18 +256,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createAirlineCfarSessionRequest.Language == null)
                 throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.Language), "Property is required for class CreateAirlineCfarSessionRequest.");
-
-            if (createAirlineCfarSessionRequest.UserInfoOption.IsSet && createAirlineCfarSessionRequest.UserInfo == null)
-                throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.UserInfo), "Property is required for class CreateAirlineCfarSessionRequest.");
-
-            if (createAirlineCfarSessionRequest.DeviceOption.IsSet && createAirlineCfarSessionRequest.Device == null)
-                throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.Device), "Property is required for class CreateAirlineCfarSessionRequest.");
-
-            if (createAirlineCfarSessionRequest.SessionIdOption.IsSet && createAirlineCfarSessionRequest.SessionId == null)
-                throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.SessionId), "Property is required for class CreateAirlineCfarSessionRequest.");
-
-            if (createAirlineCfarSessionRequest.ChannelOption.IsSet && createAirlineCfarSessionRequest.Channel == null)
-                throw new ArgumentNullException(nameof(createAirlineCfarSessionRequest.Channel), "Property is required for class CreateAirlineCfarSessionRequest.");
 
             writer.WriteString("point_of_sale", createAirlineCfarSessionRequest.PointOfSale);
 

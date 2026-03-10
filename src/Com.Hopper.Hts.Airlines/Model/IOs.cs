@@ -192,9 +192,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class IOs.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class IOs.");
-
             return new IOs(type.Value!.Value!, varVersion);
         }
 
@@ -222,9 +219,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IOs iOs, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (iOs.VarVersionOption.IsSet && iOs.VarVersion == null)
-                throw new ArgumentNullException(nameof(iOs.VarVersion), "Property is required for class IOs.");
-
             var typeRawValue = IOs.TypeEnumToJsonValue(iOs.Type);
             writer.WriteString("type", typeRawValue);
             if (iOs.VarVersionOption.IsSet)

@@ -190,9 +190,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Edge.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Edge.");
-
             return new Edge(type.Value!.Value!, varVersion);
         }
 
@@ -220,9 +217,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Edge edge, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (edge.VarVersionOption.IsSet && edge.VarVersion == null)
-                throw new ArgumentNullException(nameof(edge.VarVersion), "Property is required for class Edge.");
-
             var typeRawValue = Edge.TypeEnumToJsonValue(edge.Type);
             writer.WriteString("type", typeRawValue);
             if (edge.VarVersionOption.IsSet)

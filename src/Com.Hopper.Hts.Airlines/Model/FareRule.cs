@@ -246,18 +246,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (allowed.IsSet && allowed.Value == null)
                 throw new ArgumentNullException(nameof(allowed), "Property is not nullable for class FareRule.");
 
-            if (fee.IsSet && fee.Value == null)
-                throw new ArgumentNullException(nameof(fee), "Property is not nullable for class FareRule.");
-
-            if (percentage.IsSet && percentage.Value == null)
-                throw new ArgumentNullException(nameof(percentage), "Property is not nullable for class FareRule.");
-
-            if (refundMethod.IsSet && refundMethod.Value == null)
-                throw new ArgumentNullException(nameof(refundMethod), "Property is not nullable for class FareRule.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class FareRule.");
-
             return new FareRule(modificationType.Value!.Value!, modificationTime.Value!.Value!, allowed.Value!.Value!, fee, percentage, refundMethod, currency);
         }
 
@@ -285,15 +273,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FareRule fareRule, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (fareRule.FeeOption.IsSet && fareRule.Fee == null)
-                throw new ArgumentNullException(nameof(fareRule.Fee), "Property is required for class FareRule.");
-
-            if (fareRule.PercentageOption.IsSet && fareRule.Percentage == null)
-                throw new ArgumentNullException(nameof(fareRule.Percentage), "Property is required for class FareRule.");
-
-            if (fareRule.CurrencyOption.IsSet && fareRule.Currency == null)
-                throw new ArgumentNullException(nameof(fareRule.Currency), "Property is required for class FareRule.");
-
             var modificationTypeRawValue = ModificationTypeValueConverter.ToJsonValue(fareRule.ModificationType);
             writer.WriteString("modification_type", modificationTypeRawValue);
 

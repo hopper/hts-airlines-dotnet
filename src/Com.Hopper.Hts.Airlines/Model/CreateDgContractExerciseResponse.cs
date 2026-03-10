@@ -140,9 +140,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (id.IsSet && id.Value == null)
                 throw new ArgumentNullException(nameof(id), "Property is not nullable for class CreateDgContractExerciseResponse.");
 
-            if (redirectionUrl.IsSet && redirectionUrl.Value == null)
-                throw new ArgumentNullException(nameof(redirectionUrl), "Property is not nullable for class CreateDgContractExerciseResponse.");
-
             return new CreateDgContractExerciseResponse(id.Value!, redirectionUrl);
         }
 
@@ -172,9 +169,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (createDgContractExerciseResponse.Id == null)
                 throw new ArgumentNullException(nameof(createDgContractExerciseResponse.Id), "Property is required for class CreateDgContractExerciseResponse.");
-
-            if (createDgContractExerciseResponse.RedirectionUrlOption.IsSet && createDgContractExerciseResponse.RedirectionUrl == null)
-                throw new ArgumentNullException(nameof(createDgContractExerciseResponse.RedirectionUrl), "Property is required for class CreateDgContractExerciseResponse.");
 
             writer.WriteString("id", createDgContractExerciseResponse.Id);
 

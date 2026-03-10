@@ -248,18 +248,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (slices.IsSet && slices.Value == null)
                 throw new ArgumentNullException(nameof(slices), "Property is not nullable for class CfarOfferItinerary.");
 
-            if (ancillaries.IsSet && ancillaries.Value == null)
-                throw new ArgumentNullException(nameof(ancillaries), "Property is not nullable for class CfarOfferItinerary.");
-
-            if (totalPrice.IsSet && totalPrice.Value == null)
-                throw new ArgumentNullException(nameof(totalPrice), "Property is not nullable for class CfarOfferItinerary.");
-
-            if (passengers.IsSet && passengers.Value == null)
-                throw new ArgumentNullException(nameof(passengers), "Property is not nullable for class CfarOfferItinerary.");
-
-            if (fareRules.IsSet && fareRules.Value == null)
-                throw new ArgumentNullException(nameof(fareRules), "Property is not nullable for class CfarOfferItinerary.");
-
             return new CfarOfferItinerary(passengerPricing.Value!, currency.Value!, slices.Value!, ancillaries, totalPrice, passengers, fareRules);
         }
 
@@ -295,18 +283,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (cfarOfferItinerary.Slices == null)
                 throw new ArgumentNullException(nameof(cfarOfferItinerary.Slices), "Property is required for class CfarOfferItinerary.");
-
-            if (cfarOfferItinerary.AncillariesOption.IsSet && cfarOfferItinerary.Ancillaries == null)
-                throw new ArgumentNullException(nameof(cfarOfferItinerary.Ancillaries), "Property is required for class CfarOfferItinerary.");
-
-            if (cfarOfferItinerary.TotalPriceOption.IsSet && cfarOfferItinerary.TotalPrice == null)
-                throw new ArgumentNullException(nameof(cfarOfferItinerary.TotalPrice), "Property is required for class CfarOfferItinerary.");
-
-            if (cfarOfferItinerary.PassengersOption.IsSet && cfarOfferItinerary.Passengers == null)
-                throw new ArgumentNullException(nameof(cfarOfferItinerary.Passengers), "Property is required for class CfarOfferItinerary.");
-
-            if (cfarOfferItinerary.FareRulesOption.IsSet && cfarOfferItinerary.FareRules == null)
-                throw new ArgumentNullException(nameof(cfarOfferItinerary.FareRules), "Property is required for class CfarOfferItinerary.");
 
             writer.WritePropertyName("passenger_pricing");
             JsonSerializer.Serialize(writer, cfarOfferItinerary.PassengerPricing, jsonSerializerOptions);

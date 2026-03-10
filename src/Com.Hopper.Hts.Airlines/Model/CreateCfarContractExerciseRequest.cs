@@ -376,36 +376,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (extAttributes.IsSet && extAttributes.Value == null)
                 throw new ArgumentNullException(nameof(extAttributes), "Property is not nullable for class CreateCfarContractExerciseRequest.");
 
-            if (contractId.IsSet && contractId.Value == null)
-                throw new ArgumentNullException(nameof(contractId), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (emailAddress.IsSet && emailAddress.Value == null)
-                throw new ArgumentNullException(nameof(emailAddress), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (airlineRefundPenalty.IsSet && airlineRefundPenalty.Value == null)
-                throw new ArgumentNullException(nameof(airlineRefundPenalty), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (airlineRefundMethod.IsSet && airlineRefundMethod.Value == null)
-                throw new ArgumentNullException(nameof(airlineRefundMethod), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (callbackUrl.IsSet && callbackUrl.Value == null)
-                throw new ArgumentNullException(nameof(callbackUrl), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (redirectbackUrl.IsSet && redirectbackUrl.Value == null)
-                throw new ArgumentNullException(nameof(redirectbackUrl), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (firstName.IsSet && firstName.Value == null)
-                throw new ArgumentNullException(nameof(firstName), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
-            if (lastName.IsSet && lastName.Value == null)
-                throw new ArgumentNullException(nameof(lastName), "Property is not nullable for class CreateCfarContractExerciseRequest.");
-
             return new CreateCfarContractExerciseRequest(itinerary.Value!, pnrReference.Value!, extAttributes.Value!, contractId, emailAddress, airlineRefundPenalty, airlineRefundMethod, currency, session, callbackUrl, redirectbackUrl, firstName, lastName);
         }
 
@@ -441,33 +411,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createCfarContractExerciseRequest.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.ExtAttributes), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.ContractIdOption.IsSet && createCfarContractExerciseRequest.ContractId == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.ContractId), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.EmailAddressOption.IsSet && createCfarContractExerciseRequest.EmailAddress == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.EmailAddress), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.AirlineRefundPenaltyOption.IsSet && createCfarContractExerciseRequest.AirlineRefundPenalty == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.AirlineRefundPenalty), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.CurrencyOption.IsSet && createCfarContractExerciseRequest.Currency == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.Currency), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.SessionOption.IsSet && createCfarContractExerciseRequest.Session == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.Session), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.CallbackUrlOption.IsSet && createCfarContractExerciseRequest.CallbackUrl == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.CallbackUrl), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.RedirectbackUrlOption.IsSet && createCfarContractExerciseRequest.RedirectbackUrl == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.RedirectbackUrl), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.FirstNameOption.IsSet && createCfarContractExerciseRequest.FirstName == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.FirstName), "Property is required for class CreateCfarContractExerciseRequest.");
-
-            if (createCfarContractExerciseRequest.LastNameOption.IsSet && createCfarContractExerciseRequest.LastName == null)
-                throw new ArgumentNullException(nameof(createCfarContractExerciseRequest.LastName), "Property is required for class CreateCfarContractExerciseRequest.");
 
             writer.WritePropertyName("itinerary");
             JsonSerializer.Serialize(writer, createCfarContractExerciseRequest.Itinerary, jsonSerializerOptions);
