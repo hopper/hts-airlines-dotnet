@@ -183,12 +183,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (passengerType.IsSet && passengerType.Value == null)
                 throw new ArgumentNullException(nameof(passengerType), "Property is not nullable for class CfarPassenger.");
 
-            if (firstName.IsSet && firstName.Value == null)
-                throw new ArgumentNullException(nameof(firstName), "Property is not nullable for class CfarPassenger.");
-
-            if (lastName.IsSet && lastName.Value == null)
-                throw new ArgumentNullException(nameof(lastName), "Property is not nullable for class CfarPassenger.");
-
             return new CfarPassenger(passengerReference.Value!, passengerType.Value!.Value!, firstName, lastName);
         }
 
@@ -218,12 +212,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (cfarPassenger.PassengerReference == null)
                 throw new ArgumentNullException(nameof(cfarPassenger.PassengerReference), "Property is required for class CfarPassenger.");
-
-            if (cfarPassenger.FirstNameOption.IsSet && cfarPassenger.FirstName == null)
-                throw new ArgumentNullException(nameof(cfarPassenger.FirstName), "Property is required for class CfarPassenger.");
-
-            if (cfarPassenger.LastNameOption.IsSet && cfarPassenger.LastName == null)
-                throw new ArgumentNullException(nameof(cfarPassenger.LastName), "Property is required for class CfarPassenger.");
 
             writer.WriteString("passenger_reference", cfarPassenger.PassengerReference);
 

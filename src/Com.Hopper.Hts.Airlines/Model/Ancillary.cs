@@ -183,12 +183,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Ancillary.");
 
-            if (passengerReference.IsSet && passengerReference.Value == null)
-                throw new ArgumentNullException(nameof(passengerReference), "Property is not nullable for class Ancillary.");
-
-            if (covered.IsSet && covered.Value == null)
-                throw new ArgumentNullException(nameof(covered), "Property is not nullable for class Ancillary.");
-
             return new Ancillary(totalPrice.Value!, type.Value!.Value!, passengerReference, covered);
         }
 
@@ -218,9 +212,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (ancillary.TotalPrice == null)
                 throw new ArgumentNullException(nameof(ancillary.TotalPrice), "Property is required for class Ancillary.");
-
-            if (ancillary.PassengerReferenceOption.IsSet && ancillary.PassengerReference == null)
-                throw new ArgumentNullException(nameof(ancillary.PassengerReference), "Property is required for class Ancillary.");
 
             writer.WriteString("total_price", ancillary.TotalPrice);
 

@@ -404,12 +404,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (minMinutesDelay.IsSet && minMinutesDelay.Value == null)
                 throw new ArgumentNullException(nameof(minMinutesDelay), "Property is not nullable for class CreateExternalCfarOfferRequest.");
 
-            if (bookingDateTime.IsSet && bookingDateTime.Value == null)
-                throw new ArgumentNullException(nameof(bookingDateTime), "Property is not nullable for class CreateExternalCfarOfferRequest.");
-
-            if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class CreateExternalCfarOfferRequest.");
-
             return new CreateExternalCfarOfferRequest(externalId.Value!, countryCode.Value!, currency.Value!, toUsdExchangeRate.Value!, premiumTotalAmount.Value!, premiumPercentage.Value!, payoutTotalAmount.Value!, payoutPercentage.Value!, taxesTotal.Value!, contractExpiryDateTime.Value!.Value!, itinerary.Value!, minMinutesDelay.Value!.Value!, bookingDateTime, session);
         }
 
@@ -466,9 +460,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createExternalCfarOfferRequest.Itinerary == null)
                 throw new ArgumentNullException(nameof(createExternalCfarOfferRequest.Itinerary), "Property is required for class CreateExternalCfarOfferRequest.");
-
-            if (createExternalCfarOfferRequest.SessionOption.IsSet && createExternalCfarOfferRequest.Session == null)
-                throw new ArgumentNullException(nameof(createExternalCfarOfferRequest.Session), "Property is required for class CreateExternalCfarOfferRequest.");
 
             writer.WriteString("external_id", createExternalCfarOfferRequest.ExternalId);
 

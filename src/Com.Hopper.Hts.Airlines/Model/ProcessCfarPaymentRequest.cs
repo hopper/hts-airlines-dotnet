@@ -334,24 +334,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (emailAddress.IsSet && emailAddress.Value == null)
                 throw new ArgumentNullException(nameof(emailAddress), "Property is not nullable for class ProcessCfarPaymentRequest.");
 
-            if (addressLine1.IsSet && addressLine1.Value == null)
-                throw new ArgumentNullException(nameof(addressLine1), "Property is not nullable for class ProcessCfarPaymentRequest.");
-
-            if (addressLine2.IsSet && addressLine2.Value == null)
-                throw new ArgumentNullException(nameof(addressLine2), "Property is not nullable for class ProcessCfarPaymentRequest.");
-
-            if (city.IsSet && city.Value == null)
-                throw new ArgumentNullException(nameof(city), "Property is not nullable for class ProcessCfarPaymentRequest.");
-
-            if (stateOrProvince.IsSet && stateOrProvince.Value == null)
-                throw new ArgumentNullException(nameof(stateOrProvince), "Property is not nullable for class ProcessCfarPaymentRequest.");
-
-            if (postalCode.IsSet && postalCode.Value == null)
-                throw new ArgumentNullException(nameof(postalCode), "Property is not nullable for class ProcessCfarPaymentRequest.");
-
-            if (country.IsSet && country.Value == null)
-                throw new ArgumentNullException(nameof(country), "Property is not nullable for class ProcessCfarPaymentRequest.");
-
             return new ProcessCfarPaymentRequest(paymentMethodToken.Value!, firstName.Value!, lastName.Value!, pnrReference.Value!, emailAddress.Value!, addressLine1, addressLine2, city, stateOrProvince, postalCode, country);
         }
 
@@ -393,24 +375,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (processCfarPaymentRequest.EmailAddress == null)
                 throw new ArgumentNullException(nameof(processCfarPaymentRequest.EmailAddress), "Property is required for class ProcessCfarPaymentRequest.");
-
-            if (processCfarPaymentRequest.AddressLine1Option.IsSet && processCfarPaymentRequest.AddressLine1 == null)
-                throw new ArgumentNullException(nameof(processCfarPaymentRequest.AddressLine1), "Property is required for class ProcessCfarPaymentRequest.");
-
-            if (processCfarPaymentRequest.AddressLine2Option.IsSet && processCfarPaymentRequest.AddressLine2 == null)
-                throw new ArgumentNullException(nameof(processCfarPaymentRequest.AddressLine2), "Property is required for class ProcessCfarPaymentRequest.");
-
-            if (processCfarPaymentRequest.CityOption.IsSet && processCfarPaymentRequest.City == null)
-                throw new ArgumentNullException(nameof(processCfarPaymentRequest.City), "Property is required for class ProcessCfarPaymentRequest.");
-
-            if (processCfarPaymentRequest.StateOrProvinceOption.IsSet && processCfarPaymentRequest.StateOrProvince == null)
-                throw new ArgumentNullException(nameof(processCfarPaymentRequest.StateOrProvince), "Property is required for class ProcessCfarPaymentRequest.");
-
-            if (processCfarPaymentRequest.PostalCodeOption.IsSet && processCfarPaymentRequest.PostalCode == null)
-                throw new ArgumentNullException(nameof(processCfarPaymentRequest.PostalCode), "Property is required for class ProcessCfarPaymentRequest.");
-
-            if (processCfarPaymentRequest.CountryOption.IsSet && processCfarPaymentRequest.Country == null)
-                throw new ArgumentNullException(nameof(processCfarPaymentRequest.Country), "Property is required for class ProcessCfarPaymentRequest.");
 
             writer.WriteString("payment_method_token", processCfarPaymentRequest.PaymentMethodToken);
 

@@ -250,24 +250,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (slices.IsSet && slices.Value == null)
                 throw new ArgumentNullException(nameof(slices), "Property is not nullable for class CfarCreateExerciseItinerary.");
 
-            if (passengerPricing.IsSet && passengerPricing.Value == null)
-                throw new ArgumentNullException(nameof(passengerPricing), "Property is not nullable for class CfarCreateExerciseItinerary.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class CfarCreateExerciseItinerary.");
-
-            if (ancillaries.IsSet && ancillaries.Value == null)
-                throw new ArgumentNullException(nameof(ancillaries), "Property is not nullable for class CfarCreateExerciseItinerary.");
-
-            if (totalPrice.IsSet && totalPrice.Value == null)
-                throw new ArgumentNullException(nameof(totalPrice), "Property is not nullable for class CfarCreateExerciseItinerary.");
-
-            if (passengers.IsSet && passengers.Value == null)
-                throw new ArgumentNullException(nameof(passengers), "Property is not nullable for class CfarCreateExerciseItinerary.");
-
-            if (fareRules.IsSet && fareRules.Value == null)
-                throw new ArgumentNullException(nameof(fareRules), "Property is not nullable for class CfarCreateExerciseItinerary.");
-
             return new CfarCreateExerciseItinerary(slices.Value!, passengerPricing, currency, ancillaries, totalPrice, passengers, fareRules);
         }
 
@@ -297,24 +279,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (cfarCreateExerciseItinerary.Slices == null)
                 throw new ArgumentNullException(nameof(cfarCreateExerciseItinerary.Slices), "Property is required for class CfarCreateExerciseItinerary.");
-
-            if (cfarCreateExerciseItinerary.PassengerPricingOption.IsSet && cfarCreateExerciseItinerary.PassengerPricing == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerary.PassengerPricing), "Property is required for class CfarCreateExerciseItinerary.");
-
-            if (cfarCreateExerciseItinerary.CurrencyOption.IsSet && cfarCreateExerciseItinerary.Currency == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerary.Currency), "Property is required for class CfarCreateExerciseItinerary.");
-
-            if (cfarCreateExerciseItinerary.AncillariesOption.IsSet && cfarCreateExerciseItinerary.Ancillaries == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerary.Ancillaries), "Property is required for class CfarCreateExerciseItinerary.");
-
-            if (cfarCreateExerciseItinerary.TotalPriceOption.IsSet && cfarCreateExerciseItinerary.TotalPrice == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerary.TotalPrice), "Property is required for class CfarCreateExerciseItinerary.");
-
-            if (cfarCreateExerciseItinerary.PassengersOption.IsSet && cfarCreateExerciseItinerary.Passengers == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerary.Passengers), "Property is required for class CfarCreateExerciseItinerary.");
-
-            if (cfarCreateExerciseItinerary.FareRulesOption.IsSet && cfarCreateExerciseItinerary.FareRules == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerary.FareRules), "Property is required for class CfarCreateExerciseItinerary.");
 
             writer.WritePropertyName("slices");
             JsonSerializer.Serialize(writer, cfarCreateExerciseItinerary.Slices, jsonSerializerOptions);

@@ -183,15 +183,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (segments.IsSet && segments.Value == null)
                 throw new ArgumentNullException(nameof(segments), "Property is not nullable for class DgExerciseItinerarySlice.");
 
-            if (irop.IsSet && irop.Value == null)
-                throw new ArgumentNullException(nameof(irop), "Property is not nullable for class DgExerciseItinerarySlice.");
-
-            if (invol.IsSet && invol.Value == null)
-                throw new ArgumentNullException(nameof(invol), "Property is not nullable for class DgExerciseItinerarySlice.");
-
-            if (previousSlice.IsSet && previousSlice.Value == null)
-                throw new ArgumentNullException(nameof(previousSlice), "Property is not nullable for class DgExerciseItinerarySlice.");
-
             return new DgExerciseItinerarySlice(segments.Value!, irop, invol, previousSlice);
         }
 
@@ -221,9 +212,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (dgExerciseItinerarySlice.Segments == null)
                 throw new ArgumentNullException(nameof(dgExerciseItinerarySlice.Segments), "Property is required for class DgExerciseItinerarySlice.");
-
-            if (dgExerciseItinerarySlice.PreviousSliceOption.IsSet && dgExerciseItinerarySlice.PreviousSlice == null)
-                throw new ArgumentNullException(nameof(dgExerciseItinerarySlice.PreviousSlice), "Property is required for class DgExerciseItinerarySlice.");
 
             writer.WritePropertyName("segments");
             JsonSerializer.Serialize(writer, dgExerciseItinerarySlice.Segments, jsonSerializerOptions);

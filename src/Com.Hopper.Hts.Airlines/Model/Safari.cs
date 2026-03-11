@@ -190,9 +190,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Safari.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Safari.");
-
             return new Safari(type.Value!.Value!, varVersion);
         }
 
@@ -220,9 +217,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Safari safari, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (safari.VarVersionOption.IsSet && safari.VarVersion == null)
-                throw new ArgumentNullException(nameof(safari.VarVersion), "Property is required for class Safari.");
-
             var typeRawValue = Safari.TypeEnumToJsonValue(safari.Type);
             writer.WriteString("type", typeRawValue);
             if (safari.VarVersionOption.IsSet)

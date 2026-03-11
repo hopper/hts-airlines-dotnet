@@ -281,11 +281,13 @@
             {{/required}}
             {{/allVars}}
             {{#allVars}}
+            {{#required}}
             {{^isNullable}}
             if ({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}.IsSet && {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}.Value == null)
                 throw new ArgumentNullException(nameof({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}), "Property is not nullable for class {{classname}}.");
 
             {{/isNullable}}
+            {{/required}}
             {{/allVars}}
             {{^vendorExtensions.x-duplicated-data-type}}
             {{#model.discriminator}}
@@ -426,13 +428,15 @@
             {{#lambda.trimLineBreaks}}
             {{#allVars}}
             {{^isDiscriminator}}
+            {{#required}}
             {{^isNullable}}
             {{#vendorExtensions.x-is-reference-type}}
-            if ({{^required}}{{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}Option.IsSet && {{/required}}{{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} == null)
+            if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} == null)
                 throw new ArgumentNullException(nameof({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}), "Property is required for class {{classname}}.");
 
             {{/vendorExtensions.x-is-reference-type}}
             {{/isNullable}}
+            {{/required}}
             {{/isDiscriminator}}
             {{/allVars}}
             {{#allVars}}

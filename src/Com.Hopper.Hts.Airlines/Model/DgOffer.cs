@@ -568,24 +568,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (contents.IsSet && contents.Value == null)
                 throw new ArgumentNullException(nameof(contents), "Property is not nullable for class DgOffer.");
 
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class DgOffer.");
-
-            if (entryPoint.IsSet && entryPoint.Value == null)
-                throw new ArgumentNullException(nameof(entryPoint), "Property is not nullable for class DgOffer.");
-
-            if (termsConditionsUrl.IsSet && termsConditionsUrl.Value == null)
-                throw new ArgumentNullException(nameof(termsConditionsUrl), "Property is not nullable for class DgOffer.");
-
-            if (faqUrl.IsSet && faqUrl.Value == null)
-                throw new ArgumentNullException(nameof(faqUrl), "Property is not nullable for class DgOffer.");
-
-            if (merchandisingUrl.IsSet && merchandisingUrl.Value == null)
-                throw new ArgumentNullException(nameof(merchandisingUrl), "Property is not nullable for class DgOffer.");
-
-            if (merchandisingUrlWebComponent.IsSet && merchandisingUrlWebComponent.Value == null)
-                throw new ArgumentNullException(nameof(merchandisingUrlWebComponent), "Property is not nullable for class DgOffer.");
-
             return new DgOffer(id.Value!, premium.Value!, coverage.Value!, coveragePercentage.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, requestType.Value!.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, contractExpiryDateTime.Value!.Value!, createdDateTime.Value!.Value!, itinerary.Value!, extAttributes.Value!, experiments.Value!, contents.Value!, taxes, entryPoint, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
         }
 
@@ -645,24 +627,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (dgOffer.Contents == null)
                 throw new ArgumentNullException(nameof(dgOffer.Contents), "Property is required for class DgOffer.");
-
-            if (dgOffer.TaxesOption.IsSet && dgOffer.Taxes == null)
-                throw new ArgumentNullException(nameof(dgOffer.Taxes), "Property is required for class DgOffer.");
-
-            if (dgOffer.EntryPointOption.IsSet && dgOffer.EntryPoint == null)
-                throw new ArgumentNullException(nameof(dgOffer.EntryPoint), "Property is required for class DgOffer.");
-
-            if (dgOffer.TermsConditionsUrlOption.IsSet && dgOffer.TermsConditionsUrl == null)
-                throw new ArgumentNullException(nameof(dgOffer.TermsConditionsUrl), "Property is required for class DgOffer.");
-
-            if (dgOffer.FaqUrlOption.IsSet && dgOffer.FaqUrl == null)
-                throw new ArgumentNullException(nameof(dgOffer.FaqUrl), "Property is required for class DgOffer.");
-
-            if (dgOffer.MerchandisingUrlOption.IsSet && dgOffer.MerchandisingUrl == null)
-                throw new ArgumentNullException(nameof(dgOffer.MerchandisingUrl), "Property is required for class DgOffer.");
-
-            if (dgOffer.MerchandisingUrlWebComponentOption.IsSet && dgOffer.MerchandisingUrlWebComponent == null)
-                throw new ArgumentNullException(nameof(dgOffer.MerchandisingUrlWebComponent), "Property is required for class DgOffer.");
 
             writer.WriteString("id", dgOffer.Id);
 

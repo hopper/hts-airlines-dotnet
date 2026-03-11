@@ -229,15 +229,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (extAttributes.IsSet && extAttributes.Value == null)
                 throw new ArgumentNullException(nameof(extAttributes), "Property is not nullable for class CreateDgOffersRequest.");
 
-            if (bookingDateTime.IsSet && bookingDateTime.Value == null)
-                throw new ArgumentNullException(nameof(bookingDateTime), "Property is not nullable for class CreateDgOffersRequest.");
-
-            if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class CreateDgOffersRequest.");
-
-            if (entryPoint.IsSet && entryPoint.Value == null)
-                throw new ArgumentNullException(nameof(entryPoint), "Property is not nullable for class CreateDgOffersRequest.");
-
             return new CreateDgOffersRequest(itinerary.Value!, requestType.Value!.Value!, extAttributes.Value!, bookingDateTime, session, entryPoint);
         }
 
@@ -270,12 +261,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createDgOffersRequest.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(createDgOffersRequest.ExtAttributes), "Property is required for class CreateDgOffersRequest.");
-
-            if (createDgOffersRequest.SessionOption.IsSet && createDgOffersRequest.Session == null)
-                throw new ArgumentNullException(nameof(createDgOffersRequest.Session), "Property is required for class CreateDgOffersRequest.");
-
-            if (createDgOffersRequest.EntryPointOption.IsSet && createDgOffersRequest.EntryPoint == null)
-                throw new ArgumentNullException(nameof(createDgOffersRequest.EntryPoint), "Property is required for class CreateDgOffersRequest.");
 
             writer.WritePropertyName("itinerary");
             JsonSerializer.Serialize(writer, createDgOffersRequest.Itinerary, jsonSerializerOptions);

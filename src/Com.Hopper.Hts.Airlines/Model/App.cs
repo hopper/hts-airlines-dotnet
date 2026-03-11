@@ -192,9 +192,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class App.");
 
-            if (varOperatingSystem.IsSet && varOperatingSystem.Value == null)
-                throw new ArgumentNullException(nameof(varOperatingSystem), "Property is not nullable for class App.");
-
             return new App(type.Value!.Value!, varOperatingSystem);
         }
 
@@ -222,9 +219,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, App app, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (app.VarOperatingSystemOption.IsSet && app.VarOperatingSystem == null)
-                throw new ArgumentNullException(nameof(app.VarOperatingSystem), "Property is required for class App.");
-
             var typeRawValue = App.TypeEnumToJsonValue(app.Type);
             writer.WriteString("type", typeRawValue);
             if (app.VarOperatingSystemOption.IsSet)

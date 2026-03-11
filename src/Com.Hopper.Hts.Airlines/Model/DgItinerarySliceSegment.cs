@@ -287,12 +287,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (cabin.IsSet && cabin.Value == null)
                 throw new ArgumentNullException(nameof(cabin), "Property is not nullable for class DgItinerarySliceSegment.");
 
-            if (segmentId.IsSet && segmentId.Value == null)
-                throw new ArgumentNullException(nameof(segmentId), "Property is not nullable for class DgItinerarySliceSegment.");
-
-            if (fareBrand.IsSet && fareBrand.Value == null)
-                throw new ArgumentNullException(nameof(fareBrand), "Property is not nullable for class DgItinerarySliceSegment.");
-
             return new DgItinerarySliceSegment(originAirport.Value!, destinationAirport.Value!, departureDateTime.Value!, arrivalDateTime.Value!, flightNumber.Value!, validatingCarrierCode.Value!, cabin.Value!.Value!, segmentId, fareBrand);
         }
 
@@ -337,12 +331,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (dgItinerarySliceSegment.ValidatingCarrierCode == null)
                 throw new ArgumentNullException(nameof(dgItinerarySliceSegment.ValidatingCarrierCode), "Property is required for class DgItinerarySliceSegment.");
-
-            if (dgItinerarySliceSegment.SegmentIdOption.IsSet && dgItinerarySliceSegment.SegmentId == null)
-                throw new ArgumentNullException(nameof(dgItinerarySliceSegment.SegmentId), "Property is required for class DgItinerarySliceSegment.");
-
-            if (dgItinerarySliceSegment.FareBrandOption.IsSet && dgItinerarySliceSegment.FareBrand == null)
-                throw new ArgumentNullException(nameof(dgItinerarySliceSegment.FareBrand), "Property is required for class DgItinerarySliceSegment.");
 
             writer.WriteString("origin_airport", dgItinerarySliceSegment.OriginAirport);
 

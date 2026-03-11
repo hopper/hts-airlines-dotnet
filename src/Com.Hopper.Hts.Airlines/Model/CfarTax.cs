@@ -204,9 +204,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (estimated.IsSet && estimated.Value == null)
                 throw new ArgumentNullException(nameof(estimated), "Property is not nullable for class CfarTax.");
 
-            if (registrationNumber.IsSet && registrationNumber.Value == null)
-                throw new ArgumentNullException(nameof(registrationNumber), "Property is not nullable for class CfarTax.");
-
             return new CfarTax(name.Value!, rate.Value!, amount.Value!, estimated.Value!.Value!, registrationNumber);
         }
 
@@ -242,9 +239,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (cfarTax.Amount == null)
                 throw new ArgumentNullException(nameof(cfarTax.Amount), "Property is required for class CfarTax.");
-
-            if (cfarTax.RegistrationNumberOption.IsSet && cfarTax.RegistrationNumber == null)
-                throw new ArgumentNullException(nameof(cfarTax.RegistrationNumber), "Property is required for class CfarTax.");
 
             writer.WriteString("name", cfarTax.Name);
 

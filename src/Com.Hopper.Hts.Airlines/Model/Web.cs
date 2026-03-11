@@ -213,12 +213,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Web.");
 
-            if (varOperatingSystem.IsSet && varOperatingSystem.Value == null)
-                throw new ArgumentNullException(nameof(varOperatingSystem), "Property is not nullable for class Web.");
-
-            if (browser.IsSet && browser.Value == null)
-                throw new ArgumentNullException(nameof(browser), "Property is not nullable for class Web.");
-
             return new Web(type.Value!.Value!, varOperatingSystem, browser);
         }
 
@@ -246,12 +240,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Web web, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (web.VarOperatingSystemOption.IsSet && web.VarOperatingSystem == null)
-                throw new ArgumentNullException(nameof(web.VarOperatingSystem), "Property is required for class Web.");
-
-            if (web.BrowserOption.IsSet && web.Browser == null)
-                throw new ArgumentNullException(nameof(web.Browser), "Property is required for class Web.");
-
             var typeRawValue = Web.TypeEnumToJsonValue(web.Type);
             writer.WriteString("type", typeRawValue);
             if (web.VarOperatingSystemOption.IsSet)

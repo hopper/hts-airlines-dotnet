@@ -160,9 +160,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (individualPrice.IsSet && individualPrice.Value == null)
                 throw new ArgumentNullException(nameof(individualPrice), "Property is not nullable for class DgPassengerPricing.");
 
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class DgPassengerPricing.");
-
             return new DgPassengerPricing(passengerCount.Value!, individualPrice.Value!, taxes);
         }
 
@@ -195,9 +192,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (dgPassengerPricing.IndividualPrice == null)
                 throw new ArgumentNullException(nameof(dgPassengerPricing.IndividualPrice), "Property is required for class DgPassengerPricing.");
-
-            if (dgPassengerPricing.TaxesOption.IsSet && dgPassengerPricing.Taxes == null)
-                throw new ArgumentNullException(nameof(dgPassengerPricing.Taxes), "Property is required for class DgPassengerPricing.");
 
             writer.WritePropertyName("passenger_count");
             JsonSerializer.Serialize(writer, dgPassengerPricing.PassengerCount, jsonSerializerOptions);

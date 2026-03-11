@@ -253,15 +253,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Mobile.");
 
-            if (platform.IsSet && platform.Value == null)
-                throw new ArgumentNullException(nameof(platform), "Property is not nullable for class Mobile.");
-
-            if (uiTheme.IsSet && uiTheme.Value == null)
-                throw new ArgumentNullException(nameof(uiTheme), "Property is not nullable for class Mobile.");
-
-            if (releaseBuild.IsSet && releaseBuild.Value == null)
-                throw new ArgumentNullException(nameof(releaseBuild), "Property is not nullable for class Mobile.");
-
             return new Mobile(id.Value!, type.Value!.Value!, platform, uiTheme, releaseBuild);
         }
 
@@ -291,15 +282,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (mobile.Id == null)
                 throw new ArgumentNullException(nameof(mobile.Id), "Property is required for class Mobile.");
-
-            if (mobile.PlatformOption.IsSet && mobile.Platform == null)
-                throw new ArgumentNullException(nameof(mobile.Platform), "Property is required for class Mobile.");
-
-            if (mobile.UiThemeOption.IsSet && mobile.UiTheme == null)
-                throw new ArgumentNullException(nameof(mobile.UiTheme), "Property is required for class Mobile.");
-
-            if (mobile.ReleaseBuildOption.IsSet && mobile.ReleaseBuild == null)
-                throw new ArgumentNullException(nameof(mobile.ReleaseBuild), "Property is required for class Mobile.");
 
             writer.WriteString("id", mobile.Id);
 

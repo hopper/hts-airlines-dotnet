@@ -192,9 +192,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class ChromeOs.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class ChromeOs.");
-
             return new ChromeOs(type.Value!.Value!, varVersion);
         }
 
@@ -222,9 +219,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChromeOs chromeOs, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chromeOs.VarVersionOption.IsSet && chromeOs.VarVersion == null)
-                throw new ArgumentNullException(nameof(chromeOs.VarVersion), "Property is required for class ChromeOs.");
-
             var typeRawValue = ChromeOs.TypeEnumToJsonValue(chromeOs.Type);
             writer.WriteString("type", typeRawValue);
             if (chromeOs.VarVersionOption.IsSet)

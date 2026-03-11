@@ -470,54 +470,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class UpdateDgContractStatusRequest.");
 
-            if (pnrReference.IsSet && pnrReference.Value == null)
-                throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (emailAddress.IsSet && emailAddress.Value == null)
-                throw new ArgumentNullException(nameof(emailAddress), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (phoneNumber.IsSet && phoneNumber.Value == null)
-                throw new ArgumentNullException(nameof(phoneNumber), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (firstName.IsSet && firstName.Value == null)
-                throw new ArgumentNullException(nameof(firstName), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (lastName.IsSet && lastName.Value == null)
-                throw new ArgumentNullException(nameof(lastName), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (addressLine1.IsSet && addressLine1.Value == null)
-                throw new ArgumentNullException(nameof(addressLine1), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (addressLine2.IsSet && addressLine2.Value == null)
-                throw new ArgumentNullException(nameof(addressLine2), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (city.IsSet && city.Value == null)
-                throw new ArgumentNullException(nameof(city), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (stateOrProvince.IsSet && stateOrProvince.Value == null)
-                throw new ArgumentNullException(nameof(stateOrProvince), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (postalCode.IsSet && postalCode.Value == null)
-                throw new ArgumentNullException(nameof(postalCode), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (country.IsSet && country.Value == null)
-                throw new ArgumentNullException(nameof(country), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (taxesTotal.IsSet && taxesTotal.Value == null)
-                throw new ArgumentNullException(nameof(taxesTotal), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (formsOfPayment.IsSet && formsOfPayment.Value == null)
-                throw new ArgumentNullException(nameof(formsOfPayment), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (totalPrice.IsSet && totalPrice.Value == null)
-                throw new ArgumentNullException(nameof(totalPrice), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class UpdateDgContractStatusRequest.");
-
             return new UpdateDgContractStatusRequest(status.Value!.Value!, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes, formsOfPayment, totalPrice, currency);
         }
 
@@ -545,54 +497,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateDgContractStatusRequest updateDgContractStatusRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateDgContractStatusRequest.PnrReferenceOption.IsSet && updateDgContractStatusRequest.PnrReference == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.PnrReference), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.EmailAddressOption.IsSet && updateDgContractStatusRequest.EmailAddress == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.EmailAddress), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.PhoneNumberOption.IsSet && updateDgContractStatusRequest.PhoneNumber == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.PhoneNumber), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.FirstNameOption.IsSet && updateDgContractStatusRequest.FirstName == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.FirstName), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.LastNameOption.IsSet && updateDgContractStatusRequest.LastName == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.LastName), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.AddressLine1Option.IsSet && updateDgContractStatusRequest.AddressLine1 == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.AddressLine1), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.AddressLine2Option.IsSet && updateDgContractStatusRequest.AddressLine2 == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.AddressLine2), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.CityOption.IsSet && updateDgContractStatusRequest.City == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.City), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.StateOrProvinceOption.IsSet && updateDgContractStatusRequest.StateOrProvince == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.StateOrProvince), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.PostalCodeOption.IsSet && updateDgContractStatusRequest.PostalCode == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.PostalCode), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.CountryOption.IsSet && updateDgContractStatusRequest.Country == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.Country), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.TaxesTotalOption.IsSet && updateDgContractStatusRequest.TaxesTotal == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.TaxesTotal), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.TaxesOption.IsSet && updateDgContractStatusRequest.Taxes == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.Taxes), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.FormsOfPaymentOption.IsSet && updateDgContractStatusRequest.FormsOfPayment == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.FormsOfPayment), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.TotalPriceOption.IsSet && updateDgContractStatusRequest.TotalPrice == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.TotalPrice), "Property is required for class UpdateDgContractStatusRequest.");
-
-            if (updateDgContractStatusRequest.CurrencyOption.IsSet && updateDgContractStatusRequest.Currency == null)
-                throw new ArgumentNullException(nameof(updateDgContractStatusRequest.Currency), "Property is required for class UpdateDgContractStatusRequest.");
-
             var statusRawValue = DgStatusValueConverter.ToJsonValue(updateDgContractStatusRequest.Status);
             writer.WriteString("status", statusRawValue);
 

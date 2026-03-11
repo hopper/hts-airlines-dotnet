@@ -250,24 +250,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (segments.IsSet && segments.Value == null)
                 throw new ArgumentNullException(nameof(segments), "Property is not nullable for class CfarCreateExerciseItinerarySlice.");
 
-            if (passengerPricing.IsSet && passengerPricing.Value == null)
-                throw new ArgumentNullException(nameof(passengerPricing), "Property is not nullable for class CfarCreateExerciseItinerarySlice.");
-
-            if (totalPrice.IsSet && totalPrice.Value == null)
-                throw new ArgumentNullException(nameof(totalPrice), "Property is not nullable for class CfarCreateExerciseItinerarySlice.");
-
-            if (fareBrand.IsSet && fareBrand.Value == null)
-                throw new ArgumentNullException(nameof(fareBrand), "Property is not nullable for class CfarCreateExerciseItinerarySlice.");
-
-            if (fareBasis.IsSet && fareBasis.Value == null)
-                throw new ArgumentNullException(nameof(fareBasis), "Property is not nullable for class CfarCreateExerciseItinerarySlice.");
-
-            if (fareRules.IsSet && fareRules.Value == null)
-                throw new ArgumentNullException(nameof(fareRules), "Property is not nullable for class CfarCreateExerciseItinerarySlice.");
-
-            if (otherFares.IsSet && otherFares.Value == null)
-                throw new ArgumentNullException(nameof(otherFares), "Property is not nullable for class CfarCreateExerciseItinerarySlice.");
-
             return new CfarCreateExerciseItinerarySlice(segments.Value!, passengerPricing, totalPrice, fareBrand, fareBasis, fareRules, otherFares);
         }
 
@@ -297,24 +279,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (cfarCreateExerciseItinerarySlice.Segments == null)
                 throw new ArgumentNullException(nameof(cfarCreateExerciseItinerarySlice.Segments), "Property is required for class CfarCreateExerciseItinerarySlice.");
-
-            if (cfarCreateExerciseItinerarySlice.PassengerPricingOption.IsSet && cfarCreateExerciseItinerarySlice.PassengerPricing == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerarySlice.PassengerPricing), "Property is required for class CfarCreateExerciseItinerarySlice.");
-
-            if (cfarCreateExerciseItinerarySlice.TotalPriceOption.IsSet && cfarCreateExerciseItinerarySlice.TotalPrice == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerarySlice.TotalPrice), "Property is required for class CfarCreateExerciseItinerarySlice.");
-
-            if (cfarCreateExerciseItinerarySlice.FareBrandOption.IsSet && cfarCreateExerciseItinerarySlice.FareBrand == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerarySlice.FareBrand), "Property is required for class CfarCreateExerciseItinerarySlice.");
-
-            if (cfarCreateExerciseItinerarySlice.FareBasisOption.IsSet && cfarCreateExerciseItinerarySlice.FareBasis == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerarySlice.FareBasis), "Property is required for class CfarCreateExerciseItinerarySlice.");
-
-            if (cfarCreateExerciseItinerarySlice.FareRulesOption.IsSet && cfarCreateExerciseItinerarySlice.FareRules == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerarySlice.FareRules), "Property is required for class CfarCreateExerciseItinerarySlice.");
-
-            if (cfarCreateExerciseItinerarySlice.OtherFaresOption.IsSet && cfarCreateExerciseItinerarySlice.OtherFares == null)
-                throw new ArgumentNullException(nameof(cfarCreateExerciseItinerarySlice.OtherFares), "Property is required for class CfarCreateExerciseItinerarySlice.");
 
             writer.WritePropertyName("segments");
             JsonSerializer.Serialize(writer, cfarCreateExerciseItinerarySlice.Segments, jsonSerializerOptions);

@@ -190,9 +190,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Chrome.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Chrome.");
-
             return new Chrome(type.Value!.Value!, varVersion);
         }
 
@@ -220,9 +217,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Chrome chrome, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chrome.VarVersionOption.IsSet && chrome.VarVersion == null)
-                throw new ArgumentNullException(nameof(chrome.VarVersion), "Property is required for class Chrome.");
-
             var typeRawValue = Chrome.TypeEnumToJsonValue(chrome.Type);
             writer.WriteString("type", typeRawValue);
             if (chrome.VarVersionOption.IsSet)

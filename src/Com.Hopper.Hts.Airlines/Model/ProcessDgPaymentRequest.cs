@@ -357,30 +357,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (phoneNumber.IsSet && phoneNumber.Value == null)
                 throw new ArgumentNullException(nameof(phoneNumber), "Property is not nullable for class ProcessDgPaymentRequest.");
 
-            if (firstName.IsSet && firstName.Value == null)
-                throw new ArgumentNullException(nameof(firstName), "Property is not nullable for class ProcessDgPaymentRequest.");
-
-            if (lastName.IsSet && lastName.Value == null)
-                throw new ArgumentNullException(nameof(lastName), "Property is not nullable for class ProcessDgPaymentRequest.");
-
-            if (addressLine1.IsSet && addressLine1.Value == null)
-                throw new ArgumentNullException(nameof(addressLine1), "Property is not nullable for class ProcessDgPaymentRequest.");
-
-            if (addressLine2.IsSet && addressLine2.Value == null)
-                throw new ArgumentNullException(nameof(addressLine2), "Property is not nullable for class ProcessDgPaymentRequest.");
-
-            if (city.IsSet && city.Value == null)
-                throw new ArgumentNullException(nameof(city), "Property is not nullable for class ProcessDgPaymentRequest.");
-
-            if (stateOrProvince.IsSet && stateOrProvince.Value == null)
-                throw new ArgumentNullException(nameof(stateOrProvince), "Property is not nullable for class ProcessDgPaymentRequest.");
-
-            if (postalCode.IsSet && postalCode.Value == null)
-                throw new ArgumentNullException(nameof(postalCode), "Property is not nullable for class ProcessDgPaymentRequest.");
-
-            if (country.IsSet && country.Value == null)
-                throw new ArgumentNullException(nameof(country), "Property is not nullable for class ProcessDgPaymentRequest.");
-
             return new ProcessDgPaymentRequest(paymentToken.Value!, pnrReference.Value!, emailAddress.Value!, phoneNumber.Value!, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country);
         }
 
@@ -419,30 +395,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (processDgPaymentRequest.PhoneNumber == null)
                 throw new ArgumentNullException(nameof(processDgPaymentRequest.PhoneNumber), "Property is required for class ProcessDgPaymentRequest.");
-
-            if (processDgPaymentRequest.FirstNameOption.IsSet && processDgPaymentRequest.FirstName == null)
-                throw new ArgumentNullException(nameof(processDgPaymentRequest.FirstName), "Property is required for class ProcessDgPaymentRequest.");
-
-            if (processDgPaymentRequest.LastNameOption.IsSet && processDgPaymentRequest.LastName == null)
-                throw new ArgumentNullException(nameof(processDgPaymentRequest.LastName), "Property is required for class ProcessDgPaymentRequest.");
-
-            if (processDgPaymentRequest.AddressLine1Option.IsSet && processDgPaymentRequest.AddressLine1 == null)
-                throw new ArgumentNullException(nameof(processDgPaymentRequest.AddressLine1), "Property is required for class ProcessDgPaymentRequest.");
-
-            if (processDgPaymentRequest.AddressLine2Option.IsSet && processDgPaymentRequest.AddressLine2 == null)
-                throw new ArgumentNullException(nameof(processDgPaymentRequest.AddressLine2), "Property is required for class ProcessDgPaymentRequest.");
-
-            if (processDgPaymentRequest.CityOption.IsSet && processDgPaymentRequest.City == null)
-                throw new ArgumentNullException(nameof(processDgPaymentRequest.City), "Property is required for class ProcessDgPaymentRequest.");
-
-            if (processDgPaymentRequest.StateOrProvinceOption.IsSet && processDgPaymentRequest.StateOrProvince == null)
-                throw new ArgumentNullException(nameof(processDgPaymentRequest.StateOrProvince), "Property is required for class ProcessDgPaymentRequest.");
-
-            if (processDgPaymentRequest.PostalCodeOption.IsSet && processDgPaymentRequest.PostalCode == null)
-                throw new ArgumentNullException(nameof(processDgPaymentRequest.PostalCode), "Property is required for class ProcessDgPaymentRequest.");
-
-            if (processDgPaymentRequest.CountryOption.IsSet && processDgPaymentRequest.Country == null)
-                throw new ArgumentNullException(nameof(processDgPaymentRequest.Country), "Property is required for class ProcessDgPaymentRequest.");
 
             writer.WriteString("payment_token", processDgPaymentRequest.PaymentToken);
 

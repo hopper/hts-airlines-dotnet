@@ -192,9 +192,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Android.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Android.");
-
             return new Android(type.Value!.Value!, varVersion);
         }
 
@@ -222,9 +219,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Android android, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (android.VarVersionOption.IsSet && android.VarVersion == null)
-                throw new ArgumentNullException(nameof(android.VarVersion), "Property is required for class Android.");
-
             var typeRawValue = Android.TypeEnumToJsonValue(android.Type);
             writer.WriteString("type", typeRawValue);
             if (android.VarVersionOption.IsSet)

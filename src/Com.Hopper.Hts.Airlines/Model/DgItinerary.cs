@@ -226,15 +226,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (slices.IsSet && slices.Value == null)
                 throw new ArgumentNullException(nameof(slices), "Property is not nullable for class DgItinerary.");
 
-            if (ancillaries.IsSet && ancillaries.Value == null)
-                throw new ArgumentNullException(nameof(ancillaries), "Property is not nullable for class DgItinerary.");
-
-            if (totalPrice.IsSet && totalPrice.Value == null)
-                throw new ArgumentNullException(nameof(totalPrice), "Property is not nullable for class DgItinerary.");
-
-            if (passengers.IsSet && passengers.Value == null)
-                throw new ArgumentNullException(nameof(passengers), "Property is not nullable for class DgItinerary.");
-
             return new DgItinerary(passengerPricing.Value!, currency.Value!, slices.Value!, ancillaries, totalPrice, passengers);
         }
 
@@ -270,15 +261,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (dgItinerary.Slices == null)
                 throw new ArgumentNullException(nameof(dgItinerary.Slices), "Property is required for class DgItinerary.");
-
-            if (dgItinerary.AncillariesOption.IsSet && dgItinerary.Ancillaries == null)
-                throw new ArgumentNullException(nameof(dgItinerary.Ancillaries), "Property is required for class DgItinerary.");
-
-            if (dgItinerary.TotalPriceOption.IsSet && dgItinerary.TotalPrice == null)
-                throw new ArgumentNullException(nameof(dgItinerary.TotalPrice), "Property is required for class DgItinerary.");
-
-            if (dgItinerary.PassengersOption.IsSet && dgItinerary.Passengers == null)
-                throw new ArgumentNullException(nameof(dgItinerary.Passengers), "Property is required for class DgItinerary.");
 
             writer.WritePropertyName("passenger_pricing");
             JsonSerializer.Serialize(writer, dgItinerary.PassengerPricing, jsonSerializerOptions);

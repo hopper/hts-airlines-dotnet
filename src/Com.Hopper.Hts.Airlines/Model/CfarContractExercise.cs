@@ -294,15 +294,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (redirectionToken.IsSet && redirectionToken.Value == null)
                 throw new ArgumentNullException(nameof(redirectionToken), "Property is not nullable for class CfarContractExercise.");
 
-            if (ftcRefundAllowance.IsSet && ftcRefundAllowance.Value == null)
-                throw new ArgumentNullException(nameof(ftcRefundAllowance), "Property is not nullable for class CfarContractExercise.");
-
-            if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class CfarContractExercise.");
-
-            if (redirectionUrl.IsSet && redirectionUrl.Value == null)
-                throw new ArgumentNullException(nameof(redirectionUrl), "Property is not nullable for class CfarContractExercise.");
-
             return new CfarContractExercise(id.Value!, contractId.Value!, exerciseInitiatedDateTime.Value!.Value!, cashRefundAllowance.Value!, extAttributes.Value!, redirectionToken.Value!.Value!, ftcRefundAllowance, currency, redirectionUrl);
         }
 
@@ -341,15 +332,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (cfarContractExercise.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(cfarContractExercise.ExtAttributes), "Property is required for class CfarContractExercise.");
-
-            if (cfarContractExercise.FtcRefundAllowanceOption.IsSet && cfarContractExercise.FtcRefundAllowance == null)
-                throw new ArgumentNullException(nameof(cfarContractExercise.FtcRefundAllowance), "Property is required for class CfarContractExercise.");
-
-            if (cfarContractExercise.CurrencyOption.IsSet && cfarContractExercise.Currency == null)
-                throw new ArgumentNullException(nameof(cfarContractExercise.Currency), "Property is required for class CfarContractExercise.");
-
-            if (cfarContractExercise.RedirectionUrlOption.IsSet && cfarContractExercise.RedirectionUrl == null)
-                throw new ArgumentNullException(nameof(cfarContractExercise.RedirectionUrl), "Property is required for class CfarContractExercise.");
 
             writer.WriteString("id", cfarContractExercise.Id);
 

@@ -229,15 +229,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (extAttributes.IsSet && extAttributes.Value == null)
                 throw new ArgumentNullException(nameof(extAttributes), "Property is not nullable for class CreateCfarOfferRequest.");
 
-            if (bookingDateTime.IsSet && bookingDateTime.Value == null)
-                throw new ArgumentNullException(nameof(bookingDateTime), "Property is not nullable for class CreateCfarOfferRequest.");
-
-            if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class CreateCfarOfferRequest.");
-
-            if (entryPoint.IsSet && entryPoint.Value == null)
-                throw new ArgumentNullException(nameof(entryPoint), "Property is not nullable for class CreateCfarOfferRequest.");
-
             return new CreateCfarOfferRequest(itinerary.Value!, requestType.Value!.Value!, extAttributes.Value!, bookingDateTime, session, entryPoint);
         }
 
@@ -270,12 +261,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createCfarOfferRequest.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(createCfarOfferRequest.ExtAttributes), "Property is required for class CreateCfarOfferRequest.");
-
-            if (createCfarOfferRequest.SessionOption.IsSet && createCfarOfferRequest.Session == null)
-                throw new ArgumentNullException(nameof(createCfarOfferRequest.Session), "Property is required for class CreateCfarOfferRequest.");
-
-            if (createCfarOfferRequest.EntryPointOption.IsSet && createCfarOfferRequest.EntryPoint == null)
-                throw new ArgumentNullException(nameof(createCfarOfferRequest.EntryPoint), "Property is required for class CreateCfarOfferRequest.");
 
             writer.WritePropertyName("itinerary");
             JsonSerializer.Serialize(writer, createCfarOfferRequest.Itinerary, jsonSerializerOptions);

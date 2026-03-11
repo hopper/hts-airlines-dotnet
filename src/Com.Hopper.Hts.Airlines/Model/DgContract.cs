@@ -511,15 +511,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (extAttributes.IsSet && extAttributes.Value == null)
                 throw new ArgumentNullException(nameof(extAttributes), "Property is not nullable for class DgContract.");
 
-            if (taxes.IsSet && taxes.Value == null)
-                throw new ArgumentNullException(nameof(taxes), "Property is not nullable for class DgContract.");
-
-            if (language.IsSet && language.Value == null)
-                throw new ArgumentNullException(nameof(language), "Property is not nullable for class DgContract.");
-
-            if (pnrReference.IsSet && pnrReference.Value == null)
-                throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class DgContract.");
-
             return new DgContract(id.Value!, reference.Value!, status.Value!.Value!, offers.Value!, itinerary.Value!, coveragePercentage.Value!, coverage.Value!, premium.Value!, serviceCap.Value!, currency.Value!, taxesTotal.Value!, maxHoursBeforeDeparture.Value!.Value!, minMinutesDelay.Value!.Value!, createdDateTime.Value!.Value!, expiryDateTime.Value!.Value!, extAttributes.Value!, taxes, language, pnrReference);
         }
 
@@ -579,15 +570,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (dgContract.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(dgContract.ExtAttributes), "Property is required for class DgContract.");
-
-            if (dgContract.TaxesOption.IsSet && dgContract.Taxes == null)
-                throw new ArgumentNullException(nameof(dgContract.Taxes), "Property is required for class DgContract.");
-
-            if (dgContract.LanguageOption.IsSet && dgContract.Language == null)
-                throw new ArgumentNullException(nameof(dgContract.Language), "Property is required for class DgContract.");
-
-            if (dgContract.PnrReferenceOption.IsSet && dgContract.PnrReference == null)
-                throw new ArgumentNullException(nameof(dgContract.PnrReference), "Property is required for class DgContract.");
 
             writer.WriteString("id", dgContract.Id);
 

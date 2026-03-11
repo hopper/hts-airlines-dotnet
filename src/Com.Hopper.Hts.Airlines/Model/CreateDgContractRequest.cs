@@ -181,9 +181,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (extAttributes.IsSet && extAttributes.Value == null)
                 throw new ArgumentNullException(nameof(extAttributes), "Property is not nullable for class CreateDgContractRequest.");
 
-            if (pnrReference.IsSet && pnrReference.Value == null)
-                throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class CreateDgContractRequest.");
-
             return new CreateDgContractRequest(offerIds.Value!, itinerary.Value!, extAttributes.Value!, pnrReference);
         }
 
@@ -219,9 +216,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (createDgContractRequest.ExtAttributes == null)
                 throw new ArgumentNullException(nameof(createDgContractRequest.ExtAttributes), "Property is required for class CreateDgContractRequest.");
-
-            if (createDgContractRequest.PnrReferenceOption.IsSet && createDgContractRequest.PnrReference == null)
-                throw new ArgumentNullException(nameof(createDgContractRequest.PnrReference), "Property is required for class CreateDgContractRequest.");
 
             writer.WritePropertyName("offer_ids");
             JsonSerializer.Serialize(writer, createDgContractRequest.OfferIds, jsonSerializerOptions);

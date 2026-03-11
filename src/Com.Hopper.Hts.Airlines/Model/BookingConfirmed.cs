@@ -239,12 +239,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class BookingConfirmed.");
 
-            if (cfarContractId.IsSet && cfarContractId.Value == null)
-                throw new ArgumentNullException(nameof(cfarContractId), "Property is not nullable for class BookingConfirmed.");
-
-            if (dgContractId.IsSet && dgContractId.Value == null)
-                throw new ArgumentNullException(nameof(dgContractId), "Property is not nullable for class BookingConfirmed.");
-
             return new BookingConfirmed(occurredDateTime.Value!.Value!, type.Value!.Value!, cfarContractId, dgContractId);
         }
 
@@ -272,12 +266,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BookingConfirmed bookingConfirmed, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (bookingConfirmed.CfarContractIdOption.IsSet && bookingConfirmed.CfarContractId == null)
-                throw new ArgumentNullException(nameof(bookingConfirmed.CfarContractId), "Property is required for class BookingConfirmed.");
-
-            if (bookingConfirmed.DgContractIdOption.IsSet && bookingConfirmed.DgContractId == null)
-                throw new ArgumentNullException(nameof(bookingConfirmed.DgContractId), "Property is required for class BookingConfirmed.");
-
             writer.WriteString("occurred_date_time", bookingConfirmed.OccurredDateTime.ToString(OccurredDateTimeFormat));
 
             var typeRawValue = BookingConfirmed.TypeEnumToJsonValue(bookingConfirmed.Type);

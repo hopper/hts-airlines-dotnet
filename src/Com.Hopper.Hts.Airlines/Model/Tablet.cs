@@ -253,15 +253,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Tablet.");
 
-            if (platform.IsSet && platform.Value == null)
-                throw new ArgumentNullException(nameof(platform), "Property is not nullable for class Tablet.");
-
-            if (uiTheme.IsSet && uiTheme.Value == null)
-                throw new ArgumentNullException(nameof(uiTheme), "Property is not nullable for class Tablet.");
-
-            if (releaseBuild.IsSet && releaseBuild.Value == null)
-                throw new ArgumentNullException(nameof(releaseBuild), "Property is not nullable for class Tablet.");
-
             return new Tablet(id.Value!, type.Value!.Value!, platform, uiTheme, releaseBuild);
         }
 
@@ -291,15 +282,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         {
             if (tablet.Id == null)
                 throw new ArgumentNullException(nameof(tablet.Id), "Property is required for class Tablet.");
-
-            if (tablet.PlatformOption.IsSet && tablet.Platform == null)
-                throw new ArgumentNullException(nameof(tablet.Platform), "Property is required for class Tablet.");
-
-            if (tablet.UiThemeOption.IsSet && tablet.UiTheme == null)
-                throw new ArgumentNullException(nameof(tablet.UiTheme), "Property is required for class Tablet.");
-
-            if (tablet.ReleaseBuildOption.IsSet && tablet.ReleaseBuild == null)
-                throw new ArgumentNullException(nameof(tablet.ReleaseBuild), "Property is required for class Tablet.");
 
             writer.WriteString("id", tablet.Id);
 

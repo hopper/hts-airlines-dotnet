@@ -297,18 +297,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class PaymentCard.");
 
-            if (token.IsSet && token.Value == null)
-                throw new ArgumentNullException(nameof(token), "Property is not nullable for class PaymentCard.");
-
-            if (lastFourDigits.IsSet && lastFourDigits.Value == null)
-                throw new ArgumentNullException(nameof(lastFourDigits), "Property is not nullable for class PaymentCard.");
-
-            if (expirationMonth.IsSet && expirationMonth.Value == null)
-                throw new ArgumentNullException(nameof(expirationMonth), "Property is not nullable for class PaymentCard.");
-
-            if (expirationYear.IsSet && expirationYear.Value == null)
-                throw new ArgumentNullException(nameof(expirationYear), "Property is not nullable for class PaymentCard.");
-
             return new PaymentCard(amount.Value!, currency.Value!, type.Value!.Value!, token, lastFourDigits, expirationMonth, expirationYear);
         }
 
@@ -341,18 +329,6 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (paymentCard.Currency == null)
                 throw new ArgumentNullException(nameof(paymentCard.Currency), "Property is required for class PaymentCard.");
-
-            if (paymentCard.TokenOption.IsSet && paymentCard.Token == null)
-                throw new ArgumentNullException(nameof(paymentCard.Token), "Property is required for class PaymentCard.");
-
-            if (paymentCard.LastFourDigitsOption.IsSet && paymentCard.LastFourDigits == null)
-                throw new ArgumentNullException(nameof(paymentCard.LastFourDigits), "Property is required for class PaymentCard.");
-
-            if (paymentCard.ExpirationMonthOption.IsSet && paymentCard.ExpirationMonth == null)
-                throw new ArgumentNullException(nameof(paymentCard.ExpirationMonth), "Property is required for class PaymentCard.");
-
-            if (paymentCard.ExpirationYearOption.IsSet && paymentCard.ExpirationYear == null)
-                throw new ArgumentNullException(nameof(paymentCard.ExpirationYear), "Property is required for class PaymentCard.");
 
             writer.WriteString("amount", paymentCard.Amount);
 

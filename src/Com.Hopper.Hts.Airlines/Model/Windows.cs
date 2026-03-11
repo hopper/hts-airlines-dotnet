@@ -192,9 +192,6 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class Windows.");
 
-            if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Windows.");
-
             return new Windows(type.Value!.Value!, varVersion);
         }
 
@@ -222,9 +219,6 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Windows windows, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (windows.VarVersionOption.IsSet && windows.VarVersion == null)
-                throw new ArgumentNullException(nameof(windows.VarVersion), "Property is required for class Windows.");
-
             var typeRawValue = Windows.TypeEnumToJsonValue(windows.Type);
             writer.WriteString("type", typeRawValue);
             if (windows.VarVersionOption.IsSet)
