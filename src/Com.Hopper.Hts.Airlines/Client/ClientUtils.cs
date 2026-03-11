@@ -158,8 +158,8 @@ namespace Com.Hopper.Hts.Airlines.Client
                 return AncillaryTypeValueConverter.ToJsonValue(ancillaryType);
             if (obj is Android.TypeEnum androidTypeEnum)
                 return Android.TypeEnumToJsonValue(androidTypeEnum);
-            if (obj is Api.TypeEnum apiTypeEnum)
-                return Api.TypeEnumToJsonValue(apiTypeEnum);
+            if (obj is Com.Hopper.Hts.Airlines.Model.Api.TypeEnum apiTypeEnum)
+                return Com.Hopper.Hts.Airlines.Model.Api.TypeEnumToJsonValue(apiTypeEnum);
             if (obj is App.TypeEnum appTypeEnum)
                 return App.TypeEnumToJsonValue(appTypeEnum);
             if (obj is BookingConfirmed.TypeEnum bookingConfirmedTypeEnum)
