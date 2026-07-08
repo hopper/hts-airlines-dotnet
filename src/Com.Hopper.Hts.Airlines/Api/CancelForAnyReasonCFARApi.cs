@@ -296,7 +296,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Update the CFAR contract
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for a contract</param>
+        /// <param name="id">A CFAR contract id or reference</param>
         /// <param name="updateCfarContractRequest"></param>
         /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -309,7 +309,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <remarks>
         /// Update the CFAR contract
         /// </remarks>
-        /// <param name="id">A unique identifier for a contract</param>
+        /// <param name="id">A CFAR contract id or reference</param>
         /// <param name="updateCfarContractRequest"></param>
         /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -4780,7 +4780,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <summary>
         /// Update CFAR Contract Status Update the CFAR contract
         /// </summary>
-        /// <param name="id">A unique identifier for a contract</param>
+        /// <param name="id">A CFAR contract id or reference</param>
         /// <param name="updateCfarContractRequest"></param>
         /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -4801,7 +4801,7 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Update CFAR Contract Status Update the CFAR contract
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">A unique identifier for a contract</param>
+        /// <param name="id">A CFAR contract id or reference</param>
         /// <param name="updateCfarContractRequest"></param>
         /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

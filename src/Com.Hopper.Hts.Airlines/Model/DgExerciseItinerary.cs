@@ -25,7 +25,7 @@ using Com.Hopper.Hts.Airlines.Client;
 namespace Com.Hopper.Hts.Airlines.Model
 {
     /// <summary>
-    /// Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
+    /// Itinerary of the user when the contract exercise was initiated (only active segments should be provided). Optional for partners using DisruptionDetectionService-source disruption detection — when omitted, the exercise&#39;s existing itinerary is used.
     /// </summary>
     public partial class DgExerciseItinerary
     {

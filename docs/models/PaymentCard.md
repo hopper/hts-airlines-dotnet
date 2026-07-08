@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **LastFourDigits** | **string** | Last four digits of the payment card | [optional] 
 **ExpirationMonth** | **string** | the expiry month of the payment card | [optional] 
 **ExpirationYear** | **string** | the expiry year of the payment card | [optional] 
+**CardBrand** | **string** | Card brand (e.g. visa, master, amex) as returned by the payment provider | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

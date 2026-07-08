@@ -98,7 +98,7 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Email address of the user
         /// </summary>
         /// <value>Email address of the user</value>
-        /* <example>aaa@bbb.ccc</example> */
+        /* <example>john@doe.com</example> */
         [JsonPropertyName("email_address")]
         public string EmailAddress { get; set; }
 

@@ -33,18 +33,18 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// Initializes a new instance of the <see cref="CreateDgContractExerciseRequest" /> class.
         /// </summary>
         /// <param name="contractId">A unique identifier for a DG contract</param>
-        /// <param name="itinerary">itinerary</param>
         /// <param name="pnrReference">Reference of the PNR in the airline system. In case of a PNR created subsequently to a split, fill requesting PNR / parent PNR (e.g. DEF456/ABC123) </param>
+        /// <param name="itinerary">itinerary</param>
         /// <param name="emailAddress">Email address of the user</param>
         /// <param name="callbackUrl">URL on which the customer should be redirected after the exercise (if applicable)</param>
         /// <param name="redirectbackUrl">URL on which the customer should be redirected if the exercise is aborted (if applicable)</param>
         /// <param name="session">session</param>
         [JsonConstructor]
-        public CreateDgContractExerciseRequest(string contractId, DgExerciseItinerary itinerary, string pnrReference, Option<string?> emailAddress = default, Option<string?> callbackUrl = default, Option<string?> redirectbackUrl = default, Option<CreateAirlineDgSessionRequest?> session = default)
+        public CreateDgContractExerciseRequest(string contractId, string pnrReference, Option<DgExerciseItinerary?> itinerary = default, Option<string?> emailAddress = default, Option<string?> callbackUrl = default, Option<string?> redirectbackUrl = default, Option<CreateAirlineDgSessionRequest?> session = default)
         {
             ContractId = contractId;
-            Itinerary = itinerary;
             PnrReference = pnrReference;
+            ItineraryOption = itinerary;
             EmailAddressOption = emailAddress;
             CallbackUrlOption = callbackUrl;
             RedirectbackUrlOption = redirectbackUrl;
@@ -63,18 +63,25 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string ContractId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Itinerary
-        /// </summary>
-        [JsonPropertyName("itinerary")]
-        public DgExerciseItinerary Itinerary { get; set; }
-
-        /// <summary>
         /// Reference of the PNR in the airline system. In case of a PNR created subsequently to a split, fill requesting PNR / parent PNR (e.g. DEF456/ABC123) 
         /// </summary>
         /// <value>Reference of the PNR in the airline system. In case of a PNR created subsequently to a split, fill requesting PNR / parent PNR (e.g. DEF456/ABC123) </value>
         /* <example>ABC123</example> */
         [JsonPropertyName("pnr_reference")]
         public string PnrReference { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Itinerary
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DgExerciseItinerary?> ItineraryOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets Itinerary
+        /// </summary>
+        [JsonPropertyName("itinerary")]
+        public DgExerciseItinerary? Itinerary { get { return this.ItineraryOption; } set { this.ItineraryOption = new Option<DgExerciseItinerary?>(value); } }
 
         /// <summary>
         /// Used to track the state of EmailAddress
@@ -143,8 +150,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateDgContractExerciseRequest {\n");
             sb.Append("  ContractId: ").Append(ContractId).Append("\n");
-            sb.Append("  Itinerary: ").Append(Itinerary).Append("\n");
             sb.Append("  PnrReference: ").Append(PnrReference).Append("\n");
+            sb.Append("  Itinerary: ").Append(Itinerary).Append("\n");
             sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
             sb.Append("  CallbackUrl: ").Append(CallbackUrl).Append("\n");
             sb.Append("  RedirectbackUrl: ").Append(RedirectbackUrl).Append("\n");
@@ -177,8 +184,8 @@ namespace Com.Hopper.Hts.Airlines.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string?> contractId = default;
-            Option<DgExerciseItinerary?> itinerary = default;
             Option<string?> pnrReference = default;
+            Option<DgExerciseItinerary?> itinerary = default;
             Option<string?> emailAddress = default;
             Option<string?> callbackUrl = default;
             Option<string?> redirectbackUrl = default;
@@ -202,12 +209,12 @@ namespace Com.Hopper.Hts.Airlines.Model
                         case "contract_id":
                             contractId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "pnr_reference":
+                            pnrReference = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         case "itinerary":
                             if (utf8JsonReader.TokenType != JsonTokenType.Null)
                                 itinerary = new Option<DgExerciseItinerary?>(JsonSerializer.Deserialize<DgExerciseItinerary>(ref utf8JsonReader, jsonSerializerOptions)!);
-                            break;
-                        case "pnr_reference":
-                            pnrReference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "email_address":
                             emailAddress = new Option<string?>(utf8JsonReader.GetString()!);
@@ -231,22 +238,16 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (!contractId.IsSet)
                 throw new ArgumentException("Property is required for class CreateDgContractExerciseRequest.", nameof(contractId));
 
-            if (!itinerary.IsSet)
-                throw new ArgumentException("Property is required for class CreateDgContractExerciseRequest.", nameof(itinerary));
-
             if (!pnrReference.IsSet)
                 throw new ArgumentException("Property is required for class CreateDgContractExerciseRequest.", nameof(pnrReference));
 
             if (contractId.IsSet && contractId.Value == null)
                 throw new ArgumentNullException(nameof(contractId), "Property is not nullable for class CreateDgContractExerciseRequest.");
 
-            if (itinerary.IsSet && itinerary.Value == null)
-                throw new ArgumentNullException(nameof(itinerary), "Property is not nullable for class CreateDgContractExerciseRequest.");
-
             if (pnrReference.IsSet && pnrReference.Value == null)
                 throw new ArgumentNullException(nameof(pnrReference), "Property is not nullable for class CreateDgContractExerciseRequest.");
 
-            return new CreateDgContractExerciseRequest(contractId.Value!, itinerary.Value!, pnrReference.Value!, emailAddress, callbackUrl, redirectbackUrl, session);
+            return new CreateDgContractExerciseRequest(contractId.Value!, pnrReference.Value!, itinerary, emailAddress, callbackUrl, redirectbackUrl, session);
         }
 
         /// <summary>
@@ -276,18 +277,18 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (createDgContractExerciseRequest.ContractId == null)
                 throw new ArgumentNullException(nameof(createDgContractExerciseRequest.ContractId), "Property is required for class CreateDgContractExerciseRequest.");
 
-            if (createDgContractExerciseRequest.Itinerary == null)
-                throw new ArgumentNullException(nameof(createDgContractExerciseRequest.Itinerary), "Property is required for class CreateDgContractExerciseRequest.");
-
             if (createDgContractExerciseRequest.PnrReference == null)
                 throw new ArgumentNullException(nameof(createDgContractExerciseRequest.PnrReference), "Property is required for class CreateDgContractExerciseRequest.");
 
             writer.WriteString("contract_id", createDgContractExerciseRequest.ContractId);
 
-            writer.WritePropertyName("itinerary");
-            JsonSerializer.Serialize(writer, createDgContractExerciseRequest.Itinerary, jsonSerializerOptions);
             writer.WriteString("pnr_reference", createDgContractExerciseRequest.PnrReference);
 
+            if (createDgContractExerciseRequest.ItineraryOption.IsSet)
+            {
+                writer.WritePropertyName("itinerary");
+                JsonSerializer.Serialize(writer, createDgContractExerciseRequest.Itinerary, jsonSerializerOptions);
+            }
             if (createDgContractExerciseRequest.EmailAddressOption.IsSet)
                 writer.WriteString("email_address", createDgContractExerciseRequest.EmailAddress);
 

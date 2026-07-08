@@ -39,26 +39,26 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// Send a Backend Event
         /// </summary>
         /// <remarks>
-        /// Events can be send directly from partner backend using the same authentication as the other endpoints
+        /// Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPostEventsApiResponse"/>&gt;</returns>
-        Task<IPostEventsApiResponse> PostEventsAsync(string hCSessionID, Event varEvent, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPostEventsApiResponse> PostEventsAsync(Event varEvent, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Send a Backend Event
         /// </summary>
         /// <remarks>
-        /// Events can be send directly from partner backend using the same authentication as the other endpoints
+        /// Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
         /// </remarks>
-        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPostEventsApiResponse"/>?&gt;</returns>
-        Task<IPostEventsApiResponse?> PostEventsOrDefaultAsync(string hCSessionID, Event varEvent, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPostEventsApiResponse?> PostEventsOrDefaultAsync(Event varEvent, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -189,33 +189,33 @@ namespace Com.Hopper.Hts.Airlines.Api
             BearerTokenProvider = bearerTokenProvider;
         }
 
-        partial void FormatPostEvents(ref string hCSessionID, Event varEvent);
+        partial void FormatPostEvents(Event varEvent, ref Option<string> hCSessionID);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="hCSessionID"></param>
         /// <param name="varEvent"></param>
+        /// <param name="hCSessionID"></param>
         /// <returns></returns>
-        private void ValidatePostEvents(string hCSessionID, Event varEvent)
+        private void ValidatePostEvents(Event varEvent, Option<string> hCSessionID)
         {
-            if (hCSessionID == null)
-                throw new ArgumentNullException(nameof(hCSessionID));
-
             if (varEvent == null)
                 throw new ArgumentNullException(nameof(varEvent));
+
+            if (hCSessionID.IsSet && hCSessionID.Value == null)
+                throw new ArgumentNullException(nameof(hCSessionID));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="hCSessionID"></param>
         /// <param name="varEvent"></param>
-        private void AfterPostEventsDefaultImplementation(IPostEventsApiResponse apiResponseLocalVar, string hCSessionID, Event varEvent)
+        /// <param name="hCSessionID"></param>
+        private void AfterPostEventsDefaultImplementation(IPostEventsApiResponse apiResponseLocalVar, Event varEvent, Option<string> hCSessionID)
         {
             bool suppressDefaultLog = false;
-            AfterPostEvents(ref suppressDefaultLog, apiResponseLocalVar, hCSessionID, varEvent);
+            AfterPostEvents(ref suppressDefaultLog, apiResponseLocalVar, varEvent, hCSessionID);
             if (!suppressDefaultLog)
                 Logger.LogInformation("{0,-9} | {1} | {3}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -225,9 +225,9 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="hCSessionID"></param>
         /// <param name="varEvent"></param>
-        partial void AfterPostEvents(ref bool suppressDefaultLog, IPostEventsApiResponse apiResponseLocalVar, string hCSessionID, Event varEvent);
+        /// <param name="hCSessionID"></param>
+        partial void AfterPostEvents(ref bool suppressDefaultLog, IPostEventsApiResponse apiResponseLocalVar, Event varEvent, Option<string> hCSessionID);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -235,12 +235,12 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="hCSessionID"></param>
         /// <param name="varEvent"></param>
-        private void OnErrorPostEventsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string hCSessionID, Event varEvent)
+        /// <param name="hCSessionID"></param>
+        private void OnErrorPostEventsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Event varEvent, Option<string> hCSessionID)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorPostEvents(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, hCSessionID, varEvent);
+            OnErrorPostEvents(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, varEvent, hCSessionID);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -252,22 +252,22 @@ namespace Com.Hopper.Hts.Airlines.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="hCSessionID"></param>
         /// <param name="varEvent"></param>
-        partial void OnErrorPostEvents(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string hCSessionID, Event varEvent);
+        /// <param name="hCSessionID"></param>
+        partial void OnErrorPostEvents(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Event varEvent, Option<string> hCSessionID);
 
         /// <summary>
-        /// Send a Backend Event Events can be send directly from partner backend using the same authentication as the other endpoints
+        /// Send a Backend Event Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
         /// </summary>
-        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPostEventsApiResponse"/>&gt;</returns>
-        public async Task<IPostEventsApiResponse?> PostEventsOrDefaultAsync(string hCSessionID, Event varEvent, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPostEventsApiResponse?> PostEventsOrDefaultAsync(Event varEvent, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await PostEventsAsync(hCSessionID, varEvent, cancellationToken).ConfigureAwait(false);
+                return await PostEventsAsync(varEvent, hCSessionID, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -276,22 +276,22 @@ namespace Com.Hopper.Hts.Airlines.Api
         }
 
         /// <summary>
-        /// Send a Backend Event Events can be send directly from partner backend using the same authentication as the other endpoints
+        /// Send a Backend Event Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions)</param>
         /// <param name="varEvent"></param>
+        /// <param name="hCSessionID">The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPostEventsApiResponse"/>&gt;</returns>
-        public async Task<IPostEventsApiResponse> PostEventsAsync(string hCSessionID, Event varEvent, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPostEventsApiResponse> PostEventsAsync(Event varEvent, Option<string> hCSessionID = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidatePostEvents(hCSessionID, varEvent);
+                ValidatePostEvents(varEvent, hCSessionID);
 
-                FormatPostEvents(ref hCSessionID, varEvent);
+                FormatPostEvents(varEvent, ref hCSessionID);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -300,7 +300,8 @@ namespace Com.Hopper.Hts.Airlines.Api
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = ClientUtils.CONTEXT_PATH + "/events";
 
-                    httpRequestMessageLocalVar.Headers.Add("HC-Session-ID", ClientUtils.ParameterToString(hCSessionID));
+                    if (hCSessionID.IsSet)
+                        httpRequestMessageLocalVar.Headers.Add("HC-Session-ID", ClientUtils.ParameterToString(hCSessionID.Value));
 
                     httpRequestMessageLocalVar.Content = (varEvent as object) is System.IO.Stream stream
                         ? httpRequestMessageLocalVar.Content = new StreamContent(stream)
@@ -345,7 +346,7 @@ namespace Com.Hopper.Hts.Airlines.Api
 
                         PostEventsApiResponse apiResponseLocalVar = new(apiResponseLoggerLocalVar, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/events", requestedAtLocalVar, _jsonSerializerOptions);
 
-                        AfterPostEventsDefaultImplementation(apiResponseLocalVar, hCSessionID, varEvent);
+                        AfterPostEventsDefaultImplementation(apiResponseLocalVar, varEvent, hCSessionID);
 
                         Events.ExecuteOnPostEvents(apiResponseLocalVar);
 
@@ -359,7 +360,7 @@ namespace Com.Hopper.Hts.Airlines.Api
             }
             catch(Exception e)
             {
-                OnErrorPostEventsDefaultImplementation(e, "/events", uriBuilderLocalVar.Path, hCSessionID, varEvent);
+                OnErrorPostEventsDefaultImplementation(e, "/events", uriBuilderLocalVar.Path, varEvent, hCSessionID);
                 Events.ExecuteOnErrorPostEvents(e);
                 throw;
             }
