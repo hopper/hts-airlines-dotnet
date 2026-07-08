@@ -39,8 +39,9 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="lastFourDigits">Last four digits of the payment card</param>
         /// <param name="expirationMonth">the expiry month of the payment card</param>
         /// <param name="expirationYear">the expiry year of the payment card</param>
+        /// <param name="cardBrand">Card brand (e.g. visa, master, amex) as returned by the payment provider</param>
         [JsonConstructor]
-        public PaymentCard(string amount, string currency, TypeEnum type, Option<string?> token = default, Option<string?> lastFourDigits = default, Option<string?> expirationMonth = default, Option<string?> expirationYear = default)
+        public PaymentCard(string amount, string currency, TypeEnum type, Option<string?> token = default, Option<string?> lastFourDigits = default, Option<string?> expirationMonth = default, Option<string?> expirationYear = default, Option<string?> cardBrand = default)
         {
             Amount = amount;
             Currency = currency;
@@ -49,6 +50,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             LastFourDigitsOption = lastFourDigits;
             ExpirationMonthOption = expirationMonth;
             ExpirationYearOption = expirationYear;
+            CardBrandOption = cardBrand;
             OnCreated();
         }
 
@@ -186,6 +188,20 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string? ExpirationYear { get { return this.ExpirationYearOption; } set { this.ExpirationYearOption = new Option<string?>(value); } }
 
         /// <summary>
+        /// Used to track the state of CardBrand
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> CardBrandOption { get; private set; }
+
+        /// <summary>
+        /// Card brand (e.g. visa, master, amex) as returned by the payment provider
+        /// </summary>
+        /// <value>Card brand (e.g. visa, master, amex) as returned by the payment provider</value>
+        [JsonPropertyName("card_brand")]
+        public string? CardBrand { get { return this.CardBrandOption; } set { this.CardBrandOption = new Option<string?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -200,6 +216,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  LastFourDigits: ").Append(LastFourDigits).Append("\n");
             sb.Append("  ExpirationMonth: ").Append(ExpirationMonth).Append("\n");
             sb.Append("  ExpirationYear: ").Append(ExpirationYear).Append("\n");
+            sb.Append("  CardBrand: ").Append(CardBrand).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -234,6 +251,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<string?> lastFourDigits = default;
             Option<string?> expirationMonth = default;
             Option<string?> expirationYear = default;
+            Option<string?> cardBrand = default;
 
             while (utf8JsonReader.Read())
             {
@@ -273,6 +291,9 @@ namespace Com.Hopper.Hts.Airlines.Model
                         case "expiration_year":
                             expirationYear = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "card_brand":
+                            cardBrand = new Option<string?>(utf8JsonReader.GetString()!);
+                            break;
                         default:
                             break;
                     }
@@ -297,7 +318,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class PaymentCard.");
 
-            return new PaymentCard(amount.Value!, currency.Value!, type.Value!.Value!, token, lastFourDigits, expirationMonth, expirationYear);
+            return new PaymentCard(amount.Value!, currency.Value!, type.Value!.Value!, token, lastFourDigits, expirationMonth, expirationYear, cardBrand);
         }
 
         /// <summary>
@@ -347,6 +368,9 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (paymentCard.ExpirationYearOption.IsSet)
                 writer.WriteString("expiration_year", paymentCard.ExpirationYear);
+
+            if (paymentCard.CardBrandOption.IsSet)
+                writer.WriteString("card_brand", paymentCard.CardBrand);
         }
     }
 }

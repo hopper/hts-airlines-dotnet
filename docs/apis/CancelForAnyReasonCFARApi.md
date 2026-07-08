@@ -1073,7 +1073,7 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CancelForAnyReasonCFARApi(config);
-            var id = "id_example";  // string | A unique identifier for a contract
+            var id = "id_example";  // string | A CFAR contract id or reference
             var updateCfarContractRequest = new UpdateCfarContractRequest(); // UpdateCfarContractRequest | 
             var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions) (optional) 
 
@@ -1118,7 +1118,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **string** | A unique identifier for a contract |  |
+| **id** | **string** | A CFAR contract id or reference |  |
 | **updateCfarContractRequest** | [**UpdateCfarContractRequest**](UpdateCfarContractRequest.md) |  |  |
 | **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) | [optional]  |
 

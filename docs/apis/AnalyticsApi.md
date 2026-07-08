@@ -8,11 +8,11 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
 <a id="postevents"></a>
 # **PostEvents**
-> void PostEvents (string hCSessionID, Event varEvent)
+> void PostEvents (Event varEvent, string hCSessionID = null)
 
 Send a Backend Event
 
-Events can be send directly from partner backend using the same authentication as the other endpoints
+Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
 
 ### Example
 ```csharp
@@ -34,13 +34,13 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AnalyticsApi(config);
-            var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions)
             var varEvent = new Event(); // Event | 
+            var hCSessionID = 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f;  // string | The ID of the current airline session, see [Sessions](#tag/Sessions) (optional) 
 
             try
             {
                 // Send a Backend Event
-                apiInstance.PostEvents(hCSessionID, varEvent);
+                apiInstance.PostEvents(varEvent, hCSessionID);
             }
             catch (ApiException  e)
             {
@@ -60,7 +60,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Send a Backend Event
-    apiInstance.PostEventsWithHttpInfo(hCSessionID, varEvent);
+    apiInstance.PostEventsWithHttpInfo(varEvent, hCSessionID);
 }
 catch (ApiException e)
 {
@@ -74,8 +74,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) |  |
 | **varEvent** | [**Event**](Event.md) |  |  |
+| **hCSessionID** | **string** | The ID of the current airline session, see [Sessions](#tag/Sessions) | [optional]  |
 
 ### Return type
 

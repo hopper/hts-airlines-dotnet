@@ -36,13 +36,19 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <param name="type">type</param>
         /// <param name="cfarContractId">The purchased CFAR contract, if one is present</param>
         /// <param name="dgContractId">The purchased DG contract, if one is present</param>
+        /// <param name="cfarOfferIds">CFAR offer IDs shown to the customer during the session. Used to recover the session (and enrich the event) when no HC-Session-ID header is sent.</param>
+        /// <param name="dgOfferIds">DG offer IDs shown to the customer during the session. Used to recover the session (and enrich the event) when no HC-Session-ID header is sent.</param>
+        /// <param name="bookingReferences">bookingReferences</param>
         [JsonConstructor]
-        public BookingConfirmed(DateTime occurredDateTime, TypeEnum type, Option<string?> cfarContractId = default, Option<string?> dgContractId = default)
+        public BookingConfirmed(DateTime occurredDateTime, TypeEnum type, Option<string?> cfarContractId = default, Option<string?> dgContractId = default, Option<List<string>?> cfarOfferIds = default, Option<List<string>?> dgOfferIds = default, Option<Dictionary<string, string>?> bookingReferences = default)
         {
             OccurredDateTime = occurredDateTime;
             Type = type;
             CfarContractIdOption = cfarContractId;
             DgContractIdOption = dgContractId;
+            CfarOfferIdsOption = cfarOfferIds;
+            DgOfferIdsOption = dgOfferIds;
+            BookingReferencesOption = bookingReferences;
             OnCreated();
         }
 
@@ -143,6 +149,47 @@ namespace Com.Hopper.Hts.Airlines.Model
         public string? DgContractId { get { return this.DgContractIdOption; } set { this.DgContractIdOption = new Option<string?>(value); } }
 
         /// <summary>
+        /// Used to track the state of CfarOfferIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> CfarOfferIdsOption { get; private set; }
+
+        /// <summary>
+        /// CFAR offer IDs shown to the customer during the session. Used to recover the session (and enrich the event) when no HC-Session-ID header is sent.
+        /// </summary>
+        /// <value>CFAR offer IDs shown to the customer during the session. Used to recover the session (and enrich the event) when no HC-Session-ID header is sent.</value>
+        [JsonPropertyName("cfar_offer_ids")]
+        public List<string>? CfarOfferIds { get { return this.CfarOfferIdsOption; } set { this.CfarOfferIdsOption = new Option<List<string>?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of DgOfferIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>?> DgOfferIdsOption { get; private set; }
+
+        /// <summary>
+        /// DG offer IDs shown to the customer during the session. Used to recover the session (and enrich the event) when no HC-Session-ID header is sent.
+        /// </summary>
+        /// <value>DG offer IDs shown to the customer during the session. Used to recover the session (and enrich the event) when no HC-Session-ID header is sent.</value>
+        [JsonPropertyName("dg_offer_ids")]
+        public List<string>? DgOfferIds { get { return this.DgOfferIdsOption; } set { this.DgOfferIdsOption = new Option<List<string>?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of BookingReferences
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Dictionary<string, string>?> BookingReferencesOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets BookingReferences
+        /// </summary>
+        [JsonPropertyName("booking_references")]
+        public Dictionary<string, string>? BookingReferences { get { return this.BookingReferencesOption; } set { this.BookingReferencesOption = new Option<Dictionary<string, string>?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -154,6 +201,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  CfarContractId: ").Append(CfarContractId).Append("\n");
             sb.Append("  DgContractId: ").Append(DgContractId).Append("\n");
+            sb.Append("  CfarOfferIds: ").Append(CfarOfferIds).Append("\n");
+            sb.Append("  DgOfferIds: ").Append(DgOfferIds).Append("\n");
+            sb.Append("  BookingReferences: ").Append(BookingReferences).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -190,6 +240,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             Option<BookingConfirmed.TypeEnum?> type = default;
             Option<string?> cfarContractId = default;
             Option<string?> dgContractId = default;
+            Option<List<string>?> cfarOfferIds = default;
+            Option<List<string>?> dgOfferIds = default;
+            Option<Dictionary<string, string>?> bookingReferences = default;
 
             while (utf8JsonReader.Read())
             {
@@ -221,6 +274,18 @@ namespace Com.Hopper.Hts.Airlines.Model
                         case "dg_contract_id":
                             dgContractId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "cfar_offer_ids":
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                cfarOfferIds = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "dg_offer_ids":
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                dgOfferIds = new Option<List<string>?>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "booking_references":
+                            if (utf8JsonReader.TokenType != JsonTokenType.Null)
+                                bookingReferences = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
@@ -239,7 +304,7 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (type.IsSet && type.Value == null)
                 throw new ArgumentNullException(nameof(type), "Property is not nullable for class BookingConfirmed.");
 
-            return new BookingConfirmed(occurredDateTime.Value!.Value!, type.Value!.Value!, cfarContractId, dgContractId);
+            return new BookingConfirmed(occurredDateTime.Value!.Value!, type.Value!.Value!, cfarContractId, dgContractId, cfarOfferIds, dgOfferIds, bookingReferences);
         }
 
         /// <summary>
@@ -275,6 +340,22 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (bookingConfirmed.DgContractIdOption.IsSet)
                 writer.WriteString("dg_contract_id", bookingConfirmed.DgContractId);
+
+            if (bookingConfirmed.CfarOfferIdsOption.IsSet)
+            {
+                writer.WritePropertyName("cfar_offer_ids");
+                JsonSerializer.Serialize(writer, bookingConfirmed.CfarOfferIds, jsonSerializerOptions);
+            }
+            if (bookingConfirmed.DgOfferIdsOption.IsSet)
+            {
+                writer.WritePropertyName("dg_offer_ids");
+                JsonSerializer.Serialize(writer, bookingConfirmed.DgOfferIds, jsonSerializerOptions);
+            }
+            if (bookingConfirmed.BookingReferencesOption.IsSet)
+            {
+                writer.WritePropertyName("booking_references");
+                JsonSerializer.Serialize(writer, bookingConfirmed.BookingReferences, jsonSerializerOptions);
+            }
         }
     }
 }

@@ -129,8 +129,10 @@ tags:
 paths:
   /events:
     post:
-      description: Events can be send directly from partner backend using the same
-        authentication as the other endpoints
+      description: "Events can be send directly from partner backend using the same\
+        \ authentication as the other endpoints. The HC-Session-ID header is optional\
+        \ for booking_confirmed events, which may instead link back to the session\
+        \ via offer IDs in the body; it remains required for other event types."
       operationId: postEvents
       parameters:
       - description: "The ID of the current airline session, see [Sessions](#tag/Sessions)"
@@ -138,7 +140,7 @@ paths:
         explode: false
         in: header
         name: HC-Session-ID
-        required: true
+        required: false
         schema:
           type: string
         style: simple
@@ -563,7 +565,7 @@ paths:
       description: Update the CFAR contract
       operationId: putCfar_contractsIdUpdate_status
       parameters:
-      - description: A unique identifier for a contract
+      - description: A CFAR contract id or reference
         explode: false
         in: path
         name: id
@@ -1901,6 +1903,7 @@ components:
       enum:
       - ftc
       - cash
+      - manual_cash
       title: airline_refund_method
       type: string
     airline_session:
@@ -2079,6 +2082,25 @@ components:
         dg_contract_id:
           description: "The purchased DG contract, if one is present"
           type: string
+        cfar_offer_ids:
+          description: CFAR offer IDs shown to the customer during the session. Used
+            to recover the session (and enrich the event) when no HC-Session-ID header
+            is sent.
+          items:
+            type: string
+          type: array
+        dg_offer_ids:
+          description: DG offer IDs shown to the customer during the session. Used
+            to recover the session (and enrich the event) when no HC-Session-ID header
+            is sent.
+          items:
+            type: string
+          type: array
+        booking_references:
+          additionalProperties:
+            type: string
+          title: map_string
+          type: object
         type:
           enum:
           - booking_confirmed
@@ -4575,6 +4597,7 @@ components:
         email_address:
           description: Email address of the user
           example: john@doe.com
+          format: email
           type: string
         pnr_reference:
           example: ABC123
@@ -4628,8 +4651,6 @@ components:
           description: Identifier of the offer(s) for which the contract is created
           example: 1ec9eed3-4486-6460-9d6c-2fb8469d35db
           items:
-            description: Unique identifier for an offer
-            example: 2e1006b3-aba6-4899-8682-b95bce693c27
             type: string
           type: array
         itinerary:
@@ -4699,6 +4720,7 @@ components:
         email_address:
           description: Email address of the user
           example: john@doe.com
+          format: email
           type: string
         callback_url:
           description: URL on which the customer should be redirected after the exercise
@@ -4714,7 +4736,6 @@ components:
           $ref: '#/components/schemas/create_airline_dg_session_request'
       required:
       - contract_id
-      - itinerary
       - pnr_reference
       title: create_dg_contract_exercise_request
       type: object
@@ -5952,8 +5973,10 @@ components:
       title: dg_contract
       type: object
     dg_exercise_itinerary:
-      description: Itinerary of the user when the contract exercise was initiated
-        (only active segments should be provided)
+      description: "Itinerary of the user when the contract exercise was initiated\
+        \ (only active segments should be provided). Optional for partners using DisruptionDetectionService-source\
+        \ disruption detection — when omitted, the exercise's existing itinerary is\
+        \ used."
       properties:
         passenger_count:
           description: List of passengers type and count for the itinerary
@@ -7443,6 +7466,10 @@ components:
           description: the expiry year of the payment card
           example: "26"
           type: string
+        card_brand:
+          description: "Card brand (e.g. visa, master, amex) as returned by the payment\
+            \ provider"
+          type: string
         type:
           enum:
           - payment_card
@@ -7524,7 +7551,8 @@ components:
           type: string
         email_address:
           description: Email address of the user
-          example: aaa@bbb.ccc
+          example: john@doe.com
+          format: email
           type: string
       required:
       - email_address
@@ -7719,6 +7747,7 @@ components:
         email_address:
           description: Email address of the user
           example: john@doe.com
+          format: email
           type: string
         phone_number:
           description: Phone number of the customer
@@ -7820,6 +7849,7 @@ components:
         email_address:
           description: Email address of the user
           example: john@doe.com
+          format: email
           type: string
         phone_number:
           description: Phone number of the customer

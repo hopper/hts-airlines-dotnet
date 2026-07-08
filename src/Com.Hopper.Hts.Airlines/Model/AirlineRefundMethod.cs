@@ -37,7 +37,12 @@ namespace Com.Hopper.Hts.Airlines.Model
         /// <summary>
         /// Enum Cash for value: cash
         /// </summary>
-        Cash = 2
+        Cash = 2,
+
+        /// <summary>
+        /// Enum ManualCash for value: manual_cash
+        /// </summary>
+        ManualCash = 3
     }
 
     /// <summary>
@@ -58,6 +63,9 @@ namespace Com.Hopper.Hts.Airlines.Model
             if (value.Equals("cash"))
                 return AirlineRefundMethod.Cash;
 
+            if (value.Equals("manual_cash"))
+                return AirlineRefundMethod.ManualCash;
+
             throw new NotImplementedException($"Could not convert value to type AirlineRefundMethod: '{value}'");
         }
 
@@ -73,6 +81,9 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (value.Equals("cash"))
                 return AirlineRefundMethod.Cash;
+
+            if (value.Equals("manual_cash"))
+                return AirlineRefundMethod.ManualCash;
 
             return null;
         }
@@ -90,6 +101,9 @@ namespace Com.Hopper.Hts.Airlines.Model
 
             if (value == AirlineRefundMethod.Cash)
                 return "cash";
+
+            if (value == AirlineRefundMethod.ManualCash)
+                return "manual_cash";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
